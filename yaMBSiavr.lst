@@ -1,0 +1,2336 @@
+GAS LISTING /tmp/ccY3DPgE.s 			page 1
+
+
+   1               		.file	"yaMBSiavr.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.stabs	"/home/drjacka/modbus/yaMBSiavr_8/",100,0,2,.Ltext0
+   8               		.stabs	"yaMBSiavr.c",100,0,2,.Ltext0
+   9               		.text
+  10               	.Ltext0:
+  11               		.stabs	"gcc2_compiled.",60,0,0,0
+  12               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  13               		.stabs	"char:t(0,2)=@s8;r(0,2);0;255;",128,0,0,0
+  14               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  15               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  16               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  17               		.stabs	"__int128:t(0,6)=@s128;r(0,6);02000000000000000000000000000000000000000000;0177777777777777
+  18               		.stabs	"__int128 unsigned:t(0,7)=@s128;r(0,7);0;03777777777777777777777777777777777777777777;",128
+  19               		.stabs	"long long int:t(0,8)=@s64;r(0,8);01000000000000000000000;00777777777777777777777;",128,0,0
+  20               		.stabs	"long long unsigned int:t(0,9)=@s64;r(0,9);0;01777777777777777777777;",128,0,0,0
+  21               		.stabs	"short int:t(0,10)=r(0,10);-32768;32767;",128,0,0,0
+  22               		.stabs	"short unsigned int:t(0,11)=r(0,11);0;0177777;",128,0,0,0
+  23               		.stabs	"signed char:t(0,12)=@s8;r(0,12);-128;127;",128,0,0,0
+  24               		.stabs	"unsigned char:t(0,13)=@s8;r(0,13);0;255;",128,0,0,0
+  25               		.stabs	"float:t(0,14)=r(0,1);4;0;",128,0,0,0
+  26               		.stabs	"double:t(0,15)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"long double:t(0,16)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"_Float32:t(0,17)=r(0,1);4;0;",128,0,0,0
+  29               		.stabs	"short _Fract:t(0,18)=r(0,1);1;0;",128,0,0,0
+  30               		.stabs	"_Fract:t(0,19)=r(0,1);2;0;",128,0,0,0
+  31               		.stabs	"long _Fract:t(0,20)=r(0,1);4;0;",128,0,0,0
+  32               		.stabs	"long long _Fract:t(0,21)=r(0,1);8;0;",128,0,0,0
+  33               		.stabs	"unsigned short _Fract:t(0,22)=r(0,1);1;0;",128,0,0,0
+  34               		.stabs	"unsigned _Fract:t(0,23)=r(0,1);2;0;",128,0,0,0
+  35               		.stabs	"unsigned long _Fract:t(0,24)=r(0,1);4;0;",128,0,0,0
+  36               		.stabs	"unsigned long long _Fract:t(0,25)=r(0,1);8;0;",128,0,0,0
+  37               		.stabs	"_Sat short _Fract:t(0,26)=r(0,1);1;0;",128,0,0,0
+  38               		.stabs	"_Sat _Fract:t(0,27)=r(0,1);2;0;",128,0,0,0
+  39               		.stabs	"_Sat long _Fract:t(0,28)=r(0,1);4;0;",128,0,0,0
+  40               		.stabs	"_Sat long long _Fract:t(0,29)=r(0,1);8;0;",128,0,0,0
+  41               		.stabs	"_Sat unsigned short _Fract:t(0,30)=r(0,1);1;0;",128,0,0,0
+  42               		.stabs	"_Sat unsigned _Fract:t(0,31)=r(0,1);2;0;",128,0,0,0
+  43               		.stabs	"_Sat unsigned long _Fract:t(0,32)=r(0,1);4;0;",128,0,0,0
+  44               		.stabs	"_Sat unsigned long long _Fract:t(0,33)=r(0,1);8;0;",128,0,0,0
+  45               		.stabs	"short _Accum:t(0,34)=r(0,1);2;0;",128,0,0,0
+  46               		.stabs	"_Accum:t(0,35)=r(0,1);4;0;",128,0,0,0
+  47               		.stabs	"long _Accum:t(0,36)=r(0,1);8;0;",128,0,0,0
+  48               		.stabs	"long long _Accum:t(0,37)=r(0,1);8;0;",128,0,0,0
+  49               		.stabs	"unsigned short _Accum:t(0,38)=r(0,1);2;0;",128,0,0,0
+  50               		.stabs	"unsigned _Accum:t(0,39)=r(0,1);4;0;",128,0,0,0
+  51               		.stabs	"unsigned long _Accum:t(0,40)=r(0,1);8;0;",128,0,0,0
+  52               		.stabs	"unsigned long long _Accum:t(0,41)=r(0,1);8;0;",128,0,0,0
+  53               		.stabs	"_Sat short _Accum:t(0,42)=r(0,1);2;0;",128,0,0,0
+  54               		.stabs	"_Sat _Accum:t(0,43)=r(0,1);4;0;",128,0,0,0
+  55               		.stabs	"_Sat long _Accum:t(0,44)=r(0,1);8;0;",128,0,0,0
+  56               		.stabs	"_Sat long long _Accum:t(0,45)=r(0,1);8;0;",128,0,0,0
+  57               		.stabs	"_Sat unsigned short _Accum:t(0,46)=r(0,1);2;0;",128,0,0,0
+GAS LISTING /tmp/ccY3DPgE.s 			page 2
+
+
+  58               		.stabs	"_Sat unsigned _Accum:t(0,47)=r(0,1);4;0;",128,0,0,0
+  59               		.stabs	"_Sat unsigned long _Accum:t(0,48)=r(0,1);8;0;",128,0,0,0
+  60               		.stabs	"_Sat unsigned long long _Accum:t(0,49)=r(0,1);8;0;",128,0,0,0
+  61               		.stabs	"void:t(0,50)=(0,50)",128,0,0,0
+  62               		.stabs	"/usr/avr/include/avr/io.h",130,0,0,0
+  63               		.stabs	"/usr/avr/include/avr/sfr_defs.h",130,0,0,0
+  64               		.stabs	"/usr/avr/include/inttypes.h",130,0,0,0
+  65               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stdint.h",130,0,0,0
+  66               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stdint-gcc.h",130,0,0,0
+  67               		.stabs	"int8_t:t(5,1)=(0,12)",128,0,34,0
+  68               		.stabs	"int16_t:t(5,2)=(0,1)",128,0,37,0
+  69               		.stabs	"int32_t:t(5,3)=(0,3)",128,0,40,0
+  70               		.stabs	"int64_t:t(5,4)=(0,8)",128,0,43,0
+  71               		.stabs	"uint8_t:t(5,5)=(0,13)",128,0,46,0
+  72               		.stabs	"uint16_t:t(5,6)=(0,4)",128,0,49,0
+  73               		.stabs	"uint32_t:t(5,7)=(0,5)",128,0,52,0
+  74               		.stabs	"uint64_t:t(5,8)=(0,9)",128,0,55,0
+  75               		.stabs	"int_least8_t:t(5,9)=(0,12)",128,0,60,0
+  76               		.stabs	"int_least16_t:t(5,10)=(0,1)",128,0,61,0
+  77               		.stabs	"int_least32_t:t(5,11)=(0,3)",128,0,62,0
+  78               		.stabs	"int_least64_t:t(5,12)=(0,8)",128,0,63,0
+  79               		.stabs	"uint_least8_t:t(5,13)=(0,13)",128,0,64,0
+  80               		.stabs	"uint_least16_t:t(5,14)=(0,4)",128,0,65,0
+  81               		.stabs	"uint_least32_t:t(5,15)=(0,5)",128,0,66,0
+  82               		.stabs	"uint_least64_t:t(5,16)=(0,9)",128,0,67,0
+  83               		.stabs	"int_fast8_t:t(5,17)=(0,12)",128,0,71,0
+  84               		.stabs	"int_fast16_t:t(5,18)=(0,1)",128,0,72,0
+  85               		.stabs	"int_fast32_t:t(5,19)=(0,3)",128,0,73,0
+  86               		.stabs	"int_fast64_t:t(5,20)=(0,8)",128,0,74,0
+  87               		.stabs	"uint_fast8_t:t(5,21)=(0,13)",128,0,75,0
+  88               		.stabs	"uint_fast16_t:t(5,22)=(0,4)",128,0,76,0
+  89               		.stabs	"uint_fast32_t:t(5,23)=(0,5)",128,0,77,0
+  90               		.stabs	"uint_fast64_t:t(5,24)=(0,9)",128,0,78,0
+  91               		.stabs	"intptr_t:t(5,25)=(0,1)",128,0,83,0
+  92               		.stabs	"uintptr_t:t(5,26)=(0,4)",128,0,86,0
+  93               		.stabs	"intmax_t:t(5,27)=(0,8)",128,0,91,0
+  94               		.stabs	"uintmax_t:t(5,28)=(0,9)",128,0,92,0
+  95               		.stabn	162,0,0,0
+  96               		.stabn	162,0,0,0
+  97               		.stabs	"int_farptr_t:t(3,1)=(5,3)",128,0,77,0
+  98               		.stabs	"uint_farptr_t:t(3,2)=(5,7)",128,0,81,0
+  99               		.stabn	162,0,0,0
+ 100               		.stabn	162,0,0,0
+ 101               		.stabs	"/usr/avr/include/avr/fuse.h",130,0,0,0
+ 102               		.stabs	"__fuse_t:t(6,1)=(6,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
+ 103               		.stabn	162,0,0,0
+ 104               		.stabn	162,0,0,0
+ 105               		.stabs	"modbusGetBusState:F(5,5)",36,0,56,modbusGetBusState
+ 106               	.global	modbusGetBusState
+ 107               		.type	modbusGetBusState, @function
+ 108               	modbusGetBusState:
+ 109               		.stabd	46,0,0
+   1:yaMBSiavr.c   **** /*************************************************************************
+   2:yaMBSiavr.c   **** Title:    Yet another (small) modbus (server) implementation for the avr.
+   3:yaMBSiavr.c   **** Author:   Max Brueggemann
+   4:yaMBSiavr.c   **** Hardware: any AVR with hardware UART, tested on Atmega 88/168 at 20Mhz
+   5:yaMBSiavr.c   **** License:  BSD-3-Clause
+GAS LISTING /tmp/ccY3DPgE.s 			page 3
+
+
+   6:yaMBSiavr.c   ****           
+   7:yaMBSiavr.c   **** DESCRIPTION:
+   8:yaMBSiavr.c   ****     Refer to the header file yaMBSiavr.h.
+   9:yaMBSiavr.c   ****     
+  10:yaMBSiavr.c   **** USAGE:
+  11:yaMBSiavr.c   ****     Refer to the header file yaMBSiavr.h.
+  12:yaMBSiavr.c   ****                     
+  13:yaMBSiavr.c   **** LICENSE:
+  14:yaMBSiavr.c   **** 
+  15:yaMBSiavr.c   **** Copyright 2017 Max Brueggemann, www.maxbrueggemann.de
+  16:yaMBSiavr.c   **** 
+  17:yaMBSiavr.c   **** Redistribution and use in source and binary forms, with or without
+  18:yaMBSiavr.c   **** modification, are permitted provided that the following conditions are met:
+  19:yaMBSiavr.c   **** 
+  20:yaMBSiavr.c   **** 1. Redistributions of source code must retain the above copyright notice,
+  21:yaMBSiavr.c   **** this list of conditions and the following disclaimer.
+  22:yaMBSiavr.c   **** 
+  23:yaMBSiavr.c   **** 2. Redistributions in binary form must reproduce the above copyright notice,
+  24:yaMBSiavr.c   **** this list of conditions and the following disclaimer in the documentation
+  25:yaMBSiavr.c   **** and/or other materials provided with the distribution.
+  26:yaMBSiavr.c   **** 
+  27:yaMBSiavr.c   **** 3. Neither the name of the copyright holder nor the names of its contributors
+  28:yaMBSiavr.c   **** may be used to endorse or promote products derived from this software without
+  29:yaMBSiavr.c   **** specific prior written permission.
+  30:yaMBSiavr.c   **** 
+  31:yaMBSiavr.c   **** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  32:yaMBSiavr.c   **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  33:yaMBSiavr.c   **** IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  34:yaMBSiavr.c   **** ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+  35:yaMBSiavr.c   **** LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  36:yaMBSiavr.c   **** CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  37:yaMBSiavr.c   **** SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  38:yaMBSiavr.c   **** INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  39:yaMBSiavr.c   **** CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  40:yaMBSiavr.c   **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+  41:yaMBSiavr.c   **** THE POSSIBILITY OF SUCH DAMAGE.
+  42:yaMBSiavr.c   ****                         
+  43:yaMBSiavr.c   **** *************************************************************************/
+  44:yaMBSiavr.c   **** 
+  45:yaMBSiavr.c   **** #include <avr/io.h>
+  46:yaMBSiavr.c   **** #include "yaMBSiavr.h"
+  47:yaMBSiavr.c   **** #include <avr/interrupt.h>
+  48:yaMBSiavr.c   **** 
+  49:yaMBSiavr.c   **** volatile unsigned char BusState = 0;
+  50:yaMBSiavr.c   **** volatile uint16_t modbusTimer = 0;
+  51:yaMBSiavr.c   **** volatile unsigned char rxbuffer[MaxFrameIndex+1];
+  52:yaMBSiavr.c   **** volatile uint16_t DataPos = 0;
+  53:yaMBSiavr.c   **** volatile unsigned char PacketTopIndex = 7;
+  54:yaMBSiavr.c   **** volatile unsigned char modBusStaMaStates = 0;
+  55:yaMBSiavr.c   **** 
+  56:yaMBSiavr.c   **** uint8_t modbusGetBusState(void)
+  57:yaMBSiavr.c   **** {
+ 110               		.stabn	68,0,57,.LM0-.LFBB1
+ 111               	.LM0:
+ 112               	.LFBB1:
+ 113               	/* prologue: function */
+ 114               	/* frame size = 0 */
+GAS LISTING /tmp/ccY3DPgE.s 			page 4
+
+
+ 115               	/* stack size = 0 */
+ 116               	.L__stack_usage = 0
+  58:yaMBSiavr.c   **** 	return BusState;
+ 117               		.stabn	68,0,58,.LM1-.LFBB1
+ 118               	.LM1:
+ 119 0000 8091 0000 		lds r24,BusState
+ 120               	/* epilogue start */
+  59:yaMBSiavr.c   **** }
+ 121               		.stabn	68,0,59,.LM2-.LFBB1
+ 122               	.LM2:
+ 123 0004 0895      		ret
+ 124               		.size	modbusGetBusState, .-modbusGetBusState
+ 125               	.Lscope1:
+ 126               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 127               		.stabd	78,0,0
+ 128               		.stabs	"modbusGetAddress:F(5,5)",36,0,63,modbusGetAddress
+ 129               	.global	modbusGetAddress
+ 130               		.type	modbusGetAddress, @function
+ 131               	modbusGetAddress:
+ 132               		.stabd	46,0,0
+  60:yaMBSiavr.c   **** 
+  61:yaMBSiavr.c   **** #if ADDRESS_MODE == SINGLE_ADR
+  62:yaMBSiavr.c   **** volatile unsigned char Address = 0x00;
+  63:yaMBSiavr.c   **** uint8_t modbusGetAddress(void)
+  64:yaMBSiavr.c   **** {
+ 133               		.stabn	68,0,64,.LM3-.LFBB2
+ 134               	.LM3:
+ 135               	.LFBB2:
+ 136               	/* prologue: function */
+ 137               	/* frame size = 0 */
+ 138               	/* stack size = 0 */
+ 139               	.L__stack_usage = 0
+  65:yaMBSiavr.c   **** 	return Address;
+ 140               		.stabn	68,0,65,.LM4-.LFBB2
+ 141               	.LM4:
+ 142 0006 8091 0000 		lds r24,Address
+ 143               	/* epilogue start */
+  66:yaMBSiavr.c   **** }
+ 144               		.stabn	68,0,66,.LM5-.LFBB2
+ 145               	.LM5:
+ 146 000a 0895      		ret
+ 147               		.size	modbusGetAddress, .-modbusGetAddress
+ 148               	.Lscope2:
+ 149               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 150               		.stabd	78,0,0
+ 151               		.stabs	"modbusSetAddress:F(0,50)",36,0,68,modbusSetAddress
+ 152               		.stabs	"newadr:P(0,13)",64,0,68,24
+ 153               	.global	modbusSetAddress
+ 154               		.type	modbusSetAddress, @function
+ 155               	modbusSetAddress:
+ 156               		.stabd	46,0,0
+  67:yaMBSiavr.c   **** 
+  68:yaMBSiavr.c   **** void modbusSetAddress(unsigned char newadr)
+  69:yaMBSiavr.c   **** {
+ 157               		.stabn	68,0,69,.LM6-.LFBB3
+ 158               	.LM6:
+ 159               	.LFBB3:
+GAS LISTING /tmp/ccY3DPgE.s 			page 5
+
+
+ 160               	/* prologue: function */
+ 161               	/* frame size = 0 */
+ 162               	/* stack size = 0 */
+ 163               	.L__stack_usage = 0
+  70:yaMBSiavr.c   **** 	Address = newadr;
+ 164               		.stabn	68,0,70,.LM7-.LFBB3
+ 165               	.LM7:
+ 166 000c 8093 0000 		sts Address,r24
+ 167               	/* epilogue start */
+  71:yaMBSiavr.c   **** }
+ 168               		.stabn	68,0,71,.LM8-.LFBB3
+ 169               	.LM8:
+ 170 0010 0895      		ret
+ 171               		.size	modbusSetAddress, .-modbusSetAddress
+ 172               	.Lscope3:
+ 173               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 174               		.stabd	78,0,0
+ 175               		.stabs	"crc16:F(5,5)",36,0,92,crc16
+ 176               		.stabs	"ptrToArray:P(0,51)=*(0,52)=B(5,5)",64,0,92,24
+ 177               		.stabs	"inputSize:P(5,5)",64,0,92,22
+ 178               	.global	crc16
+ 179               		.type	crc16, @function
+ 180               	crc16:
+ 181               		.stabd	46,0,0
+  72:yaMBSiavr.c   **** #endif
+  73:yaMBSiavr.c   **** 
+  74:yaMBSiavr.c   **** #if PHYSICAL_TYPE == 485
+  75:yaMBSiavr.c   **** void transceiver_txen(void)
+  76:yaMBSiavr.c   **** {
+  77:yaMBSiavr.c   **** 	TRANSCEIVER_ENABLE_PORT|=(1<<TRANSCEIVER_ENABLE_PIN);
+  78:yaMBSiavr.c   **** }
+  79:yaMBSiavr.c   **** 
+  80:yaMBSiavr.c   ****  void transceiver_rxen(void)
+  81:yaMBSiavr.c   **** {
+  82:yaMBSiavr.c   **** 	TRANSCEIVER_ENABLE_PORT&=~(1<<TRANSCEIVER_ENABLE_PIN);
+  83:yaMBSiavr.c   **** }
+  84:yaMBSiavr.c   **** #endif
+  85:yaMBSiavr.c   **** 
+  86:yaMBSiavr.c   **** /* @brief: A fairly simple Modbus compliant 16 Bit CRC algorithm.
+  87:yaMBSiavr.c   **** *
+  88:yaMBSiavr.c   **** *  	Returns 1 if the crc check is positive, returns 0 and saves the calculated CRC bytes
+  89:yaMBSiavr.c   **** *	at the end of the data array if it fails.
+  90:yaMBSiavr.c   **** *  	
+  91:yaMBSiavr.c   **** */
+  92:yaMBSiavr.c   **** uint8_t crc16(volatile uint8_t *ptrToArray,uint8_t inputSize) //A standard CRC algorithm
+  93:yaMBSiavr.c   **** {
+ 182               		.stabn	68,0,93,.LM9-.LFBB4
+ 183               	.LM9:
+ 184               	.LFBB4:
+ 185 0012 CF93      		push r28
+ 186 0014 DF93      		push r29
+ 187               	/* prologue: function */
+ 188               	/* frame size = 0 */
+ 189               	/* stack size = 2 */
+ 190               	.L__stack_usage = 2
+  94:yaMBSiavr.c   **** 	uint16_t out=0xffff;
+  95:yaMBSiavr.c   **** 	uint16_t carry;
+GAS LISTING /tmp/ccY3DPgE.s 			page 6
+
+
+  96:yaMBSiavr.c   **** 	unsigned char n;
+  97:yaMBSiavr.c   **** 	inputSize++;
+ 191               		.stabn	68,0,97,.LM10-.LFBB4
+ 192               	.LM10:
+ 193 0016 6F5F      		subi r22,lo8(-(1))
+ 194               	.LBB2:
+  98:yaMBSiavr.c   **** 	for (int l=0; l<inputSize; l++) {
+ 195               		.stabn	68,0,98,.LM11-.LFBB4
+ 196               	.LM11:
+ 197 0018 50E0      		ldi r21,0
+ 198 001a 40E0      		ldi r20,0
+ 199               	.LBE2:
+  94:yaMBSiavr.c   **** 	uint16_t out=0xffff;
+ 200               		.stabn	68,0,94,.LM12-.LFBB4
+ 201               	.LM12:
+ 202 001c 2FEF      		ldi r18,lo8(-1)
+ 203 001e 3FEF      		ldi r19,lo8(-1)
+ 204               	.LBB3:
+ 205               		.stabn	68,0,98,.LM13-.LFBB4
+ 206               	.LM13:
+ 207 0020 70E0      		ldi r23,0
+ 208               	.L5:
+ 209 0022 FC01      		movw r30,r24
+ 210               		.stabn	68,0,98,.LM14-.LFBB4
+ 211               	.LM14:
+ 212 0024 4617      		cp r20,r22
+ 213 0026 5707      		cpc r21,r23
+ 214 0028 04F0      		brlt .L8
+ 215               	.LBE3:
+  99:yaMBSiavr.c   **** 		out ^= ptrToArray[l];
+ 100:yaMBSiavr.c   **** 		for (n = 0; n < 8; n++) {
+ 101:yaMBSiavr.c   **** 			carry = out & 1;
+ 102:yaMBSiavr.c   **** 			out >>= 1;
+ 103:yaMBSiavr.c   **** 			if (carry) out ^= 0xA001;
+ 104:yaMBSiavr.c   **** 		}
+ 105:yaMBSiavr.c   **** 	}
+ 106:yaMBSiavr.c   **** 	//out=0x1234;
+ 107:yaMBSiavr.c   **** 	if ((ptrToArray[inputSize]==out%256) && (ptrToArray[inputSize+1]==out/256)) //check
+ 216               		.stabn	68,0,107,.LM15-.LFBB4
+ 217               	.LM15:
+ 218 002a E60F      		add r30,r22
+ 219 002c F71F      		adc r31,r23
+ 220 002e A081      		ld r26,Z
+ 221 0030 6F5F      		subi r22,-1
+ 222 0032 7F4F      		sbci r23,-1
+ 223 0034 EC01      		movw r28,r24
+ 224 0036 C60F      		add r28,r22
+ 225 0038 D71F      		adc r29,r23
+ 226 003a 832F      		mov r24,r19
+ 227 003c 9927      		clr r25
+ 228 003e A901      		movw r20,r18
+ 229 0040 5527      		clr r21
+ 230 0042 A417      		cp r26,r20
+ 231 0044 1506      		cpc __zero_reg__,r21
+ 232 0046 01F4      		brne .L9
+ 233               		.stabn	68,0,107,.LM16-.LFBB4
+ 234               	.LM16:
+GAS LISTING /tmp/ccY3DPgE.s 			page 7
+
+
+ 235 0048 4881      		ld r20,Y
+ 236 004a 4817      		cp r20,r24
+ 237 004c 1906      		cpc __zero_reg__,r25
+ 238 004e 01F0      		breq .L11
+ 239               	.L9:
+ 108:yaMBSiavr.c   **** 	{
+ 109:yaMBSiavr.c   **** 		return 1;
+ 110:yaMBSiavr.c   **** 	} else { 
+ 111:yaMBSiavr.c   **** 		ptrToArray[inputSize]=out%256; //append Lo
+ 240               		.stabn	68,0,111,.LM17-.LFBB4
+ 241               	.LM17:
+ 242 0050 2083      		st Z,r18
+ 112:yaMBSiavr.c   **** 		ptrToArray[inputSize+1]=out/256; //append Hi
+ 243               		.stabn	68,0,112,.LM18-.LFBB4
+ 244               	.LM18:
+ 245 0052 8883      		st Y,r24
+ 113:yaMBSiavr.c   **** 		return 0;	
+ 246               		.stabn	68,0,113,.LM19-.LFBB4
+ 247               	.LM19:
+ 248 0054 80E0      		ldi r24,0
+ 249               	.L4:
+ 250               	/* epilogue start */
+ 114:yaMBSiavr.c   **** 	}
+ 115:yaMBSiavr.c   **** }
+ 251               		.stabn	68,0,115,.LM20-.LFBB4
+ 252               	.LM20:
+ 253 0056 DF91      		pop r29
+ 254 0058 CF91      		pop r28
+ 255 005a 0895      		ret
+ 256               	.L8:
+ 257 005c E40F      		add r30,r20
+ 258 005e F51F      		adc r31,r21
+ 259               	.LBB4:
+  99:yaMBSiavr.c   **** 		for (n = 0; n < 8; n++) {
+ 260               		.stabn	68,0,99,.LM21-.LFBB4
+ 261               	.LM21:
+ 262 0060 E081      		ld r30,Z
+ 263 0062 2E27      		eor r18,r30
+ 264 0064 E8E0      		ldi r30,lo8(8)
+ 265               	.L7:
+ 101:yaMBSiavr.c   **** 			out >>= 1;
+ 266               		.stabn	68,0,101,.LM22-.LFBB4
+ 267               	.LM22:
+ 268 0066 D901      		movw r26,r18
+ 269 0068 A170      		andi r26,1
+ 270 006a BB27      		clr r27
+ 102:yaMBSiavr.c   **** 			if (carry) out ^= 0xA001;
+ 271               		.stabn	68,0,102,.LM23-.LFBB4
+ 272               	.LM23:
+ 273 006c 3695      		lsr r19
+ 274 006e 2795      		ror r18
+ 103:yaMBSiavr.c   **** 		}
+ 275               		.stabn	68,0,103,.LM24-.LFBB4
+ 276               	.LM24:
+ 277 0070 AB2B      		or r26,r27
+ 278 0072 01F0      		breq .L6
+ 103:yaMBSiavr.c   **** 		}
+GAS LISTING /tmp/ccY3DPgE.s 			page 8
+
+
+ 279               		.stabn	68,0,103,.LM25-.LFBB4
+ 280               	.LM25:
+ 281 0074 F1E0      		ldi r31,1
+ 282 0076 2F27      		eor r18,r31
+ 283 0078 F0EA      		ldi r31,160
+ 284 007a 3F27      		eor r19,r31
+ 285               	.L6:
+ 286 007c E150      		subi r30,lo8(-(-1))
+ 100:yaMBSiavr.c   **** 			carry = out & 1;
+ 287               		.stabn	68,0,100,.LM26-.LFBB4
+ 288               	.LM26:
+ 289 007e 01F4      		brne .L7
+  98:yaMBSiavr.c   **** 		out ^= ptrToArray[l];
+ 290               		.stabn	68,0,98,.LM27-.LFBB4
+ 291               	.LM27:
+ 292 0080 4F5F      		subi r20,-1
+ 293 0082 5F4F      		sbci r21,-1
+ 294 0084 00C0      		rjmp .L5
+ 295               	.L11:
+ 296               	.LBE4:
+ 109:yaMBSiavr.c   **** 	} else { 
+ 297               		.stabn	68,0,109,.LM28-.LFBB4
+ 298               	.LM28:
+ 299 0086 81E0      		ldi r24,lo8(1)
+ 300 0088 00C0      		rjmp .L4
+ 301               		.size	crc16, .-crc16
+ 302               		.stabs	"out:r(5,6)",64,0,94,18
+ 303               		.stabs	"carry:r(5,6)",64,0,95,26
+ 304               		.stabn	192,0,0,.LFBB4-.LFBB4
+ 305               		.stabs	"l:r(0,1)",64,0,98,20
+ 306               		.stabn	192,0,0,.LBB2-.LFBB4
+ 307               		.stabn	224,0,0,.LBE2-.LFBB4
+ 308               		.stabs	"l:r(0,1)",64,0,98,20
+ 309               		.stabn	192,0,0,.LBB3-.LFBB4
+ 310               		.stabn	224,0,0,.LBE3-.LFBB4
+ 311               		.stabs	"l:r(0,1)",64,0,98,20
+ 312               		.stabn	192,0,0,.LBB4-.LFBB4
+ 313               		.stabn	224,0,0,.LBE4-.LFBB4
+ 314               		.stabn	224,0,0,.Lscope4-.LFBB4
+ 315               	.Lscope4:
+ 316               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 317               		.stabd	78,0,0
+ 318               		.stabs	"listRegisterCopy:F(0,50)",36,0,121,listRegisterCopy
+ 319               		.stabs	"source:P(0,51)",64,0,121,24
+ 320               		.stabs	"target:P(0,51)",64,0,121,22
+ 321               		.stabs	"amount:P(5,5)",64,0,121,20
+ 322               	.global	listRegisterCopy
+ 323               		.type	listRegisterCopy, @function
+ 324               	listRegisterCopy:
+ 325               		.stabd	46,0,0
+ 116:yaMBSiavr.c   **** 
+ 117:yaMBSiavr.c   **** /* @brief: copies a single or multiple words from one array of bytes to another array of bytes
+ 118:yaMBSiavr.c   **** *          amount must not be bigger than 255...
+ 119:yaMBSiavr.c   **** *
+ 120:yaMBSiavr.c   **** */
+ 121:yaMBSiavr.c   **** void listRegisterCopy(volatile uint8_t *source, volatile uint8_t *target, uint8_t amount)
+ 122:yaMBSiavr.c   **** {
+GAS LISTING /tmp/ccY3DPgE.s 			page 9
+
+
+ 326               		.stabn	68,0,122,.LM29-.LFBB5
+ 327               	.LM29:
+ 328               	.LFBB5:
+ 329               	/* prologue: function */
+ 330               	/* frame size = 0 */
+ 331               	/* stack size = 0 */
+ 332               	.L__stack_usage = 0
+ 333               	.LBB5:
+ 123:yaMBSiavr.c   **** 	for (uint8_t c=0; c<amount; c++)
+ 334               		.stabn	68,0,123,.LM30-.LFBB5
+ 335               	.LM30:
+ 336 008a 30E0      		ldi r19,0
+ 337 008c 20E0      		ldi r18,0
+ 338               	.L17:
+ 339               		.stabn	68,0,123,.LM31-.LFBB5
+ 340               	.LM31:
+ 341 008e 2417      		cp r18,r20
+ 342 0090 00F0      		brlo .L18
+ 343               	/* epilogue start */
+ 344               	.LBE5:
+ 124:yaMBSiavr.c   **** 	{
+ 125:yaMBSiavr.c   **** 		*(target+c)=*(source+c);
+ 126:yaMBSiavr.c   **** 	}
+ 127:yaMBSiavr.c   **** }
+ 345               		.stabn	68,0,127,.LM32-.LFBB5
+ 346               	.LM32:
+ 347 0092 0895      		ret
+ 348               	.L18:
+ 349 0094 DC01      		movw r26,r24
+ 350 0096 A20F      		add r26,r18
+ 351 0098 B31F      		adc r27,r19
+ 352 009a FB01      		movw r30,r22
+ 353 009c E20F      		add r30,r18
+ 354 009e F31F      		adc r31,r19
+ 355               	.LBB6:
+ 125:yaMBSiavr.c   **** 	}
+ 356               		.stabn	68,0,125,.LM33-.LFBB5
+ 357               	.LM33:
+ 358 00a0 5C91      		ld r21,X
+ 359 00a2 5083      		st Z,r21
+ 360 00a4 2F5F      		subi r18,-1
+ 361 00a6 3F4F      		sbci r19,-1
+ 362 00a8 00C0      		rjmp .L17
+ 363               	.LBE6:
+ 364               		.size	listRegisterCopy, .-listRegisterCopy
+ 365               	.Lscope5:
+ 366               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 367               		.stabd	78,0,0
+ 368               		.stabs	"listBitCopy:F(0,50)",36,0,133,listBitCopy
+ 369               		.stabs	"source:P(0,51)",64,0,133,24
+ 370               		.stabs	"sourceNr:P(5,6)",64,0,133,22
+ 371               		.stabs	"target:P(0,51)",64,0,133,20
+ 372               		.stabs	"targetNr:P(5,6)",64,0,133,26
+ 373               	.global	listBitCopy
+ 374               		.type	listBitCopy, @function
+ 375               	listBitCopy:
+ 376               		.stabd	46,0,0
+GAS LISTING /tmp/ccY3DPgE.s 			page 10
+
+
+ 128:yaMBSiavr.c   **** 
+ 129:yaMBSiavr.c   **** /* @brief: copies a single bit from one char to another char (or arrays thereof)
+ 130:yaMBSiavr.c   **** *
+ 131:yaMBSiavr.c   **** *
+ 132:yaMBSiavr.c   **** */
+ 133:yaMBSiavr.c   **** void listBitCopy(volatile uint8_t *source, uint16_t sourceNr,volatile uint8_t *target, uint16_t tar
+ 134:yaMBSiavr.c   **** {
+ 377               		.stabn	68,0,134,.LM34-.LFBB6
+ 378               	.LM34:
+ 379               	.LFBB6:
+ 380               	/* prologue: function */
+ 381               	/* frame size = 0 */
+ 382               	/* stack size = 0 */
+ 383               	.L__stack_usage = 0
+ 384 00aa D901      		movw r26,r18
+ 135:yaMBSiavr.c   **** 	if(*(source+(sourceNr/8))&(1<<(sourceNr-((sourceNr/8)*8))))
+ 385               		.stabn	68,0,135,.LM35-.LFBB6
+ 386               	.LM35:
+ 387 00ac 9B01      		movw r18,r22
+ 388 00ae E3E0      		ldi r30,3
+ 389               		1:
+ 390 00b0 3695      		lsr r19
+ 391 00b2 2795      		ror r18
+ 392 00b4 EA95      		dec r30
+ 393 00b6 01F4      		brne 1b
+ 394 00b8 820F      		add r24,r18
+ 395 00ba 931F      		adc r25,r19
+ 396 00bc FC01      		movw r30,r24
+ 397 00be 3081      		ld r19,Z
+ 398 00c0 FD01      		movw r30,r26
+ 399 00c2 83E0      		ldi r24,3
+ 400               		1:
+ 401 00c4 F695      		lsr r31
+ 402 00c6 E795      		ror r30
+ 403 00c8 8A95      		dec r24
+ 404 00ca 01F4      		brne 1b
+ 405 00cc E40F      		add r30,r20
+ 406 00ce F51F      		adc r31,r21
+ 407 00d0 A770      		andi r26,7
+ 408 00d2 BB27      		clr r27
+ 409 00d4 81E0      		ldi r24,lo8(1)
+ 410 00d6 90E0      		ldi r25,0
+ 411 00d8 00C0      		rjmp 2f
+ 412               		1:
+ 413 00da 880F      		lsl r24
+ 414               		2:
+ 415 00dc AA95      		dec r26
+ 416 00de 02F4      		brpl 1b
+ 417 00e0 232F      		mov r18,r19
+ 418 00e2 30E0      		ldi r19,0
+ 419 00e4 6770      		andi r22,7
+ 420 00e6 7727      		clr r23
+ 421 00e8 00C0      		rjmp 2f
+ 422               		1:
+ 423 00ea 3595      		asr r19
+ 424 00ec 2795      		ror r18
+ 425               		2:
+GAS LISTING /tmp/ccY3DPgE.s 			page 11
+
+
+ 426 00ee 6A95      		dec r22
+ 427 00f0 02F4      		brpl 1b
+ 428               	.LBB9:
+ 429               	.LBB10:
+ 136:yaMBSiavr.c   **** 	{
+ 137:yaMBSiavr.c   **** 		*(target+(targetNr/8))|=(1<<(targetNr-((targetNr/8)*8)));
+ 430               		.stabn	68,0,137,.LM36-.LFBB6
+ 431               	.LM36:
+ 432 00f2 9081      		ld r25,Z
+ 433               	.LBE10:
+ 434               	.LBE9:
+ 135:yaMBSiavr.c   **** 	if(*(source+(sourceNr/8))&(1<<(sourceNr-((sourceNr/8)*8))))
+ 435               		.stabn	68,0,135,.LM37-.LFBB6
+ 436               	.LM37:
+ 437 00f4 20FF      		sbrs r18,0
+ 438 00f6 00C0      		rjmp .L20
+ 439               	.LBB12:
+ 440               	.LBB11:
+ 441               		.stabn	68,0,137,.LM38-.LFBB6
+ 442               	.LM38:
+ 443 00f8 892B      		or r24,r25
+ 444               	.L22:
+ 445               	.LBE11:
+ 446               	.LBE12:
+ 138:yaMBSiavr.c   **** 	} else *(target+(targetNr/8))&=~(1<<(targetNr-((targetNr/8)*8)));
+ 447               		.stabn	68,0,138,.LM39-.LFBB6
+ 448               	.LM39:
+ 449 00fa 8083      		st Z,r24
+ 450               	/* epilogue start */
+ 139:yaMBSiavr.c   **** }
+ 451               		.stabn	68,0,139,.LM40-.LFBB6
+ 452               	.LM40:
+ 453 00fc 0895      		ret
+ 454               	.L20:
+ 138:yaMBSiavr.c   **** 	} else *(target+(targetNr/8))&=~(1<<(targetNr-((targetNr/8)*8)));
+ 455               		.stabn	68,0,138,.LM41-.LFBB6
+ 456               	.LM41:
+ 457 00fe 8095      		com r24
+ 458 0100 8923      		and r24,r25
+ 459 0102 00C0      		rjmp .L22
+ 460               		.size	listBitCopy, .-listBitCopy
+ 461               	.Lscope6:
+ 462               		.stabs	"",36,0,0,.Lscope6-.LFBB6
+ 463               		.stabd	78,0,0
+ 464               		.stabs	"modbusReset:F(0,50)",36,0,144,modbusReset
+ 465               	.global	modbusReset
+ 466               		.type	modbusReset, @function
+ 467               	modbusReset:
+ 468               		.stabd	46,0,0
+ 140:yaMBSiavr.c   **** 
+ 141:yaMBSiavr.c   **** /* @brief: Back to receiving state.
+ 142:yaMBSiavr.c   **** *
+ 143:yaMBSiavr.c   **** */
+ 144:yaMBSiavr.c   **** void modbusReset(void)
+ 145:yaMBSiavr.c   **** {
+ 469               		.stabn	68,0,145,.LM42-.LFBB7
+ 470               	.LM42:
+GAS LISTING /tmp/ccY3DPgE.s 			page 12
+
+
+ 471               	.LFBB7:
+ 472               	/* prologue: function */
+ 473               	/* frame size = 0 */
+ 474               	/* stack size = 0 */
+ 475               	.L__stack_usage = 0
+ 146:yaMBSiavr.c   **** 	BusState=(1<<TimerActive); //stop receiving (error)
+ 476               		.stabn	68,0,146,.LM43-.LFBB7
+ 477               	.LM43:
+ 478 0104 80E2      		ldi r24,lo8(32)
+ 479 0106 8093 0000 		sts BusState,r24
+ 147:yaMBSiavr.c   **** 	modbusTimer=0;
+ 480               		.stabn	68,0,147,.LM44-.LFBB7
+ 481               	.LM44:
+ 482 010a 1092 0000 		sts modbusTimer+1,__zero_reg__
+ 483 010e 1092 0000 		sts modbusTimer,__zero_reg__
+ 484               	/* epilogue start */
+ 148:yaMBSiavr.c   **** }
+ 485               		.stabn	68,0,148,.LM45-.LFBB7
+ 486               	.LM45:
+ 487 0112 0895      		ret
+ 488               		.size	modbusReset, .-modbusReset
+ 489               	.Lscope7:
+ 490               		.stabs	"",36,0,0,.Lscope7-.LFBB7
+ 491               		.stabd	78,0,0
+ 492               		.stabs	"modbusTickTimer:F(0,50)",36,0,150,modbusTickTimer
+ 493               	.global	modbusTickTimer
+ 494               		.type	modbusTickTimer, @function
+ 495               	modbusTickTimer:
+ 496               		.stabd	46,0,0
+ 149:yaMBSiavr.c   **** 
+ 150:yaMBSiavr.c   **** void modbusTickTimer(void)
+ 151:yaMBSiavr.c   **** {
+ 497               		.stabn	68,0,151,.LM46-.LFBB8
+ 498               	.LM46:
+ 499               	.LFBB8:
+ 500               	/* prologue: function */
+ 501               	/* frame size = 0 */
+ 502               	/* stack size = 0 */
+ 503               	.L__stack_usage = 0
+ 152:yaMBSiavr.c   **** 	if (BusState&(1<<TimerActive)) 
+ 504               		.stabn	68,0,152,.LM47-.LFBB8
+ 505               	.LM47:
+ 506 0114 8091 0000 		lds r24,BusState
+ 507 0118 85FF      		sbrs r24,5
+ 508 011a 00C0      		rjmp .L24
+ 153:yaMBSiavr.c   **** 	{
+ 154:yaMBSiavr.c   **** 		modbusTimer++;
+ 509               		.stabn	68,0,154,.LM48-.LFBB8
+ 510               	.LM48:
+ 511 011c 8091 0000 		lds r24,modbusTimer
+ 512 0120 9091 0000 		lds r25,modbusTimer+1
+ 513 0124 0196      		adiw r24,1
+ 514 0126 9093 0000 		sts modbusTimer+1,r25
+ 515 012a 8093 0000 		sts modbusTimer,r24
+ 155:yaMBSiavr.c   **** 		if (BusState&(1<<Receiving)) //we are in receiving mode
+ 516               		.stabn	68,0,155,.LM49-.LFBB8
+ 517               	.LM49:
+GAS LISTING /tmp/ccY3DPgE.s 			page 13
+
+
+ 518 012e 8091 0000 		lds r24,BusState
+ 519 0132 81FF      		sbrs r24,1
+ 520 0134 00C0      		rjmp .L27
+ 156:yaMBSiavr.c   **** 		{
+ 157:yaMBSiavr.c   **** 			if ((modbusTimer==modbusInterCharTimeout)) {
+ 521               		.stabn	68,0,157,.LM50-.LFBB8
+ 522               	.LM50:
+ 523 0136 8091 0000 		lds r24,modbusTimer
+ 524 013a 9091 0000 		lds r25,modbusTimer+1
+ 525 013e 0797      		sbiw r24,7
+ 526 0140 01F4      		brne .L28
+ 158:yaMBSiavr.c   **** 				BusState|=(1<<GapDetected);
+ 527               		.stabn	68,0,158,.LM51-.LFBB8
+ 528               	.LM51:
+ 529 0142 8091 0000 		lds r24,BusState
+ 530 0146 8064      		ori r24,lo8(64)
+ 531               	.L32:
+ 159:yaMBSiavr.c   **** 			} else if ((modbusTimer==modbusInterFrameDelayReceiveEnd)) { //end of message
+ 160:yaMBSiavr.c   **** 				BusState=(1<<ReceiveCompleted);
+ 161:yaMBSiavr.c   **** 				#if ADDRESS_MODE == MULTIPLE_ADR
+ 162:yaMBSiavr.c   ****                		 if (crc16(rxbuffer,DataPos-3)) { //perform crc check only. This is for multiple/a
+ 163:yaMBSiavr.c   ****                 	} else modbusReset();
+ 164:yaMBSiavr.c   **** 				#endif
+ 165:yaMBSiavr.c   **** 				#if ADDRESS_MODE == SINGLE_ADR
+ 166:yaMBSiavr.c   **** 				if (rxbuffer[0]==Address && crc16(rxbuffer,DataPos-3)) { //is the message for us? => perform cr
+ 167:yaMBSiavr.c   **** 				} else modbusReset();
+ 168:yaMBSiavr.c   **** 				#endif
+ 169:yaMBSiavr.c   **** 			}	
+ 170:yaMBSiavr.c   **** 		} else if (modbusTimer==modbusInterFrameDelayReceiveStart) BusState|=(1<<BusTimedOut);
+ 532               		.stabn	68,0,170,.LM52-.LFBB8
+ 533               	.LM52:
+ 534 0148 8093 0000 		sts BusState,r24
+ 171:yaMBSiavr.c   **** 	}
+ 172:yaMBSiavr.c   **** }
+ 535               		.stabn	68,0,172,.LM53-.LFBB8
+ 536               	.LM53:
+ 537 014c 00C0      		rjmp .L24
+ 538               	.L28:
+ 159:yaMBSiavr.c   **** 			} else if ((modbusTimer==modbusInterFrameDelayReceiveEnd)) { //end of message
+ 539               		.stabn	68,0,159,.LM54-.LFBB8
+ 540               	.LM54:
+ 541 014e 8091 0000 		lds r24,modbusTimer
+ 542 0152 9091 0000 		lds r25,modbusTimer+1
+ 543 0156 4297      		sbiw r24,18
+ 544 0158 01F4      		brne .L24
+ 160:yaMBSiavr.c   **** 				#if ADDRESS_MODE == MULTIPLE_ADR
+ 545               		.stabn	68,0,160,.LM55-.LFBB8
+ 546               	.LM55:
+ 547 015a 88E0      		ldi r24,lo8(8)
+ 548 015c 8093 0000 		sts BusState,r24
+ 166:yaMBSiavr.c   **** 				} else modbusReset();
+ 549               		.stabn	68,0,166,.LM56-.LFBB8
+ 550               	.LM56:
+ 551 0160 9091 0000 		lds r25,rxbuffer
+ 552 0164 8091 0000 		lds r24,Address
+ 553 0168 9817      		cp r25,r24
+ 554 016a 01F0      		breq .L30
+GAS LISTING /tmp/ccY3DPgE.s 			page 14
+
+
+ 555               	.L31:
+ 167:yaMBSiavr.c   **** 				#endif
+ 556               		.stabn	68,0,167,.LM57-.LFBB8
+ 557               	.LM57:
+ 558 016c 0E94 0000 		call modbusReset
+ 559 0170 0895      		ret
+ 560               	.L30:
+ 166:yaMBSiavr.c   **** 				} else modbusReset();
+ 561               		.stabn	68,0,166,.LM58-.LFBB8
+ 562               	.LM58:
+ 563 0172 6091 0000 		lds r22,DataPos
+ 564 0176 7091 0000 		lds r23,DataPos+1
+ 565 017a 6350      		subi r22,lo8(-(-3))
+ 566 017c 80E0      		ldi r24,lo8(rxbuffer)
+ 567 017e 90E0      		ldi r25,hi8(rxbuffer)
+ 568 0180 0E94 0000 		call crc16
+ 569 0184 8823      		tst r24
+ 570 0186 01F0      		breq .L31
+ 571               	.L24:
+ 572               	/* epilogue start */
+ 573               		.stabn	68,0,172,.LM59-.LFBB8
+ 574               	.LM59:
+ 575 0188 0895      		ret
+ 576               	.L27:
+ 170:yaMBSiavr.c   **** 	}
+ 577               		.stabn	68,0,170,.LM60-.LFBB8
+ 578               	.LM60:
+ 579 018a 8091 0000 		lds r24,modbusTimer
+ 580 018e 9091 0000 		lds r25,modbusTimer+1
+ 581 0192 4097      		sbiw r24,16
+ 582 0194 01F4      		brne .L24
+ 170:yaMBSiavr.c   **** 	}
+ 583               		.stabn	68,0,170,.LM61-.LFBB8
+ 584               	.LM61:
+ 585 0196 8091 0000 		lds r24,BusState
+ 586 019a 8160      		ori r24,lo8(1)
+ 587 019c 00C0      		rjmp .L32
+ 588               		.size	modbusTickTimer, .-modbusTickTimer
+ 589               	.Lscope8:
+ 590               		.stabs	"",36,0,0,.Lscope8-.LFBB8
+ 591               		.stabd	78,0,0
+ 592               		.stabs	"__vector_18:F(0,50)",36,0,174,__vector_18
+ 593               	.global	__vector_18
+ 594               		.type	__vector_18, @function
+ 595               	__vector_18:
+ 596               		.stabd	46,0,0
+ 173:yaMBSiavr.c   **** 
+ 174:yaMBSiavr.c   **** ISR(UART_RECEIVE_INTERRUPT)
+ 175:yaMBSiavr.c   **** {
+ 597               		.stabn	68,0,175,.LM62-.LFBB9
+ 598               	.LM62:
+ 599               	.LFBB9:
+ 600 019e 1F92      		push r1
+ 601 01a0 0F92      		push r0
+ 602 01a2 0FB6      		in r0,__SREG__
+ 603 01a4 0F92      		push r0
+ 604 01a6 1124      		clr __zero_reg__
+GAS LISTING /tmp/ccY3DPgE.s 			page 15
+
+
+ 605 01a8 2F93      		push r18
+ 606 01aa 3F93      		push r19
+ 607 01ac 4F93      		push r20
+ 608 01ae 5F93      		push r21
+ 609 01b0 6F93      		push r22
+ 610 01b2 7F93      		push r23
+ 611 01b4 8F93      		push r24
+ 612 01b6 9F93      		push r25
+ 613 01b8 AF93      		push r26
+ 614 01ba BF93      		push r27
+ 615 01bc EF93      		push r30
+ 616 01be FF93      		push r31
+ 617               	/* prologue: Signal */
+ 618               	/* frame size = 0 */
+ 619               	/* stack size = 15 */
+ 620               	.L__stack_usage = 15
+ 176:yaMBSiavr.c   **** 	unsigned char data;
+ 177:yaMBSiavr.c   **** 	data = UART_DATA;
+ 621               		.stabn	68,0,177,.LM63-.LFBB9
+ 622               	.LM63:
+ 623 01c0 8091 C600 		lds r24,198
+ 178:yaMBSiavr.c   **** 	modbusTimer=0; //reset timer
+ 624               		.stabn	68,0,178,.LM64-.LFBB9
+ 625               	.LM64:
+ 626 01c4 1092 0000 		sts modbusTimer+1,__zero_reg__
+ 627 01c8 1092 0000 		sts modbusTimer,__zero_reg__
+ 179:yaMBSiavr.c   **** 	if (!(BusState & (1<<ReceiveCompleted)) && !(BusState & (1<<TransmitRequested)) && !(BusState & (1
+ 628               		.stabn	68,0,179,.LM65-.LFBB9
+ 629               	.LM65:
+ 630 01cc 9091 0000 		lds r25,BusState
+ 631 01d0 93FD      		sbrc r25,3
+ 632 01d2 00C0      		rjmp .L34
+ 633               		.stabn	68,0,179,.LM66-.LFBB9
+ 634               	.LM66:
+ 635 01d4 9091 0000 		lds r25,BusState
+ 636 01d8 94FD      		sbrc r25,4
+ 637 01da 00C0      		rjmp .L34
+ 638               		.stabn	68,0,179,.LM67-.LFBB9
+ 639               	.LM67:
+ 640 01dc 9091 0000 		lds r25,BusState
+ 641 01e0 92FD      		sbrc r25,2
+ 642 01e2 00C0      		rjmp .L34
+ 643               		.stabn	68,0,179,.LM68-.LFBB9
+ 644               	.LM68:
+ 645 01e4 9091 0000 		lds r25,BusState
+ 646 01e8 91FF      		sbrs r25,1
+ 647 01ea 00C0      		rjmp .L34
+ 648               		.stabn	68,0,179,.LM69-.LFBB9
+ 649               	.LM69:
+ 650 01ec 9091 0000 		lds r25,BusState
+ 651 01f0 90FD      		sbrc r25,0
+ 652 01f2 00C0      		rjmp .L34
+ 180:yaMBSiavr.c   **** 	{
+ 181:yaMBSiavr.c   **** 		if (DataPos>MaxFrameIndex) modbusReset();
+ 653               		.stabn	68,0,181,.LM70-.LFBB9
+ 654               	.LM70:
+ 655 01f4 2091 0000 		lds r18,DataPos
+GAS LISTING /tmp/ccY3DPgE.s 			page 16
+
+
+ 656 01f8 3091 0000 		lds r19,DataPos+1
+ 657 01fc 2F3F      		cpi r18,-1
+ 658 01fe 3105      		cpc r19,__zero_reg__
+ 659 0200 01F0      		breq .L35
+ 660 0202 00F0      		brlo .L35
+ 661               		.stabn	68,0,181,.LM71-.LFBB9
+ 662               	.LM71:
+ 663 0204 0E94 0000 		call modbusReset
+ 664               	.L33:
+ 665               	/* epilogue start */
+ 182:yaMBSiavr.c   **** 	    	else
+ 183:yaMBSiavr.c   **** 		{
+ 184:yaMBSiavr.c   **** 			rxbuffer[DataPos]=data;
+ 185:yaMBSiavr.c   **** 			DataPos++; //TODO: maybe prevent this from exceeding 255?
+ 186:yaMBSiavr.c   **** 		}	    
+ 187:yaMBSiavr.c   ****     	} else 
+ 188:yaMBSiavr.c   **** 	if (!(BusState & (1<<ReceiveCompleted)) && !(BusState & (1<<TransmitRequested)) && !(BusState & (1
+ 189:yaMBSiavr.c   **** 	{ 
+ 190:yaMBSiavr.c   **** 		 rxbuffer[0]=data;
+ 191:yaMBSiavr.c   **** 		 BusState=((1<<Receiving)|(1<<TimerActive));
+ 192:yaMBSiavr.c   **** 		 DataPos=1;
+ 193:yaMBSiavr.c   ****     	}
+ 194:yaMBSiavr.c   **** }
+ 666               		.stabn	68,0,194,.LM72-.LFBB9
+ 667               	.LM72:
+ 668 0208 FF91      		pop r31
+ 669 020a EF91      		pop r30
+ 670 020c BF91      		pop r27
+ 671 020e AF91      		pop r26
+ 672 0210 9F91      		pop r25
+ 673 0212 8F91      		pop r24
+ 674 0214 7F91      		pop r23
+ 675 0216 6F91      		pop r22
+ 676 0218 5F91      		pop r21
+ 677 021a 4F91      		pop r20
+ 678 021c 3F91      		pop r19
+ 679 021e 2F91      		pop r18
+ 680 0220 0F90      		pop r0
+ 681 0222 0FBE      		out __SREG__,r0
+ 682 0224 0F90      		pop r0
+ 683 0226 1F90      		pop r1
+ 684 0228 1895      		reti
+ 685               	.L35:
+ 184:yaMBSiavr.c   **** 			DataPos++; //TODO: maybe prevent this from exceeding 255?
+ 686               		.stabn	68,0,184,.LM73-.LFBB9
+ 687               	.LM73:
+ 688 022a E091 0000 		lds r30,DataPos
+ 689 022e F091 0000 		lds r31,DataPos+1
+ 690 0232 E050      		subi r30,lo8(-(rxbuffer))
+ 691 0234 F040      		sbci r31,hi8(-(rxbuffer))
+ 692 0236 8083      		st Z,r24
+ 185:yaMBSiavr.c   **** 		}	    
+ 693               		.stabn	68,0,185,.LM74-.LFBB9
+ 694               	.LM74:
+ 695 0238 8091 0000 		lds r24,DataPos
+ 696 023c 9091 0000 		lds r25,DataPos+1
+ 697 0240 0196      		adiw r24,1
+GAS LISTING /tmp/ccY3DPgE.s 			page 17
+
+
+ 698               	.L43:
+ 192:yaMBSiavr.c   ****     	}
+ 699               		.stabn	68,0,192,.LM75-.LFBB9
+ 700               	.LM75:
+ 701 0242 9093 0000 		sts DataPos+1,r25
+ 702 0246 8093 0000 		sts DataPos,r24
+ 703               		.stabn	68,0,194,.LM76-.LFBB9
+ 704               	.LM76:
+ 705 024a 00C0      		rjmp .L33
+ 706               	.L34:
+ 188:yaMBSiavr.c   **** 	{ 
+ 707               		.stabn	68,0,188,.LM77-.LFBB9
+ 708               	.LM77:
+ 709 024c 9091 0000 		lds r25,BusState
+ 710 0250 93FD      		sbrc r25,3
+ 711 0252 00C0      		rjmp .L33
+ 188:yaMBSiavr.c   **** 	{ 
+ 712               		.stabn	68,0,188,.LM78-.LFBB9
+ 713               	.LM78:
+ 714 0254 9091 0000 		lds r25,BusState
+ 715 0258 94FD      		sbrc r25,4
+ 716 025a 00C0      		rjmp .L33
+ 188:yaMBSiavr.c   **** 	{ 
+ 717               		.stabn	68,0,188,.LM79-.LFBB9
+ 718               	.LM79:
+ 719 025c 9091 0000 		lds r25,BusState
+ 720 0260 92FD      		sbrc r25,2
+ 721 0262 00C0      		rjmp .L33
+ 188:yaMBSiavr.c   **** 	{ 
+ 722               		.stabn	68,0,188,.LM80-.LFBB9
+ 723               	.LM80:
+ 724 0264 9091 0000 		lds r25,BusState
+ 725 0268 91FD      		sbrc r25,1
+ 726 026a 00C0      		rjmp .L33
+ 188:yaMBSiavr.c   **** 	{ 
+ 727               		.stabn	68,0,188,.LM81-.LFBB9
+ 728               	.LM81:
+ 729 026c 9091 0000 		lds r25,BusState
+ 730 0270 90FF      		sbrs r25,0
+ 731 0272 00C0      		rjmp .L33
+ 190:yaMBSiavr.c   **** 		 BusState=((1<<Receiving)|(1<<TimerActive));
+ 732               		.stabn	68,0,190,.LM82-.LFBB9
+ 733               	.LM82:
+ 734 0274 8093 0000 		sts rxbuffer,r24
+ 191:yaMBSiavr.c   **** 		 DataPos=1;
+ 735               		.stabn	68,0,191,.LM83-.LFBB9
+ 736               	.LM83:
+ 737 0278 82E2      		ldi r24,lo8(34)
+ 738 027a 8093 0000 		sts BusState,r24
+ 192:yaMBSiavr.c   ****     	}
+ 739               		.stabn	68,0,192,.LM84-.LFBB9
+ 740               	.LM84:
+ 741 027e 81E0      		ldi r24,lo8(1)
+ 742 0280 90E0      		ldi r25,0
+ 743 0282 00C0      		rjmp .L43
+ 744               		.size	__vector_18, .-__vector_18
+ 745               		.stabs	"data:r(0,13)",64,0,176,24
+GAS LISTING /tmp/ccY3DPgE.s 			page 18
+
+
+ 746               		.stabn	192,0,0,.LFBB9-.LFBB9
+ 747               		.stabn	224,0,0,.Lscope9-.LFBB9
+ 748               	.Lscope9:
+ 749               		.stabs	"",36,0,0,.Lscope9-.LFBB9
+ 750               		.stabd	78,0,0
+ 751               		.stabs	"__vector_19:F(0,50)",36,0,196,__vector_19
+ 752               	.global	__vector_19
+ 753               		.type	__vector_19, @function
+ 754               	__vector_19:
+ 755               		.stabd	46,0,0
+ 195:yaMBSiavr.c   **** 
+ 196:yaMBSiavr.c   **** ISR(UART_TRANSMIT_INTERRUPT)
+ 197:yaMBSiavr.c   **** {
+ 756               		.stabn	68,0,197,.LM85-.LFBB10
+ 757               	.LM85:
+ 758               	.LFBB10:
+ 759 0284 1F92      		push r1
+ 760 0286 0F92      		push r0
+ 761 0288 0FB6      		in r0,__SREG__
+ 762 028a 0F92      		push r0
+ 763 028c 1124      		clr __zero_reg__
+ 764 028e 2F93      		push r18
+ 765 0290 3F93      		push r19
+ 766 0292 8F93      		push r24
+ 767 0294 9F93      		push r25
+ 768 0296 EF93      		push r30
+ 769 0298 FF93      		push r31
+ 770               	/* prologue: Signal */
+ 771               	/* frame size = 0 */
+ 772               	/* stack size = 9 */
+ 773               	.L__stack_usage = 9
+ 198:yaMBSiavr.c   **** 	BusState&=~(1<<TransmitRequested);
+ 774               		.stabn	68,0,198,.LM86-.LFBB10
+ 775               	.LM86:
+ 776 029a 8091 0000 		lds r24,BusState
+ 777 029e 8F7E      		andi r24,lo8(-17)
+ 778 02a0 8093 0000 		sts BusState,r24
+ 199:yaMBSiavr.c   **** 	BusState|=(1<<Transmitting);
+ 779               		.stabn	68,0,199,.LM87-.LFBB10
+ 780               	.LM87:
+ 781 02a4 8091 0000 		lds r24,BusState
+ 782 02a8 8460      		ori r24,lo8(4)
+ 783 02aa 8093 0000 		sts BusState,r24
+ 200:yaMBSiavr.c   **** 	UART_DATA=rxbuffer[DataPos];
+ 784               		.stabn	68,0,200,.LM88-.LFBB10
+ 785               	.LM88:
+ 786 02ae E091 0000 		lds r30,DataPos
+ 787 02b2 F091 0000 		lds r31,DataPos+1
+ 788 02b6 E050      		subi r30,lo8(-(rxbuffer))
+ 789 02b8 F040      		sbci r31,hi8(-(rxbuffer))
+ 790 02ba 8081      		ld r24,Z
+ 791 02bc 8093 C600 		sts 198,r24
+ 201:yaMBSiavr.c   **** 	DataPos++;
+ 792               		.stabn	68,0,201,.LM89-.LFBB10
+ 793               	.LM89:
+ 794 02c0 8091 0000 		lds r24,DataPos
+ 795 02c4 9091 0000 		lds r25,DataPos+1
+GAS LISTING /tmp/ccY3DPgE.s 			page 19
+
+
+ 796 02c8 0196      		adiw r24,1
+ 797 02ca 9093 0000 		sts DataPos+1,r25
+ 798 02ce 8093 0000 		sts DataPos,r24
+ 202:yaMBSiavr.c   **** 	if (DataPos==(PacketTopIndex+1)) {
+ 799               		.stabn	68,0,202,.LM90-.LFBB10
+ 800               	.LM90:
+ 801 02d2 8091 0000 		lds r24,PacketTopIndex
+ 802 02d6 2091 0000 		lds r18,DataPos
+ 803 02da 3091 0000 		lds r19,DataPos+1
+ 804 02de 90E0      		ldi r25,0
+ 805 02e0 0196      		adiw r24,1
+ 806 02e2 8217      		cp r24,r18
+ 807 02e4 9307      		cpc r25,r19
+ 808 02e6 01F4      		brne .L44
+ 203:yaMBSiavr.c   **** 		UART_CONTROL&=~(1<<UART_UDRIE);
+ 809               		.stabn	68,0,203,.LM91-.LFBB10
+ 810               	.LM91:
+ 811 02e8 8091 C100 		lds r24,193
+ 812 02ec 8F7D      		andi r24,lo8(-33)
+ 813 02ee 8093 C100 		sts 193,r24
+ 814               	.L44:
+ 815               	/* epilogue start */
+ 204:yaMBSiavr.c   **** 	}
+ 205:yaMBSiavr.c   **** }
+ 816               		.stabn	68,0,205,.LM92-.LFBB10
+ 817               	.LM92:
+ 818 02f2 FF91      		pop r31
+ 819 02f4 EF91      		pop r30
+ 820 02f6 9F91      		pop r25
+ 821 02f8 8F91      		pop r24
+ 822 02fa 3F91      		pop r19
+ 823 02fc 2F91      		pop r18
+ 824 02fe 0F90      		pop r0
+ 825 0300 0FBE      		out __SREG__,r0
+ 826 0302 0F90      		pop r0
+ 827 0304 1F90      		pop r1
+ 828 0306 1895      		reti
+ 829               		.size	__vector_19, .-__vector_19
+ 830               	.Lscope10:
+ 831               		.stabs	"",36,0,0,.Lscope10-.LFBB10
+ 832               		.stabd	78,0,0
+ 833               		.stabs	"__vector_20:F(0,50)",36,0,207,__vector_20
+ 834               	.global	__vector_20
+ 835               		.type	__vector_20, @function
+ 836               	__vector_20:
+ 837               		.stabd	46,0,0
+ 206:yaMBSiavr.c   **** 
+ 207:yaMBSiavr.c   **** ISR(UART_TRANSMIT_COMPLETE_INTERRUPT)
+ 208:yaMBSiavr.c   **** {
+ 838               		.stabn	68,0,208,.LM93-.LFBB11
+ 839               	.LM93:
+ 840               	.LFBB11:
+ 841 0308 1F92      		push r1
+ 842 030a 0F92      		push r0
+ 843 030c 0FB6      		in r0,__SREG__
+ 844 030e 0F92      		push r0
+ 845 0310 1124      		clr __zero_reg__
+GAS LISTING /tmp/ccY3DPgE.s 			page 20
+
+
+ 846 0312 2F93      		push r18
+ 847 0314 3F93      		push r19
+ 848 0316 4F93      		push r20
+ 849 0318 5F93      		push r21
+ 850 031a 6F93      		push r22
+ 851 031c 7F93      		push r23
+ 852 031e 8F93      		push r24
+ 853 0320 9F93      		push r25
+ 854 0322 AF93      		push r26
+ 855 0324 BF93      		push r27
+ 856 0326 EF93      		push r30
+ 857 0328 FF93      		push r31
+ 858               	/* prologue: Signal */
+ 859               	/* frame size = 0 */
+ 860               	/* stack size = 15 */
+ 861               	.L__stack_usage = 15
+ 209:yaMBSiavr.c   **** 	#if PHYSICAL_TYPE == 485
+ 210:yaMBSiavr.c   **** 	transceiver_rxen();
+ 211:yaMBSiavr.c   **** 	#endif
+ 212:yaMBSiavr.c   **** 	modbusReset();
+ 862               		.stabn	68,0,212,.LM94-.LFBB11
+ 863               	.LM94:
+ 864 032a 0E94 0000 		call modbusReset
+ 865               	/* epilogue start */
+ 213:yaMBSiavr.c   **** }
+ 866               		.stabn	68,0,213,.LM95-.LFBB11
+ 867               	.LM95:
+ 868 032e FF91      		pop r31
+ 869 0330 EF91      		pop r30
+ 870 0332 BF91      		pop r27
+ 871 0334 AF91      		pop r26
+ 872 0336 9F91      		pop r25
+ 873 0338 8F91      		pop r24
+ 874 033a 7F91      		pop r23
+ 875 033c 6F91      		pop r22
+ 876 033e 5F91      		pop r21
+ 877 0340 4F91      		pop r20
+ 878 0342 3F91      		pop r19
+ 879 0344 2F91      		pop r18
+ 880 0346 0F90      		pop r0
+ 881 0348 0FBE      		out __SREG__,r0
+ 882 034a 0F90      		pop r0
+ 883 034c 1F90      		pop r1
+ 884 034e 1895      		reti
+ 885               		.size	__vector_20, .-__vector_20
+ 886               	.Lscope11:
+ 887               		.stabs	"",36,0,0,.Lscope11-.LFBB11
+ 888               		.stabd	78,0,0
+ 889               		.stabs	"modbusInit:F(0,50)",36,0,215,modbusInit
+ 890               	.global	modbusInit
+ 891               		.type	modbusInit, @function
+ 892               	modbusInit:
+ 893               		.stabd	46,0,0
+ 214:yaMBSiavr.c   **** 
+ 215:yaMBSiavr.c   **** void modbusInit(void)
+ 216:yaMBSiavr.c   **** {
+ 894               		.stabn	68,0,216,.LM96-.LFBB12
+GAS LISTING /tmp/ccY3DPgE.s 			page 21
+
+
+ 895               	.LM96:
+ 896               	.LFBB12:
+ 897               	/* prologue: function */
+ 898               	/* frame size = 0 */
+ 899               	/* stack size = 0 */
+ 900               	.L__stack_usage = 0
+ 217:yaMBSiavr.c   **** 	UBRRH = (unsigned char)((UBRR) >> 8);
+ 901               		.stabn	68,0,217,.LM97-.LFBB12
+ 902               	.LM97:
+ 903 0350 1092 C500 		sts 197,__zero_reg__
+ 218:yaMBSiavr.c   **** 	UBRRL = (unsigned char) UBRR;
+ 904               		.stabn	68,0,218,.LM98-.LFBB12
+ 905               	.LM98:
+ 906 0354 80E1      		ldi r24,lo8(16)
+ 907 0356 8093 C400 		sts 196,r24
+ 219:yaMBSiavr.c   **** 	UART_STATUS = (1<<U2X); //double speed mode.
+ 908               		.stabn	68,0,219,.LM99-.LFBB12
+ 909               	.LM99:
+ 910 035a 82E0      		ldi r24,lo8(2)
+ 911 035c 8093 C000 		sts 192,r24
+ 220:yaMBSiavr.c   **** #ifdef URSEL   // if UBRRH and UCSRC share the same I/O location , e.g. ATmega8
+ 221:yaMBSiavr.c   **** 	UCSRC = (1<<URSEL)|(3<<UCSZ0); //Frame Size
+ 222:yaMBSiavr.c   **** #else
+ 223:yaMBSiavr.c   ****    UCSRC = (3<<UCSZ0); //Frame Size
+ 912               		.stabn	68,0,223,.LM100-.LFBB12
+ 913               	.LM100:
+ 914 0360 86E0      		ldi r24,lo8(6)
+ 915 0362 8093 C200 		sts 194,r24
+ 224:yaMBSiavr.c   **** #endif
+ 225:yaMBSiavr.c   **** 	UART_CONTROL = (1<<TXCIE)|(1<<RXCIE)|(1<<RXEN)|(1<<TXEN); // USART receiver and transmitter and re
+ 916               		.stabn	68,0,225,.LM101-.LFBB12
+ 917               	.LM101:
+ 918 0366 88ED      		ldi r24,lo8(-40)
+ 919 0368 8093 C100 		sts 193,r24
+ 226:yaMBSiavr.c   **** 	#if PHYSICAL_TYPE == 485
+ 227:yaMBSiavr.c   **** 	TRANSCEIVER_ENABLE_PORT_DDR|=(1<<TRANSCEIVER_ENABLE_PIN);
+ 228:yaMBSiavr.c   **** 	transceiver_rxen();
+ 229:yaMBSiavr.c   **** 	#endif
+ 230:yaMBSiavr.c   **** 	BusState=(1<<TimerActive);
+ 920               		.stabn	68,0,230,.LM102-.LFBB12
+ 921               	.LM102:
+ 922 036c 80E2      		ldi r24,lo8(32)
+ 923 036e 8093 0000 		sts BusState,r24
+ 924               	/* epilogue start */
+ 231:yaMBSiavr.c   **** }
+ 925               		.stabn	68,0,231,.LM103-.LFBB12
+ 926               	.LM103:
+ 927 0372 0895      		ret
+ 928               		.size	modbusInit, .-modbusInit
+ 929               	.Lscope12:
+ 930               		.stabs	"",36,0,0,.Lscope12-.LFBB12
+ 931               		.stabd	78,0,0
+ 932               		.stabs	"modbusSendMessage:F(0,50)",36,0,238,modbusSendMessage
+ 933               		.stabs	"packtop:P(0,13)",64,0,238,24
+ 934               	.global	modbusSendMessage
+ 935               		.type	modbusSendMessage, @function
+ 936               	modbusSendMessage:
+GAS LISTING /tmp/ccY3DPgE.s 			page 22
+
+
+ 937               		.stabd	46,0,0
+ 232:yaMBSiavr.c   **** 
+ 233:yaMBSiavr.c   **** /* @brief: Sends a response.
+ 234:yaMBSiavr.c   **** *
+ 235:yaMBSiavr.c   **** *         Arguments: - packtop: Position of the last byte containing data.
+ 236:yaMBSiavr.c   **** *                               modbusSendException is a good usage example.
+ 237:yaMBSiavr.c   **** */
+ 238:yaMBSiavr.c   **** void modbusSendMessage(unsigned char packtop)
+ 239:yaMBSiavr.c   **** {
+ 938               		.stabn	68,0,239,.LM104-.LFBB13
+ 939               	.LM104:
+ 940               	.LFBB13:
+ 941               	/* prologue: function */
+ 942               	/* frame size = 0 */
+ 943               	/* stack size = 0 */
+ 944               	.L__stack_usage = 0
+ 240:yaMBSiavr.c   **** 	PacketTopIndex=packtop+2;
+ 945               		.stabn	68,0,240,.LM105-.LFBB13
+ 946               	.LM105:
+ 947 0374 92E0      		ldi r25,lo8(2)
+ 948 0376 980F      		add r25,r24
+ 949 0378 9093 0000 		sts PacketTopIndex,r25
+ 241:yaMBSiavr.c   **** 	crc16(rxbuffer,packtop);
+ 950               		.stabn	68,0,241,.LM106-.LFBB13
+ 951               	.LM106:
+ 952 037c 682F      		mov r22,r24
+ 953 037e 80E0      		ldi r24,lo8(rxbuffer)
+ 954 0380 90E0      		ldi r25,hi8(rxbuffer)
+ 955 0382 0E94 0000 		call crc16
+ 242:yaMBSiavr.c   **** 	BusState|=(1<<TransmitRequested);
+ 956               		.stabn	68,0,242,.LM107-.LFBB13
+ 957               	.LM107:
+ 958 0386 8091 0000 		lds r24,BusState
+ 959 038a 8061      		ori r24,lo8(16)
+ 960 038c 8093 0000 		sts BusState,r24
+ 243:yaMBSiavr.c   **** 	DataPos=0;
+ 961               		.stabn	68,0,243,.LM108-.LFBB13
+ 962               	.LM108:
+ 963 0390 1092 0000 		sts DataPos+1,__zero_reg__
+ 964 0394 1092 0000 		sts DataPos,__zero_reg__
+ 244:yaMBSiavr.c   **** 	#if PHYSICAL_TYPE == 485
+ 245:yaMBSiavr.c   **** 	transceiver_txen();
+ 246:yaMBSiavr.c   **** 	#endif
+ 247:yaMBSiavr.c   **** 	UART_CONTROL|=(1<<UART_UDRIE);
+ 965               		.stabn	68,0,247,.LM109-.LFBB13
+ 966               	.LM109:
+ 967 0398 E1EC      		ldi r30,lo8(-63)
+ 968 039a F0E0      		ldi r31,0
+ 969 039c 8081      		ld r24,Z
+ 970 039e 8062      		ori r24,lo8(32)
+ 971 03a0 8083      		st Z,r24
+ 248:yaMBSiavr.c   **** 	BusState&=~(1<<ReceiveCompleted);
+ 972               		.stabn	68,0,248,.LM110-.LFBB13
+ 973               	.LM110:
+ 974 03a2 8091 0000 		lds r24,BusState
+ 975 03a6 877F      		andi r24,lo8(-9)
+ 976 03a8 8093 0000 		sts BusState,r24
+GAS LISTING /tmp/ccY3DPgE.s 			page 23
+
+
+ 977               	/* epilogue start */
+ 249:yaMBSiavr.c   **** }
+ 978               		.stabn	68,0,249,.LM111-.LFBB13
+ 979               	.LM111:
+ 980 03ac 0895      		ret
+ 981               		.size	modbusSendMessage, .-modbusSendMessage
+ 982               	.Lscope13:
+ 983               		.stabs	"",36,0,0,.Lscope13-.LFBB13
+ 984               		.stabd	78,0,0
+ 985               		.stabs	"modbusSendException:F(0,50)",36,0,256,modbusSendException
+ 986               		.stabs	"exceptionCode:P(0,13)",64,0,256,24
+ 987               	.global	modbusSendException
+ 988               		.type	modbusSendException, @function
+ 989               	modbusSendException:
+ 990               		.stabd	46,0,0
+ 250:yaMBSiavr.c   **** 
+ 251:yaMBSiavr.c   **** /* @brief: Sends an exception response.
+ 252:yaMBSiavr.c   **** *
+ 253:yaMBSiavr.c   **** *         Arguments: - exceptionCode
+ 254:yaMBSiavr.c   **** *                              
+ 255:yaMBSiavr.c   **** */
+ 256:yaMBSiavr.c   **** void modbusSendException(unsigned char exceptionCode)
+ 257:yaMBSiavr.c   **** {
+ 991               		.stabn	68,0,257,.LM112-.LFBB14
+ 992               	.LM112:
+ 993               	.LFBB14:
+ 994               	/* prologue: function */
+ 995               	/* frame size = 0 */
+ 996               	/* stack size = 0 */
+ 997               	.L__stack_usage = 0
+ 258:yaMBSiavr.c   **** 	rxbuffer[1]|=(1<<7); //setting MSB of the function code (the exception flag)
+ 998               		.stabn	68,0,258,.LM113-.LFBB14
+ 999               	.LM113:
+ 1000 03ae E0E0      		ldi r30,lo8(rxbuffer)
+ 1001 03b0 F0E0      		ldi r31,hi8(rxbuffer)
+ 1002 03b2 9181      		ldd r25,Z+1
+ 1003 03b4 9068      		ori r25,lo8(-128)
+ 1004 03b6 9183      		std Z+1,r25
+ 259:yaMBSiavr.c   **** 	rxbuffer[2]=exceptionCode; //Exceptioncode. Also the last byte containing data
+ 1005               		.stabn	68,0,259,.LM114-.LFBB14
+ 1006               	.LM114:
+ 1007 03b8 8283      		std Z+2,r24
+ 260:yaMBSiavr.c   **** 	modbusSendMessage(2);
+ 1008               		.stabn	68,0,260,.LM115-.LFBB14
+ 1009               	.LM115:
+ 1010 03ba 82E0      		ldi r24,lo8(2)
+ 1011 03bc 0E94 0000 		call modbusSendMessage
+ 1012               	/* epilogue start */
+ 261:yaMBSiavr.c   **** }
+ 1013               		.stabn	68,0,261,.LM116-.LFBB14
+ 1014               	.LM116:
+ 1015 03c0 0895      		ret
+ 1016               		.size	modbusSendException, .-modbusSendException
+ 1017               	.Lscope14:
+ 1018               		.stabs	"",36,0,0,.Lscope14-.LFBB14
+ 1019               		.stabd	78,0,0
+ 1020               		.stabs	"modbusRequestedAmount:F(5,6)",36,0,267,modbusRequestedAmount
+GAS LISTING /tmp/ccY3DPgE.s 			page 24
+
+
+ 1021               	.global	modbusRequestedAmount
+ 1022               		.type	modbusRequestedAmount, @function
+ 1023               	modbusRequestedAmount:
+ 1024               		.stabd	46,0,0
+ 262:yaMBSiavr.c   **** 
+ 263:yaMBSiavr.c   **** 
+ 264:yaMBSiavr.c   **** /* @brief:  Returns the amount of requested data objects (coils, discretes, registers)
+ 265:yaMBSiavr.c   **** *
+ 266:yaMBSiavr.c   **** */
+ 267:yaMBSiavr.c   **** uint16_t modbusRequestedAmount(void)
+ 268:yaMBSiavr.c   **** {
+ 1025               		.stabn	68,0,268,.LM117-.LFBB15
+ 1026               	.LM117:
+ 1027               	.LFBB15:
+ 1028               	/* prologue: function */
+ 1029               	/* frame size = 0 */
+ 1030               	/* stack size = 0 */
+ 1031               	.L__stack_usage = 0
+ 269:yaMBSiavr.c   **** 	return (rxbuffer[5]|(rxbuffer[4]<<8));
+ 1032               		.stabn	68,0,269,.LM118-.LFBB15
+ 1033               	.LM118:
+ 1034 03c2 E0E0      		ldi r30,lo8(rxbuffer)
+ 1035 03c4 F0E0      		ldi r31,hi8(rxbuffer)
+ 1036 03c6 8581      		ldd r24,Z+5
+ 1037 03c8 9481      		ldd r25,Z+4
+ 1038               	/* epilogue start */
+ 270:yaMBSiavr.c   **** }
+ 1039               		.stabn	68,0,270,.LM119-.LFBB15
+ 1040               	.LM119:
+ 1041 03ca 0895      		ret
+ 1042               		.size	modbusRequestedAmount, .-modbusRequestedAmount
+ 1043               	.Lscope15:
+ 1044               		.stabs	"",36,0,0,.Lscope15-.LFBB15
+ 1045               		.stabd	78,0,0
+ 1046               		.stabs	"modbusRequestedAddress:F(5,6)",36,0,275,modbusRequestedAddress
+ 1047               	.global	modbusRequestedAddress
+ 1048               		.type	modbusRequestedAddress, @function
+ 1049               	modbusRequestedAddress:
+ 1050               		.stabd	46,0,0
+ 271:yaMBSiavr.c   **** 
+ 272:yaMBSiavr.c   **** /* @brief: Returns the address of the first requested data object (coils, discretes, registers)
+ 273:yaMBSiavr.c   **** *
+ 274:yaMBSiavr.c   **** */
+ 275:yaMBSiavr.c   **** uint16_t modbusRequestedAddress(void)
+ 276:yaMBSiavr.c   **** {
+ 1051               		.stabn	68,0,276,.LM120-.LFBB16
+ 1052               	.LM120:
+ 1053               	.LFBB16:
+ 1054               	/* prologue: function */
+ 1055               	/* frame size = 0 */
+ 1056               	/* stack size = 0 */
+ 1057               	.L__stack_usage = 0
+ 277:yaMBSiavr.c   **** 	return (rxbuffer[3]|(rxbuffer[2]<<8));
+ 1058               		.stabn	68,0,277,.LM121-.LFBB16
+ 1059               	.LM121:
+ 1060 03cc E0E0      		ldi r30,lo8(rxbuffer)
+ 1061 03ce F0E0      		ldi r31,hi8(rxbuffer)
+GAS LISTING /tmp/ccY3DPgE.s 			page 25
+
+
+ 1062 03d0 8381      		ldd r24,Z+3
+ 1063 03d2 9281      		ldd r25,Z+2
+ 1064               	/* epilogue start */
+ 278:yaMBSiavr.c   **** }
+ 1065               		.stabn	68,0,278,.LM122-.LFBB16
+ 1066               	.LM122:
+ 1067 03d4 0895      		ret
+ 1068               		.size	modbusRequestedAddress, .-modbusRequestedAddress
+ 1069               	.Lscope16:
+ 1070               		.stabs	"",36,0,0,.Lscope16-.LFBB16
+ 1071               		.stabd	78,0,0
+ 1072               		.stabs	"intToModbusRegister:F(0,50)",36,0,283,intToModbusRegister
+ 1073               		.stabs	"inreg:P(0,53)=*(0,54)=B(5,6)",64,0,283,24
+ 1074               		.stabs	"amount:P(5,5)",64,0,283,20
+ 1075               	.global	intToModbusRegister
+ 1076               		.type	intToModbusRegister, @function
+ 1077               	intToModbusRegister:
+ 1078               		.stabd	46,0,0
+ 279:yaMBSiavr.c   **** 
+ 280:yaMBSiavr.c   **** /* @brief: copies a single or multiple bytes from one array of bytes to an array of 16-bit-words
+ 281:yaMBSiavr.c   **** *
+ 282:yaMBSiavr.c   **** */
+ 283:yaMBSiavr.c   **** void intToModbusRegister(volatile uint16_t *inreg, volatile uint8_t *outreg, uint8_t amount)
+ 284:yaMBSiavr.c   **** {
+ 1079               		.stabn	68,0,284,.LM123-.LFBB17
+ 1080               	.LM123:
+ 1081               	.LFBB17:
+ 1082               	/* prologue: function */
+ 1083               	/* frame size = 0 */
+ 1084               	/* stack size = 0 */
+ 1085               	.L__stack_usage = 0
+ 1086 03d6 DC01      		movw r26,r24
+ 1087 03d8 FB01      		movw r30,r22
+ 1088               	.LBB13:
+ 285:yaMBSiavr.c   **** 	for (uint8_t c=0; c<amount; c++)
+ 1089               		.stabn	68,0,285,.LM124-.LFBB17
+ 1090               	.LM124:
+ 1091 03da 90E0      		ldi r25,0
+ 1092               	.L53:
+ 1093               		.stabn	68,0,285,.LM125-.LFBB17
+ 1094               	.LM125:
+ 1095 03dc 9413      		cpse r25,r20
+ 1096 03de 00C0      		rjmp .L54
+ 1097               	/* epilogue start */
+ 1098               	.LBE13:
+ 286:yaMBSiavr.c   **** 	{
+ 287:yaMBSiavr.c   **** 			*(outreg+c*2) = (uint8_t)(*(inreg+c) >> 8);
+ 288:yaMBSiavr.c   **** 			*(outreg+1+c*2) = (uint8_t)(*(inreg+c));
+ 289:yaMBSiavr.c   **** 	}
+ 290:yaMBSiavr.c   **** }
+ 1099               		.stabn	68,0,290,.LM126-.LFBB17
+ 1100               	.LM126:
+ 1101 03e0 0895      		ret
+ 1102               	.L54:
+ 1103               	.LBB14:
+ 287:yaMBSiavr.c   **** 			*(outreg+1+c*2) = (uint8_t)(*(inreg+c));
+ 1104               		.stabn	68,0,287,.LM127-.LFBB17
+GAS LISTING /tmp/ccY3DPgE.s 			page 26
+
+
+ 1105               	.LM127:
+ 1106 03e2 2D91      		ld r18,X+
+ 1107 03e4 3C91      		ld r19,X
+ 1108 03e6 1197      		sbiw r26,1
+ 1109 03e8 3083      		st Z,r19
+ 288:yaMBSiavr.c   **** 	}
+ 1110               		.stabn	68,0,288,.LM128-.LFBB17
+ 1111               	.LM128:
+ 1112 03ea 2D91      		ld r18,X+
+ 1113 03ec 3D91      		ld r19,X+
+ 1114 03ee 2183      		std Z+1,r18
+ 285:yaMBSiavr.c   **** 	{
+ 1115               		.stabn	68,0,285,.LM129-.LFBB17
+ 1116               	.LM129:
+ 1117 03f0 9F5F      		subi r25,lo8(-(1))
+ 1118 03f2 3296      		adiw r30,2
+ 1119 03f4 00C0      		rjmp .L53
+ 1120               	.LBE14:
+ 1121               		.size	intToModbusRegister, .-intToModbusRegister
+ 1122               		.stabs	"c:r(5,5)",64,0,285,25
+ 1123               		.stabn	192,0,0,.LBB13-.LFBB17
+ 1124               		.stabn	224,0,0,.LBE13-.LFBB17
+ 1125               		.stabs	"c:r(5,5)",64,0,285,25
+ 1126               		.stabn	192,0,0,.LBB14-.LFBB17
+ 1127               		.stabn	224,0,0,.LBE14-.LFBB17
+ 1128               	.Lscope17:
+ 1129               		.stabs	"",36,0,0,.Lscope17-.LFBB17
+ 1130               		.stabd	78,0,0
+ 1131               		.stabs	"modbusRegisterToInt:F(0,50)",36,0,295,modbusRegisterToInt
+ 1132               		.stabs	"inreg:P(0,51)",64,0,295,24
+ 1133               		.stabs	"amount:P(5,5)",64,0,295,20
+ 1134               	.global	modbusRegisterToInt
+ 1135               		.type	modbusRegisterToInt, @function
+ 1136               	modbusRegisterToInt:
+ 1137               		.stabd	46,0,0
+ 291:yaMBSiavr.c   **** 
+ 292:yaMBSiavr.c   **** /* @brief: copies a single or multiple 16-bit-words from one array of integers to an array of bytes
+ 293:yaMBSiavr.c   **** *
+ 294:yaMBSiavr.c   **** */
+ 295:yaMBSiavr.c   **** void modbusRegisterToInt(volatile uint8_t *inreg, volatile uint16_t *outreg, uint8_t amount)
+ 296:yaMBSiavr.c   **** {
+ 1138               		.stabn	68,0,296,.LM130-.LFBB18
+ 1139               	.LM130:
+ 1140               	.LFBB18:
+ 1141               	/* prologue: function */
+ 1142               	/* frame size = 0 */
+ 1143               	/* stack size = 0 */
+ 1144               	.L__stack_usage = 0
+ 1145 03f6 FC01      		movw r30,r24
+ 1146 03f8 DB01      		movw r26,r22
+ 1147               	.LBB15:
+ 297:yaMBSiavr.c   **** 	for (uint8_t c=0; c<amount; c++)
+ 1148               		.stabn	68,0,297,.LM131-.LFBB18
+ 1149               	.LM131:
+ 1150 03fa 80E0      		ldi r24,0
+ 1151               	.L56:
+ 1152               		.stabn	68,0,297,.LM132-.LFBB18
+GAS LISTING /tmp/ccY3DPgE.s 			page 27
+
+
+ 1153               	.LM132:
+ 1154 03fc 8413      		cpse r24,r20
+ 1155 03fe 00C0      		rjmp .L57
+ 1156               	/* epilogue start */
+ 1157               	.LBE15:
+ 298:yaMBSiavr.c   **** 	{
+ 299:yaMBSiavr.c   **** 		*(outreg+c) = (*(inreg+c*2) << 8) + *(inreg+1+c*2);
+ 300:yaMBSiavr.c   **** 	}
+ 301:yaMBSiavr.c   **** }
+ 1158               		.stabn	68,0,301,.LM133-.LFBB18
+ 1159               	.LM133:
+ 1160 0400 0895      		ret
+ 1161               	.L57:
+ 1162               	.LBB16:
+ 299:yaMBSiavr.c   **** 	}
+ 1163               		.stabn	68,0,299,.LM134-.LFBB18
+ 1164               	.LM134:
+ 1165 0402 9081      		ld r25,Z
+ 1166 0404 5181      		ldd r21,Z+1
+ 1167 0406 292F      		mov r18,r25
+ 1168 0408 30E0      		ldi r19,0
+ 1169 040a 322F      		mov r19,r18
+ 1170 040c 2227      		clr r18
+ 1171 040e 250F      		add r18,r21
+ 1172 0410 311D      		adc r19,__zero_reg__
+ 1173 0412 1196      		adiw r26,1
+ 1174 0414 3C93      		st X,r19
+ 1175 0416 2E93      		st -X,r18
+ 1176 0418 1296      		adiw r26,2
+ 297:yaMBSiavr.c   **** 	for (uint8_t c=0; c<amount; c++)
+ 1177               		.stabn	68,0,297,.LM135-.LFBB18
+ 1178               	.LM135:
+ 1179 041a 8F5F      		subi r24,lo8(-(1))
+ 1180 041c 3296      		adiw r30,2
+ 1181 041e 00C0      		rjmp .L56
+ 1182               	.LBE16:
+ 1183               		.size	modbusRegisterToInt, .-modbusRegisterToInt
+ 1184               		.stabs	"c:r(5,5)",64,0,297,24
+ 1185               		.stabn	192,0,0,.LBB15-.LFBB18
+ 1186               		.stabn	224,0,0,.LBE15-.LFBB18
+ 1187               		.stabs	"c:r(5,5)",64,0,297,24
+ 1188               		.stabn	192,0,0,.LBB16-.LFBB18
+ 1189               		.stabn	224,0,0,.LBE16-.LFBB18
+ 1190               	.Lscope18:
+ 1191               		.stabs	"",36,0,0,.Lscope18-.LFBB18
+ 1192               		.stabd	78,0,0
+ 1193               		.stabs	"modbusExchangeRegisters:F(5,5)",36,0,310,modbusExchangeRegisters
+ 1194               		.stabs	"ptrToInArray:P(0,53)",64,0,310,28
+ 1195               		.stabs	"startAddress:P(5,6)",64,0,310,14
+ 1196               		.stabs	"size:P(5,6)",64,0,310,12
+ 1197               	.global	modbusExchangeRegisters
+ 1198               		.type	modbusExchangeRegisters, @function
+ 1199               	modbusExchangeRegisters:
+ 1200               		.stabd	46,0,0
+ 302:yaMBSiavr.c   **** 
+ 303:yaMBSiavr.c   **** /* @brief: Handles single/multiple register reading and single/multiple register writing.
+ 304:yaMBSiavr.c   **** *
+GAS LISTING /tmp/ccY3DPgE.s 			page 28
+
+
+ 305:yaMBSiavr.c   **** *         Arguments: - ptrToInArray: pointer to the user's data array containing registers
+ 306:yaMBSiavr.c   **** *                    - startAddress: address of the first register in the supplied array
+ 307:yaMBSiavr.c   **** *                    - size: input array size in the requested format (16bit-registers)
+ 308:yaMBSiavr.c   **** *
+ 309:yaMBSiavr.c   **** */
+ 310:yaMBSiavr.c   **** uint8_t modbusExchangeRegisters(volatile uint16_t *ptrToInArray, uint16_t startAddress, uint16_t si
+ 311:yaMBSiavr.c   **** {
+ 1201               		.stabn	68,0,311,.LM136-.LFBB19
+ 1202               	.LM136:
+ 1203               	.LFBB19:
+ 1204 0420 B0E0      		ldi r27,0
+ 1205 0422 A0E0      		ldi r26,0
+ 1206 0424 E0E0      		ldi r30,lo8(gs(1f))
+ 1207 0426 F0E0      		ldi r31,hi8(gs(1f))
+ 1208 0428 0C94 0000 		jmp __prologue_saves__+((18 - 8) * 2)
+ 1209               	1:
+ 1210               	/* prologue: function */
+ 1211               	/* frame size = 0 */
+ 1212               	/* stack size = 8 */
+ 1213               	.L__stack_usage = 8
+ 1214 042c EC01      		movw r28,r24
+ 1215 042e 7B01      		movw r14,r22
+ 1216 0430 6A01      		movw r12,r20
+ 312:yaMBSiavr.c   **** 	uint16_t requestedAmount = modbusRequestedAmount();
+ 1217               		.stabn	68,0,312,.LM137-.LFBB19
+ 1218               	.LM137:
+ 1219 0432 0E94 0000 		call modbusRequestedAmount
+ 1220 0436 8C01      		movw r16,r24
+ 313:yaMBSiavr.c   **** 	uint16_t requestedAdr = modbusRequestedAddress();
+ 1221               		.stabn	68,0,313,.LM138-.LFBB19
+ 1222               	.LM138:
+ 1223 0438 0E94 0000 		call modbusRequestedAddress
+ 314:yaMBSiavr.c   **** 	if (rxbuffer[1]==fcPresetSingleRegister) requestedAmount=1;
+ 1224               		.stabn	68,0,314,.LM139-.LFBB19
+ 1225               	.LM139:
+ 1226 043c 2091 0000 		lds r18,rxbuffer+1
+ 1227 0440 2630      		cpi r18,lo8(6)
+ 1228 0442 01F4      		brne .L59
+ 1229 0444 01E0      		ldi r16,lo8(1)
+ 1230 0446 10E0      		ldi r17,0
+ 1231               	.L59:
+ 315:yaMBSiavr.c   **** 	if ((requestedAdr>=startAddress) && ((startAddress+size)>=(requestedAmount+requestedAdr))) {
+ 1232               		.stabn	68,0,315,.LM140-.LFBB19
+ 1233               	.LM140:
+ 1234 0448 8E15      		cp r24,r14
+ 1235 044a 9F05      		cpc r25,r15
+ 1236 044c 00F0      		brlo .L60
+ 1237               		.stabn	68,0,315,.LM141-.LFBB19
+ 1238               	.LM141:
+ 1239 044e CE0C      		add r12,r14
+ 1240 0450 DF1C      		adc r13,r15
+ 1241 0452 9801      		movw r18,r16
+ 1242 0454 280F      		add r18,r24
+ 1243 0456 391F      		adc r19,r25
+ 1244 0458 C216      		cp r12,r18
+ 1245 045a D306      		cpc r13,r19
+ 1246 045c 00F0      		brlo .L60
+GAS LISTING /tmp/ccY3DPgE.s 			page 29
+
+
+ 316:yaMBSiavr.c   **** 		
+ 317:yaMBSiavr.c   **** 		if ((rxbuffer[1]==fcReadHoldingRegisters) || (rxbuffer[1]==fcReadInputRegisters) )
+ 1247               		.stabn	68,0,317,.LM142-.LFBB19
+ 1248               	.LM142:
+ 1249 045e 2091 0000 		lds r18,rxbuffer+1
+ 1250 0462 2330      		cpi r18,lo8(3)
+ 1251 0464 01F0      		breq .L61
+ 1252               		.stabn	68,0,317,.LM143-.LFBB19
+ 1253               	.LM143:
+ 1254 0466 2091 0000 		lds r18,rxbuffer+1
+ 1255 046a 2430      		cpi r18,lo8(4)
+ 1256 046c 01F4      		brne .L62
+ 1257               	.L61:
+ 318:yaMBSiavr.c   **** 		{
+ 319:yaMBSiavr.c   **** 			if ((requestedAmount*2)<=(MaxFrameIndex-4)) //message buffer big enough?
+ 1258               		.stabn	68,0,319,.LM144-.LFBB19
+ 1259               	.LM144:
+ 1260 046e 9801      		movw r18,r16
+ 1261 0470 220F      		lsl r18
+ 1262 0472 331F      		rol r19
+ 1263 0474 2C3F      		cpi r18,-4
+ 1264 0476 3105      		cpc r19,__zero_reg__
+ 1265 0478 00F4      		brsh .L60
+ 320:yaMBSiavr.c   **** 			{
+ 321:yaMBSiavr.c   **** 				rxbuffer[2]=(unsigned char)(requestedAmount*2);
+ 1266               		.stabn	68,0,321,.LM145-.LFBB19
+ 1267               	.LM145:
+ 1268 047a 902F      		mov r25,r16
+ 1269 047c 990F      		lsl r25
+ 1270 047e 9093 0000 		sts rxbuffer+2,r25
+ 322:yaMBSiavr.c   **** 				intToModbusRegister(ptrToInArray+(unsigned char)(requestedAdr-startAddress),rxbuffer+3,requeste
+ 1271               		.stabn	68,0,322,.LM146-.LFBB19
+ 1272               	.LM146:
+ 1273 0482 8E19      		sub r24,r14
+ 1274 0484 90E0      		ldi r25,0
+ 1275 0486 880F      		lsl r24
+ 1276 0488 991F      		rol r25
+ 1277 048a 402F      		mov r20,r16
+ 1278 048c 60E0      		ldi r22,lo8(rxbuffer+3)
+ 1279 048e 70E0      		ldi r23,hi8(rxbuffer+3)
+ 1280 0490 8C0F      		add r24,r28
+ 1281 0492 9D1F      		adc r25,r29
+ 1282 0494 0E94 0000 		call intToModbusRegister
+ 323:yaMBSiavr.c   **** 				modbusSendMessage(2+rxbuffer[2]);
+ 1283               		.stabn	68,0,323,.LM147-.LFBB19
+ 1284               	.LM147:
+ 1285 0498 8091 0000 		lds r24,rxbuffer+2
+ 1286 049c 8E5F      		subi r24,lo8(-(2))
+ 1287               	.L70:
+ 324:yaMBSiavr.c   **** 				return 1;
+ 325:yaMBSiavr.c   **** 			} else modbusSendException(ecIllegalDataValue);
+ 326:yaMBSiavr.c   **** 		}
+ 327:yaMBSiavr.c   **** 		else if (rxbuffer[1]==fcPresetMultipleRegisters)
+ 328:yaMBSiavr.c   **** 		{
+ 329:yaMBSiavr.c   **** 			if (((rxbuffer[6])>=requestedAmount*2) && ((DataPos-9)>=rxbuffer[6])) //enough data received?
+ 330:yaMBSiavr.c   **** 			{
+ 331:yaMBSiavr.c   **** 				modbusRegisterToInt(rxbuffer+7,ptrToInArray+(unsigned char)(requestedAdr-startAddress),(unsigne
+GAS LISTING /tmp/ccY3DPgE.s 			page 30
+
+
+ 332:yaMBSiavr.c   **** 				modbusSendMessage(5);
+ 333:yaMBSiavr.c   **** 				return 1;
+ 334:yaMBSiavr.c   **** 			} else modbusSendException(ecIllegalDataValue);//too few data bytes received
+ 335:yaMBSiavr.c   **** 		}
+ 336:yaMBSiavr.c   **** 		else if (rxbuffer[1]==fcPresetSingleRegister)
+ 337:yaMBSiavr.c   **** 		{
+ 338:yaMBSiavr.c   **** 			modbusRegisterToInt(rxbuffer+4,ptrToInArray+(unsigned char)(requestedAdr-startAddress),1);
+ 339:yaMBSiavr.c   **** 			modbusSendMessage(5);
+ 1288               		.stabn	68,0,339,.LM148-.LFBB19
+ 1289               	.LM148:
+ 1290 049e 0E94 0000 		call modbusSendMessage
+ 340:yaMBSiavr.c   **** 			return 1;
+ 1291               		.stabn	68,0,340,.LM149-.LFBB19
+ 1292               	.LM149:
+ 1293 04a2 81E0      		ldi r24,lo8(1)
+ 1294               	.L58:
+ 1295               	/* epilogue start */
+ 341:yaMBSiavr.c   **** 		} 
+ 342:yaMBSiavr.c   **** 		//modbusSendException(ecSlaveDeviceFailure); //inapropriate call of modbusExchangeRegisters
+ 343:yaMBSiavr.c   **** 		return 0;
+ 344:yaMBSiavr.c   **** 		} else {
+ 345:yaMBSiavr.c   **** 		modbusSendException(ecIllegalDataValue);
+ 346:yaMBSiavr.c   **** 		return 0;
+ 347:yaMBSiavr.c   **** 	}
+ 348:yaMBSiavr.c   **** }
+ 1296               		.stabn	68,0,348,.LM150-.LFBB19
+ 1297               	.LM150:
+ 1298 04a4 CDB7      		in r28,__SP_L__
+ 1299 04a6 DEB7      		in r29,__SP_H__
+ 1300 04a8 E8E0      		ldi r30, lo8(8)
+ 1301 04aa 0C94 0000 		jmp __epilogue_restores__ + ((18 - 8) * 2)
+ 1302               	.L60:
+ 325:yaMBSiavr.c   **** 		}
+ 1303               		.stabn	68,0,325,.LM151-.LFBB19
+ 1304               	.LM151:
+ 1305 04ae 83E0      		ldi r24,lo8(3)
+ 1306 04b0 0E94 0000 		call modbusSendException
+ 1307               	.L65:
+ 343:yaMBSiavr.c   **** 		} else {
+ 1308               		.stabn	68,0,343,.LM152-.LFBB19
+ 1309               	.LM152:
+ 1310 04b4 80E0      		ldi r24,0
+ 1311 04b6 00C0      		rjmp .L58
+ 1312               	.L62:
+ 327:yaMBSiavr.c   **** 		{
+ 1313               		.stabn	68,0,327,.LM153-.LFBB19
+ 1314               	.LM153:
+ 1315 04b8 2091 0000 		lds r18,rxbuffer+1
+ 1316 04bc 2031      		cpi r18,lo8(16)
+ 1317 04be 01F4      		brne .L64
+ 329:yaMBSiavr.c   **** 			{
+ 1318               		.stabn	68,0,329,.LM154-.LFBB19
+ 1319               	.LM154:
+ 1320 04c0 4091 0000 		lds r20,rxbuffer+6
+ 1321 04c4 9801      		movw r18,r16
+ 1322 04c6 220F      		lsl r18
+ 1323 04c8 331F      		rol r19
+GAS LISTING /tmp/ccY3DPgE.s 			page 31
+
+
+ 1324 04ca 4217      		cp r20,r18
+ 1325 04cc 1306      		cpc __zero_reg__,r19
+ 1326 04ce 00F0      		brlo .L60
+ 329:yaMBSiavr.c   **** 			{
+ 1327               		.stabn	68,0,329,.LM155-.LFBB19
+ 1328               	.LM155:
+ 1329 04d0 2091 0000 		lds r18,DataPos
+ 1330 04d4 3091 0000 		lds r19,DataPos+1
+ 1331 04d8 4091 0000 		lds r20,rxbuffer+6
+ 1332 04dc 2950      		subi r18,9
+ 1333 04de 3109      		sbc r19,__zero_reg__
+ 1334 04e0 4217      		cp r20,r18
+ 1335 04e2 1306      		cpc __zero_reg__,r19
+ 1336 04e4 01F0      		breq .+2
+ 1337 04e6 00F4      		brsh .L60
+ 331:yaMBSiavr.c   **** 				modbusSendMessage(5);
+ 1338               		.stabn	68,0,331,.LM156-.LFBB19
+ 1339               	.LM156:
+ 1340 04e8 8E19      		sub r24,r14
+ 1341 04ea 682F      		mov r22,r24
+ 1342 04ec 70E0      		ldi r23,0
+ 1343 04ee 660F      		lsl r22
+ 1344 04f0 771F      		rol r23
+ 1345 04f2 6C0F      		add r22,r28
+ 1346 04f4 7D1F      		adc r23,r29
+ 1347 04f6 402F      		mov r20,r16
+ 1348 04f8 80E0      		ldi r24,lo8(rxbuffer+7)
+ 1349 04fa 90E0      		ldi r25,hi8(rxbuffer+7)
+ 1350               	.L69:
+ 338:yaMBSiavr.c   **** 			modbusSendMessage(5);
+ 1351               		.stabn	68,0,338,.LM157-.LFBB19
+ 1352               	.LM157:
+ 1353 04fc 0E94 0000 		call modbusRegisterToInt
+ 339:yaMBSiavr.c   **** 			return 1;
+ 1354               		.stabn	68,0,339,.LM158-.LFBB19
+ 1355               	.LM158:
+ 1356 0500 85E0      		ldi r24,lo8(5)
+ 1357 0502 00C0      		rjmp .L70
+ 1358               	.L64:
+ 336:yaMBSiavr.c   **** 		{
+ 1359               		.stabn	68,0,336,.LM159-.LFBB19
+ 1360               	.LM159:
+ 1361 0504 2091 0000 		lds r18,rxbuffer+1
+ 1362 0508 2630      		cpi r18,lo8(6)
+ 1363 050a 01F4      		brne .L65
+ 338:yaMBSiavr.c   **** 			modbusSendMessage(5);
+ 1364               		.stabn	68,0,338,.LM160-.LFBB19
+ 1365               	.LM160:
+ 1366 050c 8E19      		sub r24,r14
+ 1367 050e 90E0      		ldi r25,0
+ 1368 0510 880F      		lsl r24
+ 1369 0512 991F      		rol r25
+ 1370 0514 BE01      		movw r22,r28
+ 1371 0516 680F      		add r22,r24
+ 1372 0518 791F      		adc r23,r25
+ 1373 051a 41E0      		ldi r20,lo8(1)
+ 1374 051c 80E0      		ldi r24,lo8(rxbuffer+4)
+GAS LISTING /tmp/ccY3DPgE.s 			page 32
+
+
+ 1375 051e 90E0      		ldi r25,hi8(rxbuffer+4)
+ 1376 0520 00C0      		rjmp .L69
+ 1377               		.size	modbusExchangeRegisters, .-modbusExchangeRegisters
+ 1378               		.stabs	"requestedAmount:r(5,6)",64,0,312,16
+ 1379               		.stabs	"requestedAdr:r(5,6)",64,0,313,24
+ 1380               		.stabn	192,0,0,.LFBB19-.LFBB19
+ 1381               		.stabn	224,0,0,.Lscope19-.LFBB19
+ 1382               	.Lscope19:
+ 1383               		.stabs	"",36,0,0,.Lscope19-.LFBB19
+ 1384               		.stabd	78,0,0
+ 1385               		.stabs	"modbusExchangeBits:F(5,5)",36,0,357,modbusExchangeBits
+ 1386               		.stabs	"ptrToInArray:P(0,51)",64,0,357,12
+ 1387               		.stabs	"startAddress:P(5,6)",64,0,357,16
+ 1388               		.stabs	"size:P(5,6)",64,0,357,14
+ 1389               	.global	modbusExchangeBits
+ 1390               		.type	modbusExchangeBits, @function
+ 1391               	modbusExchangeBits:
+ 1392               		.stabd	46,0,0
+ 349:yaMBSiavr.c   **** 
+ 350:yaMBSiavr.c   **** /* @brief: Handles single/multiple input/coil reading and single/multiple coil writing.
+ 351:yaMBSiavr.c   **** *
+ 352:yaMBSiavr.c   **** *         Arguments: - ptrToInArray: pointer to the user's data array containing bits
+ 353:yaMBSiavr.c   **** *                    - startAddress: address of the first bit in the supplied array
+ 354:yaMBSiavr.c   **** *                    - size: input array size in the requested format (bits)
+ 355:yaMBSiavr.c   **** *
+ 356:yaMBSiavr.c   **** */
+ 357:yaMBSiavr.c   **** uint8_t modbusExchangeBits(volatile uint8_t *ptrToInArray, uint16_t startAddress, uint16_t size)
+ 358:yaMBSiavr.c   **** {
+ 1393               		.stabn	68,0,358,.LM161-.LFBB20
+ 1394               	.LM161:
+ 1395               	.LFBB20:
+ 1396 0522 B0E0      		ldi r27,0
+ 1397 0524 A0E0      		ldi r26,0
+ 1398 0526 E0E0      		ldi r30,lo8(gs(1f))
+ 1399 0528 F0E0      		ldi r31,hi8(gs(1f))
+ 1400 052a 0C94 0000 		jmp __prologue_saves__+((18 - 8) * 2)
+ 1401               	1:
+ 1402               	/* prologue: function */
+ 1403               	/* frame size = 0 */
+ 1404               	/* stack size = 8 */
+ 1405               	.L__stack_usage = 8
+ 1406 052e 6C01      		movw r12,r24
+ 1407 0530 8B01      		movw r16,r22
+ 1408 0532 7A01      		movw r14,r20
+ 359:yaMBSiavr.c   **** 	uint16_t requestedAmount = modbusRequestedAmount();
+ 1409               		.stabn	68,0,359,.LM162-.LFBB20
+ 1410               	.LM162:
+ 1411 0534 0E94 0000 		call modbusRequestedAmount
+ 1412 0538 EC01      		movw r28,r24
+ 360:yaMBSiavr.c   **** 	uint16_t requestedAdr = modbusRequestedAddress();
+ 1413               		.stabn	68,0,360,.LM163-.LFBB20
+ 1414               	.LM163:
+ 1415 053a 0E94 0000 		call modbusRequestedAddress
+ 361:yaMBSiavr.c   **** 	if (rxbuffer[1]==fcForceSingleCoil) requestedAmount=1;
+ 1416               		.stabn	68,0,361,.LM164-.LFBB20
+ 1417               	.LM164:
+ 1418 053e 2091 0000 		lds r18,rxbuffer+1
+GAS LISTING /tmp/ccY3DPgE.s 			page 33
+
+
+ 1419 0542 2530      		cpi r18,lo8(5)
+ 1420 0544 01F4      		brne .L72
+ 1421 0546 C1E0      		ldi r28,lo8(1)
+ 1422 0548 D0E0      		ldi r29,0
+ 1423               	.L72:
+ 362:yaMBSiavr.c   **** 	if ((requestedAdr>=startAddress) && ((startAddress+size)>=(requestedAmount+requestedAdr)))
+ 1424               		.stabn	68,0,362,.LM165-.LFBB20
+ 1425               	.LM165:
+ 1426 054a 8017      		cp r24,r16
+ 1427 054c 9107      		cpc r25,r17
+ 1428 054e 00F4      		brsh .+2
+ 1429 0550 00C0      		rjmp .L73
+ 1430               		.stabn	68,0,362,.LM166-.LFBB20
+ 1431               	.LM166:
+ 1432 0552 E00E      		add r14,r16
+ 1433 0554 F11E      		adc r15,r17
+ 1434 0556 9E01      		movw r18,r28
+ 1435 0558 280F      		add r18,r24
+ 1436 055a 391F      		adc r19,r25
+ 1437 055c E216      		cp r14,r18
+ 1438 055e F306      		cpc r15,r19
+ 1439 0560 00F4      		brsh .+2
+ 1440 0562 00C0      		rjmp .L73
+ 363:yaMBSiavr.c   **** 	{
+ 364:yaMBSiavr.c   **** 		if ((rxbuffer[1]==fcReadInputStatus) || (rxbuffer[1]==fcReadCoilStatus))
+ 1441               		.stabn	68,0,364,.LM167-.LFBB20
+ 1442               	.LM167:
+ 1443 0564 2091 0000 		lds r18,rxbuffer+1
+ 1444 0568 2230      		cpi r18,lo8(2)
+ 1445 056a 01F0      		breq .L74
+ 1446               		.stabn	68,0,364,.LM168-.LFBB20
+ 1447               	.LM168:
+ 1448 056c 2091 0000 		lds r18,rxbuffer+1
+ 1449 0570 2130      		cpi r18,lo8(1)
+ 1450 0572 01F4      		brne .L75
+ 1451               	.L74:
+ 365:yaMBSiavr.c   **** 		{
+ 366:yaMBSiavr.c   **** 			if (requestedAmount<=((MaxFrameIndex-4)*8)) //message buffer big enough?
+ 1452               		.stabn	68,0,366,.LM169-.LFBB20
+ 1453               	.LM169:
+ 1454 0574 C93D      		cpi r28,-39
+ 1455 0576 27E0      		ldi r18,7
+ 1456 0578 D207      		cpc r29,r18
+ 1457 057a 00F0      		brlo .+2
+ 1458 057c 00C0      		rjmp .L73
+ 367:yaMBSiavr.c   **** 			{
+ 368:yaMBSiavr.c   **** 				rxbuffer[2]=(requestedAmount/8);
+ 1459               		.stabn	68,0,368,.LM170-.LFBB20
+ 1460               	.LM170:
+ 1461 057e 9E01      		movw r18,r28
+ 1462 0580 43E0      		ldi r20,3
+ 1463               		1:
+ 1464 0582 3695      		lsr r19
+ 1465 0584 2795      		ror r18
+ 1466 0586 4A95      		dec r20
+ 1467 0588 01F4      		brne 1b
+ 1468 058a 2093 0000 		sts rxbuffer+2,r18
+GAS LISTING /tmp/ccY3DPgE.s 			page 34
+
+
+ 369:yaMBSiavr.c   **** 				if (requestedAmount%8>0)
+ 1469               		.stabn	68,0,369,.LM171-.LFBB20
+ 1470               	.LM171:
+ 1471 058e AE01      		movw r20,r28
+ 1472 0590 4770      		andi r20,7
+ 1473 0592 5527      		clr r21
+ 1474 0594 452B      		or r20,r21
+ 1475 0596 01F0      		breq .L76
+ 370:yaMBSiavr.c   **** 				{
+ 371:yaMBSiavr.c   **** 					rxbuffer[(uint8_t)(requestedAmount/8)+3]=0x00; //fill last data byte with zeros
+ 1476               		.stabn	68,0,371,.LM172-.LFBB20
+ 1477               	.LM172:
+ 1478 0598 2050      		subi r18,lo8(-(rxbuffer+3))
+ 1479 059a 3040      		sbci r19,hi8(-(rxbuffer+3))
+ 1480 059c F901      		movw r30,r18
+ 1481 059e 1082      		st Z,__zero_reg__
+ 372:yaMBSiavr.c   **** 					rxbuffer[2]++;
+ 1482               		.stabn	68,0,372,.LM173-.LFBB20
+ 1483               	.LM173:
+ 1484 05a0 2091 0000 		lds r18,rxbuffer+2
+ 1485 05a4 2F5F      		subi r18,lo8(-(1))
+ 1486 05a6 2093 0000 		sts rxbuffer+2,r18
+ 1487               	.L76:
+ 361:yaMBSiavr.c   **** 	if ((requestedAdr>=startAddress) && ((startAddress+size)>=(requestedAmount+requestedAdr)))
+ 1488               		.stabn	68,0,361,.LM174-.LFBB20
+ 1489               	.LM174:
+ 1490 05aa F12C      		mov r15,__zero_reg__
+ 1491 05ac E12C      		mov r14,__zero_reg__
+ 1492               	.LBB17:
+ 373:yaMBSiavr.c   **** 				}
+ 374:yaMBSiavr.c   **** 				for (uint16_t c = 0; c<requestedAmount; c++)
+ 375:yaMBSiavr.c   **** 				{
+ 376:yaMBSiavr.c   **** 					listBitCopy(ptrToInArray,requestedAdr-startAddress+c,rxbuffer+3,c);
+ 1493               		.stabn	68,0,376,.LM175-.LFBB20
+ 1494               	.LM175:
+ 1495 05ae 9C01      		movw r18,r24
+ 1496 05b0 201B      		sub r18,r16
+ 1497 05b2 310B      		sbc r19,r17
+ 1498 05b4 8901      		movw r16,r18
+ 1499               	.L77:
+ 374:yaMBSiavr.c   **** 				{
+ 1500               		.stabn	68,0,374,.LM176-.LFBB20
+ 1501               	.LM176:
+ 1502 05b6 CE15      		cp r28,r14
+ 1503 05b8 DF05      		cpc r29,r15
+ 1504 05ba 01F4      		brne .L78
+ 1505               	.LBE17:
+ 377:yaMBSiavr.c   **** 				}
+ 378:yaMBSiavr.c   **** 				modbusSendMessage(rxbuffer[2]+2);
+ 1506               		.stabn	68,0,378,.LM177-.LFBB20
+ 1507               	.LM177:
+ 1508 05bc 8091 0000 		lds r24,rxbuffer+2
+ 1509 05c0 8E5F      		subi r24,lo8(-(2))
+ 1510               	.L92:
+ 379:yaMBSiavr.c   **** 				return 1;
+ 380:yaMBSiavr.c   **** 			} else modbusSendException(ecIllegalDataValue); //too many bits requested within single request
+ 381:yaMBSiavr.c   **** 		}
+GAS LISTING /tmp/ccY3DPgE.s 			page 35
+
+
+ 382:yaMBSiavr.c   **** 		else if (rxbuffer[1]==fcForceMultipleCoils)
+ 383:yaMBSiavr.c   **** 		{
+ 384:yaMBSiavr.c   **** 			if (((rxbuffer[6]*8)>=requestedAmount) && ((DataPos-9)>=rxbuffer[6])) //enough data received?
+ 385:yaMBSiavr.c   **** 			{
+ 386:yaMBSiavr.c   **** 				for (uint16_t c = 0; c<requestedAmount; c++)
+ 387:yaMBSiavr.c   **** 				{
+ 388:yaMBSiavr.c   **** 					listBitCopy(rxbuffer+7,c,ptrToInArray,requestedAdr-startAddress+c);
+ 389:yaMBSiavr.c   **** 				}
+ 390:yaMBSiavr.c   **** 				modbusSendMessage(5);
+ 391:yaMBSiavr.c   **** 				return 1;
+ 392:yaMBSiavr.c   **** 			} else modbusSendException(ecIllegalDataValue);//exception too few data bytes received
+ 393:yaMBSiavr.c   **** 		}
+ 394:yaMBSiavr.c   **** 		else if (rxbuffer[1]==fcForceSingleCoil) {
+ 395:yaMBSiavr.c   **** 			listBitCopy(rxbuffer+4,0,ptrToInArray,requestedAdr-startAddress);
+ 396:yaMBSiavr.c   **** 			modbusSendMessage(5); 
+ 1511               		.stabn	68,0,396,.LM178-.LFBB20
+ 1512               	.LM178:
+ 1513 05c2 0E94 0000 		call modbusSendMessage
+ 397:yaMBSiavr.c   **** 			return 1;
+ 1514               		.stabn	68,0,397,.LM179-.LFBB20
+ 1515               	.LM179:
+ 1516 05c6 81E0      		ldi r24,lo8(1)
+ 1517               	.L71:
+ 1518               	/* epilogue start */
+ 398:yaMBSiavr.c   **** 		}
+ 399:yaMBSiavr.c   **** 		//modbusSendException(ecSlaveDeviceFailure); //inanpropriate call of modbusExchangeBits
+ 400:yaMBSiavr.c   **** 		return 0;
+ 401:yaMBSiavr.c   **** 	} else
+ 402:yaMBSiavr.c   **** 	{
+ 403:yaMBSiavr.c   **** 		modbusSendException(ecIllegalDataValue);
+ 404:yaMBSiavr.c   **** 		return 0;
+ 405:yaMBSiavr.c   **** 	}
+ 406:yaMBSiavr.c   **** }
+ 1519               		.stabn	68,0,406,.LM180-.LFBB20
+ 1520               	.LM180:
+ 1521 05c8 CDB7      		in r28,__SP_L__
+ 1522 05ca DEB7      		in r29,__SP_H__
+ 1523 05cc E8E0      		ldi r30, lo8(8)
+ 1524 05ce 0C94 0000 		jmp __epilogue_restores__ + ((18 - 8) * 2)
+ 1525               	.L78:
+ 1526               	.LBB18:
+ 376:yaMBSiavr.c   **** 				}
+ 1527               		.stabn	68,0,376,.LM181-.LFBB20
+ 1528               	.LM181:
+ 1529 05d2 B801      		movw r22,r16
+ 1530 05d4 6E0D      		add r22,r14
+ 1531 05d6 7F1D      		adc r23,r15
+ 1532 05d8 9701      		movw r18,r14
+ 1533 05da 40E0      		ldi r20,lo8(rxbuffer+3)
+ 1534 05dc 50E0      		ldi r21,hi8(rxbuffer+3)
+ 1535 05de C601      		movw r24,r12
+ 1536 05e0 0E94 0000 		call listBitCopy
+ 374:yaMBSiavr.c   **** 				{
+ 1537               		.stabn	68,0,374,.LM182-.LFBB20
+ 1538               	.LM182:
+ 1539 05e4 3FEF      		ldi r19,-1
+ 1540 05e6 E31A      		sub r14,r19
+GAS LISTING /tmp/ccY3DPgE.s 			page 36
+
+
+ 1541 05e8 F30A      		sbc r15,r19
+ 1542 05ea 00C0      		rjmp .L77
+ 1543               	.L75:
+ 1544               	.LBE18:
+ 382:yaMBSiavr.c   **** 		{
+ 1545               		.stabn	68,0,382,.LM183-.LFBB20
+ 1546               	.LM183:
+ 1547 05ec 2091 0000 		lds r18,rxbuffer+1
+ 1548 05f0 2F30      		cpi r18,lo8(15)
+ 1549 05f2 01F4      		brne .L80
+ 384:yaMBSiavr.c   **** 			{
+ 1550               		.stabn	68,0,384,.LM184-.LFBB20
+ 1551               	.LM184:
+ 1552 05f4 2091 0000 		lds r18,rxbuffer+6
+ 1553 05f8 48E0      		ldi r20,lo8(8)
+ 1554 05fa 249F      		mul r18,r20
+ 1555 05fc 9001      		movw r18,r0
+ 1556 05fe 1124      		clr __zero_reg__
+ 1557 0600 2C17      		cp r18,r28
+ 1558 0602 3D07      		cpc r19,r29
+ 1559 0604 00F0      		brlo .L73
+ 384:yaMBSiavr.c   **** 			{
+ 1560               		.stabn	68,0,384,.LM185-.LFBB20
+ 1561               	.LM185:
+ 1562 0606 2091 0000 		lds r18,DataPos
+ 1563 060a 3091 0000 		lds r19,DataPos+1
+ 1564 060e 4091 0000 		lds r20,rxbuffer+6
+ 1565 0612 2950      		subi r18,9
+ 1566 0614 3109      		sbc r19,__zero_reg__
+ 1567 0616 4217      		cp r20,r18
+ 1568 0618 1306      		cpc __zero_reg__,r19
+ 1569 061a 01F0      		breq .L83
+ 1570 061c 00F0      		brlo .L83
+ 1571               	.L73:
+ 380:yaMBSiavr.c   **** 		}
+ 1572               		.stabn	68,0,380,.LM186-.LFBB20
+ 1573               	.LM186:
+ 1574 061e 83E0      		ldi r24,lo8(3)
+ 1575 0620 0E94 0000 		call modbusSendException
+ 1576               	.L84:
+ 400:yaMBSiavr.c   **** 	} else
+ 1577               		.stabn	68,0,400,.LM187-.LFBB20
+ 1578               	.LM187:
+ 1579 0624 80E0      		ldi r24,0
+ 1580 0626 00C0      		rjmp .L71
+ 1581               	.L82:
+ 1582               	.LBB19:
+ 388:yaMBSiavr.c   **** 				}
+ 1583               		.stabn	68,0,388,.LM188-.LFBB20
+ 1584               	.LM188:
+ 1585 0628 9801      		movw r18,r16
+ 1586 062a 2E0D      		add r18,r14
+ 1587 062c 3F1D      		adc r19,r15
+ 1588 062e A601      		movw r20,r12
+ 1589 0630 B701      		movw r22,r14
+ 1590 0632 80E0      		ldi r24,lo8(rxbuffer+7)
+ 1591 0634 90E0      		ldi r25,hi8(rxbuffer+7)
+GAS LISTING /tmp/ccY3DPgE.s 			page 37
+
+
+ 1592 0636 0E94 0000 		call listBitCopy
+ 386:yaMBSiavr.c   **** 				{
+ 1593               		.stabn	68,0,386,.LM189-.LFBB20
+ 1594               	.LM189:
+ 1595 063a 8FEF      		ldi r24,-1
+ 1596 063c E81A      		sub r14,r24
+ 1597 063e F80A      		sbc r15,r24
+ 1598               	.L81:
+ 386:yaMBSiavr.c   **** 				{
+ 1599               		.stabn	68,0,386,.LM190-.LFBB20
+ 1600               	.LM190:
+ 1601 0640 CE15      		cp r28,r14
+ 1602 0642 DF05      		cpc r29,r15
+ 1603 0644 01F4      		brne .L82
+ 1604               	.L91:
+ 1605               	.LBE19:
+ 396:yaMBSiavr.c   **** 			return 1;
+ 1606               		.stabn	68,0,396,.LM191-.LFBB20
+ 1607               	.LM191:
+ 1608 0646 85E0      		ldi r24,lo8(5)
+ 1609 0648 00C0      		rjmp .L92
+ 1610               	.L83:
+ 1611               	.LBB20:
+ 386:yaMBSiavr.c   **** 				{
+ 1612               		.stabn	68,0,386,.LM192-.LFBB20
+ 1613               	.LM192:
+ 1614 064a F12C      		mov r15,__zero_reg__
+ 1615 064c E12C      		mov r14,__zero_reg__
+ 388:yaMBSiavr.c   **** 				}
+ 1616               		.stabn	68,0,388,.LM193-.LFBB20
+ 1617               	.LM193:
+ 1618 064e FC01      		movw r30,r24
+ 1619 0650 E01B      		sub r30,r16
+ 1620 0652 F10B      		sbc r31,r17
+ 1621 0654 8F01      		movw r16,r30
+ 1622 0656 00C0      		rjmp .L81
+ 1623               	.L80:
+ 1624               	.LBE20:
+ 394:yaMBSiavr.c   **** 			listBitCopy(rxbuffer+4,0,ptrToInArray,requestedAdr-startAddress);
+ 1625               		.stabn	68,0,394,.LM194-.LFBB20
+ 1626               	.LM194:
+ 1627 0658 2091 0000 		lds r18,rxbuffer+1
+ 1628 065c 2530      		cpi r18,lo8(5)
+ 1629 065e 01F4      		brne .L84
+ 395:yaMBSiavr.c   **** 			modbusSendMessage(5); 
+ 1630               		.stabn	68,0,395,.LM195-.LFBB20
+ 1631               	.LM195:
+ 1632 0660 9C01      		movw r18,r24
+ 1633 0662 201B      		sub r18,r16
+ 1634 0664 310B      		sbc r19,r17
+ 1635 0666 A601      		movw r20,r12
+ 1636 0668 70E0      		ldi r23,0
+ 1637 066a 60E0      		ldi r22,0
+ 1638 066c 80E0      		ldi r24,lo8(rxbuffer+4)
+ 1639 066e 90E0      		ldi r25,hi8(rxbuffer+4)
+ 1640 0670 0E94 0000 		call listBitCopy
+ 1641 0674 00C0      		rjmp .L91
+GAS LISTING /tmp/ccY3DPgE.s 			page 38
+
+
+ 1642               		.size	modbusExchangeBits, .-modbusExchangeBits
+ 1643               		.stabs	"requestedAmount:r(5,6)",64,0,359,28
+ 1644               		.stabs	"requestedAdr:r(5,6)",64,0,360,24
+ 1645               		.stabn	192,0,0,.LFBB20-.LFBB20
+ 1646               		.stabs	"c:r(5,6)",64,0,374,14
+ 1647               		.stabn	192,0,0,.LBB17-.LFBB20
+ 1648               		.stabn	224,0,0,.LBE17-.LFBB20
+ 1649               		.stabs	"c:r(5,6)",64,0,374,14
+ 1650               		.stabn	192,0,0,.LBB18-.LFBB20
+ 1651               		.stabn	224,0,0,.LBE18-.LFBB20
+ 1652               		.stabs	"c:r(5,6)",64,0,386,14
+ 1653               		.stabn	192,0,0,.LBB19-.LFBB20
+ 1654               		.stabn	224,0,0,.LBE19-.LFBB20
+ 1655               		.stabs	"c:r(5,6)",64,0,386,14
+ 1656               		.stabn	192,0,0,.LBB20-.LFBB20
+ 1657               		.stabn	224,0,0,.LBE20-.LFBB20
+ 1658               		.stabn	224,0,0,.Lscope20-.LFBB20
+ 1659               	.Lscope20:
+ 1660               		.stabs	"",36,0,0,.Lscope20-.LFBB20
+ 1661               		.stabd	78,0,0
+ 1662               	.global	Address
+ 1663               		.section .bss
+ 1664               		.type	Address, @object
+ 1665               		.size	Address, 1
+ 1666               	Address:
+ 1667 0000 00        		.zero	1
+ 1668               		.stabs	"Address:G(0,55)=B(0,13)",32,0,62,0
+ 1669               	.global	modBusStaMaStates
+ 1670               		.type	modBusStaMaStates, @object
+ 1671               		.size	modBusStaMaStates, 1
+ 1672               	modBusStaMaStates:
+ 1673 0001 00        		.zero	1
+ 1674               		.stabs	"modBusStaMaStates:G(0,55)",32,0,54,0
+ 1675               	.global	PacketTopIndex
+ 1676               		.data
+ 1677               		.type	PacketTopIndex, @object
+ 1678               		.size	PacketTopIndex, 1
+ 1679               	PacketTopIndex:
+ 1680 0000 07        		.byte	7
+ 1681               		.stabs	"PacketTopIndex:G(0,55)",32,0,53,0
+ 1682               	.global	modbusTimer
+ 1683               		.section .bss
+ 1684               		.type	modbusTimer, @object
+ 1685               		.size	modbusTimer, 2
+ 1686               	modbusTimer:
+ 1687 0002 0000      		.zero	2
+ 1688               		.stabs	"modbusTimer:G(0,54)",32,0,50,0
+ 1689               	.global	BusState
+ 1690               		.type	BusState, @object
+ 1691               		.size	BusState, 1
+ 1692               	BusState:
+ 1693 0004 00        		.zero	1
+ 1694               		.stabs	"BusState:G(0,55)",32,0,49,0
+ 1695               	.global	DataPos
+ 1696               		.type	DataPos, @object
+ 1697               		.size	DataPos, 2
+ 1698               	DataPos:
+GAS LISTING /tmp/ccY3DPgE.s 			page 39
+
+
+ 1699 0005 0000      		.zero	2
+ 1700               		.stabs	"DataPos:G(0,54)",32,0,52,0
+ 1701               		.comm	rxbuffer,256,1
+ 1702               		.stabs	"rxbuffer:G(0,56)=ar(0,57)=r(0,57);0;0177777;;0;255;(0,55)",32,0,51,0
+ 1703               		.text
+ 1704               		.stabs	"",100,0,0,.Letext0
+ 1705               	.Letext0:
+ 1706               		.ident	"GCC: (Gentoo 7.2.0-r1 p1.1) 7.2.0"
+ 1707               	.global __do_copy_data
+ 1708               	.global __do_clear_bss
+GAS LISTING /tmp/ccY3DPgE.s 			page 40
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 yaMBSiavr.c
+     /tmp/ccY3DPgE.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccY3DPgE.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccY3DPgE.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccY3DPgE.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccY3DPgE.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccY3DPgE.s:108    .text:0000000000000000 modbusGetBusState
+     /tmp/ccY3DPgE.s:1692   .bss:0000000000000004 BusState
+     /tmp/ccY3DPgE.s:131    .text:0000000000000006 modbusGetAddress
+     /tmp/ccY3DPgE.s:1666   .bss:0000000000000000 Address
+     /tmp/ccY3DPgE.s:155    .text:000000000000000c modbusSetAddress
+     /tmp/ccY3DPgE.s:180    .text:0000000000000012 crc16
+     /tmp/ccY3DPgE.s:324    .text:000000000000008a listRegisterCopy
+     /tmp/ccY3DPgE.s:375    .text:00000000000000aa listBitCopy
+     /tmp/ccY3DPgE.s:467    .text:0000000000000104 modbusReset
+     /tmp/ccY3DPgE.s:1686   .bss:0000000000000002 modbusTimer
+     /tmp/ccY3DPgE.s:495    .text:0000000000000114 modbusTickTimer
+                            *COM*:0000000000000100 rxbuffer
+     /tmp/ccY3DPgE.s:1698   .bss:0000000000000005 DataPos
+     /tmp/ccY3DPgE.s:595    .text:000000000000019e __vector_18
+     /tmp/ccY3DPgE.s:754    .text:0000000000000284 __vector_19
+     /tmp/ccY3DPgE.s:1679   .data:0000000000000000 PacketTopIndex
+     /tmp/ccY3DPgE.s:836    .text:0000000000000308 __vector_20
+     /tmp/ccY3DPgE.s:892    .text:0000000000000350 modbusInit
+     /tmp/ccY3DPgE.s:936    .text:0000000000000374 modbusSendMessage
+     /tmp/ccY3DPgE.s:989    .text:00000000000003ae modbusSendException
+     /tmp/ccY3DPgE.s:1023   .text:00000000000003c2 modbusRequestedAmount
+     /tmp/ccY3DPgE.s:1049   .text:00000000000003cc modbusRequestedAddress
+     /tmp/ccY3DPgE.s:1077   .text:00000000000003d6 intToModbusRegister
+     /tmp/ccY3DPgE.s:1136   .text:00000000000003f6 modbusRegisterToInt
+     /tmp/ccY3DPgE.s:1199   .text:0000000000000420 modbusExchangeRegisters
+     /tmp/ccY3DPgE.s:1391   .text:0000000000000522 modbusExchangeBits
+     /tmp/ccY3DPgE.s:1672   .bss:0000000000000001 modBusStaMaStates
+
+UNDEFINED SYMBOLS
+__prologue_saves__
+__epilogue_restores__
+__do_copy_data
+__do_clear_bss

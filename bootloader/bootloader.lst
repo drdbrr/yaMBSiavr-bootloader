@@ -1,0 +1,1452 @@
+   1               		.file	"bootloader.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   9               		.text
+  10               	.Ltext0:
+ 123               	writeToPageBuffer:
+ 124               		.stabd	46,0,0
+ 126               	.Ltext1:
+   1:flash.h       **** #pragma once
+   2:flash.h       **** 
+   3:flash.h       **** #include <avr/boot.h>
+   4:flash.h       **** //#include <avr/wdt.h>
+   5:flash.h       **** 
+   6:flash.h       **** #include "bootloader.h"
+   7:flash.h       **** 
+   8:flash.h       **** static inline void eraseApplication() {
+   9:flash.h       ****   uint16_t ptr = BOOTLOADER_START_ADDRESS;
+  10:flash.h       ****   do {
+  11:flash.h       ****     ptr -= SPM_PAGESIZE;
+  12:flash.h       ****     boot_page_erase(ptr);
+  13:flash.h       ****     boot_spm_busy_wait();
+  14:flash.h       ****   } while (ptr);
+  15:flash.h       ****   //wdt_reset();
+  16:flash.h       **** }
+  17:flash.h       **** 
+  18:flash.h       **** static inline void erasePage(const uint16_t address) {
+  19:flash.h       ****   boot_page_erase(address);
+  20:flash.h       ****   boot_spm_busy_wait();
+  21:flash.h       **** }
+  22:flash.h       **** 
+  23:flash.h       **** static inline void writeToPageBuffer(const uint16_t address, uint8_t *data) {
+ 128               	.LM0:
+ 129               	.LFBB1:
+ 130               	/* prologue: function */
+ 131               	/* frame size = 0 */
+ 132               	/* stack size = 0 */
+ 133               	.L__stack_usage = 0
+ 134               	.LBB10:
+ 135               	.LBB11:
+  19:flash.h       ****   boot_spm_busy_wait();
+ 137               	.LM1:
+ 138 0000 23E0      		ldi r18,lo8(3)
+ 139 0002 FC01      		movw r30,r24
+ 140               	/* #APP */
+ 141               	 ;  19 "flash.h" 1
+ 142 0004 2093 5700 		sts 87, r18
+ 143 0008 E895      		spm
+ 144               		
+ 145               	 ;  0 "" 2
+ 146               	/* #NOAPP */
+ 147               	.L2:
+  20:flash.h       **** }
+ 149               	.LM2:
+ 150 000a 07B6      		in __tmp_reg__,0x37
+ 151 000c 00FC      		sbrc __tmp_reg__,0
+ 152 000e 00C0      		rjmp .L2
+ 153 0010 DB01      		movw r26,r22
+ 154               	.LBE11:
+ 155               	.LBE10:
+ 156               	.LBB12:
+  24:flash.h       ****   erasePage(address);
+  25:flash.h       ****   for (uint8_t i = 0; i < SPM_PAGESIZE; i += 2) {
+ 158               	.LM3:
+ 159 0012 60E0      		ldi r22,0
+ 160               	.LBB13:
+  26:flash.h       ****     uint16_t w = *data++;
+  27:flash.h       ****     w += (*data++) << 8;
+  28:flash.h       ****     boot_page_fill(address + i, w);
+ 162               	.LM4:
+ 163 0014 71E0      		ldi r23,lo8(1)
+ 164 0016 AC01      		movw r20,r24
+ 165 0018 4A1B      		sub r20,r26
+ 166 001a 5B0B      		sbc r21,r27
+ 167               	.L3:
+  26:flash.h       ****     uint16_t w = *data++;
+ 169               	.LM5:
+ 170 001c 8C91      		ld r24,X
+ 172               	.LM6:
+ 173 001e FA01      		movw r30,r20
+ 174 0020 EA0F      		add r30,r26
+ 175 0022 FB1F      		adc r31,r27
+  27:flash.h       ****     boot_page_fill(address + i, w);
+ 177               	.LM7:
+ 178 0024 1196      		adiw r26,1
+ 179 0026 9C91      		ld r25,X
+ 180 0028 1197      		sbiw r26,1
+ 181 002a 292F      		mov r18,r25
+ 182 002c 30E0      		ldi r19,0
+ 183 002e 322F      		mov r19,r18
+ 184 0030 2227      		clr r18
+ 185 0032 280F      		add r18,r24
+ 186 0034 311D      		adc r19,__zero_reg__
+ 188               	.LM8:
+ 189               	/* #APP */
+ 190               	 ;  28 "flash.h" 1
+ 191 0036 0901      		movw  r0, r18
+ 192 0038 7093 5700 		sts 87, r23
+ 193 003c E895      		spm
+ 194 003e 1124      		clr  r1
+ 195               		
+ 196               	 ;  0 "" 2
+ 197               	/* #NOAPP */
+ 198               	.LBE13:
+  25:flash.h       ****     uint16_t w = *data++;
+ 200               	.LM9:
+ 201 0040 6E5F      		subi r22,lo8(-(2))
+ 202 0042 1296      		adiw r26,2
+ 203 0044 6038      		cpi r22,lo8(-128)
+ 204 0046 01F4      		brne .L3
+ 205               	/* epilogue start */
+ 206               	.LBE12:
+  29:flash.h       ****   }
+  30:flash.h       **** }
+ 208               	.LM10:
+ 209 0048 0895      		ret
+ 214               	.Lscope1:
+ 216               		.stabd	78,0,0
+ 220               	writePageBufferToFlash:
+ 221               		.stabd	46,0,0
+  31:flash.h       **** 
+  32:flash.h       **** static inline void writePageBufferToFlash(const uint16_t address) {
+ 223               	.LM11:
+ 224               	.LFBB2:
+ 225               	/* prologue: function */
+ 226               	/* frame size = 0 */
+ 227               	/* stack size = 0 */
+ 228               	.L__stack_usage = 0
+  33:flash.h       ****   boot_page_write(address);
+ 230               	.LM12:
+ 231 004a 25E0      		ldi r18,lo8(5)
+ 232 004c FC01      		movw r30,r24
+ 233               	/* #APP */
+ 234               	 ;  33 "flash.h" 1
+ 235 004e 2093 5700 		sts 87, r18
+ 236 0052 E895      		spm
+ 237               		
+ 238               	 ;  0 "" 2
+ 239               	/* #NOAPP */
+ 240               	.L7:
+  34:flash.h       ****   boot_spm_busy_wait();
+ 242               	.LM13:
+ 243 0054 07B6      		in __tmp_reg__,0x37
+ 244 0056 00FC      		sbrc __tmp_reg__,0
+ 245 0058 00C0      		rjmp .L7
+  35:flash.h       ****   boot_rww_enable();
+ 247               	.LM14:
+ 248 005a 81E1      		ldi r24,lo8(17)
+ 249               	/* #APP */
+ 250               	 ;  35 "flash.h" 1
+ 251 005c 8093 5700 		sts 87, r24
+ 252 0060 E895      		spm
+ 253               		
+ 254               	 ;  0 "" 2
+ 255               	/* epilogue start */
+  36:flash.h       **** }
+ 257               	.LM15:
+ 258               	/* #NOAPP */
+ 259 0062 0895      		ret
+ 261               	.Lscope2:
+ 263               		.stabd	78,0,0
+ 264               		.section	.init3,"ax",@progbits
+ 266               	.global	get_mcusr
+ 268               	get_mcusr:
+ 269               		.stabd	46,0,0
+ 271               	.Ltext2:
+   1:bootloader.c  **** /*
+   2:bootloader.c  ****  *  Created: 04.02.2016
+   3:bootloader.c  ****  *  Author: Max Brueggemann
+   4:bootloader.c  ****  */ 
+   5:bootloader.c  **** 
+   6:bootloader.c  **** /*
+   7:bootloader.c  **** *	An example project implementing a simple modbus slave device using an
+   8:bootloader.c  **** *	ATmega88PA running at 20MHz.
+   9:bootloader.c  **** *	Baudrate: 38400, 8 data bits, 1 stop bit, no parity
+  10:bootloader.c  **** *	Your busmaster can read/write the following data:
+  11:bootloader.c  **** *	coils: 0 to 7
+  12:bootloader.c  **** *	discrete inputs: 0 to 7
+  13:bootloader.c  **** *	input registers: 0 to 3
+  14:bootloader.c  **** *	holding registers: 0 to 3
+  15:bootloader.c  **** */
+  16:bootloader.c  **** 
+  17:bootloader.c  **** #include <avr/interrupt.h>
+  18:bootloader.c  **** #include <avr/wdt.h>
+  19:bootloader.c  **** #include "twi_master/twi_master.h"
+  20:bootloader.c  **** #include "flash.h"
+  21:bootloader.c  **** #include <avr/io.h>
+  22:bootloader.c  **** #include <avr/boot.h>
+  23:bootloader.c  **** //#include <avr/wdt.h>
+  24:bootloader.c  **** 
+  25:bootloader.c  **** #include "crc32.h"
+  26:bootloader.c  **** #include "bootloader.h"
+  27:bootloader.c  **** 
+  28:bootloader.c  **** #define F_CPU 16000000UL
+  29:bootloader.c  **** 
+  30:bootloader.c  **** #define RESET_VECTOR 0x0000
+  31:bootloader.c  **** #define RESET_VECTOR_ARGUMENT_ADDRESS 0x0002
+  32:bootloader.c  **** 
+  33:bootloader.c  **** uint8_t mcusr_mirror __attribute__ ((section (".noinit")));
+  34:bootloader.c  **** void get_mcusr(void) \
+  35:bootloader.c  ****   __attribute__((naked)) \
+  36:bootloader.c  ****   __attribute__((section(".init3")));
+  37:bootloader.c  **** void get_mcusr(void)
+  38:bootloader.c  **** {
+ 273               	.LM16:
+ 274               	.LFBB3:
+ 275               	/* prologue: naked */
+ 276               	/* frame size = 0 */
+ 277               	/* stack size = 0 */
+ 278               	.L__stack_usage = 0
+  39:bootloader.c  ****   mcusr_mirror = MCUSR;
+ 280               	.LM17:
+ 281 0000 84B7      		in r24,0x34
+ 282 0002 8093 0000 		sts mcusr_mirror,r24
+  40:bootloader.c  ****   MCUSR = 0;
+ 284               	.LM18:
+ 285 0006 14BE      		out 0x34,__zero_reg__
+ 286               	.LBB14:
+ 287               	.LBB15:
+ 289               	.Ltext3:
+   1:/usr/avr/include/avr/wdt.h **** /* Copyright (c) 2002, 2004 Marek Michalkiewicz
+   2:/usr/avr/include/avr/wdt.h ****    Copyright (c) 2005, 2006, 2007 Eric B. Weddington
+   3:/usr/avr/include/avr/wdt.h ****    All rights reserved.
+   4:/usr/avr/include/avr/wdt.h **** 
+   5:/usr/avr/include/avr/wdt.h ****    Redistribution and use in source and binary forms, with or without
+   6:/usr/avr/include/avr/wdt.h ****    modification, are permitted provided that the following conditions are met:
+   7:/usr/avr/include/avr/wdt.h **** 
+   8:/usr/avr/include/avr/wdt.h ****    * Redistributions of source code must retain the above copyright
+   9:/usr/avr/include/avr/wdt.h ****      notice, this list of conditions and the following disclaimer.
+  10:/usr/avr/include/avr/wdt.h **** 
+  11:/usr/avr/include/avr/wdt.h ****    * Redistributions in binary form must reproduce the above copyright
+  12:/usr/avr/include/avr/wdt.h ****      notice, this list of conditions and the following disclaimer in
+  13:/usr/avr/include/avr/wdt.h ****      the documentation and/or other materials provided with the
+  14:/usr/avr/include/avr/wdt.h ****      distribution.
+  15:/usr/avr/include/avr/wdt.h **** 
+  16:/usr/avr/include/avr/wdt.h ****    * Neither the name of the copyright holders nor the names of
+  17:/usr/avr/include/avr/wdt.h ****      contributors may be used to endorse or promote products derived
+  18:/usr/avr/include/avr/wdt.h ****      from this software without specific prior written permission.
+  19:/usr/avr/include/avr/wdt.h **** 
+  20:/usr/avr/include/avr/wdt.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  21:/usr/avr/include/avr/wdt.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  22:/usr/avr/include/avr/wdt.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  23:/usr/avr/include/avr/wdt.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  24:/usr/avr/include/avr/wdt.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  25:/usr/avr/include/avr/wdt.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  26:/usr/avr/include/avr/wdt.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  27:/usr/avr/include/avr/wdt.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  28:/usr/avr/include/avr/wdt.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  29:/usr/avr/include/avr/wdt.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  30:/usr/avr/include/avr/wdt.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  31:/usr/avr/include/avr/wdt.h **** 
+  32:/usr/avr/include/avr/wdt.h **** /* $Id: wdt.h 2503 2016-02-07 22:59:47Z joerg_wunsch $ */
+  33:/usr/avr/include/avr/wdt.h **** 
+  34:/usr/avr/include/avr/wdt.h **** /*
+  35:/usr/avr/include/avr/wdt.h ****    avr/wdt.h - macros for AVR watchdog timer
+  36:/usr/avr/include/avr/wdt.h ****  */
+  37:/usr/avr/include/avr/wdt.h **** 
+  38:/usr/avr/include/avr/wdt.h **** #ifndef _AVR_WDT_H_
+  39:/usr/avr/include/avr/wdt.h **** #define _AVR_WDT_H_
+  40:/usr/avr/include/avr/wdt.h **** 
+  41:/usr/avr/include/avr/wdt.h **** #include <avr/io.h>
+  42:/usr/avr/include/avr/wdt.h **** #include <stdint.h>
+  43:/usr/avr/include/avr/wdt.h **** 
+  44:/usr/avr/include/avr/wdt.h **** /** \file */
+  45:/usr/avr/include/avr/wdt.h **** /** \defgroup avr_watchdog <avr/wdt.h>: Watchdog timer handling
+  46:/usr/avr/include/avr/wdt.h ****     \code #include <avr/wdt.h> \endcode
+  47:/usr/avr/include/avr/wdt.h **** 
+  48:/usr/avr/include/avr/wdt.h ****     This header file declares the interface to some inline macros
+  49:/usr/avr/include/avr/wdt.h ****     handling the watchdog timer present in many AVR devices.  In order
+  50:/usr/avr/include/avr/wdt.h ****     to prevent the watchdog timer configuration from being
+  51:/usr/avr/include/avr/wdt.h ****     accidentally altered by a crashing application, a special timed
+  52:/usr/avr/include/avr/wdt.h ****     sequence is required in order to change it.  The macros within
+  53:/usr/avr/include/avr/wdt.h ****     this header file handle the required sequence automatically
+  54:/usr/avr/include/avr/wdt.h ****     before changing any value.  Interrupts will be disabled during
+  55:/usr/avr/include/avr/wdt.h ****     the manipulation.
+  56:/usr/avr/include/avr/wdt.h **** 
+  57:/usr/avr/include/avr/wdt.h ****     \note Depending on the fuse configuration of the particular
+  58:/usr/avr/include/avr/wdt.h ****     device, further restrictions might apply, in particular it might
+  59:/usr/avr/include/avr/wdt.h ****     be disallowed to turn off the watchdog timer.
+  60:/usr/avr/include/avr/wdt.h **** 
+  61:/usr/avr/include/avr/wdt.h ****     Note that for newer devices (ATmega88 and newer, effectively any
+  62:/usr/avr/include/avr/wdt.h ****     AVR that has the option to also generate interrupts), the watchdog
+  63:/usr/avr/include/avr/wdt.h ****     timer remains active even after a system reset (except a power-on
+  64:/usr/avr/include/avr/wdt.h ****     condition), using the fastest prescaler value (approximately 15
+  65:/usr/avr/include/avr/wdt.h ****     ms).  It is therefore required to turn off the watchdog early
+  66:/usr/avr/include/avr/wdt.h ****     during program startup, the datasheet recommends a sequence like
+  67:/usr/avr/include/avr/wdt.h ****     the following:
+  68:/usr/avr/include/avr/wdt.h **** 
+  69:/usr/avr/include/avr/wdt.h ****     \code
+  70:/usr/avr/include/avr/wdt.h ****     #include <stdint.h>
+  71:/usr/avr/include/avr/wdt.h ****     #include <avr/wdt.h>
+  72:/usr/avr/include/avr/wdt.h **** 
+  73:/usr/avr/include/avr/wdt.h ****     uint8_t mcusr_mirror __attribute__ ((section (".noinit")));
+  74:/usr/avr/include/avr/wdt.h **** 
+  75:/usr/avr/include/avr/wdt.h ****     void get_mcusr(void) \
+  76:/usr/avr/include/avr/wdt.h ****       __attribute__((naked)) \
+  77:/usr/avr/include/avr/wdt.h ****       __attribute__((section(".init3")));
+  78:/usr/avr/include/avr/wdt.h ****     void get_mcusr(void)
+  79:/usr/avr/include/avr/wdt.h ****     {
+  80:/usr/avr/include/avr/wdt.h ****       mcusr_mirror = MCUSR;
+  81:/usr/avr/include/avr/wdt.h ****       MCUSR = 0;
+  82:/usr/avr/include/avr/wdt.h ****       wdt_disable();
+  83:/usr/avr/include/avr/wdt.h ****     }
+  84:/usr/avr/include/avr/wdt.h ****     \endcode
+  85:/usr/avr/include/avr/wdt.h **** 
+  86:/usr/avr/include/avr/wdt.h ****     Saving the value of MCUSR in \c mcusr_mirror is only needed if the
+  87:/usr/avr/include/avr/wdt.h ****     application later wants to examine the reset source, but in particular, 
+  88:/usr/avr/include/avr/wdt.h ****     clearing the watchdog reset flag before disabling the
+  89:/usr/avr/include/avr/wdt.h ****     watchdog is required, according to the datasheet.
+  90:/usr/avr/include/avr/wdt.h **** */
+  91:/usr/avr/include/avr/wdt.h **** 
+  92:/usr/avr/include/avr/wdt.h **** /**
+  93:/usr/avr/include/avr/wdt.h ****    \ingroup avr_watchdog
+  94:/usr/avr/include/avr/wdt.h ****    Reset the watchdog timer.  When the watchdog timer is enabled,
+  95:/usr/avr/include/avr/wdt.h ****    a call to this instruction is required before the timer expires,
+  96:/usr/avr/include/avr/wdt.h ****    otherwise a watchdog-initiated device reset will occur. 
+  97:/usr/avr/include/avr/wdt.h **** */
+  98:/usr/avr/include/avr/wdt.h **** 
+  99:/usr/avr/include/avr/wdt.h **** #define wdt_reset() __asm__ __volatile__ ("wdr")
+ 100:/usr/avr/include/avr/wdt.h **** 
+ 101:/usr/avr/include/avr/wdt.h **** #ifndef __DOXYGEN__
+ 102:/usr/avr/include/avr/wdt.h **** 
+ 103:/usr/avr/include/avr/wdt.h **** #if defined(WDP3)
+ 104:/usr/avr/include/avr/wdt.h **** # define _WD_PS3_MASK       _BV(WDP3)
+ 105:/usr/avr/include/avr/wdt.h **** #else
+ 106:/usr/avr/include/avr/wdt.h **** # define _WD_PS3_MASK       0x00
+ 107:/usr/avr/include/avr/wdt.h **** #endif
+ 108:/usr/avr/include/avr/wdt.h **** 
+ 109:/usr/avr/include/avr/wdt.h **** #if defined(WDTCSR)
+ 110:/usr/avr/include/avr/wdt.h **** #  define _WD_CONTROL_REG     WDTCSR
+ 111:/usr/avr/include/avr/wdt.h **** #elif defined(WDTCR)
+ 112:/usr/avr/include/avr/wdt.h **** #  define _WD_CONTROL_REG     WDTCR
+ 113:/usr/avr/include/avr/wdt.h **** #else
+ 114:/usr/avr/include/avr/wdt.h **** #  define _WD_CONTROL_REG     WDT
+ 115:/usr/avr/include/avr/wdt.h **** #endif
+ 116:/usr/avr/include/avr/wdt.h **** 
+ 117:/usr/avr/include/avr/wdt.h **** #if defined(WDTOE)
+ 118:/usr/avr/include/avr/wdt.h **** #define _WD_CHANGE_BIT      WDTOE
+ 119:/usr/avr/include/avr/wdt.h **** #else
+ 120:/usr/avr/include/avr/wdt.h **** #define _WD_CHANGE_BIT      WDCE
+ 121:/usr/avr/include/avr/wdt.h **** #endif
+ 122:/usr/avr/include/avr/wdt.h **** 
+ 123:/usr/avr/include/avr/wdt.h **** #endif	/* !__DOXYGEN__ */
+ 124:/usr/avr/include/avr/wdt.h **** 
+ 125:/usr/avr/include/avr/wdt.h **** 
+ 126:/usr/avr/include/avr/wdt.h **** /**
+ 127:/usr/avr/include/avr/wdt.h ****    \ingroup avr_watchdog
+ 128:/usr/avr/include/avr/wdt.h ****    Enable the watchdog timer, configuring it for expiry after
+ 129:/usr/avr/include/avr/wdt.h ****    \c timeout (which is a combination of the \c WDP0 through
+ 130:/usr/avr/include/avr/wdt.h ****    \c WDP2 bits to write into the \c WDTCR register; For those devices 
+ 131:/usr/avr/include/avr/wdt.h ****    that have a \c WDTCSR register, it uses the combination of the \c WDP0 
+ 132:/usr/avr/include/avr/wdt.h ****    through \c WDP3 bits).
+ 133:/usr/avr/include/avr/wdt.h **** 
+ 134:/usr/avr/include/avr/wdt.h ****    See also the symbolic constants \c WDTO_15MS et al.
+ 135:/usr/avr/include/avr/wdt.h **** */
+ 136:/usr/avr/include/avr/wdt.h **** 
+ 137:/usr/avr/include/avr/wdt.h **** 
+ 138:/usr/avr/include/avr/wdt.h **** #if defined(__AVR_XMEGA__)
+ 139:/usr/avr/include/avr/wdt.h **** 
+ 140:/usr/avr/include/avr/wdt.h **** /*
+ 141:/usr/avr/include/avr/wdt.h ****    wdt_enable(timeout) for xmega devices
+ 142:/usr/avr/include/avr/wdt.h **** ** write signature (CCP_IOREG_gc) that enables change of protected I/O
+ 143:/usr/avr/include/avr/wdt.h ****    registers to the CCP register
+ 144:/usr/avr/include/avr/wdt.h **** ** At the same time,
+ 145:/usr/avr/include/avr/wdt.h ****    1) set WDT change enable (WDT_CEN_bm)
+ 146:/usr/avr/include/avr/wdt.h ****    2) enable WDT (WDT_ENABLE_bm)
+ 147:/usr/avr/include/avr/wdt.h ****    3) set timeout (timeout)
+ 148:/usr/avr/include/avr/wdt.h **** ** Synchronization starts when ENABLE bit of WDT is set. So, wait till it
+ 149:/usr/avr/include/avr/wdt.h ****    finishes (SYNCBUSY of STATUS register is automatically cleared after the
+ 150:/usr/avr/include/avr/wdt.h ****    sync is finished).
+ 151:/usr/avr/include/avr/wdt.h **** */
+ 152:/usr/avr/include/avr/wdt.h **** #define wdt_enable(timeout) \
+ 153:/usr/avr/include/avr/wdt.h **** do { \
+ 154:/usr/avr/include/avr/wdt.h **** uint8_t temp; \
+ 155:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ (         \
+ 156:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__, %[rampd]"              "\n\t" \
+ 157:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __zero_reg__"            "\n\t" \
+ 158:/usr/avr/include/avr/wdt.h ****     "out %[ccp_reg], %[ioreg_cen_mask]"     "\n\t" \
+ 159:/usr/avr/include/avr/wdt.h ****     "sts %[wdt_reg], %[wdt_enable_timeout]" "\n\t" \
+ 160:/usr/avr/include/avr/wdt.h ****     "1:lds %[tmp], %[wdt_status_reg]"       "\n\t" \
+ 161:/usr/avr/include/avr/wdt.h ****     "sbrc %[tmp], %[wdt_syncbusy_bit]"      "\n\t" \
+ 162:/usr/avr/include/avr/wdt.h ****     "rjmp 1b"                               "\n\t" \
+ 163:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __tmp_reg__"             "\n\t" \
+ 164:/usr/avr/include/avr/wdt.h ****     : [tmp]                "=r" (temp) \
+ 165:/usr/avr/include/avr/wdt.h ****     : [rampd]              "I" (_SFR_IO_ADDR(RAMPD)),      \
+ 166:/usr/avr/include/avr/wdt.h ****       [ccp_reg]            "I" (_SFR_IO_ADDR(CCP)),        \
+ 167:/usr/avr/include/avr/wdt.h ****       [ioreg_cen_mask]     "r" ((uint8_t)CCP_IOREG_gc),     \
+ 168:/usr/avr/include/avr/wdt.h ****       [wdt_reg]            "n" (_SFR_MEM_ADDR(WDT_CTRL)),   \
+ 169:/usr/avr/include/avr/wdt.h ****       [wdt_enable_timeout] "r" ((uint8_t)(WDT_CEN_bm | WDT_ENABLE_bm | timeout)), \
+ 170:/usr/avr/include/avr/wdt.h ****       [wdt_status_reg]     "n" (_SFR_MEM_ADDR(WDT_STATUS)), \
+ 171:/usr/avr/include/avr/wdt.h ****       [wdt_syncbusy_bit]   "I" (WDT_SYNCBUSY_bm)            \
+ 172:/usr/avr/include/avr/wdt.h ****     : "r0" \
+ 173:/usr/avr/include/avr/wdt.h **** ); \
+ 174:/usr/avr/include/avr/wdt.h **** } while(0)
+ 175:/usr/avr/include/avr/wdt.h **** 
+ 176:/usr/avr/include/avr/wdt.h **** #define wdt_disable() \
+ 177:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ (  \
+ 178:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__, %[rampd]"          "\n\t" \
+ 179:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __zero_reg__"        "\n\t" \
+ 180:/usr/avr/include/avr/wdt.h ****     "out %[ccp_reg], %[ioreg_cen_mask]" "\n\t" \
+ 181:/usr/avr/include/avr/wdt.h ****     "sts %[wdt_reg], %[disable_mask]"   "\n\t" \
+ 182:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __tmp_reg__"         "\n\t" \
+ 183:/usr/avr/include/avr/wdt.h ****     : \
+ 184:/usr/avr/include/avr/wdt.h ****     : [rampd]             "I" (_SFR_IO_ADDR(RAMPD)),    \
+ 185:/usr/avr/include/avr/wdt.h ****       [ccp_reg]           "I" (_SFR_IO_ADDR(CCP)),      \
+ 186:/usr/avr/include/avr/wdt.h ****       [ioreg_cen_mask]    "r" ((uint8_t)CCP_IOREG_gc),   \
+ 187:/usr/avr/include/avr/wdt.h ****       [wdt_reg]           "n" (_SFR_MEM_ADDR(WDT_CTRL)), \
+ 188:/usr/avr/include/avr/wdt.h ****       [disable_mask]      "r" ((uint8_t)((~WDT_ENABLE_bm) | WDT_CEN_bm)) \
+ 189:/usr/avr/include/avr/wdt.h ****     : "r0" \
+ 190:/usr/avr/include/avr/wdt.h **** );
+ 191:/usr/avr/include/avr/wdt.h **** 
+ 192:/usr/avr/include/avr/wdt.h **** #elif defined(__AVR_TINY__)
+ 193:/usr/avr/include/avr/wdt.h **** 
+ 194:/usr/avr/include/avr/wdt.h **** #define wdt_enable(value) \
+ 195:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ ( \
+ 196:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__,__SREG__" "\n\t"  \
+ 197:/usr/avr/include/avr/wdt.h ****     "cli" "\n\t"  \
+ 198:/usr/avr/include/avr/wdt.h ****     "wdr" "\n\t"  \
+ 199:/usr/avr/include/avr/wdt.h ****     "out %[CCPADDRESS],%[SIGNATURE]" "\n\t"  \
+ 200:/usr/avr/include/avr/wdt.h ****     "out %[WDTREG],%[WDVALUE]" "\n\t"  \
+ 201:/usr/avr/include/avr/wdt.h ****     "out __SREG__,__tmp_reg__" "\n\t"  \
+ 202:/usr/avr/include/avr/wdt.h ****     : /* no outputs */  \
+ 203:/usr/avr/include/avr/wdt.h ****     : [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),  \
+ 204:/usr/avr/include/avr/wdt.h ****       [SIGNATURE] "r" ((uint8_t)0xD8), \
+ 205:/usr/avr/include/avr/wdt.h ****       [WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)), \
+ 206:/usr/avr/include/avr/wdt.h ****       [WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00) \
+ 207:/usr/avr/include/avr/wdt.h ****       | _BV(WDE) | (value & 0x07) )) \
+ 208:/usr/avr/include/avr/wdt.h ****     : "r16" \
+ 209:/usr/avr/include/avr/wdt.h **** )
+ 210:/usr/avr/include/avr/wdt.h **** 
+ 211:/usr/avr/include/avr/wdt.h **** #define wdt_disable() \
+ 212:/usr/avr/include/avr/wdt.h **** do { \
+ 213:/usr/avr/include/avr/wdt.h **** uint8_t temp_wd; \
+ 214:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ ( \
+ 215:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__,__SREG__" "\n\t"  \
+ 216:/usr/avr/include/avr/wdt.h ****     "cli" "\n\t"  \
+ 217:/usr/avr/include/avr/wdt.h ****     "wdr" "\n\t"  \
+ 218:/usr/avr/include/avr/wdt.h ****     "out %[CCPADDRESS],%[SIGNATURE]" "\n\t"  \
+ 219:/usr/avr/include/avr/wdt.h ****     "in  %[TEMP_WD],%[WDTREG]" "\n\t" \
+ 220:/usr/avr/include/avr/wdt.h ****     "cbr %[TEMP_WD],%[WDVALUE]" "\n\t" \
+ 221:/usr/avr/include/avr/wdt.h ****     "out %[WDTREG],%[TEMP_WD]" "\n\t" \
+ 222:/usr/avr/include/avr/wdt.h ****     "out __SREG__,__tmp_reg__" "\n\t" \
+ 223:/usr/avr/include/avr/wdt.h ****     : /*no output */ \
+ 224:/usr/avr/include/avr/wdt.h ****     : [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)), \
+ 225:/usr/avr/include/avr/wdt.h ****       [SIGNATURE] "r" ((uint8_t)0xD8), \
+ 226:/usr/avr/include/avr/wdt.h ****       [WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)), \
+ 227:/usr/avr/include/avr/wdt.h ****       [TEMP_WD] "d" (temp_wd), \
+ 228:/usr/avr/include/avr/wdt.h ****       [WDVALUE] "n" (1 << WDE) \
+ 229:/usr/avr/include/avr/wdt.h ****     : "r16" \
+ 230:/usr/avr/include/avr/wdt.h **** ); \
+ 231:/usr/avr/include/avr/wdt.h **** }while(0)
+ 232:/usr/avr/include/avr/wdt.h **** 
+ 233:/usr/avr/include/avr/wdt.h **** #elif defined(CCP)
+ 234:/usr/avr/include/avr/wdt.h **** 
+ 235:/usr/avr/include/avr/wdt.h **** static __inline__
+ 236:/usr/avr/include/avr/wdt.h **** __attribute__ ((__always_inline__))
+ 237:/usr/avr/include/avr/wdt.h **** void wdt_enable (const uint8_t value)
+ 238:/usr/avr/include/avr/wdt.h **** {
+ 239:/usr/avr/include/avr/wdt.h **** 	if (!_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P (_WD_CONTROL_REG))
+ 240:/usr/avr/include/avr/wdt.h **** 	{
+ 241:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 242:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 243:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 244:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 245:/usr/avr/include/avr/wdt.h **** 			"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 246:/usr/avr/include/avr/wdt.h **** 			"sts %[WDTREG],%[WDVALUE]" "\n\t"
+ 247:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 248:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 249:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+ 250:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 251:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 252:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 253:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 254:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 255:/usr/avr/include/avr/wdt.h **** 			);
+ 256:/usr/avr/include/avr/wdt.h **** 	}
+ 257:/usr/avr/include/avr/wdt.h **** 	else if (!_SFR_IO_REG_P (CCP) && _SFR_IO_REG_P (_WD_CONTROL_REG))
+ 258:/usr/avr/include/avr/wdt.h **** 	{
+ 259:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 260:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 261:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 262:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 263:/usr/avr/include/avr/wdt.h **** 			"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 264:/usr/avr/include/avr/wdt.h **** 			"out %[WDTREG],%[WDVALUE]" "\n\t"
+ 265:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 266:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 267:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+ 268:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 269:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 270:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 271:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 272:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 273:/usr/avr/include/avr/wdt.h **** 			);
+ 274:/usr/avr/include/avr/wdt.h **** 	}
+ 275:/usr/avr/include/avr/wdt.h **** 	else if (_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P (_WD_CONTROL_REG))
+ 276:/usr/avr/include/avr/wdt.h **** 	{
+ 277:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 278:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 279:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 280:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 281:/usr/avr/include/avr/wdt.h **** 			"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 282:/usr/avr/include/avr/wdt.h **** 			"sts %[WDTREG],%[WDVALUE]" "\n\t"
+ 283:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 284:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 285:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 286:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 287:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 288:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 289:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 290:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 291:/usr/avr/include/avr/wdt.h **** 			);
+ 292:/usr/avr/include/avr/wdt.h **** 	}
+ 293:/usr/avr/include/avr/wdt.h **** 	else
+ 294:/usr/avr/include/avr/wdt.h ****  	{
+ 295:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 296:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 297:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 298:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 299:/usr/avr/include/avr/wdt.h **** 			"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 300:/usr/avr/include/avr/wdt.h **** 			"out %[WDTREG],%[WDVALUE]" "\n\t"
+ 301:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 302:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 303:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 304:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 305:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 306:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 307:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 308:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 309:/usr/avr/include/avr/wdt.h **** 			);
+ 310:/usr/avr/include/avr/wdt.h **** 	}
+ 311:/usr/avr/include/avr/wdt.h **** }
+ 312:/usr/avr/include/avr/wdt.h **** 
+ 313:/usr/avr/include/avr/wdt.h **** static __inline__
+ 314:/usr/avr/include/avr/wdt.h **** __attribute__ ((__always_inline__))
+ 315:/usr/avr/include/avr/wdt.h **** void wdt_disable (void)
+ 316:/usr/avr/include/avr/wdt.h **** {
+ 317:/usr/avr/include/avr/wdt.h **** 	if (!_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P(_WD_CONTROL_REG))
+ 318:/usr/avr/include/avr/wdt.h **** 	{
+ 319:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 320:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 321:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 322:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 323:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 324:/usr/avr/include/avr/wdt.h **** 				"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 325:/usr/avr/include/avr/wdt.h **** 				"lds %[TEMP_WD],%[WDTREG]" "\n\t"
+ 326:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 327:/usr/avr/include/avr/wdt.h **** 				"sts %[WDTREG],%[TEMP_WD]" "\n\t"
+ 328:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 329:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 330:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+ 331:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 332:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 333:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 334:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 335:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 336:/usr/avr/include/avr/wdt.h **** 				);
+ 337:/usr/avr/include/avr/wdt.h **** 	}
+ 338:/usr/avr/include/avr/wdt.h **** 	else if (!_SFR_IO_REG_P (CCP) && _SFR_IO_REG_P(_WD_CONTROL_REG))
+ 339:/usr/avr/include/avr/wdt.h **** 	{
+ 340:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 341:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 342:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 343:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 344:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 345:/usr/avr/include/avr/wdt.h **** 				"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 346:/usr/avr/include/avr/wdt.h **** 				"in %[TEMP_WD],%[WDTREG]" "\n\t"
+ 347:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 348:/usr/avr/include/avr/wdt.h **** 				"out %[WDTREG],%[TEMP_WD]" "\n\t"
+ 349:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 350:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 351:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+ 352:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 353:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 354:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 355:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 356:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 357:/usr/avr/include/avr/wdt.h **** 				);
+ 358:/usr/avr/include/avr/wdt.h **** 	}
+ 359:/usr/avr/include/avr/wdt.h **** 	else if (_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P(_WD_CONTROL_REG))
+ 360:/usr/avr/include/avr/wdt.h **** 	{
+ 361:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 362:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 363:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 364:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 365:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 366:/usr/avr/include/avr/wdt.h **** 				"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 367:/usr/avr/include/avr/wdt.h **** 				"lds %[TEMP_WD],%[WDTREG]" "\n\t"
+ 368:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 369:/usr/avr/include/avr/wdt.h **** 				"sts %[WDTREG],%[TEMP_WD]" "\n\t"
+ 370:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 371:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 372:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 373:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 374:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 375:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 376:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 377:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 378:/usr/avr/include/avr/wdt.h **** 				);
+ 379:/usr/avr/include/avr/wdt.h **** 	}
+ 380:/usr/avr/include/avr/wdt.h **** 	else
+ 381:/usr/avr/include/avr/wdt.h **** 	{
+ 382:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 383:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 384:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 385:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 386:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 387:/usr/avr/include/avr/wdt.h **** 				"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 388:/usr/avr/include/avr/wdt.h **** 				"in %[TEMP_WD],%[WDTREG]" "\n\t"
+ 389:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 390:/usr/avr/include/avr/wdt.h **** 				"out %[WDTREG],%[TEMP_WD]" "\n\t"
+ 391:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 392:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 393:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 394:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 395:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 396:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 397:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 398:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 399:/usr/avr/include/avr/wdt.h **** 				);
+ 400:/usr/avr/include/avr/wdt.h **** 	}
+ 401:/usr/avr/include/avr/wdt.h **** }
+ 402:/usr/avr/include/avr/wdt.h **** 
+ 403:/usr/avr/include/avr/wdt.h **** #else
+ 404:/usr/avr/include/avr/wdt.h **** 
+ 405:/usr/avr/include/avr/wdt.h **** static __inline__
+ 406:/usr/avr/include/avr/wdt.h **** __attribute__ ((__always_inline__))
+ 407:/usr/avr/include/avr/wdt.h **** void wdt_enable (const uint8_t value)
+ 408:/usr/avr/include/avr/wdt.h **** {
+ 409:/usr/avr/include/avr/wdt.h **** 	if (_SFR_IO_REG_P (_WD_CONTROL_REG))
+ 410:/usr/avr/include/avr/wdt.h **** 	{
+ 411:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 412:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 413:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 414:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 415:/usr/avr/include/avr/wdt.h **** 				"out %0, %1" "\n\t"
+ 416:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 417:/usr/avr/include/avr/wdt.h **** 				"out %0, %2" "\n \t"
+ 418:/usr/avr/include/avr/wdt.h **** 				: /* no outputs */
+ 419:/usr/avr/include/avr/wdt.h **** 				: "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 420:/usr/avr/include/avr/wdt.h **** 				"r" ((uint8_t)(_BV(_WD_CHANGE_BIT) | _BV(WDE))),
+ 421:/usr/avr/include/avr/wdt.h **** 				"r" ((uint8_t) ((value & 0x08 ? _WD_PS3_MASK : 0x00) |
+ 422:/usr/avr/include/avr/wdt.h **** 						_BV(WDE) | (value & 0x07)) )
+ 423:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 424:/usr/avr/include/avr/wdt.h **** 		);
+ 425:/usr/avr/include/avr/wdt.h **** 	}
+ 426:/usr/avr/include/avr/wdt.h **** 	else
+ 427:/usr/avr/include/avr/wdt.h **** 	{
+ 428:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 429:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 430:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 431:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 432:/usr/avr/include/avr/wdt.h **** 				"sts %0, %1" "\n\t"
+ 433:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 434:/usr/avr/include/avr/wdt.h **** 				"sts %0, %2" "\n \t"
+ 435:/usr/avr/include/avr/wdt.h **** 				: /* no outputs */
+ 436:/usr/avr/include/avr/wdt.h **** 				: "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 437:/usr/avr/include/avr/wdt.h **** 				"r" ((uint8_t)(_BV(_WD_CHANGE_BIT) | _BV(WDE))),
+ 438:/usr/avr/include/avr/wdt.h **** 				"r" ((uint8_t) ((value & 0x08 ? _WD_PS3_MASK : 0x00) |
+ 439:/usr/avr/include/avr/wdt.h **** 						_BV(WDE) | (value & 0x07)) )
+ 440:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 441:/usr/avr/include/avr/wdt.h **** 		);
+ 442:/usr/avr/include/avr/wdt.h **** 	}
+ 443:/usr/avr/include/avr/wdt.h **** }
+ 444:/usr/avr/include/avr/wdt.h **** 
+ 445:/usr/avr/include/avr/wdt.h **** static __inline__
+ 446:/usr/avr/include/avr/wdt.h **** __attribute__ ((__always_inline__))
+ 447:/usr/avr/include/avr/wdt.h **** void wdt_disable (void)
+ 448:/usr/avr/include/avr/wdt.h **** {
+ 449:/usr/avr/include/avr/wdt.h **** 	if (_SFR_IO_REG_P (_WD_CONTROL_REG))
+ 450:/usr/avr/include/avr/wdt.h **** 	{
+ 451:/usr/avr/include/avr/wdt.h ****         uint8_t register temp_reg;
+ 452:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 453:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__"    "\n\t"
+ 454:/usr/avr/include/avr/wdt.h **** 				"cli"                        "\n\t"
+ 455:/usr/avr/include/avr/wdt.h **** 				"wdr"                        "\n\t"
+ 456:/usr/avr/include/avr/wdt.h **** 				"in  %[TEMPREG],%[WDTREG]"   "\n\t"
+ 457:/usr/avr/include/avr/wdt.h **** 				"ori %[TEMPREG],%[WDCE_WDE]" "\n\t"
+ 458:/usr/avr/include/avr/wdt.h **** 				"out %[WDTREG],%[TEMPREG]"   "\n\t"
+ 459:/usr/avr/include/avr/wdt.h **** 				"out %[WDTREG],__zero_reg__" "\n\t"
+ 460:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__"   "\n\t"
+ 461:/usr/avr/include/avr/wdt.h **** 				: [TEMPREG] "=d" (temp_reg)
+ 462:/usr/avr/include/avr/wdt.h **** 				: [WDTREG]  "I"  (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 463:/usr/avr/include/avr/wdt.h **** 				[WDCE_WDE]  "n"  ((uint8_t)(_BV(_WD_CHANGE_BIT) | _BV(WDE)))
+ 464:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 465:/usr/avr/include/avr/wdt.h **** 		);
+ 466:/usr/avr/include/avr/wdt.h **** 	}
+ 467:/usr/avr/include/avr/wdt.h **** 	else
+ 468:/usr/avr/include/avr/wdt.h **** 	{
+ 469:/usr/avr/include/avr/wdt.h ****         uint8_t register temp_reg;
+ 470:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 291               	.LM19:
+ 292               	/* #APP */
+ 293               	 ;  470 "/usr/avr/include/avr/wdt.h" 1
+ 294 0008 0FB6      		in __tmp_reg__,__SREG__
+ 295 000a F894      		cli
+ 296 000c A895      		wdr
+ 297 000e 8091 6000 		lds r24,96
+ 298 0012 8861      		ori r24,24
+ 299 0014 8093 6000 		sts 96,r24
+ 300 0018 1092 6000 		sts 96,__zero_reg__
+ 301 001c 0FBE      		out __SREG__,__tmp_reg__
+ 302               		
+ 303               	 ;  0 "" 2
+ 304               	/* epilogue start */
+ 305               	/* #NOAPP */
+ 306               	.LBE15:
+ 307               	.LBE14:
+ 309               	.Ltext4:
+  41:bootloader.c  ****   wdt_disable();
+  42:bootloader.c  **** }
+ 311               	.LM20:
+ 313               	.Lscope3:
+ 315               		.stabd	78,0,0
+ 316               		.section	.text.startup,"ax",@progbits
+ 318               	.global	main
+ 320               	main:
+ 321               		.stabd	46,0,0
+  43:bootloader.c  **** 
+  44:bootloader.c  **** static uint16_t jmp_instruction = 0x940c;
+  45:bootloader.c  **** 
+  46:bootloader.c  **** typedef int bool;
+  47:bootloader.c  **** #define true  1
+  48:bootloader.c  **** #define false 0
+  49:bootloader.c  **** 
+  50:bootloader.c  **** uint16_t mem_addr = 0x0030; //firmware start address (application_start_address_byte_offset)
+  51:bootloader.c  **** uint16_t mem_addr1 = 0x0030;
+  52:bootloader.c  **** 
+  53:bootloader.c  **** volatile uint8_t ic_addr = 0x50;
+  54:bootloader.c  **** volatile uint16_t application_crc_expected_index = 28;
+  55:bootloader.c  **** 
+  56:bootloader.c  **** static void (*jump_to_app)(void) __attribute__ ((noreturn)) = 0x0000;
+  57:bootloader.c  **** 
+  58:bootloader.c  **** static inline bool isCrcOk(const uint8_t i2c_address) {
+  59:bootloader.c  ****   bool status = false;
+  60:bootloader.c  ****   uint32_t crc = 0;
+  61:bootloader.c  ****   uint16_t start_address = mem_addr1;//0x0030;//mem_addr; WWWWWTTTTFFFFFFFFF!?!?!?!??!
+  62:bootloader.c  ****   
+  63:bootloader.c  ****   uint16_t length = twi_master_read16_reg16(ic_addr, 32);
+  64:bootloader.c  ****   
+  65:bootloader.c  ****   uint32_t table[crc_table_size];
+  66:bootloader.c  ****   init_table(&table[0]);
+  67:bootloader.c  **** 
+  68:bootloader.c  ****   for (uint16_t pos = 0; pos < length + 1; pos += 2) {
+  69:bootloader.c  ****     if (pos >= length)
+  70:bootloader.c  ****       break;
+  71:bootloader.c  **** 
+  72:bootloader.c  ****     uint16_t data = twi_master_read16_reg16(ic_addr, pos + start_address);
+  73:bootloader.c  ****     if (pos == length - 1)
+  74:bootloader.c  ****       data &= 0xFF00;
+  75:bootloader.c  **** 
+  76:bootloader.c  ****     uint8_t to_little_endian[2];
+  77:bootloader.c  ****     to_little_endian[0] = ((uint8_t)(data >> 8));
+  78:bootloader.c  ****     to_little_endian[1] = ((uint8_t)(data));
+  79:bootloader.c  **** 
+  80:bootloader.c  ****     crc32((const void *)(&to_little_endian[0]), 2, &table[0],
+  81:bootloader.c  ****           &crc);
+  82:bootloader.c  ****   }
+  83:bootloader.c  **** 
+  84:bootloader.c  ****   uint32_t expected_crc = (uint32_t)(twi_master_read16_reg16(i2c_address, application_crc_expected_
+  85:bootloader.c  ****   
+  86:bootloader.c  ****   expected_crc |= (uint32_t)(twi_master_read16_reg16(i2c_address, application_crc_expected_index + 
+  87:bootloader.c  **** 
+  88:bootloader.c  ****   if (crc == expected_crc) {
+  89:bootloader.c  ****     status = true;
+  90:bootloader.c  ****   }
+  91:bootloader.c  ****   return status;
+  92:bootloader.c  **** }
+  93:bootloader.c  **** 
+  94:bootloader.c  **** static inline void writeToFlash(const uint16_t address, uint8_t *data){ //,uint16_t application_sta
+  95:bootloader.c  **** 
+  96:bootloader.c  **** /*  if (0 == address) {
+  97:bootloader.c  ****     application_start = (uint8_t)(
+  98:bootloader.c  ****         (uint16_t)(data[RESET_VECTOR_ARGUMENT_ADDRESS] << 8));
+  99:bootloader.c  ****     application_start |=
+ 100:bootloader.c  ****         (uint8_t)(data[RESET_VECTOR_ARGUMENT_ADDRESS + 1]);
+ 101:bootloader.c  **** 
+ 102:bootloader.c  ****     data[RESET_VECTOR] = (uint8_t)(jmp_instruction);
+ 103:bootloader.c  ****     data[RESET_VECTOR + 1] = (uint8_t)(jmp_instruction >> 8);
+ 104:bootloader.c  **** 
+ 105:bootloader.c  ****     data[RESET_VECTOR_ARGUMENT_ADDRESS] = (uint8_t)(
+ 106:bootloader.c  ****         (uint16_t)(BOOTLOADER_START_ADDRESS) / 2);
+ 107:bootloader.c  ****     data[RESET_VECTOR_ARGUMENT_ADDRESS + 1] = (uint8_t)((
+ 108:bootloader.c  ****         (uint16_t)(BOOTLOADER_START_ADDRESS) / 2) >> 8);
+ 109:bootloader.c  ****   }
+ 110:bootloader.c  **** */
+ 111:bootloader.c  ****   writeToPageBuffer(address, data);
+ 112:bootloader.c  ****   writePageBufferToFlash(address);
+ 113:bootloader.c  **** }
+ 114:bootloader.c  **** 
+ 115:bootloader.c  **** static inline void writeFlashFromI2C(const uint8_t i2c_address){ //,uint16_t application_start) {
+ 116:bootloader.c  ****   
+ 117:bootloader.c  ****   uint16_t start_address = mem_addr1;
+ 118:bootloader.c  ****   uint16_t length = twi_master_read16_reg16(ic_addr, 32);
+ 119:bootloader.c  ****   uint8_t buf[SPM_PAGESIZE];
+ 120:bootloader.c  ****   uint8_t writes = 0;
+ 121:bootloader.c  **** 
+ 122:bootloader.c  ****   for (uint16_t pos = 0; pos < length; pos += 2) {
+ 123:bootloader.c  ****     if (pos > 0 && (0 == (pos % SPM_PAGESIZE))) {
+ 124:bootloader.c  ****       writeToFlash(writes * SPM_PAGESIZE, &buf[0]); //, application_start);
+ 125:bootloader.c  ****       ++writes;
+ 126:bootloader.c  ****     }
+ 127:bootloader.c  ****     uint16_t data = twi_master_read16_reg16(i2c_address, pos + start_address);
+ 128:bootloader.c  ****     buf[pos % SPM_PAGESIZE] = (uint8_t)(data >> 8);
+ 129:bootloader.c  ****     buf[(pos + 1) % SPM_PAGESIZE] = (uint8_t)(data);
+ 130:bootloader.c  ****   }
+ 131:bootloader.c  **** 
+ 132:bootloader.c  ****   for (uint16_t pos = SPM_PAGESIZE - ((uint16_t)(writes + 1) *(uint16_t)(SPM_PAGESIZE)) % length; p
+ 133:bootloader.c  ****     buf[pos] = 0xFF; // reset contents, since these bytes were not filled in
+ 134:bootloader.c  ****                      // this page and have value from previous page
+ 135:bootloader.c  ****   }
+ 136:bootloader.c  **** 
+ 137:bootloader.c  ****   writeToFlash(writes * SPM_PAGESIZE, &buf[0]); //, application_start);
+ 138:bootloader.c  **** }
+ 139:bootloader.c  **** 
+ 140:bootloader.c  **** int main(void) 
+ 141:bootloader.c  **** {
+ 323               	.LM21:
+ 324               	.LFBB4:
+ 325 0000 CF93      		push r28
+ 326 0002 DF93      		push r29
+ 327 0004 CDB7      		in r28,__SP_L__
+ 328 0006 DEB7      		in r29,__SP_H__
+ 329 0008 C458      		subi r28,-124
+ 330 000a D109      		sbc r29,__zero_reg__
+ 331 000c 0FB6      		in __tmp_reg__,__SREG__
+ 332 000e F894      		cli
+ 333 0010 DEBF      		out __SP_H__,r29
+ 334 0012 0FBE      		out __SREG__,__tmp_reg__
+ 335 0014 CDBF      		out __SP_L__,r28
+ 336               	/* prologue: function */
+ 337               	/* frame size = 132 */
+ 338               	/* stack size = 134 */
+ 339               	.L__stack_usage = 134
+ 142:bootloader.c  **** 
+ 143:bootloader.c  ****   uint16_t application_start = 0;
+ 144:bootloader.c  ****   uint8_t dc =0;
+ 145:bootloader.c  ****   uint8_t crcc = 0;
+ 146:bootloader.c  ****   twi_master_init();
+ 341               	.LM22:
+ 342 0016 0E94 0000 		call twi_master_init
+ 147:bootloader.c  **** 
+ 148:bootloader.c  ****   /*
+ 149:bootloader.c  ****   MCUSR &= ~(1<<WDRF);
+ 150:bootloader.c  ****   WDTCSR |= (1<<WDCE) | (1<<WDE);
+ 151:bootloader.c  ****   WDTCSR = 0x00;
+ 152:bootloader.c  ****   */
+ 153:bootloader.c  ****   
+ 154:bootloader.c  ****   DDRB |= (1<<1);
+ 344               	.LM23:
+ 345 001a 219A      		sbi 0x4,1
+ 155:bootloader.c  ****   PORTB |= (1<<1);
+ 347               	.LM24:
+ 348 001c 299A      		sbi 0x5,1
+ 156:bootloader.c  ****   
+ 157:bootloader.c  ****   dc = twi_master_read16_reg8(ic_addr, 26);
+ 350               	.LM25:
+ 351 001e 8091 0000 		lds r24,ic_addr
+ 352 0022 6AE1      		ldi r22,lo8(26)
+ 353 0024 70E0      		ldi r23,0
+ 354 0026 0E94 0000 		call twi_master_read16_reg8
+ 355 002a 282E      		mov r2,r24
+ 158:bootloader.c  ****   crcc = isCrcOk(ic_addr);
+ 357               	.LM26:
+ 358 002c 3090 0000 		lds r3,ic_addr
+ 359               	.LBB40:
+ 360               	.LBB41:
+  58:bootloader.c  ****   bool status = false;
+ 362               	.LM27:
+ 363 0030 2DB7      		in r18,__SP_L__
+ 364 0032 3EB7      		in r19,__SP_H__
+ 365 0034 CF57      		subi r28,lo8(-129)
+ 366 0036 DF4F      		sbci r29,hi8(-129)
+ 367 0038 3983      		std Y+1,r19
+ 368 003a 2883      		st Y,r18
+ 369 003c C158      		subi r28,lo8(129)
+ 370 003e D040      		sbci r29,hi8(129)
+  61:bootloader.c  ****   
+ 372               	.LM28:
+ 373 0040 8090 0000 		lds r8,mem_addr1
+ 374 0044 9090 0000 		lds r9,mem_addr1+1
+  63:bootloader.c  ****   
+ 376               	.LM29:
+ 377 0048 8091 0000 		lds r24,ic_addr
+ 378 004c 60E2      		ldi r22,lo8(32)
+ 379 004e 70E0      		ldi r23,0
+ 380 0050 0E94 0000 		call twi_master_read16_reg16
+ 381 0054 7C01      		movw r14,r24
+  65:bootloader.c  ****   init_table(&table[0]);
+ 383               	.LM30:
+ 384 0056 8DB7      		in r24,__SP_L__
+ 385 0058 9EB7      		in r25,__SP_H__
+ 386 005a 9450      		subi r25,4
+ 387 005c 0FB6      		in __tmp_reg__,__SREG__
+ 388 005e F894      		cli
+ 389 0060 9EBF      		out __SP_H__,r25
+ 390 0062 0FBE      		out __SREG__,__tmp_reg__
+ 391 0064 8DBF      		out __SP_L__,r24
+ 392 0066 EDB7      		in r30,__SP_L__
+ 393 0068 FEB7      		in r31,__SP_H__
+ 394 006a 3196      		adiw r30,1
+ 395 006c 6F01      		movw r12,r30
+  66:bootloader.c  **** 
+ 397               	.LM31:
+ 398 006e 40E0      		ldi r20,0
+ 399 0070 50E0      		ldi r21,0
+ 400 0072 BA01      		movw r22,r20
+ 401               	.L13:
+ 402 0074 DB01      		movw r26,r22
+ 403 0076 CA01      		movw r24,r20
+ 404 0078 28E0      		ldi r18,lo8(8)
+ 405               	.L12:
+ 406               	.LBB42:
+ 407               	.LBB43:
+ 408               	.LBB44:
+ 409               	.LBB45:
+ 410               	.LBB46:
+ 412               	.Ltext5:
+   1:crc32.h       **** #pragma once
+   2:crc32.h       **** 
+   3:crc32.h       **** #include <stdint.h>
+   4:crc32.h       **** 
+   5:crc32.h       **** static uint32_t polynomial_representation = 0xEDB88320UL; //0xEDB88320UL;
+   6:crc32.h       **** static uint16_t crc_table_size = 0x100;
+   7:crc32.h       **** 
+   8:crc32.h       **** static inline uint32_t crc32_for_byte(uint32_t r) {
+   9:crc32.h       ****   for (uint8_t i = 0; i < 8; ++i) {
+  10:crc32.h       ****     r = (r & 1 ? 0 : polynomial_representation) ^ r >> 1;
+ 414               	.LM32:
+ 415 007a 412C      		mov r4,__zero_reg__
+ 416 007c 512C      		mov r5,__zero_reg__
+ 417 007e 3201      		movw r6,r4
+ 418 0080 80FD      		sbrc r24,0
+ 419 0082 00C0      		rjmp .L11
+ 420 0084 00E2      		ldi r16,lo8(32)
+ 421 0086 402E      		mov r4,r16
+ 422 0088 03E8      		ldi r16,lo8(-125)
+ 423 008a 502E      		mov r5,r16
+ 424 008c 08EB      		ldi r16,lo8(-72)
+ 425 008e 602E      		mov r6,r16
+ 426 0090 0DEE      		ldi r16,lo8(-19)
+ 427 0092 702E      		mov r7,r16
+ 428               	.L11:
+ 429 0094 B695      		lsr r27
+ 430 0096 A795      		ror r26
+ 431 0098 9795      		ror r25
+ 432 009a 8795      		ror r24
+ 433 009c 8425      		eor r24,r4
+ 434 009e 9525      		eor r25,r5
+ 435 00a0 A625      		eor r26,r6
+ 436 00a2 B725      		eor r27,r7
+ 437 00a4 2150      		subi r18,lo8(-(-1))
+   9:crc32.h       ****     r = (r & 1 ? 0 : polynomial_representation) ^ r >> 1;
+ 439               	.LM33:
+ 440 00a6 01F4      		brne .L12
+ 441               	.LBE46:
+  11:crc32.h       ****   }
+  12:crc32.h       ****   return r ^ (uint32_t)0xFF000000L;
+ 443               	.LM34:
+ 444 00a8 B095      		com r27
+ 445               	.LBE45:
+ 446               	.LBE44:
+  13:crc32.h       **** }
+  14:crc32.h       **** 
+  15:crc32.h       **** static inline void init_table(uint32_t *crc_table) {
+  16:crc32.h       ****   for (uint16_t i = 0; i < crc_table_size; ++i) {
+  17:crc32.h       ****     crc_table[i] = crc32_for_byte(i);
+ 448               	.LM35:
+ 449 00aa 8193      		st Z+,r24
+ 450 00ac 9193      		st Z+,r25
+ 451 00ae A193      		st Z+,r26
+ 452 00b0 B193      		st Z+,r27
+ 453 00b2 4F5F      		subi r20,-1
+ 454 00b4 5F4F      		sbci r21,-1
+ 455 00b6 6F4F      		sbci r22,-1
+ 456 00b8 7F4F      		sbci r23,-1
+  16:crc32.h       ****     crc_table[i] = crc32_for_byte(i);
+ 458               	.LM36:
+ 459 00ba 4115      		cp r20,__zero_reg__
+ 460 00bc 21E0      		ldi r18,1
+ 461 00be 5207      		cpc r21,r18
+ 462 00c0 6105      		cpc r22,__zero_reg__
+ 463 00c2 7105      		cpc r23,__zero_reg__
+ 464 00c4 01F4      		brne .L13
+ 465               	.LBE43:
+ 466               	.LBE42:
+ 468               	.Ltext6:
+  60:bootloader.c  ****   uint16_t start_address = mem_addr1;//0x0030;//mem_addr; WWWWWTTTTFFFFFFFFF!?!?!?!??!
+ 470               	.LM37:
+ 471 00c6 412C      		mov r4,__zero_reg__
+ 472 00c8 512C      		mov r5,__zero_reg__
+ 473 00ca 3201      		movw r6,r4
+ 474               	.LBB47:
+  68:bootloader.c  ****     if (pos >= length)
+ 476               	.LM38:
+ 477 00cc 10E0      		ldi r17,0
+ 478 00ce 00E0      		ldi r16,0
+ 479 00d0 C701      		movw r24,r14
+ 480 00d2 0196      		adiw r24,1
+ 481 00d4 CD57      		subi r28,lo8(-131)
+ 482 00d6 DF4F      		sbci r29,hi8(-131)
+ 483 00d8 9983      		std Y+1,r25
+ 484 00da 8883      		st Y,r24
+ 485 00dc C358      		subi r28,lo8(131)
+ 486 00de D040      		sbci r29,hi8(131)
+ 487               	.LBB48:
+  73:bootloader.c  ****       data &= 0xFF00;
+ 489               	.LM39:
+ 490 00e0 5701      		movw r10,r14
+ 491 00e2 91E0      		ldi r25,1
+ 492 00e4 A91A      		sub r10,r25
+ 493 00e6 B108      		sbc r11,__zero_reg__
+ 494               	.L14:
+ 495               	.LBE48:
+  68:bootloader.c  ****     if (pos >= length)
+ 497               	.LM40:
+ 498 00e8 CD57      		subi r28,lo8(-131)
+ 499 00ea DF4F      		sbci r29,hi8(-131)
+ 500 00ec 8881      		ld r24,Y
+ 501 00ee 9981      		ldd r25,Y+1
+ 502 00f0 C358      		subi r28,lo8(131)
+ 503 00f2 D040      		sbci r29,hi8(131)
+ 504 00f4 0817      		cp r16,r24
+ 505 00f6 1907      		cpc r17,r25
+ 506 00f8 00F4      		brsh .+2
+ 507 00fa 00C0      		rjmp .L18
+ 508               	.L17:
+ 509               	.LBE47:
+  84:bootloader.c  ****   
+ 511               	.LM41:
+ 512 00fc 6091 0000 		lds r22,application_crc_expected_index
+ 513 0100 7091 0000 		lds r23,application_crc_expected_index+1
+ 514 0104 832D      		mov r24,r3
+ 515 0106 0E94 0000 		call twi_master_read16_reg16
+ 516 010a B0E0      		ldi r27,0
+ 517 010c A0E0      		ldi r26,0
+ 518 010e 7C01      		movw r14,r24
+ 519 0110 DD24      		clr r13
+ 520 0112 CC24      		clr r12
+  86:bootloader.c  **** 
+ 522               	.LM42:
+ 523 0114 6091 0000 		lds r22,application_crc_expected_index
+ 524 0118 7091 0000 		lds r23,application_crc_expected_index+1
+ 525 011c 6E5F      		subi r22,-2
+ 526 011e 7F4F      		sbci r23,-1
+ 527 0120 832D      		mov r24,r3
+ 528 0122 0E94 0000 		call twi_master_read16_reg16
+ 529 0126 B0E0      		ldi r27,0
+ 530 0128 A0E0      		ldi r26,0
+ 531 012a 8C29      		or r24,r12
+ 532 012c 9D29      		or r25,r13
+ 533 012e AE29      		or r26,r14
+ 534 0130 BF29      		or r27,r15
+ 535 0132 CF57      		subi r28,lo8(-129)
+ 536 0134 DF4F      		sbci r29,hi8(-129)
+ 537 0136 E881      		ld r30,Y
+ 538 0138 F981      		ldd r31,Y+1
+ 539 013a C158      		subi r28,lo8(129)
+ 540 013c D040      		sbci r29,hi8(129)
+ 541 013e 0FB6      		in __tmp_reg__,__SREG__
+ 542 0140 F894      		cli
+ 543 0142 FEBF      		out __SP_H__,r31
+ 544 0144 0FBE      		out __SREG__,__tmp_reg__
+ 545 0146 EDBF      		out __SP_L__,r30
+ 546               	.LBE41:
+ 547               	.LBE40:
+ 159:bootloader.c  ****   
+ 160:bootloader.c  ****   if (dc == 0x11 && crcc == 1)
+ 549               	.LM43:
+ 550 0148 F1E1      		ldi r31,lo8(17)
+ 551 014a 2F12      		cpse r2,r31
+ 552 014c 00C0      		rjmp .L19
+ 554               	.LM44:
+ 555 014e 8415      		cp r24,r4
+ 556 0150 9505      		cpc r25,r5
+ 557 0152 A605      		cpc r26,r6
+ 558 0154 B705      		cpc r27,r7
+ 559 0156 01F0      		breq .+2
+ 560 0158 00C0      		rjmp .L19
+ 161:bootloader.c  ****   {
+ 162:bootloader.c  ****     twi_master_write16_reg8(ic_addr, 26, 0xFF);
+ 562               	.LM45:
+ 563 015a 8091 0000 		lds r24,ic_addr
+ 564 015e 4FEF      		ldi r20,lo8(-1)
+ 565 0160 6AE1      		ldi r22,lo8(26)
+ 566 0162 70E0      		ldi r23,0
+ 567 0164 0E94 0000 		call twi_master_write16_reg8
+ 568               	.LBB57:
+ 569               	.LBB58:
+ 571               	.Ltext7:
+   9:flash.h       ****   do {
+ 573               	.LM46:
+ 574 0168 00E0      		ldi r16,0
+ 575 016a 18E7      		ldi r17,lo8(120)
+  12:flash.h       ****     boot_spm_busy_wait();
+ 577               	.LM47:
+ 578 016c 83E0      		ldi r24,lo8(3)
+ 579               	.L21:
+  11:flash.h       ****     boot_page_erase(ptr);
+ 581               	.LM48:
+ 582 016e 0058      		subi r16,-128
+ 583 0170 1109      		sbc r17,__zero_reg__
+  12:flash.h       ****     boot_spm_busy_wait();
+ 585               	.LM49:
+ 586 0172 F801      		movw r30,r16
+ 587               	/* #APP */
+ 588               	 ;  12 "flash.h" 1
+ 589 0174 8093 5700 		sts 87, r24
+ 590 0178 E895      		spm
+ 591               		
+ 592               	 ;  0 "" 2
+ 593               	/* #NOAPP */
+ 594               	.L20:
+  13:flash.h       ****   } while (ptr);
+ 596               	.LM50:
+ 597 017a 07B6      		in __tmp_reg__,0x37
+ 598 017c 00FC      		sbrc __tmp_reg__,0
+ 599 017e 00C0      		rjmp .L20
+  14:flash.h       ****   //wdt_reset();
+ 601               	.LM51:
+ 602 0180 0115      		cp r16,__zero_reg__
+ 603 0182 1105      		cpc r17,__zero_reg__
+ 604 0184 01F4      		brne .L21
+ 605               	.LBE58:
+ 606               	.LBE57:
+ 608               	.Ltext8:
+ 163:bootloader.c  ****     eraseApplication();
+ 164:bootloader.c  ****     writeFlashFromI2C(ic_addr); //, application_start);
+ 610               	.LM52:
+ 611 0186 4090 0000 		lds r4,ic_addr
+ 612               	.LBB59:
+ 613               	.LBB60:
+ 117:bootloader.c  ****   uint16_t length = twi_master_read16_reg16(ic_addr, 32);
+ 615               	.LM53:
+ 616 018a 6090 0000 		lds r6,mem_addr1
+ 617 018e 7090 0000 		lds r7,mem_addr1+1
+ 118:bootloader.c  ****   uint8_t buf[SPM_PAGESIZE];
+ 619               	.LM54:
+ 620 0192 8091 0000 		lds r24,ic_addr
+ 621 0196 60E2      		ldi r22,lo8(32)
+ 622 0198 70E0      		ldi r23,0
+ 623 019a 0E94 0000 		call twi_master_read16_reg16
+ 624 019e 4C01      		movw r8,r24
+ 120:bootloader.c  **** 
+ 626               	.LM55:
+ 627 01a0 512C      		mov r5,__zero_reg__
+ 628 01a2 9E01      		movw r18,r28
+ 629 01a4 2F5F      		subi r18,-1
+ 630 01a6 3F4F      		sbci r19,-1
+ 631 01a8 7901      		movw r14,r18
+ 632               	.L22:
+ 633 01aa 852D      		mov r24,r5
+ 634 01ac 90E0      		ldi r25,0
+ 635 01ae 6C01      		movw r12,r24
+ 636 01b0 D694      		lsr r13
+ 637 01b2 DC2C      		mov r13,r12
+ 638 01b4 CC24      		clr r12
+ 639 01b6 D794      		ror r13
+ 640 01b8 C794      		ror r12
+ 641               	.LBB61:
+ 122:bootloader.c  ****     if (pos > 0 && (0 == (pos % SPM_PAGESIZE))) {
+ 643               	.LM56:
+ 644 01ba 0815      		cp r16,r8
+ 645 01bc 1905      		cpc r17,r9
+ 646 01be 00F4      		brsh .+2
+ 647 01c0 00C0      		rjmp .L24
+ 648               	.LBE61:
+ 649               	.LBB65:
+ 132:bootloader.c  ****     buf[pos] = 0xFF; // reset contents, since these bytes were not filled in
+ 651               	.LM57:
+ 652 01c2 0196      		adiw r24,1
+ 653 01c4 9695      		lsr r25
+ 654 01c6 982F      		mov r25,r24
+ 655 01c8 8827      		clr r24
+ 656 01ca 9795      		ror r25
+ 657 01cc 8795      		ror r24
+ 658 01ce B401      		movw r22,r8
+ 659 01d0 0E94 0000 		call __udivmodhi4
+ 660 01d4 F701      		movw r30,r14
+ 661 01d6 E81B      		sub r30,r24
+ 662 01d8 F90B      		sbc r31,r25
+ 663 01da E058      		subi r30,-128
+ 664 01dc FF4F      		sbci r31,-1
+ 133:bootloader.c  ****                      // this page and have value from previous page
+ 666               	.LM58:
+ 667 01de 2FEF      		ldi r18,lo8(-1)
+ 668               	.L25:
+ 132:bootloader.c  ****     buf[pos] = 0xFF; // reset contents, since these bytes were not filled in
+ 670               	.LM59:
+ 671 01e0 CF01      		movw r24,r30
+ 672 01e2 8E19      		sub r24,r14
+ 673 01e4 9F09      		sbc r25,r15
+ 674 01e6 8038      		cpi r24,-128
+ 675 01e8 9105      		cpc r25,__zero_reg__
+ 676 01ea 00F4      		brsh .+2
+ 677 01ec 00C0      		rjmp .L26
+ 678               	.LBE65:
+ 679               	.LBB66:
+ 680               	.LBB67:
+ 111:bootloader.c  ****   writePageBufferToFlash(address);
+ 682               	.LM60:
+ 683 01ee B701      		movw r22,r14
+ 684 01f0 C601      		movw r24,r12
+ 685 01f2 0E94 0000 		call writeToPageBuffer
+ 112:bootloader.c  **** }
+ 687               	.LM61:
+ 688 01f6 C601      		movw r24,r12
+ 689 01f8 0E94 0000 		call writePageBufferToFlash
+ 690               	.L19:
+ 691               	.LBE67:
+ 692               	.LBE66:
+ 693               	.LBE60:
+ 694               	.LBE59:
+ 165:bootloader.c  ****   }
+ 166:bootloader.c  ****   /*else {
+ 167:bootloader.c  ****     uint16_t address_in_external_eeprom = getWordFromSource(
+ 168:bootloader.c  ****         source_i2c_address_for_program, application_start_address_byte_offset);
+ 169:bootloader.c  **** 
+ 170:bootloader.c  ****     application_start = address_in_external_eeprom >> 8;
+ 171:bootloader.c  ****     application_start |= static_cast<uint8_t>(address_in_external_eeprom);
+ 172:bootloader.c  ****   }*/
+ 173:bootloader.c  ****   jump_to_app();
+ 696               	.LM62:
+ 697 01fc F0E0      		ldi r31,0
+ 698 01fe E0E0      		ldi r30,0
+ 699 0200 0995      		icall
+ 700               	.L18:
+ 701               	.LBB71:
+ 702               	.LBB56:
+ 703               	.LBB55:
+ 704               	.LBB53:
+  69:bootloader.c  ****       break;
+ 706               	.LM63:
+ 707 0202 0E15      		cp r16,r14
+ 708 0204 1F05      		cpc r17,r15
+ 709 0206 00F0      		brlo .+2
+ 710 0208 00C0      		rjmp .L17
+  72:bootloader.c  ****     if (pos == length - 1)
+ 712               	.LM64:
+ 713 020a 8091 0000 		lds r24,ic_addr
+ 714 020e B401      		movw r22,r8
+ 715 0210 600F      		add r22,r16
+ 716 0212 711F      		adc r23,r17
+ 717 0214 0E94 0000 		call twi_master_read16_reg16
+  73:bootloader.c  ****       data &= 0xFF00;
+ 719               	.LM65:
+ 720 0218 0A15      		cp r16,r10
+ 721 021a 1B05      		cpc r17,r11
+ 722 021c 01F4      		brne .L16
+  74:bootloader.c  **** 
+ 724               	.LM66:
+ 725 021e 8827      		clr r24
+ 726               	.L16:
+ 727               	.LBB49:
+ 728               	.LBB50:
+ 730               	.Ltext9:
+  18:crc32.h       ****   }
+  19:crc32.h       **** }
+  20:crc32.h       **** 
+  21:crc32.h       **** static inline void crc32(const void *data, const uint16_t length,
+  22:crc32.h       ****                          const uint32_t *crc_table, uint32_t *crc) {
+  23:crc32.h       ****   for (uint16_t i = 0; i < length; ++i) {
+  24:crc32.h       ****     *crc = crc_table[(uint8_t)(*crc) ^ ((uint8_t *)data)[i]] ^
+ 732               	.LM67:
+ 733 0220 E92F      		mov r30,r25
+ 734 0222 E425      		eor r30,r4
+ 735 0224 24E0      		ldi r18,lo8(4)
+ 736 0226 E29F      		mul r30,r18
+ 737 0228 F001      		movw r30,r0
+ 738 022a 1124      		clr __zero_reg__
+ 739 022c EC0D      		add r30,r12
+ 740 022e FD1D      		adc r31,r13
+  25:crc32.h       ****            *crc >> 8;
+ 742               	.LM68:
+ 743 0230 452C      		mov r4,r5
+ 744 0232 562C      		mov r5,r6
+ 745 0234 672C      		mov r6,r7
+ 746 0236 7724      		clr r7
+  24:crc32.h       ****            *crc >> 8;
+ 748               	.LM69:
+ 749 0238 4081      		ld r20,Z
+ 750 023a 5181      		ldd r21,Z+1
+ 751 023c 6281      		ldd r22,Z+2
+ 752 023e 7381      		ldd r23,Z+3
+ 753 0240 4426      		eor r4,r20
+ 754 0242 5526      		eor r5,r21
+ 755 0244 6626      		eor r6,r22
+ 756 0246 7726      		eor r7,r23
+ 757               	.LBE50:
+ 758               	.LBE49:
+ 759               	.LBE53:
+ 761               	.Ltext10:
+  68:bootloader.c  ****     if (pos >= length)
+ 763               	.LM70:
+ 764 0248 0E5F      		subi r16,-2
+ 765 024a 1F4F      		sbci r17,-1
+ 766               	.LBB54:
+ 767               	.LBB52:
+ 768               	.LBB51:
+ 770               	.Ltext11:
+  24:crc32.h       ****            *crc >> 8;
+ 772               	.LM71:
+ 773 024c 8425      		eor r24,r4
+ 774 024e 34E0      		ldi r19,lo8(4)
+ 775 0250 839F      		mul r24,r19
+ 776 0252 F001      		movw r30,r0
+ 777 0254 1124      		clr __zero_reg__
+ 778 0256 EC0D      		add r30,r12
+ 779 0258 FD1D      		adc r31,r13
+ 781               	.LM72:
+ 782 025a 452C      		mov r4,r5
+ 783 025c 562C      		mov r5,r6
+ 784 025e 672C      		mov r6,r7
+ 785 0260 7724      		clr r7
+  24:crc32.h       ****            *crc >> 8;
+ 787               	.LM73:
+ 788 0262 8081      		ld r24,Z
+ 789 0264 9181      		ldd r25,Z+1
+ 790 0266 A281      		ldd r26,Z+2
+ 791 0268 B381      		ldd r27,Z+3
+ 792 026a 4826      		eor r4,r24
+ 793 026c 5926      		eor r5,r25
+ 794 026e 6A26      		eor r6,r26
+ 795 0270 7B26      		eor r7,r27
+ 796 0272 00C0      		rjmp .L14
+ 797               	.L24:
+ 798 0274 5801      		movw r10,r16
+ 799 0276 E894      		clt
+ 800 0278 A7F8      		bld r10,7
+ 801 027a BB24      		clr r11
+ 802               	.LBE51:
+ 803               	.LBE52:
+ 804               	.LBE54:
+ 805               	.LBE55:
+ 806               	.LBE56:
+ 807               	.LBE71:
+ 808               	.LBB72:
+ 809               	.LBB70:
+ 810               	.LBB68:
+ 811               	.LBB62:
+ 813               	.Ltext12:
+ 123:bootloader.c  ****       writeToFlash(writes * SPM_PAGESIZE, &buf[0]); //, application_start);
+ 815               	.LM74:
+ 816 027c 0115      		cp r16,__zero_reg__
+ 817 027e 1105      		cpc r17,__zero_reg__
+ 818 0280 01F0      		breq .L23
+ 819 0282 A114      		cp r10,__zero_reg__
+ 820 0284 B104      		cpc r11,__zero_reg__
+ 821 0286 01F4      		brne .L23
+ 822               	.LBB63:
+ 823               	.LBB64:
+ 111:bootloader.c  ****   writePageBufferToFlash(address);
+ 825               	.LM75:
+ 826 0288 B701      		movw r22,r14
+ 827 028a C601      		movw r24,r12
+ 828 028c 0E94 0000 		call writeToPageBuffer
+ 112:bootloader.c  **** }
+ 830               	.LM76:
+ 831 0290 C601      		movw r24,r12
+ 832 0292 0E94 0000 		call writePageBufferToFlash
+ 833               	.LBE64:
+ 834               	.LBE63:
+ 125:bootloader.c  ****     }
+ 836               	.LM77:
+ 837 0296 5394      		inc r5
+ 838               	.L23:
+ 127:bootloader.c  ****     buf[pos % SPM_PAGESIZE] = (uint8_t)(data >> 8);
+ 840               	.LM78:
+ 841 0298 B301      		movw r22,r6
+ 842 029a 600F      		add r22,r16
+ 843 029c 711F      		adc r23,r17
+ 844 029e 842D      		mov r24,r4
+ 845 02a0 0E94 0000 		call twi_master_read16_reg16
+ 128:bootloader.c  ****     buf[(pos + 1) % SPM_PAGESIZE] = (uint8_t)(data);
+ 847               	.LM79:
+ 848 02a4 F701      		movw r30,r14
+ 849 02a6 EA0D      		add r30,r10
+ 850 02a8 FB1D      		adc r31,r11
+ 851 02aa 9083      		st Z,r25
+ 129:bootloader.c  ****   }
+ 853               	.LM80:
+ 854 02ac F801      		movw r30,r16
+ 855 02ae 3196      		adiw r30,1
+ 856 02b0 EF77      		andi r30,127
+ 857 02b2 FF27      		clr r31
+ 858 02b4 EE0D      		add r30,r14
+ 859 02b6 FF1D      		adc r31,r15
+ 860 02b8 8083      		st Z,r24
+ 861               	.LBE62:
+ 122:bootloader.c  ****     if (pos > 0 && (0 == (pos % SPM_PAGESIZE))) {
+ 863               	.LM81:
+ 864 02ba 0E5F      		subi r16,-2
+ 865 02bc 1F4F      		sbci r17,-1
+ 866 02be 00C0      		rjmp .L22
+ 867               	.L26:
+ 868               	.LBE68:
+ 869               	.LBB69:
+ 133:bootloader.c  ****                      // this page and have value from previous page
+ 871               	.LM82:
+ 872 02c0 2193      		st Z+,r18
+ 873 02c2 00C0      		rjmp .L25
+ 874               	.LBE69:
+ 875               	.LBE70:
+ 876               	.LBE72:
+ 930               	.Lscope4:
+ 932               		.stabd	78,0,0
+ 933               	.global	application_crc_expected_index
+ 934               		.data
+ 937               	application_crc_expected_index:
+ 938 0000 1C00      		.word	28
+ 940               	.global	ic_addr
+ 943               	ic_addr:
+ 944 0002 50        		.byte	80
+ 946               	.global	mem_addr1
+ 949               	mem_addr1:
+ 950 0003 3000      		.word	48
+ 952               	.global	mem_addr
+ 955               	mem_addr:
+ 956 0005 3000      		.word	48
+ 958               	.global	mcusr_mirror
+ 959               		.section	.noinit,"aw",@nobits
+ 962               	mcusr_mirror:
+ 963 0000 00        		.zero	1
+ 965               		.text
+ 967               	.Letext0:
+ 968               		.ident	"GCC: (Gentoo 7.2.0-r1 p1.1) 7.2.0"
+ 969               	.global __do_copy_data
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 bootloader.c
+     /tmp/ccA5NtFr.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccA5NtFr.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccA5NtFr.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccA5NtFr.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccA5NtFr.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccA5NtFr.s:123    .text:0000000000000000 writeToPageBuffer
+     /tmp/ccA5NtFr.s:220    .text:000000000000004a writePageBufferToFlash
+     /tmp/ccA5NtFr.s:268    .init3:0000000000000000 get_mcusr
+     /tmp/ccA5NtFr.s:962    .noinit:0000000000000000 mcusr_mirror
+     /tmp/ccA5NtFr.s:320    .text.startup:0000000000000000 main
+     /tmp/ccA5NtFr.s:943    .data:0000000000000002 ic_addr
+     /tmp/ccA5NtFr.s:949    .data:0000000000000003 mem_addr1
+     /tmp/ccA5NtFr.s:937    .data:0000000000000000 application_crc_expected_index
+     /tmp/ccA5NtFr.s:955    .data:0000000000000005 mem_addr
+
+UNDEFINED SYMBOLS
+twi_master_init
+twi_master_read16_reg8
+twi_master_read16_reg16
+twi_master_write16_reg8
+__udivmodhi4
+__do_copy_data

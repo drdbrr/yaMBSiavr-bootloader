@@ -1,0 +1,2224 @@
+GAS LISTING /tmp/cclcKRNp.s 			page 1
+
+
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.stabs	"/home/drjacka/modbus/yaMBSiavr_8/",100,0,2,.Ltext0
+   8               		.stabs	"main.c",100,0,2,.Ltext0
+   9               		.text
+  10               	.Ltext0:
+  11               		.stabs	"gcc2_compiled.",60,0,0,0
+  12               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  13               		.stabs	"char:t(0,2)=@s8;r(0,2);0;255;",128,0,0,0
+  14               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  15               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  16               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  17               		.stabs	"__int128:t(0,6)=@s128;r(0,6);02000000000000000000000000000000000000000000;0177777777777777
+  18               		.stabs	"__int128 unsigned:t(0,7)=@s128;r(0,7);0;03777777777777777777777777777777777777777777;",128
+  19               		.stabs	"long long int:t(0,8)=@s64;r(0,8);01000000000000000000000;00777777777777777777777;",128,0,0
+  20               		.stabs	"long long unsigned int:t(0,9)=@s64;r(0,9);0;01777777777777777777777;",128,0,0,0
+  21               		.stabs	"short int:t(0,10)=r(0,10);-32768;32767;",128,0,0,0
+  22               		.stabs	"short unsigned int:t(0,11)=r(0,11);0;0177777;",128,0,0,0
+  23               		.stabs	"signed char:t(0,12)=@s8;r(0,12);-128;127;",128,0,0,0
+  24               		.stabs	"unsigned char:t(0,13)=@s8;r(0,13);0;255;",128,0,0,0
+  25               		.stabs	"float:t(0,14)=r(0,1);4;0;",128,0,0,0
+  26               		.stabs	"double:t(0,15)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"long double:t(0,16)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"_Float32:t(0,17)=r(0,1);4;0;",128,0,0,0
+  29               		.stabs	"short _Fract:t(0,18)=r(0,1);1;0;",128,0,0,0
+  30               		.stabs	"_Fract:t(0,19)=r(0,1);2;0;",128,0,0,0
+  31               		.stabs	"long _Fract:t(0,20)=r(0,1);4;0;",128,0,0,0
+  32               		.stabs	"long long _Fract:t(0,21)=r(0,1);8;0;",128,0,0,0
+  33               		.stabs	"unsigned short _Fract:t(0,22)=r(0,1);1;0;",128,0,0,0
+  34               		.stabs	"unsigned _Fract:t(0,23)=r(0,1);2;0;",128,0,0,0
+  35               		.stabs	"unsigned long _Fract:t(0,24)=r(0,1);4;0;",128,0,0,0
+  36               		.stabs	"unsigned long long _Fract:t(0,25)=r(0,1);8;0;",128,0,0,0
+  37               		.stabs	"_Sat short _Fract:t(0,26)=r(0,1);1;0;",128,0,0,0
+  38               		.stabs	"_Sat _Fract:t(0,27)=r(0,1);2;0;",128,0,0,0
+  39               		.stabs	"_Sat long _Fract:t(0,28)=r(0,1);4;0;",128,0,0,0
+  40               		.stabs	"_Sat long long _Fract:t(0,29)=r(0,1);8;0;",128,0,0,0
+  41               		.stabs	"_Sat unsigned short _Fract:t(0,30)=r(0,1);1;0;",128,0,0,0
+  42               		.stabs	"_Sat unsigned _Fract:t(0,31)=r(0,1);2;0;",128,0,0,0
+  43               		.stabs	"_Sat unsigned long _Fract:t(0,32)=r(0,1);4;0;",128,0,0,0
+  44               		.stabs	"_Sat unsigned long long _Fract:t(0,33)=r(0,1);8;0;",128,0,0,0
+  45               		.stabs	"short _Accum:t(0,34)=r(0,1);2;0;",128,0,0,0
+  46               		.stabs	"_Accum:t(0,35)=r(0,1);4;0;",128,0,0,0
+  47               		.stabs	"long _Accum:t(0,36)=r(0,1);8;0;",128,0,0,0
+  48               		.stabs	"long long _Accum:t(0,37)=r(0,1);8;0;",128,0,0,0
+  49               		.stabs	"unsigned short _Accum:t(0,38)=r(0,1);2;0;",128,0,0,0
+  50               		.stabs	"unsigned _Accum:t(0,39)=r(0,1);4;0;",128,0,0,0
+  51               		.stabs	"unsigned long _Accum:t(0,40)=r(0,1);8;0;",128,0,0,0
+  52               		.stabs	"unsigned long long _Accum:t(0,41)=r(0,1);8;0;",128,0,0,0
+  53               		.stabs	"_Sat short _Accum:t(0,42)=r(0,1);2;0;",128,0,0,0
+  54               		.stabs	"_Sat _Accum:t(0,43)=r(0,1);4;0;",128,0,0,0
+  55               		.stabs	"_Sat long _Accum:t(0,44)=r(0,1);8;0;",128,0,0,0
+  56               		.stabs	"_Sat long long _Accum:t(0,45)=r(0,1);8;0;",128,0,0,0
+  57               		.stabs	"_Sat unsigned short _Accum:t(0,46)=r(0,1);2;0;",128,0,0,0
+GAS LISTING /tmp/cclcKRNp.s 			page 2
+
+
+  58               		.stabs	"_Sat unsigned _Accum:t(0,47)=r(0,1);4;0;",128,0,0,0
+  59               		.stabs	"_Sat unsigned long _Accum:t(0,48)=r(0,1);8;0;",128,0,0,0
+  60               		.stabs	"_Sat unsigned long long _Accum:t(0,49)=r(0,1);8;0;",128,0,0,0
+  61               		.stabs	"void:t(0,50)=(0,50)",128,0,0,0
+  62               		.stabs	"/usr/avr/include/stdlib.h",130,0,0,0
+  63               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stddef.h",130,0,0,0
+  64               		.stabs	"size_t:t(2,1)=(0,4)",128,0,216,0
+  65               		.stabs	"wchar_t:t(2,2)=(0,1)",128,0,328,0
+  66               		.stabn	162,0,0,0
+  67               		.stabs	"div_t:t(1,1)=(1,2)=s4quot:(0,1),0,16;rem:(0,1),16,16;;",128,0,73,0
+  68               		.stabs	"ldiv_t:t(1,3)=(1,4)=s8quot:(0,3),0,32;rem:(0,3),32,32;;",128,0,79,0
+  69               		.stabs	"__compar_fn_t:t(1,5)=(1,6)=*(1,7)=f(0,1)",128,0,82,0
+  70               		.stabn	162,0,0,0
+  71               		.stabs	"/usr/avr/include/avr/pgmspace.h",130,0,0,0
+  72               		.stabs	"/usr/avr/include/inttypes.h",130,0,0,0
+  73               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stdint.h",130,0,0,0
+  74               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stdint-gcc.h",130,0,0,0
+  75               		.stabs	"int8_t:t(6,1)=(0,12)",128,0,34,0
+  76               		.stabs	"int16_t:t(6,2)=(0,1)",128,0,37,0
+  77               		.stabs	"int32_t:t(6,3)=(0,3)",128,0,40,0
+  78               		.stabs	"int64_t:t(6,4)=(0,8)",128,0,43,0
+  79               		.stabs	"uint8_t:t(6,5)=(0,13)",128,0,46,0
+  80               		.stabs	"uint16_t:t(6,6)=(0,4)",128,0,49,0
+  81               		.stabs	"uint32_t:t(6,7)=(0,5)",128,0,52,0
+  82               		.stabs	"uint64_t:t(6,8)=(0,9)",128,0,55,0
+  83               		.stabs	"int_least8_t:t(6,9)=(0,12)",128,0,60,0
+  84               		.stabs	"int_least16_t:t(6,10)=(0,1)",128,0,61,0
+  85               		.stabs	"int_least32_t:t(6,11)=(0,3)",128,0,62,0
+  86               		.stabs	"int_least64_t:t(6,12)=(0,8)",128,0,63,0
+  87               		.stabs	"uint_least8_t:t(6,13)=(0,13)",128,0,64,0
+  88               		.stabs	"uint_least16_t:t(6,14)=(0,4)",128,0,65,0
+  89               		.stabs	"uint_least32_t:t(6,15)=(0,5)",128,0,66,0
+  90               		.stabs	"uint_least64_t:t(6,16)=(0,9)",128,0,67,0
+  91               		.stabs	"int_fast8_t:t(6,17)=(0,12)",128,0,71,0
+  92               		.stabs	"int_fast16_t:t(6,18)=(0,1)",128,0,72,0
+  93               		.stabs	"int_fast32_t:t(6,19)=(0,3)",128,0,73,0
+  94               		.stabs	"int_fast64_t:t(6,20)=(0,8)",128,0,74,0
+  95               		.stabs	"uint_fast8_t:t(6,21)=(0,13)",128,0,75,0
+  96               		.stabs	"uint_fast16_t:t(6,22)=(0,4)",128,0,76,0
+  97               		.stabs	"uint_fast32_t:t(6,23)=(0,5)",128,0,77,0
+  98               		.stabs	"uint_fast64_t:t(6,24)=(0,9)",128,0,78,0
+  99               		.stabs	"intptr_t:t(6,25)=(0,1)",128,0,83,0
+ 100               		.stabs	"uintptr_t:t(6,26)=(0,4)",128,0,86,0
+ 101               		.stabs	"intmax_t:t(6,27)=(0,8)",128,0,91,0
+ 102               		.stabs	"uintmax_t:t(6,28)=(0,9)",128,0,92,0
+ 103               		.stabn	162,0,0,0
+ 104               		.stabn	162,0,0,0
+ 105               		.stabs	"int_farptr_t:t(4,1)=(6,3)",128,0,77,0
+ 106               		.stabs	"uint_farptr_t:t(4,2)=(6,7)",128,0,81,0
+ 107               		.stabn	162,0,0,0
+ 108               		.stabs	"/usr/avr/include/avr/io.h",130,0,0,0
+ 109               		.stabs	"/usr/avr/include/avr/fuse.h",130,0,0,0
+ 110               		.stabs	"__fuse_t:t(8,1)=(8,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
+ 111               		.stabn	162,0,0,0
+ 112               		.stabn	162,0,0,0
+ 113               		.stabn	162,0,0,0
+ 114               		.stabs	"/usr/avr/include/stdio.h",130,0,0,0
+GAS LISTING /tmp/cclcKRNp.s 			page 3
+
+
+ 115               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stdarg.h",130,0,0,0
+ 116               		.stabs	"__gnuc_va_list:t(10,1)=(10,2)=*(0,50)",128,0,40,0
+ 117               		.stabs	"va_list:t(10,3)=(10,1)",128,0,99,0
+ 118               		.stabn	162,0,0,0
+ 119               		.stabs	"__file:T(9,1)=s14buf:(9,2)=*(0,2),0,16;unget:(0,13),16,8;flags:(6,5),24,8;size:(0,1),32,16
+ 120               		.stabs	"FILE:t(9,8)=(9,1)",128,0,277,0
+ 121               		.stabs	"fpos_t:t(9,9)=(0,8)",128,0,950,0
+ 122               		.stabn	162,0,0,0
+ 123               		.stabs	"flash.h",130,0,0,0
+ 124               		.stabs	"/usr/avr/include/avr/boot.h",130,0,0,0
+ 125               		.stabs	"/usr/avr/include/avr/eeprom.h",130,0,0,0
+ 126               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stddef.h",130,0,0,0
+ 127               		.stabs	"ptrdiff_t:t(14,1)=(0,1)",128,0,149,0
+ 128               		.stabn	162,0,0,0
+ 129               		.stabn	162,0,0,0
+ 130               		.stabn	162,0,0,0
+ 131               		.stabn	162,0,0,0
+ 132               		.stabs	"bool:t(0,51)=(0,1)",128,0,34,0
+ 133               		.stabs	"jmp_instruction:c=i37900",128,0,0,0
+ 134               		.stabs	"timer0100us_start:F(0,50)",36,0,52,timer0100us_start
+ 135               	.global	timer0100us_start
+ 136               		.type	timer0100us_start, @function
+ 137               	timer0100us_start:
+ 138               		.stabd	46,0,0
+   1:main.c        **** /*
+   2:main.c        ****  *  Created: 04.02.2016
+   3:main.c        ****  *  Author: Max Brueggemann
+   4:main.c        ****  */ 
+   5:main.c        **** 
+   6:main.c        **** /*
+   7:main.c        **** *	An example project implementing a simple modbus slave device using an
+   8:main.c        **** *	ATmega88PA running at 20MHz.
+   9:main.c        **** *	Baudrate: 38400, 8 data bits, 1 stop bit, no parity
+  10:main.c        **** *	Your busmaster can read/write the following data:
+  11:main.c        **** *	coils: 0 to 7
+  12:main.c        **** *	discrete inputs: 0 to 7
+  13:main.c        **** *	input registers: 0 to 3
+  14:main.c        **** *	holding registers: 0 to 3
+  15:main.c        **** */
+  16:main.c        **** 
+  17:main.c        **** #include <stdlib.h>
+  18:main.c        **** #include <string.h>
+  19:main.c        **** #include <math.h> //include libm
+  20:main.c        **** #include <avr/pgmspace.h>
+  21:main.c        **** #include <stdio.h>
+  22:main.c        **** #include <avr/io.h>
+  23:main.c        **** #include <avr/interrupt.h>
+  24:main.c        **** #include <avr/wdt.h>
+  25:main.c        **** #include "yaMBSiavr.h"
+  26:main.c        **** #include "twi_master/twi_master.h"
+  27:main.c        **** #include "flash.h"
+  28:main.c        **** 
+  29:main.c        **** #include <avr/boot.h>
+  30:main.c        **** #include <avr/eeprom.h>
+  31:main.c        **** 
+  32:main.c        **** #include "crc32.h"
+  33:main.c        **** 
+GAS LISTING /tmp/cclcKRNp.s 			page 4
+
+
+  34:main.c        **** typedef int bool;
+  35:main.c        **** #define true  1
+  36:main.c        **** #define false 0
+  37:main.c        **** 
+  38:main.c        **** #define clientAddress 0x06
+  39:main.c        **** 
+  40:main.c        **** volatile uint8_t instate = 0;
+  41:main.c        **** volatile uint8_t outstate = 0;
+  42:main.c        **** volatile uint16_t inputRegisters[4];
+  43:main.c        **** volatile uint16_t holdingRegisters[20];
+  44:main.c        **** volatile uint16_t internalRegisters[10];
+  45:main.c        **** 
+  46:main.c        **** uint16_t mem_addr = 0x0030; //firmware start address (application_start_address_byte_offset)
+  47:main.c        **** uint16_t mem_addr1 = 0x0030;
+  48:main.c        **** 
+  49:main.c        **** volatile uint8_t ic_addr = 0x50;
+  50:main.c        **** volatile uint16_t application_crc_expected_index = 28;
+  51:main.c        **** 
+  52:main.c        **** void timer0100us_start(void) {
+ 139               		.stabn	68,0,52,.LM0-.LFBB1
+ 140               	.LM0:
+ 141               	.LFBB1:
+ 142               	/* prologue: function */
+ 143               	/* frame size = 0 */
+ 144               	/* stack size = 0 */
+ 145               	.L__stack_usage = 0
+  53:main.c        **** 	TCCR0B|=(1<<CS01); //prescaler 8
+ 146               		.stabn	68,0,53,.LM1-.LFBB1
+ 147               	.LM1:
+ 148 0000 85B5      		in r24,0x25
+ 149 0002 8260      		ori r24,lo8(2)
+ 150 0004 85BD      		out 0x25,r24
+  54:main.c        **** 	TIMSK0|=(1<<TOIE0);
+ 151               		.stabn	68,0,54,.LM2-.LFBB1
+ 152               	.LM2:
+ 153 0006 EEE6      		ldi r30,lo8(110)
+ 154 0008 F0E0      		ldi r31,0
+ 155 000a 8081      		ld r24,Z
+ 156 000c 8160      		ori r24,lo8(1)
+ 157 000e 8083      		st Z,r24
+ 158               	/* epilogue start */
+  55:main.c        **** }
+ 159               		.stabn	68,0,55,.LM3-.LFBB1
+ 160               	.LM3:
+ 161 0010 0895      		ret
+ 162               		.size	timer0100us_start, .-timer0100us_start
+ 163               	.Lscope1:
+ 164               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 165               		.stabd	78,0,0
+ 166               		.stabs	"SetOuts:F(0,50)",36,0,60,SetOuts
+ 167               		.stabs	"in:p(0,52)=B(6,5)",160,0,60,1
+ 168               	.global	SetOuts
+ 169               		.type	SetOuts, @function
+ 170               	SetOuts:
+ 171               		.stabd	46,0,0
+  56:main.c        **** 
+  57:main.c        **** /*
+GAS LISTING /tmp/cclcKRNp.s 			page 5
+
+
+  58:main.c        **** *   Modify the following 3 functions to implement your own pin configurations...
+  59:main.c        **** */
+  60:main.c        **** void SetOuts(volatile uint8_t in) {
+ 172               		.stabn	68,0,60,.LM4-.LFBB2
+ 173               	.LM4:
+ 174               	.LFBB2:
+ 175 0012 A1E0      		ldi r26,lo8(1)
+ 176 0014 B0E0      		ldi r27,0
+ 177 0016 E0E0      		ldi r30,lo8(gs(1f))
+ 178 0018 F0E0      		ldi r31,hi8(gs(1f))
+ 179 001a 0C94 0000 		jmp __prologue_saves__+((18 - 2) * 2)
+ 180               	1:
+ 181               	/* prologue: function */
+ 182               	/* frame size = 1 */
+ 183               	/* stack size = 3 */
+ 184               	.L__stack_usage = 3
+ 185 001e 8983      		std Y+1,r24
+  61:main.c        **** 	PORTD|= (((in & (1<<3))<<4) | ((in & (1<<4))<<1) | ((in & (1<<5))<<1));
+ 186               		.stabn	68,0,61,.LM5-.LFBB2
+ 187               	.LM5:
+ 188 0020 8981      		ldd r24,Y+1
+ 189 0022 4981      		ldd r20,Y+1
+ 190 0024 2981      		ldd r18,Y+1
+ 191 0026 6BB1      		in r22,0xb
+ 192 0028 30E1      		ldi r19,lo8(16)
+ 193 002a 839F      		mul r24,r19
+ 194 002c C001      		movw r24,r0
+ 195 002e 1124      		clr __zero_reg__
+ 196 0030 8078      		andi r24,128
+ 197 0032 9927      		clr r25
+ 198 0034 50E0      		ldi r21,0
+ 199 0036 440F      		lsl r20
+ 200 0038 551F      		rol r21
+ 201 003a 4072      		andi r20,32
+ 202 003c 5527      		clr r21
+ 203 003e 842B      		or r24,r20
+ 204 0040 30E0      		ldi r19,0
+ 205 0042 220F      		lsl r18
+ 206 0044 331F      		rol r19
+ 207 0046 2074      		andi r18,64
+ 208 0048 3327      		clr r19
+ 209 004a 822B      		or r24,r18
+ 210 004c 862B      		or r24,r22
+ 211 004e 8BB9      		out 0xb,r24
+  62:main.c        **** 	//PORTB|= (((in & (1<<0))<<2) | ((in & (1<<1))) | ((in & (1<<2))>>2));
+  63:main.c        **** 	in=~in;
+ 212               		.stabn	68,0,63,.LM6-.LFBB2
+ 213               	.LM6:
+ 214 0050 8981      		ldd r24,Y+1
+ 215 0052 8095      		com r24
+ 216 0054 8983      		std Y+1,r24
+  64:main.c        **** 	//PORTB&= ~(((in & (1<<0))<<2) | ((in & (1<<1))) | ((in & (1<<2))>>2));
+  65:main.c        **** 	PORTD&= ~(((in & (1<<3))<<4) | ((in & (1<<4))<<1) | ((in & (1<<5))<<1));
+ 217               		.stabn	68,0,65,.LM7-.LFBB2
+ 218               	.LM7:
+ 219 0056 8981      		ldd r24,Y+1
+ 220 0058 4981      		ldd r20,Y+1
+GAS LISTING /tmp/cclcKRNp.s 			page 6
+
+
+ 221 005a 2981      		ldd r18,Y+1
+ 222 005c 6BB1      		in r22,0xb
+ 223 005e 30E1      		ldi r19,lo8(16)
+ 224 0060 839F      		mul r24,r19
+ 225 0062 C001      		movw r24,r0
+ 226 0064 1124      		clr __zero_reg__
+ 227 0066 8078      		andi r24,128
+ 228 0068 9927      		clr r25
+ 229 006a 50E0      		ldi r21,0
+ 230 006c 440F      		lsl r20
+ 231 006e 551F      		rol r21
+ 232 0070 4072      		andi r20,32
+ 233 0072 5527      		clr r21
+ 234 0074 842B      		or r24,r20
+ 235 0076 952B      		or r25,r21
+ 236 0078 30E0      		ldi r19,0
+ 237 007a 220F      		lsl r18
+ 238 007c 331F      		rol r19
+ 239 007e 2074      		andi r18,64
+ 240 0080 3327      		clr r19
+ 241 0082 822B      		or r24,r18
+ 242 0084 932B      		or r25,r19
+ 243 0086 8095      		com r24
+ 244 0088 9095      		com r25
+ 245 008a 8623      		and r24,r22
+ 246 008c 8BB9      		out 0xb,r24
+ 247               	/* epilogue start */
+  66:main.c        **** }
+ 248               		.stabn	68,0,66,.LM8-.LFBB2
+ 249               	.LM8:
+ 250 008e 2196      		adiw r28,1
+ 251 0090 E2E0      		ldi r30, lo8(2)
+ 252 0092 0C94 0000 		jmp __epilogue_restores__ + ((18 - 2) * 2)
+ 253               		.size	SetOuts, .-SetOuts
+ 254               	.Lscope2:
+ 255               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 256               		.stabd	78,0,0
+ 257               		.stabs	"ReadIns:F(6,5)",36,0,68,ReadIns
+ 258               	.global	ReadIns
+ 259               		.type	ReadIns, @function
+ 260               	ReadIns:
+ 261               		.stabd	46,0,0
+  67:main.c        **** 
+  68:main.c        **** uint8_t ReadIns(void) {
+ 262               		.stabn	68,0,68,.LM9-.LFBB3
+ 263               	.LM9:
+ 264               	.LFBB3:
+ 265               	/* prologue: function */
+ 266               	/* frame size = 0 */
+ 267               	/* stack size = 0 */
+ 268               	.L__stack_usage = 0
+  69:main.c        **** 	uint8_t ins=0x00;
+  70:main.c        **** 	ins|=(PINC&((1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4)|(1<<5)));
+ 269               		.stabn	68,0,70,.LM10-.LFBB3
+ 270               	.LM10:
+ 271 0096 46B1      		in r20,0x6
+  71:main.c        **** 	ins|=(((PIND&(1<<4))<<2)|((PIND&(1<<3))<<4));
+GAS LISTING /tmp/cclcKRNp.s 			page 7
+
+
+ 272               		.stabn	68,0,71,.LM11-.LFBB3
+ 273               	.LM11:
+ 274 0098 29B1      		in r18,0x9
+ 275 009a 89B1      		in r24,0x9
+ 276 009c 54E0      		ldi r21,lo8(4)
+ 277 009e 259F      		mul r18,r21
+ 278 00a0 9001      		movw r18,r0
+ 279 00a2 1124      		clr __zero_reg__
+ 280 00a4 2074      		andi r18,64
+ 281 00a6 3327      		clr r19
+ 282 00a8 50E1      		ldi r21,lo8(16)
+ 283 00aa 859F      		mul r24,r21
+ 284 00ac C001      		movw r24,r0
+ 285 00ae 1124      		clr __zero_reg__
+ 286 00b0 8078      		andi r24,128
+ 287 00b2 9927      		clr r25
+ 288 00b4 282B      		or r18,r24
+  70:main.c        **** 	ins|=(((PIND&(1<<4))<<2)|((PIND&(1<<3))<<4));
+ 289               		.stabn	68,0,70,.LM12-.LFBB3
+ 290               	.LM12:
+ 291 00b6 842F      		mov r24,r20
+ 292 00b8 8F73      		andi r24,lo8(63)
+  72:main.c        **** 	return ins;
+  73:main.c        **** }
+ 293               		.stabn	68,0,73,.LM13-.LFBB3
+ 294               	.LM13:
+ 295 00ba 822B      		or r24,r18
+ 296               	/* epilogue start */
+ 297 00bc 0895      		ret
+ 298               		.size	ReadIns, .-ReadIns
+ 299               	.Lscope3:
+ 300               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 301               		.stabd	78,0,0
+ 302               		.stabs	"io_conf:F(0,50)",36,0,75,io_conf
+ 303               	.global	io_conf
+ 304               		.type	io_conf, @function
+ 305               	io_conf:
+ 306               		.stabd	46,0,0
+  74:main.c        **** 
+  75:main.c        **** void io_conf(void) { 
+ 307               		.stabn	68,0,75,.LM14-.LFBB4
+ 308               	.LM14:
+ 309               	.LFBB4:
+ 310               	/* prologue: function */
+ 311               	/* frame size = 0 */
+ 312               	/* stack size = 0 */
+ 313               	.L__stack_usage = 0
+  76:main.c        **** 	/*
+  77:main.c        **** 	 Outputs: PB2,PB1,PB0,PD7,PD5,PD6
+  78:main.c        **** 	 Inputs: PC0, PC1, PC2, PC3, PC4, PC6, PD4, PD3
+  79:main.c        **** 	*/
+  80:main.c        **** 	DDRD=0x00;
+ 314               		.stabn	68,0,80,.LM15-.LFBB4
+ 315               	.LM15:
+ 316 00be 1AB8      		out 0xa,__zero_reg__
+  81:main.c        **** 	//DDRB=0x00;
+  82:main.c        **** 	DDRC=0x00;
+GAS LISTING /tmp/cclcKRNp.s 			page 8
+
+
+ 317               		.stabn	68,0,82,.LM16-.LFBB4
+ 318               	.LM16:
+ 319 00c0 17B8      		out 0x7,__zero_reg__
+  83:main.c        **** 	PORTD=0x00;
+ 320               		.stabn	68,0,83,.LM17-.LFBB4
+ 321               	.LM17:
+ 322 00c2 1BB8      		out 0xb,__zero_reg__
+  84:main.c        **** 	//PORTB=0x00;
+  85:main.c        **** 	PORTC=0x00;
+ 323               		.stabn	68,0,85,.LM18-.LFBB4
+ 324               	.LM18:
+ 325 00c4 18B8      		out 0x8,__zero_reg__
+  86:main.c        **** 	PORTD|=(1<<0);
+ 326               		.stabn	68,0,86,.LM19-.LFBB4
+ 327               	.LM19:
+ 328 00c6 589A      		sbi 0xb,0
+  87:main.c        **** 	DDRD |= (1<<2)|(1<<5)|(1<<6)|(1<<7);
+ 329               		.stabn	68,0,87,.LM20-.LFBB4
+ 330               	.LM20:
+ 331 00c8 8AB1      		in r24,0xa
+ 332 00ca 846E      		ori r24,lo8(-28)
+ 333 00cc 8AB9      		out 0xa,r24
+  88:main.c        **** 	DDRB |= (1<<0)|(1<<1);//|(1<<2)|(1<<3);
+ 334               		.stabn	68,0,88,.LM21-.LFBB4
+ 335               	.LM21:
+ 336 00ce 84B1      		in r24,0x4
+ 337 00d0 8360      		ori r24,lo8(3)
+ 338 00d2 84B9      		out 0x4,r24
+ 339               	/* epilogue start */
+  89:main.c        **** }
+ 340               		.stabn	68,0,89,.LM22-.LFBB4
+ 341               	.LM22:
+ 342 00d4 0895      		ret
+ 343               		.size	io_conf, .-io_conf
+ 344               	.Lscope4:
+ 345               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 346               		.stabd	78,0,0
+ 347               		.stabs	"__vector_16:F(0,50)",36,0,91,__vector_16
+ 348               	.global	__vector_16
+ 349               		.type	__vector_16, @function
+ 350               	__vector_16:
+ 351               		.stabd	46,0,0
+  90:main.c        **** 
+  91:main.c        **** ISR(TIMER0_OVF_vect) { //this ISR is called 9765.625 times per second
+ 352               		.stabn	68,0,91,.LM23-.LFBB5
+ 353               	.LM23:
+ 354               	.LFBB5:
+ 355 00d6 1F92      		push r1
+ 356 00d8 0F92      		push r0
+ 357 00da 0FB6      		in r0,__SREG__
+ 358 00dc 0F92      		push r0
+ 359 00de 1124      		clr __zero_reg__
+ 360 00e0 2F93      		push r18
+ 361 00e2 3F93      		push r19
+ 362 00e4 4F93      		push r20
+ 363 00e6 5F93      		push r21
+ 364 00e8 6F93      		push r22
+GAS LISTING /tmp/cclcKRNp.s 			page 9
+
+
+ 365 00ea 7F93      		push r23
+ 366 00ec 8F93      		push r24
+ 367 00ee 9F93      		push r25
+ 368 00f0 AF93      		push r26
+ 369 00f2 BF93      		push r27
+ 370 00f4 EF93      		push r30
+ 371 00f6 FF93      		push r31
+ 372               	/* prologue: Signal */
+ 373               	/* frame size = 0 */
+ 374               	/* stack size = 15 */
+ 375               	.L__stack_usage = 15
+  92:main.c        ****     
+  93:main.c        **** 	modbusTickTimer();
+ 376               		.stabn	68,0,93,.LM24-.LFBB5
+ 377               	.LM24:
+ 378 00f8 0E94 0000 		call modbusTickTimer
+ 379               	/* epilogue start */
+  94:main.c        **** }
+ 380               		.stabn	68,0,94,.LM25-.LFBB5
+ 381               	.LM25:
+ 382 00fc FF91      		pop r31
+ 383 00fe EF91      		pop r30
+ 384 0100 BF91      		pop r27
+ 385 0102 AF91      		pop r26
+ 386 0104 9F91      		pop r25
+ 387 0106 8F91      		pop r24
+ 388 0108 7F91      		pop r23
+ 389 010a 6F91      		pop r22
+ 390 010c 5F91      		pop r21
+ 391 010e 4F91      		pop r20
+ 392 0110 3F91      		pop r19
+ 393 0112 2F91      		pop r18
+ 394 0114 0F90      		pop r0
+ 395 0116 0FBE      		out __SREG__,r0
+ 396 0118 0F90      		pop r0
+ 397 011a 1F90      		pop r1
+ 398 011c 1895      		reti
+ 399               		.size	__vector_16, .-__vector_16
+ 400               	.Lscope5:
+ 401               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 402               		.stabd	78,0,0
+ 403               		.stabs	"modbusGet:F(0,50)",36,0,96,modbusGet
+ 404               	.global	modbusGet
+ 405               		.type	modbusGet, @function
+ 406               	modbusGet:
+ 407               		.stabd	46,0,0
+  95:main.c        **** 
+  96:main.c        **** void modbusGet(void) {
+ 408               		.stabn	68,0,96,.LM26-.LFBB6
+ 409               	.LM26:
+ 410               	.LFBB6:
+ 411 011e A1E0      		ldi r26,lo8(1)
+ 412 0120 B0E0      		ldi r27,0
+ 413 0122 E0E0      		ldi r30,lo8(gs(1f))
+ 414 0124 F0E0      		ldi r31,hi8(gs(1f))
+ 415 0126 0C94 0000 		jmp __prologue_saves__+((18 - 2) * 2)
+ 416               	1:
+GAS LISTING /tmp/cclcKRNp.s 			page 10
+
+
+ 417               	/* prologue: function */
+ 418               	/* frame size = 1 */
+ 419               	/* stack size = 3 */
+ 420               	.L__stack_usage = 3
+  97:main.c        **** 	if (modbusGetBusState() & (1<<ReceiveCompleted))
+ 421               		.stabn	68,0,97,.LM27-.LFBB6
+ 422               	.LM27:
+ 423 012a 0E94 0000 		call modbusGetBusState
+ 424 012e 83FF      		sbrs r24,3
+ 425 0130 00C0      		rjmp .L6
+ 426               	.LBB11:
+ 427               	.LBB12:
+  98:main.c        **** 	{
+  99:main.c        **** 		switch(rxbuffer[1]) {
+ 428               		.stabn	68,0,99,.LM28-.LFBB6
+ 429               	.LM28:
+ 430 0132 E091 0000 		lds r30,rxbuffer+1
+ 431 0136 E150      		subi r30,lo8(-(-1))
+ 432 0138 E031      		cpi r30,lo8(16)
+ 433 013a 00F0      		brlo .+2
+ 434 013c 00C0      		rjmp .L8
+ 435 013e F0E0      		ldi r31,0
+ 436 0140 E050      		subi r30,lo8(-(gs(.L10)))
+ 437 0142 F040      		sbci r31,hi8(-(gs(.L10)))
+ 438 0144 0C94 0000 		jmp __tablejump2__
+ 439               		.p2align	1
+ 440               	.L10:
+ 441 0148 0000      		.word gs(.L9)
+ 442 014a 0000      		.word gs(.L11)
+ 443 014c 0000      		.word gs(.L12)
+ 444 014e 0000      		.word gs(.L13)
+ 445 0150 0000      		.word gs(.L16)
+ 446 0152 0000      		.word gs(.L15)
+ 447 0154 0000      		.word gs(.L8)
+ 448 0156 0000      		.word gs(.L8)
+ 449 0158 0000      		.word gs(.L8)
+ 450 015a 0000      		.word gs(.L8)
+ 451 015c 0000      		.word gs(.L8)
+ 452 015e 0000      		.word gs(.L8)
+ 453 0160 0000      		.word gs(.L8)
+ 454 0162 0000      		.word gs(.L8)
+ 455 0164 0000      		.word gs(.L16)
+ 456 0166 0000      		.word gs(.L15)
+ 457               	.L9:
+ 100:main.c        **** 			case fcReadCoilStatus: {
+ 101:main.c        **** 				modbusExchangeBits(&outstate,0,8);
+ 458               		.stabn	68,0,101,.LM29-.LFBB6
+ 459               	.LM29:
+ 460 0168 48E0      		ldi r20,lo8(8)
+ 461 016a 50E0      		ldi r21,0
+ 462 016c 70E0      		ldi r23,0
+ 463 016e 60E0      		ldi r22,0
+ 464 0170 80E0      		ldi r24,lo8(outstate)
+ 465 0172 90E0      		ldi r25,hi8(outstate)
+ 466               	.L20:
+ 467               	.LBB13:
+ 102:main.c        **** 			}
+GAS LISTING /tmp/cclcKRNp.s 			page 11
+
+
+ 103:main.c        **** 			break;
+ 104:main.c        **** 			
+ 105:main.c        **** 			case fcReadInputStatus: {
+ 106:main.c        **** 				volatile uint8_t inps = ReadIns();
+ 107:main.c        **** 				modbusExchangeBits(&inps,0,8);
+ 468               		.stabn	68,0,107,.LM30-.LFBB6
+ 469               	.LM30:
+ 470 0174 0E94 0000 		call modbusExchangeBits
+ 471               	.L6:
+ 472               	/* epilogue start */
+ 473               	.LBE13:
+ 474               	.LBE12:
+ 475               	.LBE11:
+ 108:main.c        **** 			}
+ 109:main.c        **** 			break;
+ 110:main.c        **** 			
+ 111:main.c        **** 			case fcReadHoldingRegisters: {
+ 112:main.c        **** 				modbusExchangeRegisters(internalRegisters,0,10);
+ 113:main.c        **** 			}
+ 114:main.c        **** 			break;
+ 115:main.c        **** 			
+ 116:main.c        **** 			case fcReadInputRegisters: {
+ 117:main.c        **** 				modbusExchangeRegisters(inputRegisters,0,4);
+ 118:main.c        **** 			}
+ 119:main.c        **** 			break;
+ 120:main.c        **** 			
+ 121:main.c        **** 			case fcForceSingleCoil: {
+ 122:main.c        **** 				modbusExchangeBits(&outstate,0,8);
+ 123:main.c        **** 				SetOuts(outstate);
+ 124:main.c        **** 			}
+ 125:main.c        **** 			break;
+ 126:main.c        **** 			
+ 127:main.c        **** 			case fcPresetSingleRegister: {
+ 128:main.c        **** 				modbusExchangeRegisters(holdingRegisters,0,20);
+ 129:main.c        **** 			}
+ 130:main.c        **** 			break;
+ 131:main.c        **** 			
+ 132:main.c        **** 			case fcForceMultipleCoils: {
+ 133:main.c        **** 				modbusExchangeBits(&outstate,0,8);
+ 134:main.c        **** 				SetOuts(outstate);
+ 135:main.c        **** 			}
+ 136:main.c        **** 			break;
+ 137:main.c        **** 			
+ 138:main.c        **** 			case fcPresetMultipleRegisters: {
+ 139:main.c        **** 				modbusExchangeRegisters(holdingRegisters,0,20);
+ 140:main.c        **** 			}
+ 141:main.c        **** 			break;
+ 142:main.c        **** 			
+ 143:main.c        **** 			default: {
+ 144:main.c        **** 				modbusSendException(ecIllegalFunction);
+ 145:main.c        **** 			}
+ 146:main.c        **** 			break;
+ 147:main.c        **** 		}
+ 148:main.c        **** 	}
+ 149:main.c        **** }
+ 476               		.stabn	68,0,149,.LM31-.LFBB6
+ 477               	.LM31:
+GAS LISTING /tmp/cclcKRNp.s 			page 12
+
+
+ 478 0178 2196      		adiw r28,1
+ 479 017a E2E0      		ldi r30, lo8(2)
+ 480 017c 0C94 0000 		jmp __epilogue_restores__ + ((18 - 2) * 2)
+ 481               	.L11:
+ 482               	.LBB16:
+ 483               	.LBB15:
+ 484               	.LBB14:
+ 106:main.c        **** 				modbusExchangeBits(&inps,0,8);
+ 485               		.stabn	68,0,106,.LM32-.LFBB6
+ 486               	.LM32:
+ 487 0180 0E94 0000 		call ReadIns
+ 488 0184 8983      		std Y+1,r24
+ 107:main.c        **** 			}
+ 489               		.stabn	68,0,107,.LM33-.LFBB6
+ 490               	.LM33:
+ 491 0186 48E0      		ldi r20,lo8(8)
+ 492 0188 50E0      		ldi r21,0
+ 493 018a 70E0      		ldi r23,0
+ 494 018c 60E0      		ldi r22,0
+ 495 018e CE01      		movw r24,r28
+ 496 0190 0196      		adiw r24,1
+ 497 0192 00C0      		rjmp .L20
+ 498               	.L12:
+ 499               	.LBE14:
+ 112:main.c        **** 			}
+ 500               		.stabn	68,0,112,.LM34-.LFBB6
+ 501               	.LM34:
+ 502 0194 4AE0      		ldi r20,lo8(10)
+ 503 0196 50E0      		ldi r21,0
+ 504 0198 70E0      		ldi r23,0
+ 505 019a 60E0      		ldi r22,0
+ 506 019c 80E0      		ldi r24,lo8(internalRegisters)
+ 507 019e 90E0      		ldi r25,hi8(internalRegisters)
+ 508               	.L21:
+ 128:main.c        **** 			}
+ 509               		.stabn	68,0,128,.LM35-.LFBB6
+ 510               	.LM35:
+ 511 01a0 0E94 0000 		call modbusExchangeRegisters
+ 512 01a4 00C0      		rjmp .L6
+ 513               	.L13:
+ 117:main.c        **** 			}
+ 514               		.stabn	68,0,117,.LM36-.LFBB6
+ 515               	.LM36:
+ 516 01a6 44E0      		ldi r20,lo8(4)
+ 517 01a8 50E0      		ldi r21,0
+ 518 01aa 70E0      		ldi r23,0
+ 519 01ac 60E0      		ldi r22,0
+ 520 01ae 80E0      		ldi r24,lo8(inputRegisters)
+ 521 01b0 90E0      		ldi r25,hi8(inputRegisters)
+ 522 01b2 00C0      		rjmp .L21
+ 523               	.L15:
+ 128:main.c        **** 			}
+ 524               		.stabn	68,0,128,.LM37-.LFBB6
+ 525               	.LM37:
+ 526 01b4 44E1      		ldi r20,lo8(20)
+ 527 01b6 50E0      		ldi r21,0
+ 528 01b8 70E0      		ldi r23,0
+GAS LISTING /tmp/cclcKRNp.s 			page 13
+
+
+ 529 01ba 60E0      		ldi r22,0
+ 530 01bc 80E0      		ldi r24,lo8(holdingRegisters)
+ 531 01be 90E0      		ldi r25,hi8(holdingRegisters)
+ 532 01c0 00C0      		rjmp .L21
+ 533               	.L16:
+ 133:main.c        **** 				SetOuts(outstate);
+ 534               		.stabn	68,0,133,.LM38-.LFBB6
+ 535               	.LM38:
+ 536 01c2 48E0      		ldi r20,lo8(8)
+ 537 01c4 50E0      		ldi r21,0
+ 538 01c6 70E0      		ldi r23,0
+ 539 01c8 60E0      		ldi r22,0
+ 540 01ca 80E0      		ldi r24,lo8(outstate)
+ 541 01cc 90E0      		ldi r25,hi8(outstate)
+ 542 01ce 0E94 0000 		call modbusExchangeBits
+ 134:main.c        **** 			}
+ 543               		.stabn	68,0,134,.LM39-.LFBB6
+ 544               	.LM39:
+ 545 01d2 8091 0000 		lds r24,outstate
+ 546 01d6 0E94 0000 		call SetOuts
+ 547 01da 00C0      		rjmp .L6
+ 548               	.L8:
+ 144:main.c        **** 			}
+ 549               		.stabn	68,0,144,.LM40-.LFBB6
+ 550               	.LM40:
+ 551 01dc 81E0      		ldi r24,lo8(1)
+ 552 01de 0E94 0000 		call modbusSendException
+ 553               	.LBE15:
+ 554               	.LBE16:
+ 555               		.stabn	68,0,149,.LM41-.LFBB6
+ 556               	.LM41:
+ 557 01e2 00C0      		rjmp .L6
+ 558               		.size	modbusGet, .-modbusGet
+ 559               		.stabs	"inps:(0,52)",128,0,106,1
+ 560               		.stabn	192,0,0,.LBB13-.LFBB6
+ 561               		.stabn	224,0,0,.LBE13-.LFBB6
+ 562               		.stabs	"inps:(0,52)",128,0,106,1
+ 563               		.stabn	192,0,0,.LBB14-.LFBB6
+ 564               		.stabn	224,0,0,.LBE14-.LFBB6
+ 565               	.Lscope6:
+ 566               		.stabs	"",36,0,0,.Lscope6-.LFBB6
+ 567               		.stabd	78,0,0
+ 568               		.stabs	"software_reset:F(0,50)",36,0,244,software_reset
+ 569               	.global	software_reset
+ 570               		.type	software_reset, @function
+ 571               	software_reset:
+ 572               		.stabd	46,0,0
+ 150:main.c        **** 
+ 151:main.c        **** static inline bool isCrcOk(const uint8_t i2c_address) {
+ 152:main.c        ****   bool status = false;
+ 153:main.c        ****   uint32_t crc = 0;
+ 154:main.c        ****   uint16_t start_address = mem_addr1;//0x0030;//mem_addr; WWWWWTTTTFFFFFFFFF!?!?!?!??!
+ 155:main.c        ****   
+ 156:main.c        ****   uint16_t length = twi_master_read16_reg16(ic_addr, 32);
+ 157:main.c        ****   
+ 158:main.c        ****   uint32_t table[crc_table_size];
+ 159:main.c        ****   init_table(&table[0]);
+GAS LISTING /tmp/cclcKRNp.s 			page 14
+
+
+ 160:main.c        **** 
+ 161:main.c        ****   for (uint16_t pos = 0; pos < length + 1; pos += 2) {
+ 162:main.c        ****     if (pos >= length)
+ 163:main.c        ****       break;
+ 164:main.c        **** 
+ 165:main.c        ****     uint16_t data = twi_master_read16_reg16(ic_addr, pos + start_address);
+ 166:main.c        ****     if (pos == length - 1)
+ 167:main.c        ****       data &= 0xFF00;
+ 168:main.c        **** 
+ 169:main.c        ****     uint8_t to_little_endian[2];
+ 170:main.c        ****     to_little_endian[0] = ((uint8_t)(data >> 8));
+ 171:main.c        ****     to_little_endian[1] = ((uint8_t)(data));
+ 172:main.c        **** 
+ 173:main.c        ****     crc32((const void *)(&to_little_endian[0]), 2, &table[0],
+ 174:main.c        ****           &crc);
+ 175:main.c        ****   }
+ 176:main.c        **** 
+ 177:main.c        ****   uint32_t expected_crc = (uint32_t)(twi_master_read16_reg16(i2c_address, application_crc_expected_
+ 178:main.c        ****   
+ 179:main.c        ****   expected_crc |= (uint32_t)(twi_master_read16_reg16(i2c_address, application_crc_expected_index + 
+ 180:main.c        **** 
+ 181:main.c        ****   if (crc == expected_crc) {
+ 182:main.c        ****     status = true;
+ 183:main.c        ****   }
+ 184:main.c        ****   return status;
+ 185:main.c        **** }
+ 186:main.c        **** /*
+ 187:main.c        **** static inline void writeToFlash(const uint16_t address, uint8_t *data,
+ 188:main.c        ****                                 uint16_t application_start) {
+ 189:main.c        **** 
+ 190:main.c        ****   if (0 == address) {
+ 191:main.c        ****     application_start = (uint8_t)(
+ 192:main.c        ****         (uint16_t)(data[RESET_VECTOR_ARGUMENT_ADDRESS] << 8));
+ 193:main.c        ****     application_start |=
+ 194:main.c        ****         (uint8_t)(data[RESET_VECTOR_ARGUMENT_ADDRESS + 1]);
+ 195:main.c        **** 
+ 196:main.c        ****     data[RESET_VECTOR] = (uint8_t)(jmp_instruction);
+ 197:main.c        ****     data[RESET_VECTOR + 1] = (uint8_t)(jmp_instruction >> 8);
+ 198:main.c        **** 
+ 199:main.c        ****     data[RESET_VECTOR_ARGUMENT_ADDRESS] = (uint8_t)(
+ 200:main.c        ****         (uint16_t)(BOOTLOADER_START_ADDRESS) / 2);
+ 201:main.c        ****     data[RESET_VECTOR_ARGUMENT_ADDRESS + 1] = (uint8_t)((
+ 202:main.c        ****         (uint16_t)(BOOTLOADER_START_ADDRESS) / 2) >> 8);
+ 203:main.c        ****   }
+ 204:main.c        **** 
+ 205:main.c        ****   writeToPageBuffer(address, data);
+ 206:main.c        ****   writePageBufferToFlash(address);
+ 207:main.c        **** }
+ 208:main.c        **** 
+ 209:main.c        **** static inline void writeFlashFromI2C(const uint8_t i2c_address,
+ 210:main.c        ****                                      uint16_t application_start) {
+ 211:main.c        ****   uint16_t start_address = mem_addr1;
+ 212:main.c        ****   uint16_t length = twi_master_read16_reg16(ic_addr, 32);
+ 213:main.c        ****   uint8_t buf[SPM_PAGESIZE];
+ 214:main.c        ****   uint8_t writes = 0;
+ 215:main.c        **** 
+ 216:main.c        ****   for (uint16_t pos = 0; pos < length; pos += 2) {
+GAS LISTING /tmp/cclcKRNp.s 			page 15
+
+
+ 217:main.c        ****     if (pos > 0 && (0 == (pos % SPM_PAGESIZE))) {
+ 218:main.c        ****       writeToFlash(writes * SPM_PAGESIZE, &buf[0], application_start);
+ 219:main.c        ****       ++writes;
+ 220:main.c        ****     }
+ 221:main.c        ****     uint16_t data = twi_master_read16_reg16(i2c_address, pos + start_address);
+ 222:main.c        ****     buf[pos % SPM_PAGESIZE] = (uint8_t)(data >> 8);
+ 223:main.c        ****     buf[(pos + 1) % SPM_PAGESIZE] = (uint8_t)(data);
+ 224:main.c        ****   }
+ 225:main.c        **** 
+ 226:main.c        ****   for (uint16_t pos = SPM_PAGESIZE - ((uint16_t)(writes + 1) *(uint16_t)(SPM_PAGESIZE)) % length; p
+ 227:main.c        ****     buf[pos] = 0xFF; // reset contents, since these bytes were not filled in
+ 228:main.c        ****                      // this page and have value from previous page
+ 229:main.c        ****   }
+ 230:main.c        **** 
+ 231:main.c        ****   writeToFlash(writes * SPM_PAGESIZE, &buf[0], application_start);
+ 232:main.c        **** }
+ 233:main.c        **** 
+ 234:main.c        **** //[[ noreturn ]]
+ 235:main.c        **** static inline void leaveBootloader(uint16_t application_start) {
+ 236:main.c        ****   // hold my beer and watch this!
+ 237:main.c        ****     ((void(*)(void))application_start)();
+ 238:main.c        ****   //void * void application_start();
+ 239:main.c        ****   while (1)
+ 240:main.c        ****     ;
+ 241:main.c        **** }
+ 242:main.c        **** */
+ 243:main.c        **** 
+ 244:main.c        **** void software_reset()
+ 245:main.c        **** {
+ 573               		.stabn	68,0,245,.LM42-.LFBB7
+ 574               	.LM42:
+ 575               	.LFBB7:
+ 576               	/* prologue: function */
+ 577               	/* frame size = 0 */
+ 578               	/* stack size = 0 */
+ 579               	.L__stack_usage = 0
+ 246:main.c        ****   wdt_reset();
+ 580               		.stabn	68,0,246,.LM43-.LFBB7
+ 581               	.LM43:
+ 582               	/* #APP */
+ 583               	 ;  246 "main.c" 1
+ 584 01e4 A895      		wdr
+ 585               	 ;  0 "" 2
+ 586               	/* #NOAPP */
+ 587               	.LBB17:
+ 588               	.LBB18:
+ 589               		.stabs	"/usr/avr/include/avr/wdt.h",132,0,0,.Ltext1
+ 590               	.Ltext1:
+   1:/usr/avr/include/avr/wdt.h **** /* Copyright (c) 2002, 2004 Marek Michalkiewicz
+   2:/usr/avr/include/avr/wdt.h ****    Copyright (c) 2005, 2006, 2007 Eric B. Weddington
+   3:/usr/avr/include/avr/wdt.h ****    All rights reserved.
+   4:/usr/avr/include/avr/wdt.h **** 
+   5:/usr/avr/include/avr/wdt.h ****    Redistribution and use in source and binary forms, with or without
+   6:/usr/avr/include/avr/wdt.h ****    modification, are permitted provided that the following conditions are met:
+   7:/usr/avr/include/avr/wdt.h **** 
+   8:/usr/avr/include/avr/wdt.h ****    * Redistributions of source code must retain the above copyright
+   9:/usr/avr/include/avr/wdt.h ****      notice, this list of conditions and the following disclaimer.
+GAS LISTING /tmp/cclcKRNp.s 			page 16
+
+
+  10:/usr/avr/include/avr/wdt.h **** 
+  11:/usr/avr/include/avr/wdt.h ****    * Redistributions in binary form must reproduce the above copyright
+  12:/usr/avr/include/avr/wdt.h ****      notice, this list of conditions and the following disclaimer in
+  13:/usr/avr/include/avr/wdt.h ****      the documentation and/or other materials provided with the
+  14:/usr/avr/include/avr/wdt.h ****      distribution.
+  15:/usr/avr/include/avr/wdt.h **** 
+  16:/usr/avr/include/avr/wdt.h ****    * Neither the name of the copyright holders nor the names of
+  17:/usr/avr/include/avr/wdt.h ****      contributors may be used to endorse or promote products derived
+  18:/usr/avr/include/avr/wdt.h ****      from this software without specific prior written permission.
+  19:/usr/avr/include/avr/wdt.h **** 
+  20:/usr/avr/include/avr/wdt.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  21:/usr/avr/include/avr/wdt.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  22:/usr/avr/include/avr/wdt.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  23:/usr/avr/include/avr/wdt.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  24:/usr/avr/include/avr/wdt.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  25:/usr/avr/include/avr/wdt.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  26:/usr/avr/include/avr/wdt.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  27:/usr/avr/include/avr/wdt.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  28:/usr/avr/include/avr/wdt.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  29:/usr/avr/include/avr/wdt.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  30:/usr/avr/include/avr/wdt.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  31:/usr/avr/include/avr/wdt.h **** 
+  32:/usr/avr/include/avr/wdt.h **** /* $Id: wdt.h 2503 2016-02-07 22:59:47Z joerg_wunsch $ */
+  33:/usr/avr/include/avr/wdt.h **** 
+  34:/usr/avr/include/avr/wdt.h **** /*
+  35:/usr/avr/include/avr/wdt.h ****    avr/wdt.h - macros for AVR watchdog timer
+  36:/usr/avr/include/avr/wdt.h ****  */
+  37:/usr/avr/include/avr/wdt.h **** 
+  38:/usr/avr/include/avr/wdt.h **** #ifndef _AVR_WDT_H_
+  39:/usr/avr/include/avr/wdt.h **** #define _AVR_WDT_H_
+  40:/usr/avr/include/avr/wdt.h **** 
+  41:/usr/avr/include/avr/wdt.h **** #include <avr/io.h>
+  42:/usr/avr/include/avr/wdt.h **** #include <stdint.h>
+  43:/usr/avr/include/avr/wdt.h **** 
+  44:/usr/avr/include/avr/wdt.h **** /** \file */
+  45:/usr/avr/include/avr/wdt.h **** /** \defgroup avr_watchdog <avr/wdt.h>: Watchdog timer handling
+  46:/usr/avr/include/avr/wdt.h ****     \code #include <avr/wdt.h> \endcode
+  47:/usr/avr/include/avr/wdt.h **** 
+  48:/usr/avr/include/avr/wdt.h ****     This header file declares the interface to some inline macros
+  49:/usr/avr/include/avr/wdt.h ****     handling the watchdog timer present in many AVR devices.  In order
+  50:/usr/avr/include/avr/wdt.h ****     to prevent the watchdog timer configuration from being
+  51:/usr/avr/include/avr/wdt.h ****     accidentally altered by a crashing application, a special timed
+  52:/usr/avr/include/avr/wdt.h ****     sequence is required in order to change it.  The macros within
+  53:/usr/avr/include/avr/wdt.h ****     this header file handle the required sequence automatically
+  54:/usr/avr/include/avr/wdt.h ****     before changing any value.  Interrupts will be disabled during
+  55:/usr/avr/include/avr/wdt.h ****     the manipulation.
+  56:/usr/avr/include/avr/wdt.h **** 
+  57:/usr/avr/include/avr/wdt.h ****     \note Depending on the fuse configuration of the particular
+  58:/usr/avr/include/avr/wdt.h ****     device, further restrictions might apply, in particular it might
+  59:/usr/avr/include/avr/wdt.h ****     be disallowed to turn off the watchdog timer.
+  60:/usr/avr/include/avr/wdt.h **** 
+  61:/usr/avr/include/avr/wdt.h ****     Note that for newer devices (ATmega88 and newer, effectively any
+  62:/usr/avr/include/avr/wdt.h ****     AVR that has the option to also generate interrupts), the watchdog
+  63:/usr/avr/include/avr/wdt.h ****     timer remains active even after a system reset (except a power-on
+  64:/usr/avr/include/avr/wdt.h ****     condition), using the fastest prescaler value (approximately 15
+  65:/usr/avr/include/avr/wdt.h ****     ms).  It is therefore required to turn off the watchdog early
+  66:/usr/avr/include/avr/wdt.h ****     during program startup, the datasheet recommends a sequence like
+GAS LISTING /tmp/cclcKRNp.s 			page 17
+
+
+  67:/usr/avr/include/avr/wdt.h ****     the following:
+  68:/usr/avr/include/avr/wdt.h **** 
+  69:/usr/avr/include/avr/wdt.h ****     \code
+  70:/usr/avr/include/avr/wdt.h ****     #include <stdint.h>
+  71:/usr/avr/include/avr/wdt.h ****     #include <avr/wdt.h>
+  72:/usr/avr/include/avr/wdt.h **** 
+  73:/usr/avr/include/avr/wdt.h ****     uint8_t mcusr_mirror __attribute__ ((section (".noinit")));
+  74:/usr/avr/include/avr/wdt.h **** 
+  75:/usr/avr/include/avr/wdt.h ****     void get_mcusr(void) \
+  76:/usr/avr/include/avr/wdt.h ****       __attribute__((naked)) \
+  77:/usr/avr/include/avr/wdt.h ****       __attribute__((section(".init3")));
+  78:/usr/avr/include/avr/wdt.h ****     void get_mcusr(void)
+  79:/usr/avr/include/avr/wdt.h ****     {
+  80:/usr/avr/include/avr/wdt.h ****       mcusr_mirror = MCUSR;
+  81:/usr/avr/include/avr/wdt.h ****       MCUSR = 0;
+  82:/usr/avr/include/avr/wdt.h ****       wdt_disable();
+  83:/usr/avr/include/avr/wdt.h ****     }
+  84:/usr/avr/include/avr/wdt.h ****     \endcode
+  85:/usr/avr/include/avr/wdt.h **** 
+  86:/usr/avr/include/avr/wdt.h ****     Saving the value of MCUSR in \c mcusr_mirror is only needed if the
+  87:/usr/avr/include/avr/wdt.h ****     application later wants to examine the reset source, but in particular, 
+  88:/usr/avr/include/avr/wdt.h ****     clearing the watchdog reset flag before disabling the
+  89:/usr/avr/include/avr/wdt.h ****     watchdog is required, according to the datasheet.
+  90:/usr/avr/include/avr/wdt.h **** */
+  91:/usr/avr/include/avr/wdt.h **** 
+  92:/usr/avr/include/avr/wdt.h **** /**
+  93:/usr/avr/include/avr/wdt.h ****    \ingroup avr_watchdog
+  94:/usr/avr/include/avr/wdt.h ****    Reset the watchdog timer.  When the watchdog timer is enabled,
+  95:/usr/avr/include/avr/wdt.h ****    a call to this instruction is required before the timer expires,
+  96:/usr/avr/include/avr/wdt.h ****    otherwise a watchdog-initiated device reset will occur. 
+  97:/usr/avr/include/avr/wdt.h **** */
+  98:/usr/avr/include/avr/wdt.h **** 
+  99:/usr/avr/include/avr/wdt.h **** #define wdt_reset() __asm__ __volatile__ ("wdr")
+ 100:/usr/avr/include/avr/wdt.h **** 
+ 101:/usr/avr/include/avr/wdt.h **** #ifndef __DOXYGEN__
+ 102:/usr/avr/include/avr/wdt.h **** 
+ 103:/usr/avr/include/avr/wdt.h **** #if defined(WDP3)
+ 104:/usr/avr/include/avr/wdt.h **** # define _WD_PS3_MASK       _BV(WDP3)
+ 105:/usr/avr/include/avr/wdt.h **** #else
+ 106:/usr/avr/include/avr/wdt.h **** # define _WD_PS3_MASK       0x00
+ 107:/usr/avr/include/avr/wdt.h **** #endif
+ 108:/usr/avr/include/avr/wdt.h **** 
+ 109:/usr/avr/include/avr/wdt.h **** #if defined(WDTCSR)
+ 110:/usr/avr/include/avr/wdt.h **** #  define _WD_CONTROL_REG     WDTCSR
+ 111:/usr/avr/include/avr/wdt.h **** #elif defined(WDTCR)
+ 112:/usr/avr/include/avr/wdt.h **** #  define _WD_CONTROL_REG     WDTCR
+ 113:/usr/avr/include/avr/wdt.h **** #else
+ 114:/usr/avr/include/avr/wdt.h **** #  define _WD_CONTROL_REG     WDT
+ 115:/usr/avr/include/avr/wdt.h **** #endif
+ 116:/usr/avr/include/avr/wdt.h **** 
+ 117:/usr/avr/include/avr/wdt.h **** #if defined(WDTOE)
+ 118:/usr/avr/include/avr/wdt.h **** #define _WD_CHANGE_BIT      WDTOE
+ 119:/usr/avr/include/avr/wdt.h **** #else
+ 120:/usr/avr/include/avr/wdt.h **** #define _WD_CHANGE_BIT      WDCE
+ 121:/usr/avr/include/avr/wdt.h **** #endif
+ 122:/usr/avr/include/avr/wdt.h **** 
+ 123:/usr/avr/include/avr/wdt.h **** #endif	/* !__DOXYGEN__ */
+GAS LISTING /tmp/cclcKRNp.s 			page 18
+
+
+ 124:/usr/avr/include/avr/wdt.h **** 
+ 125:/usr/avr/include/avr/wdt.h **** 
+ 126:/usr/avr/include/avr/wdt.h **** /**
+ 127:/usr/avr/include/avr/wdt.h ****    \ingroup avr_watchdog
+ 128:/usr/avr/include/avr/wdt.h ****    Enable the watchdog timer, configuring it for expiry after
+ 129:/usr/avr/include/avr/wdt.h ****    \c timeout (which is a combination of the \c WDP0 through
+ 130:/usr/avr/include/avr/wdt.h ****    \c WDP2 bits to write into the \c WDTCR register; For those devices 
+ 131:/usr/avr/include/avr/wdt.h ****    that have a \c WDTCSR register, it uses the combination of the \c WDP0 
+ 132:/usr/avr/include/avr/wdt.h ****    through \c WDP3 bits).
+ 133:/usr/avr/include/avr/wdt.h **** 
+ 134:/usr/avr/include/avr/wdt.h ****    See also the symbolic constants \c WDTO_15MS et al.
+ 135:/usr/avr/include/avr/wdt.h **** */
+ 136:/usr/avr/include/avr/wdt.h **** 
+ 137:/usr/avr/include/avr/wdt.h **** 
+ 138:/usr/avr/include/avr/wdt.h **** #if defined(__AVR_XMEGA__)
+ 139:/usr/avr/include/avr/wdt.h **** 
+ 140:/usr/avr/include/avr/wdt.h **** /*
+ 141:/usr/avr/include/avr/wdt.h ****    wdt_enable(timeout) for xmega devices
+ 142:/usr/avr/include/avr/wdt.h **** ** write signature (CCP_IOREG_gc) that enables change of protected I/O
+ 143:/usr/avr/include/avr/wdt.h ****    registers to the CCP register
+ 144:/usr/avr/include/avr/wdt.h **** ** At the same time,
+ 145:/usr/avr/include/avr/wdt.h ****    1) set WDT change enable (WDT_CEN_bm)
+ 146:/usr/avr/include/avr/wdt.h ****    2) enable WDT (WDT_ENABLE_bm)
+ 147:/usr/avr/include/avr/wdt.h ****    3) set timeout (timeout)
+ 148:/usr/avr/include/avr/wdt.h **** ** Synchronization starts when ENABLE bit of WDT is set. So, wait till it
+ 149:/usr/avr/include/avr/wdt.h ****    finishes (SYNCBUSY of STATUS register is automatically cleared after the
+ 150:/usr/avr/include/avr/wdt.h ****    sync is finished).
+ 151:/usr/avr/include/avr/wdt.h **** */
+ 152:/usr/avr/include/avr/wdt.h **** #define wdt_enable(timeout) \
+ 153:/usr/avr/include/avr/wdt.h **** do { \
+ 154:/usr/avr/include/avr/wdt.h **** uint8_t temp; \
+ 155:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ (         \
+ 156:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__, %[rampd]"              "\n\t" \
+ 157:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __zero_reg__"            "\n\t" \
+ 158:/usr/avr/include/avr/wdt.h ****     "out %[ccp_reg], %[ioreg_cen_mask]"     "\n\t" \
+ 159:/usr/avr/include/avr/wdt.h ****     "sts %[wdt_reg], %[wdt_enable_timeout]" "\n\t" \
+ 160:/usr/avr/include/avr/wdt.h ****     "1:lds %[tmp], %[wdt_status_reg]"       "\n\t" \
+ 161:/usr/avr/include/avr/wdt.h ****     "sbrc %[tmp], %[wdt_syncbusy_bit]"      "\n\t" \
+ 162:/usr/avr/include/avr/wdt.h ****     "rjmp 1b"                               "\n\t" \
+ 163:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __tmp_reg__"             "\n\t" \
+ 164:/usr/avr/include/avr/wdt.h ****     : [tmp]                "=r" (temp) \
+ 165:/usr/avr/include/avr/wdt.h ****     : [rampd]              "I" (_SFR_IO_ADDR(RAMPD)),      \
+ 166:/usr/avr/include/avr/wdt.h ****       [ccp_reg]            "I" (_SFR_IO_ADDR(CCP)),        \
+ 167:/usr/avr/include/avr/wdt.h ****       [ioreg_cen_mask]     "r" ((uint8_t)CCP_IOREG_gc),     \
+ 168:/usr/avr/include/avr/wdt.h ****       [wdt_reg]            "n" (_SFR_MEM_ADDR(WDT_CTRL)),   \
+ 169:/usr/avr/include/avr/wdt.h ****       [wdt_enable_timeout] "r" ((uint8_t)(WDT_CEN_bm | WDT_ENABLE_bm | timeout)), \
+ 170:/usr/avr/include/avr/wdt.h ****       [wdt_status_reg]     "n" (_SFR_MEM_ADDR(WDT_STATUS)), \
+ 171:/usr/avr/include/avr/wdt.h ****       [wdt_syncbusy_bit]   "I" (WDT_SYNCBUSY_bm)            \
+ 172:/usr/avr/include/avr/wdt.h ****     : "r0" \
+ 173:/usr/avr/include/avr/wdt.h **** ); \
+ 174:/usr/avr/include/avr/wdt.h **** } while(0)
+ 175:/usr/avr/include/avr/wdt.h **** 
+ 176:/usr/avr/include/avr/wdt.h **** #define wdt_disable() \
+ 177:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ (  \
+ 178:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__, %[rampd]"          "\n\t" \
+ 179:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __zero_reg__"        "\n\t" \
+ 180:/usr/avr/include/avr/wdt.h ****     "out %[ccp_reg], %[ioreg_cen_mask]" "\n\t" \
+GAS LISTING /tmp/cclcKRNp.s 			page 19
+
+
+ 181:/usr/avr/include/avr/wdt.h ****     "sts %[wdt_reg], %[disable_mask]"   "\n\t" \
+ 182:/usr/avr/include/avr/wdt.h ****     "out %[rampd], __tmp_reg__"         "\n\t" \
+ 183:/usr/avr/include/avr/wdt.h ****     : \
+ 184:/usr/avr/include/avr/wdt.h ****     : [rampd]             "I" (_SFR_IO_ADDR(RAMPD)),    \
+ 185:/usr/avr/include/avr/wdt.h ****       [ccp_reg]           "I" (_SFR_IO_ADDR(CCP)),      \
+ 186:/usr/avr/include/avr/wdt.h ****       [ioreg_cen_mask]    "r" ((uint8_t)CCP_IOREG_gc),   \
+ 187:/usr/avr/include/avr/wdt.h ****       [wdt_reg]           "n" (_SFR_MEM_ADDR(WDT_CTRL)), \
+ 188:/usr/avr/include/avr/wdt.h ****       [disable_mask]      "r" ((uint8_t)((~WDT_ENABLE_bm) | WDT_CEN_bm)) \
+ 189:/usr/avr/include/avr/wdt.h ****     : "r0" \
+ 190:/usr/avr/include/avr/wdt.h **** );
+ 191:/usr/avr/include/avr/wdt.h **** 
+ 192:/usr/avr/include/avr/wdt.h **** #elif defined(__AVR_TINY__)
+ 193:/usr/avr/include/avr/wdt.h **** 
+ 194:/usr/avr/include/avr/wdt.h **** #define wdt_enable(value) \
+ 195:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ ( \
+ 196:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__,__SREG__" "\n\t"  \
+ 197:/usr/avr/include/avr/wdt.h ****     "cli" "\n\t"  \
+ 198:/usr/avr/include/avr/wdt.h ****     "wdr" "\n\t"  \
+ 199:/usr/avr/include/avr/wdt.h ****     "out %[CCPADDRESS],%[SIGNATURE]" "\n\t"  \
+ 200:/usr/avr/include/avr/wdt.h ****     "out %[WDTREG],%[WDVALUE]" "\n\t"  \
+ 201:/usr/avr/include/avr/wdt.h ****     "out __SREG__,__tmp_reg__" "\n\t"  \
+ 202:/usr/avr/include/avr/wdt.h ****     : /* no outputs */  \
+ 203:/usr/avr/include/avr/wdt.h ****     : [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),  \
+ 204:/usr/avr/include/avr/wdt.h ****       [SIGNATURE] "r" ((uint8_t)0xD8), \
+ 205:/usr/avr/include/avr/wdt.h ****       [WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)), \
+ 206:/usr/avr/include/avr/wdt.h ****       [WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00) \
+ 207:/usr/avr/include/avr/wdt.h ****       | _BV(WDE) | (value & 0x07) )) \
+ 208:/usr/avr/include/avr/wdt.h ****     : "r16" \
+ 209:/usr/avr/include/avr/wdt.h **** )
+ 210:/usr/avr/include/avr/wdt.h **** 
+ 211:/usr/avr/include/avr/wdt.h **** #define wdt_disable() \
+ 212:/usr/avr/include/avr/wdt.h **** do { \
+ 213:/usr/avr/include/avr/wdt.h **** uint8_t temp_wd; \
+ 214:/usr/avr/include/avr/wdt.h **** __asm__ __volatile__ ( \
+ 215:/usr/avr/include/avr/wdt.h ****     "in __tmp_reg__,__SREG__" "\n\t"  \
+ 216:/usr/avr/include/avr/wdt.h ****     "cli" "\n\t"  \
+ 217:/usr/avr/include/avr/wdt.h ****     "wdr" "\n\t"  \
+ 218:/usr/avr/include/avr/wdt.h ****     "out %[CCPADDRESS],%[SIGNATURE]" "\n\t"  \
+ 219:/usr/avr/include/avr/wdt.h ****     "in  %[TEMP_WD],%[WDTREG]" "\n\t" \
+ 220:/usr/avr/include/avr/wdt.h ****     "cbr %[TEMP_WD],%[WDVALUE]" "\n\t" \
+ 221:/usr/avr/include/avr/wdt.h ****     "out %[WDTREG],%[TEMP_WD]" "\n\t" \
+ 222:/usr/avr/include/avr/wdt.h ****     "out __SREG__,__tmp_reg__" "\n\t" \
+ 223:/usr/avr/include/avr/wdt.h ****     : /*no output */ \
+ 224:/usr/avr/include/avr/wdt.h ****     : [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)), \
+ 225:/usr/avr/include/avr/wdt.h ****       [SIGNATURE] "r" ((uint8_t)0xD8), \
+ 226:/usr/avr/include/avr/wdt.h ****       [WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)), \
+ 227:/usr/avr/include/avr/wdt.h ****       [TEMP_WD] "d" (temp_wd), \
+ 228:/usr/avr/include/avr/wdt.h ****       [WDVALUE] "n" (1 << WDE) \
+ 229:/usr/avr/include/avr/wdt.h ****     : "r16" \
+ 230:/usr/avr/include/avr/wdt.h **** ); \
+ 231:/usr/avr/include/avr/wdt.h **** }while(0)
+ 232:/usr/avr/include/avr/wdt.h **** 
+ 233:/usr/avr/include/avr/wdt.h **** #elif defined(CCP)
+ 234:/usr/avr/include/avr/wdt.h **** 
+ 235:/usr/avr/include/avr/wdt.h **** static __inline__
+ 236:/usr/avr/include/avr/wdt.h **** __attribute__ ((__always_inline__))
+ 237:/usr/avr/include/avr/wdt.h **** void wdt_enable (const uint8_t value)
+GAS LISTING /tmp/cclcKRNp.s 			page 20
+
+
+ 238:/usr/avr/include/avr/wdt.h **** {
+ 239:/usr/avr/include/avr/wdt.h **** 	if (!_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P (_WD_CONTROL_REG))
+ 240:/usr/avr/include/avr/wdt.h **** 	{
+ 241:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 242:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 243:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 244:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 245:/usr/avr/include/avr/wdt.h **** 			"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 246:/usr/avr/include/avr/wdt.h **** 			"sts %[WDTREG],%[WDVALUE]" "\n\t"
+ 247:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 248:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 249:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+ 250:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 251:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 252:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 253:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 254:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 255:/usr/avr/include/avr/wdt.h **** 			);
+ 256:/usr/avr/include/avr/wdt.h **** 	}
+ 257:/usr/avr/include/avr/wdt.h **** 	else if (!_SFR_IO_REG_P (CCP) && _SFR_IO_REG_P (_WD_CONTROL_REG))
+ 258:/usr/avr/include/avr/wdt.h **** 	{
+ 259:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 260:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 261:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 262:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 263:/usr/avr/include/avr/wdt.h **** 			"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 264:/usr/avr/include/avr/wdt.h **** 			"out %[WDTREG],%[WDVALUE]" "\n\t"
+ 265:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 266:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 267:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+ 268:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 269:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 270:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 271:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 272:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 273:/usr/avr/include/avr/wdt.h **** 			);
+ 274:/usr/avr/include/avr/wdt.h **** 	}
+ 275:/usr/avr/include/avr/wdt.h **** 	else if (_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P (_WD_CONTROL_REG))
+ 276:/usr/avr/include/avr/wdt.h **** 	{
+ 277:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 278:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 279:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 280:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 281:/usr/avr/include/avr/wdt.h **** 			"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 282:/usr/avr/include/avr/wdt.h **** 			"sts %[WDTREG],%[WDVALUE]" "\n\t"
+ 283:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 284:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 285:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 286:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 287:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 288:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 289:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 290:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 291:/usr/avr/include/avr/wdt.h **** 			);
+ 292:/usr/avr/include/avr/wdt.h **** 	}
+ 293:/usr/avr/include/avr/wdt.h **** 	else
+ 294:/usr/avr/include/avr/wdt.h ****  	{
+GAS LISTING /tmp/cclcKRNp.s 			page 21
+
+
+ 295:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 296:/usr/avr/include/avr/wdt.h **** 			"in __tmp_reg__,__SREG__" "\n\t"
+ 297:/usr/avr/include/avr/wdt.h **** 			"cli" "\n\t"
+ 298:/usr/avr/include/avr/wdt.h **** 			"wdr" "\n\t"
+ 299:/usr/avr/include/avr/wdt.h **** 			"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 300:/usr/avr/include/avr/wdt.h **** 			"out %[WDTREG],%[WDVALUE]" "\n\t"
+ 301:/usr/avr/include/avr/wdt.h **** 			"out __SREG__,__tmp_reg__" "\n\t"
+ 302:/usr/avr/include/avr/wdt.h **** 			: /* no outputs */
+ 303:/usr/avr/include/avr/wdt.h **** 			: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 304:/usr/avr/include/avr/wdt.h **** 			[SIGNATURE] "r" ((uint8_t)0xD8),
+ 305:/usr/avr/include/avr/wdt.h **** 			[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 306:/usr/avr/include/avr/wdt.h **** 			[WDVALUE] "r" ((uint8_t)((value & 0x08 ? _WD_PS3_MASK : 0x00)
+ 307:/usr/avr/include/avr/wdt.h **** 				| _BV(WDE) | (value & 0x07) ))
+ 308:/usr/avr/include/avr/wdt.h **** 			: "r0"
+ 309:/usr/avr/include/avr/wdt.h **** 			);
+ 310:/usr/avr/include/avr/wdt.h **** 	}
+ 311:/usr/avr/include/avr/wdt.h **** }
+ 312:/usr/avr/include/avr/wdt.h **** 
+ 313:/usr/avr/include/avr/wdt.h **** static __inline__
+ 314:/usr/avr/include/avr/wdt.h **** __attribute__ ((__always_inline__))
+ 315:/usr/avr/include/avr/wdt.h **** void wdt_disable (void)
+ 316:/usr/avr/include/avr/wdt.h **** {
+ 317:/usr/avr/include/avr/wdt.h **** 	if (!_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P(_WD_CONTROL_REG))
+ 318:/usr/avr/include/avr/wdt.h **** 	{
+ 319:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 320:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 321:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 322:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 323:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 324:/usr/avr/include/avr/wdt.h **** 				"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 325:/usr/avr/include/avr/wdt.h **** 				"lds %[TEMP_WD],%[WDTREG]" "\n\t"
+ 326:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 327:/usr/avr/include/avr/wdt.h **** 				"sts %[WDTREG],%[TEMP_WD]" "\n\t"
+ 328:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 329:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 330:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+ 331:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 332:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 333:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 334:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 335:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 336:/usr/avr/include/avr/wdt.h **** 				);
+ 337:/usr/avr/include/avr/wdt.h **** 	}
+ 338:/usr/avr/include/avr/wdt.h **** 	else if (!_SFR_IO_REG_P (CCP) && _SFR_IO_REG_P(_WD_CONTROL_REG))
+ 339:/usr/avr/include/avr/wdt.h **** 	{
+ 340:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 341:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 342:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 343:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 344:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 345:/usr/avr/include/avr/wdt.h **** 				"sts %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 346:/usr/avr/include/avr/wdt.h **** 				"in %[TEMP_WD],%[WDTREG]" "\n\t"
+ 347:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 348:/usr/avr/include/avr/wdt.h **** 				"out %[WDTREG],%[TEMP_WD]" "\n\t"
+ 349:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 350:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 351:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "n" (_SFR_MEM_ADDR(CCP)),
+GAS LISTING /tmp/cclcKRNp.s 			page 22
+
+
+ 352:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 353:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 354:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 355:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 356:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 357:/usr/avr/include/avr/wdt.h **** 				);
+ 358:/usr/avr/include/avr/wdt.h **** 	}
+ 359:/usr/avr/include/avr/wdt.h **** 	else if (_SFR_IO_REG_P (CCP) && !_SFR_IO_REG_P(_WD_CONTROL_REG))
+ 360:/usr/avr/include/avr/wdt.h **** 	{
+ 361:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 362:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 363:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 364:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 365:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 366:/usr/avr/include/avr/wdt.h **** 				"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 367:/usr/avr/include/avr/wdt.h **** 				"lds %[TEMP_WD],%[WDTREG]" "\n\t"
+ 368:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 369:/usr/avr/include/avr/wdt.h **** 				"sts %[WDTREG],%[TEMP_WD]" "\n\t"
+ 370:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 371:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 372:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 373:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 374:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "n" (_SFR_MEM_ADDR(_WD_CONTROL_REG)),
+ 375:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 376:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 377:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 378:/usr/avr/include/avr/wdt.h **** 				);
+ 379:/usr/avr/include/avr/wdt.h **** 	}
+ 380:/usr/avr/include/avr/wdt.h **** 	else
+ 381:/usr/avr/include/avr/wdt.h **** 	{
+ 382:/usr/avr/include/avr/wdt.h ****         uint8_t temp_wd;
+ 383:/usr/avr/include/avr/wdt.h ****         __asm__ __volatile__ (
+ 384:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 385:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 386:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 387:/usr/avr/include/avr/wdt.h **** 				"out %[CCPADDRESS],%[SIGNATURE]" "\n\t"
+ 388:/usr/avr/include/avr/wdt.h **** 				"in %[TEMP_WD],%[WDTREG]" "\n\t"
+ 389:/usr/avr/include/avr/wdt.h **** 				"cbr %[TEMP_WD],%[WDVALUE]" "\n\t"
+ 390:/usr/avr/include/avr/wdt.h **** 				"out %[WDTREG],%[TEMP_WD]" "\n\t"
+ 391:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 392:/usr/avr/include/avr/wdt.h **** 				: /*no output */
+ 393:/usr/avr/include/avr/wdt.h **** 				: [CCPADDRESS] "I" (_SFR_IO_ADDR(CCP)),
+ 394:/usr/avr/include/avr/wdt.h **** 				[SIGNATURE] "r" ((uint8_t)0xD8),
+ 395:/usr/avr/include/avr/wdt.h **** 				[WDTREG] "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 396:/usr/avr/include/avr/wdt.h **** 				[TEMP_WD] "d" (temp_wd),
+ 397:/usr/avr/include/avr/wdt.h **** 				[WDVALUE] "n" (1 << WDE)
+ 398:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 399:/usr/avr/include/avr/wdt.h **** 				);
+ 400:/usr/avr/include/avr/wdt.h **** 	}
+ 401:/usr/avr/include/avr/wdt.h **** }
+ 402:/usr/avr/include/avr/wdt.h **** 
+ 403:/usr/avr/include/avr/wdt.h **** #else
+ 404:/usr/avr/include/avr/wdt.h **** 
+ 405:/usr/avr/include/avr/wdt.h **** static __inline__
+ 406:/usr/avr/include/avr/wdt.h **** __attribute__ ((__always_inline__))
+ 407:/usr/avr/include/avr/wdt.h **** void wdt_enable (const uint8_t value)
+ 408:/usr/avr/include/avr/wdt.h **** {
+GAS LISTING /tmp/cclcKRNp.s 			page 23
+
+
+ 409:/usr/avr/include/avr/wdt.h **** 	if (_SFR_IO_REG_P (_WD_CONTROL_REG))
+ 410:/usr/avr/include/avr/wdt.h **** 	{
+ 411:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 412:/usr/avr/include/avr/wdt.h **** 				"in __tmp_reg__,__SREG__" "\n\t"
+ 413:/usr/avr/include/avr/wdt.h **** 				"cli" "\n\t"
+ 414:/usr/avr/include/avr/wdt.h **** 				"wdr" "\n\t"
+ 415:/usr/avr/include/avr/wdt.h **** 				"out %0, %1" "\n\t"
+ 416:/usr/avr/include/avr/wdt.h **** 				"out __SREG__,__tmp_reg__" "\n\t"
+ 417:/usr/avr/include/avr/wdt.h **** 				"out %0, %2" "\n \t"
+ 418:/usr/avr/include/avr/wdt.h **** 				: /* no outputs */
+ 419:/usr/avr/include/avr/wdt.h **** 				: "I" (_SFR_IO_ADDR(_WD_CONTROL_REG)),
+ 420:/usr/avr/include/avr/wdt.h **** 				"r" ((uint8_t)(_BV(_WD_CHANGE_BIT) | _BV(WDE))),
+ 421:/usr/avr/include/avr/wdt.h **** 				"r" ((uint8_t) ((value & 0x08 ? _WD_PS3_MASK : 0x00) |
+ 422:/usr/avr/include/avr/wdt.h **** 						_BV(WDE) | (value & 0x07)) )
+ 423:/usr/avr/include/avr/wdt.h **** 				: "r0"
+ 424:/usr/avr/include/avr/wdt.h **** 		);
+ 425:/usr/avr/include/avr/wdt.h **** 	}
+ 426:/usr/avr/include/avr/wdt.h **** 	else
+ 427:/usr/avr/include/avr/wdt.h **** 	{
+ 428:/usr/avr/include/avr/wdt.h **** 		__asm__ __volatile__ (
+ 591               		.stabn	68,0,428,.LM44-.LFBB7
+ 592               	.LM44:
+ 593 01e6 88E1      		ldi r24,lo8(24)
+ 594 01e8 9CE0      		ldi r25,lo8(12)
+ 595               	/* #APP */
+ 596               	 ;  428 "/usr/avr/include/avr/wdt.h" 1
+ 597 01ea 0FB6      		in __tmp_reg__,__SREG__
+ 598 01ec F894      		cli
+ 599 01ee A895      		wdr
+ 600 01f0 8093 6000 		sts 96, r24
+ 601 01f4 0FBE      		out __SREG__,__tmp_reg__
+ 602 01f6 9093 6000 		sts 96, r25
+ 603               	 	
+ 604               	 ;  0 "" 2
+ 605               	/* #NOAPP */
+ 606               	.LBE18:
+ 607               	.LBE17:
+ 608               		.stabs	"main.c",132,0,0,.Ltext2
+ 609               	.Ltext2:
+ 247:main.c        ****   wdt_enable(WDTO_250MS);
+ 248:main.c        ****   exit (1);  // loop forever
+ 610               		.stabn	68,0,248,.LM45-.LFBB7
+ 611               	.LM45:
+ 612 01fa 81E0      		ldi r24,lo8(1)
+ 613 01fc 90E0      		ldi r25,0
+ 614 01fe 0E94 0000 		call exit
+ 615               		.size	software_reset, .-software_reset
+ 616               	.Lscope7:
+ 617               		.stabs	"",36,0,0,.Lscope7-.LFBB7
+ 618               		.stabd	78,0,0
+ 619               		.section	.text.startup,"ax",@progbits
+ 620               		.stabs	"main:F(0,1)",36,0,251,main
+ 621               	.global	main
+ 622               		.type	main, @function
+ 623               	main:
+ 624               		.stabd	46,0,0
+ 249:main.c        **** } 
+GAS LISTING /tmp/cclcKRNp.s 			page 24
+
+
+ 250:main.c        **** 
+ 251:main.c        **** int main(void)
+ 252:main.c        **** {
+ 625               		.stabn	68,0,252,.LM46-.LFBB8
+ 626               	.LM46:
+ 627               	.LFBB8:
+ 628 0000 A3E0      		ldi r26,lo8(3)
+ 629 0002 B0E0      		ldi r27,0
+ 630 0004 E0E0      		ldi r30,lo8(gs(1f))
+ 631 0006 F0E0      		ldi r31,hi8(gs(1f))
+ 632 0008 0C94 0000 		jmp __prologue_saves__+((18 - 18) * 2)
+ 633               	1:
+ 634               	/* prologue: function */
+ 635               	/* frame size = 3 */
+ 636               	/* stack size = 21 */
+ 637               	.L__stack_usage = 21
+ 253:main.c        ****     uint8_t i=0;
+ 254:main.c        ****     
+ 255:main.c        ****     uint16_t pg_nums = 0;
+ 256:main.c        ****     
+ 257:main.c        ****     io_conf();
+ 638               		.stabn	68,0,257,.LM47-.LFBB8
+ 639               	.LM47:
+ 640 000c 0E94 0000 		call io_conf
+ 258:main.c        **** 	sei();
+ 641               		.stabn	68,0,258,.LM48-.LFBB8
+ 642               	.LM48:
+ 643               	/* #APP */
+ 644               	 ;  258 "main.c" 1
+ 645 0010 7894      		sei
+ 646               	 ;  0 "" 2
+ 259:main.c        **** 	modbusSetAddress(clientAddress);
+ 647               		.stabn	68,0,259,.LM49-.LFBB8
+ 648               	.LM49:
+ 649               	/* #NOAPP */
+ 650 0012 86E0      		ldi r24,lo8(6)
+ 651 0014 0E94 0000 		call modbusSetAddress
+ 260:main.c        **** 	modbusInit();
+ 652               		.stabn	68,0,260,.LM50-.LFBB8
+ 653               	.LM50:
+ 654 0018 0E94 0000 		call modbusInit
+ 655               	.LBB34:
+ 656               	.LBB35:
+ 657               		.stabs	"/usr/avr/include/avr/wdt.h",132,0,0,.Ltext3
+ 658               	.Ltext3:
+ 659               		.stabn	68,0,428,.LM51-.LFBB8
+ 660               	.LM51:
+ 661 001c 88E1      		ldi r24,lo8(24)
+ 662 001e 9FE0      		ldi r25,lo8(15)
+ 663               	/* #APP */
+ 664               	 ;  428 "/usr/avr/include/avr/wdt.h" 1
+ 665 0020 0FB6      		in __tmp_reg__,__SREG__
+ 666 0022 F894      		cli
+ 667 0024 A895      		wdr
+ 668 0026 8093 6000 		sts 96, r24
+ 669 002a 0FBE      		out __SREG__,__tmp_reg__
+ 670 002c 9093 6000 		sts 96, r25
+GAS LISTING /tmp/cclcKRNp.s 			page 25
+
+
+ 671               	 	
+ 672               	 ;  0 "" 2
+ 673               	/* #NOAPP */
+ 674               	.LBE35:
+ 675               	.LBE34:
+ 676               		.stabs	"main.c",132,0,0,.Ltext4
+ 677               	.Ltext4:
+ 261:main.c        ****     wdt_enable(7);
+ 262:main.c        **** 	timer0100us_start();
+ 678               		.stabn	68,0,262,.LM52-.LFBB8
+ 679               	.LM52:
+ 680 0030 0E94 0000 		call timer0100us_start
+ 263:main.c        ****     twi_master_init();
+ 681               		.stabn	68,0,263,.LM53-.LFBB8
+ 682               	.LM53:
+ 683 0034 0E94 0000 		call twi_master_init
+ 264:main.c        ****     
+ 265:main.c        ****     //Тестовые значения
+ 266:main.c        ****     internalRegisters[4] = 1;
+ 684               		.stabn	68,0,266,.LM54-.LFBB8
+ 685               	.LM54:
+ 686 0038 81E0      		ldi r24,lo8(1)
+ 687 003a 90E0      		ldi r25,0
+ 688 003c 9093 0000 		sts internalRegisters+8+1,r25
+ 689 0040 8093 0000 		sts internalRegisters+8,r24
+ 267:main.c        ****     twi_master_write16_reg8(ic_addr, 26, 0xFF);
+ 690               		.stabn	68,0,267,.LM55-.LFBB8
+ 691               	.LM55:
+ 692 0044 8091 0000 		lds r24,ic_addr
+ 693 0048 4FEF      		ldi r20,lo8(-1)
+ 694 004a 6AE1      		ldi r22,lo8(26)
+ 695 004c 70E0      		ldi r23,0
+ 696 004e 0E94 0000 		call twi_master_write16_reg8
+ 268:main.c        ****     
+ 269:main.c        ****     PORTB |= (1<<0);//|(1<<1);
+ 697               		.stabn	68,0,269,.LM56-.LFBB8
+ 698               	.LM56:
+ 699 0052 289A      		sbi 0x5,0
+ 270:main.c        ****     PORTB &= ~(1<<1);
+ 700               		.stabn	68,0,270,.LM57-.LFBB8
+ 701               	.LM57:
+ 702 0054 2998      		cbi 0x5,1
+ 253:main.c        ****     
+ 703               		.stabn	68,0,253,.LM58-.LFBB8
+ 704               	.LM58:
+ 705 0056 10E0      		ldi r17,0
+ 706               	.L41:
+ 271:main.c        ****     
+ 272:main.c        ****     while(1)
+ 273:main.c        ****     {
+ 274:main.c        ****         wdt_reset();
+ 707               		.stabn	68,0,274,.LM59-.LFBB8
+ 708               	.LM59:
+ 709               	/* #APP */
+ 710               	 ;  274 "main.c" 1
+ 711 0058 A895      		wdr
+ 712               	 ;  0 "" 2
+GAS LISTING /tmp/cclcKRNp.s 			page 26
+
+
+ 275:main.c        **** 	    modbusGet();
+ 713               		.stabn	68,0,275,.LM60-.LFBB8
+ 714               	.LM60:
+ 715               	/* #NOAPP */
+ 716 005a 0E94 0000 		call modbusGet
+ 276:main.c        ****         
+ 277:main.c        ****         switch(holdingRegisters[0]){
+ 717               		.stabn	68,0,277,.LM61-.LFBB8
+ 718               	.LM61:
+ 719 005e 8091 0000 		lds r24,holdingRegisters
+ 720 0062 9091 0000 		lds r25,holdingRegisters+1
+ 721 0066 8330      		cpi r24,3
+ 722 0068 9105      		cpc r25,__zero_reg__
+ 723 006a 01F4      		brne .+2
+ 724 006c 00C0      		rjmp .L25
+ 725 006e 00F4      		brsh .L26
+ 726 0070 8130      		cpi r24,1
+ 727 0072 9105      		cpc r25,__zero_reg__
+ 728 0074 01F0      		breq .L27
+ 729 0076 0297      		sbiw r24,2
+ 730 0078 01F0      		breq .L28
+ 731               	.L24:
+ 278:main.c        ****             case 1:
+ 279:main.c        ****                 twi_master_write_page(ic_addr, mem_addr, holdingRegisters[2],holdingRegisters);
+ 280:main.c        ****                 mem_addr=mem_addr+holdingRegisters[2];
+ 281:main.c        ****                 
+ 282:main.c        ****                 //if (holdingRegisters[3] == pg_nums) 
+ 283:main.c        ****                     //mem_addr = 0x0030;
+ 284:main.c        ****                 break;
+ 285:main.c        ****             case 2:
+ 286:main.c        ****                 //write firmware length
+ 287:main.c        ****                 twi_master_write16_reg8(ic_addr, 32,holdingRegisters[2]);
+ 288:main.c        ****                 twi_master_write16_reg8(ic_addr, 33,holdingRegisters[3]);
+ 289:main.c        ****                 //write crc32 to eeprom
+ 290:main.c        ****                 twi_master_write16_reg8(ic_addr, 28,holdingRegisters[4]);
+ 291:main.c        ****                 twi_master_write16_reg8(ic_addr, 29,holdingRegisters[5]);
+ 292:main.c        ****                 twi_master_write16_reg8(ic_addr, 30,holdingRegisters[6]);
+ 293:main.c        ****                 twi_master_write16_reg8(ic_addr, 31,holdingRegisters[7]);
+ 294:main.c        ****                 
+ 295:main.c        ****                 //write number of pages
+ 296:main.c        ****                 //twi_master_write16_reg8(ic_addr, 26,holdingRegisters[8]);
+ 297:main.c        ****                 //twi_master_write16_reg8(ic_addr, 27,holdingRegisters[9]);
+ 298:main.c        ****                 //pg_nums = (holdingRegisters[8] << 8);
+ 299:main.c        ****                 //pg_nums = holdingRegisters[9];
+ 300:main.c        ****                 
+ 301:main.c        ****                 i=0;
+ 302:main.c        ****                 break;
+ 303:main.c        ****             case 3:
+ 304:main.c        ****                 i = isCrcOk(ic_addr);
+ 305:main.c        ****                 mem_addr = 0x0030;//reset memory address counter
+ 306:main.c        ****                 //internalRegisters[5] = isCrcOk(ic_addr);
+ 307:main.c        ****                 //internalRegisters[0] = twi_master_read16_reg16(ic_addr, 32);//length
+ 308:main.c        ****                 //internalRegisters[1] = twi_master_read16_reg16(ic_addr, 28);//MSB crc32
+ 309:main.c        ****                 //internalRegisters[2] = twi_master_read16_reg16(ic_addr, 30);//LSB crc32
+ 310:main.c        ****                 break;
+ 311:main.c        ****             case 4:
+ 312:main.c        ****                 internalRegisters[5] = i;
+GAS LISTING /tmp/cclcKRNp.s 			page 27
+
+
+ 313:main.c        ****                 break;
+ 314:main.c        ****             case 5:
+ 315:main.c        ****                 twi_master_write16_reg8(ic_addr, 26, 0x11);
+ 316:main.c        ****                 break;
+ 317:main.c        ****             case 6:
+ 318:main.c        ****                 software_reset();
+ 319:main.c        ****                 break;
+ 320:main.c        ****             default:
+ 321:main.c        ****             break;
+ 322:main.c        ****         }
+ 323:main.c        ****         holdingRegisters[0]=0;
+ 732               		.stabn	68,0,323,.LM62-.LFBB8
+ 733               	.LM62:
+ 734 007a 1092 0000 		sts holdingRegisters+1,__zero_reg__
+ 735 007e 1092 0000 		sts holdingRegisters,__zero_reg__
+ 274:main.c        **** 	    modbusGet();
+ 736               		.stabn	68,0,274,.LM63-.LFBB8
+ 737               	.LM63:
+ 738 0082 00C0      		rjmp .L41
+ 739               	.L26:
+ 277:main.c        ****             case 1:
+ 740               		.stabn	68,0,277,.LM64-.LFBB8
+ 741               	.LM64:
+ 742 0084 8530      		cpi r24,5
+ 743 0086 9105      		cpc r25,__zero_reg__
+ 744 0088 01F4      		brne .+2
+ 745 008a 00C0      		rjmp .L29
+ 746 008c 00F4      		brsh .+2
+ 747 008e 00C0      		rjmp .L30
+ 748 0090 0697      		sbiw r24,6
+ 749 0092 01F4      		brne .L24
+ 318:main.c        ****                 break;
+ 750               		.stabn	68,0,318,.LM65-.LFBB8
+ 751               	.LM65:
+ 752 0094 0E94 0000 		call software_reset
+ 753               	.L27:
+ 279:main.c        ****                 mem_addr=mem_addr+holdingRegisters[2];
+ 754               		.stabn	68,0,279,.LM66-.LFBB8
+ 755               	.LM66:
+ 756 0098 4091 0000 		lds r20,holdingRegisters+4
+ 757 009c 5091 0000 		lds r21,holdingRegisters+4+1
+ 758 00a0 8091 0000 		lds r24,ic_addr
+ 759 00a4 6091 0000 		lds r22,mem_addr
+ 760 00a8 7091 0000 		lds r23,mem_addr+1
+ 761 00ac 20E0      		ldi r18,lo8(holdingRegisters)
+ 762 00ae 30E0      		ldi r19,hi8(holdingRegisters)
+ 763 00b0 0E94 0000 		call twi_master_write_page
+ 280:main.c        ****                 
+ 764               		.stabn	68,0,280,.LM67-.LFBB8
+ 765               	.LM67:
+ 766 00b4 2091 0000 		lds r18,holdingRegisters+4
+ 767 00b8 3091 0000 		lds r19,holdingRegisters+4+1
+ 768 00bc 8091 0000 		lds r24,mem_addr
+ 769 00c0 9091 0000 		lds r25,mem_addr+1
+ 770 00c4 820F      		add r24,r18
+ 771 00c6 931F      		adc r25,r19
+ 772               	.L45:
+GAS LISTING /tmp/cclcKRNp.s 			page 28
+
+
+ 305:main.c        ****                 //internalRegisters[5] = isCrcOk(ic_addr);
+ 773               		.stabn	68,0,305,.LM68-.LFBB8
+ 774               	.LM68:
+ 775 00c8 9093 0000 		sts mem_addr+1,r25
+ 776 00cc 8093 0000 		sts mem_addr,r24
+ 310:main.c        ****             case 4:
+ 777               		.stabn	68,0,310,.LM69-.LFBB8
+ 778               	.LM69:
+ 779 00d0 00C0      		rjmp .L24
+ 780               	.L28:
+ 287:main.c        ****                 twi_master_write16_reg8(ic_addr, 33,holdingRegisters[3]);
+ 781               		.stabn	68,0,287,.LM70-.LFBB8
+ 782               	.LM70:
+ 783 00d2 4091 0000 		lds r20,holdingRegisters+4
+ 784 00d6 5091 0000 		lds r21,holdingRegisters+4+1
+ 785 00da 8091 0000 		lds r24,ic_addr
+ 786 00de 60E2      		ldi r22,lo8(32)
+ 787 00e0 70E0      		ldi r23,0
+ 788 00e2 0E94 0000 		call twi_master_write16_reg8
+ 288:main.c        ****                 //write crc32 to eeprom
+ 789               		.stabn	68,0,288,.LM71-.LFBB8
+ 790               	.LM71:
+ 791 00e6 4091 0000 		lds r20,holdingRegisters+6
+ 792 00ea 5091 0000 		lds r21,holdingRegisters+6+1
+ 793 00ee 8091 0000 		lds r24,ic_addr
+ 794 00f2 61E2      		ldi r22,lo8(33)
+ 795 00f4 70E0      		ldi r23,0
+ 796 00f6 0E94 0000 		call twi_master_write16_reg8
+ 290:main.c        ****                 twi_master_write16_reg8(ic_addr, 29,holdingRegisters[5]);
+ 797               		.stabn	68,0,290,.LM72-.LFBB8
+ 798               	.LM72:
+ 799 00fa 4091 0000 		lds r20,holdingRegisters+8
+ 800 00fe 5091 0000 		lds r21,holdingRegisters+8+1
+ 801 0102 8091 0000 		lds r24,ic_addr
+ 802 0106 6CE1      		ldi r22,lo8(28)
+ 803 0108 70E0      		ldi r23,0
+ 804 010a 0E94 0000 		call twi_master_write16_reg8
+ 291:main.c        ****                 twi_master_write16_reg8(ic_addr, 30,holdingRegisters[6]);
+ 805               		.stabn	68,0,291,.LM73-.LFBB8
+ 806               	.LM73:
+ 807 010e 4091 0000 		lds r20,holdingRegisters+10
+ 808 0112 5091 0000 		lds r21,holdingRegisters+10+1
+ 809 0116 8091 0000 		lds r24,ic_addr
+ 810 011a 6DE1      		ldi r22,lo8(29)
+ 811 011c 70E0      		ldi r23,0
+ 812 011e 0E94 0000 		call twi_master_write16_reg8
+ 292:main.c        ****                 twi_master_write16_reg8(ic_addr, 31,holdingRegisters[7]);
+ 813               		.stabn	68,0,292,.LM74-.LFBB8
+ 814               	.LM74:
+ 815 0122 4091 0000 		lds r20,holdingRegisters+12
+ 816 0126 5091 0000 		lds r21,holdingRegisters+12+1
+ 817 012a 8091 0000 		lds r24,ic_addr
+ 818 012e 6EE1      		ldi r22,lo8(30)
+ 819 0130 70E0      		ldi r23,0
+ 820 0132 0E94 0000 		call twi_master_write16_reg8
+ 293:main.c        ****                 
+ 821               		.stabn	68,0,293,.LM75-.LFBB8
+GAS LISTING /tmp/cclcKRNp.s 			page 29
+
+
+ 822               	.LM75:
+ 823 0136 4091 0000 		lds r20,holdingRegisters+14
+ 824 013a 5091 0000 		lds r21,holdingRegisters+14+1
+ 825 013e 8091 0000 		lds r24,ic_addr
+ 826 0142 6FE1      		ldi r22,lo8(31)
+ 827 0144 70E0      		ldi r23,0
+ 828 0146 0E94 0000 		call twi_master_write16_reg8
+ 301:main.c        ****                 break;
+ 829               		.stabn	68,0,301,.LM76-.LFBB8
+ 830               	.LM76:
+ 831 014a 10E0      		ldi r17,0
+ 302:main.c        ****             case 3:
+ 832               		.stabn	68,0,302,.LM77-.LFBB8
+ 833               	.LM77:
+ 834 014c 00C0      		rjmp .L24
+ 835               	.L25:
+ 304:main.c        ****                 mem_addr = 0x0030;//reset memory address counter
+ 836               		.stabn	68,0,304,.LM78-.LFBB8
+ 837               	.LM78:
+ 838 014e 2091 0000 		lds r18,ic_addr
+ 839 0152 2983      		std Y+1,r18
+ 840               	.LBB36:
+ 841               	.LBB37:
+ 151:main.c        ****   bool status = false;
+ 842               		.stabn	68,0,151,.LM79-.LFBB8
+ 843               	.LM79:
+ 844 0154 2DB6      		in r2,__SP_L__
+ 845 0156 3EB6      		in r3,__SP_H__
+ 154:main.c        ****   
+ 846               		.stabn	68,0,154,.LM80-.LFBB8
+ 847               	.LM80:
+ 848 0158 8090 0000 		lds r8,mem_addr1
+ 849 015c 9090 0000 		lds r9,mem_addr1+1
+ 156:main.c        ****   
+ 850               		.stabn	68,0,156,.LM81-.LFBB8
+ 851               	.LM81:
+ 852 0160 8091 0000 		lds r24,ic_addr
+ 853 0164 60E2      		ldi r22,lo8(32)
+ 854 0166 70E0      		ldi r23,0
+ 855 0168 0E94 0000 		call twi_master_read16_reg16
+ 856 016c 7C01      		movw r14,r24
+ 158:main.c        ****   init_table(&table[0]);
+ 857               		.stabn	68,0,158,.LM82-.LFBB8
+ 858               	.LM82:
+ 859 016e 8DB7      		in r24,__SP_L__
+ 860 0170 9EB7      		in r25,__SP_H__
+ 861 0172 9450      		subi r25,4
+ 862 0174 0FB6      		in __tmp_reg__,__SREG__
+ 863 0176 F894      		cli
+ 864 0178 9EBF      		out __SP_H__,r25
+ 865 017a 0FBE      		out __SREG__,__tmp_reg__
+ 866 017c 8DBF      		out __SP_L__,r24
+ 867 017e 0196      		adiw r24,1
+ 868 0180 6C01      		movw r12,r24
+ 869 0182 FC01      		movw r30,r24
+ 159:main.c        **** 
+ 870               		.stabn	68,0,159,.LM83-.LFBB8
+GAS LISTING /tmp/cclcKRNp.s 			page 30
+
+
+ 871               	.LM83:
+ 872 0184 40E0      		ldi r20,0
+ 873 0186 50E0      		ldi r21,0
+ 874 0188 BA01      		movw r22,r20
+ 875               	.L34:
+ 876 018a DB01      		movw r26,r22
+ 877 018c CA01      		movw r24,r20
+ 878 018e 28E0      		ldi r18,lo8(8)
+ 879               	.L33:
+ 880               	.LBB38:
+ 881               	.LBB39:
+ 882               	.LBB40:
+ 883               	.LBB41:
+ 884               	.LBB42:
+ 885               		.stabs	"crc32.h",132,0,0,.Ltext5
+ 886               	.Ltext5:
+   1:crc32.h       **** #pragma once
+   2:crc32.h       **** 
+   3:crc32.h       **** #include <stdint.h>
+   4:crc32.h       **** 
+   5:crc32.h       **** static uint32_t polynomial_representation = 0xEDB88320UL; //0xEDB88320UL;
+   6:crc32.h       **** static uint16_t crc_table_size = 0x100;
+   7:crc32.h       **** 
+   8:crc32.h       **** static inline uint32_t crc32_for_byte(uint32_t r) {
+   9:crc32.h       ****   for (uint8_t i = 0; i < 8; ++i) {
+  10:crc32.h       ****     r = (r & 1 ? 0 : polynomial_representation) ^ r >> 1;
+ 887               		.stabn	68,0,10,.LM84-.LFBB8
+ 888               	.LM84:
+ 889 0190 00E2      		ldi r16,lo8(32)
+ 890 0192 402E      		mov r4,r16
+ 891 0194 03E8      		ldi r16,lo8(-125)
+ 892 0196 502E      		mov r5,r16
+ 893 0198 08EB      		ldi r16,lo8(-72)
+ 894 019a 602E      		mov r6,r16
+ 895 019c 0DEE      		ldi r16,lo8(-19)
+ 896 019e 702E      		mov r7,r16
+ 897 01a0 80FF      		sbrs r24,0
+ 898 01a2 00C0      		rjmp .L32
+ 899 01a4 412C      		mov r4,__zero_reg__
+ 900 01a6 512C      		mov r5,__zero_reg__
+ 901 01a8 3201      		movw r6,r4
+ 902               	.L32:
+ 903 01aa B695      		lsr r27
+ 904 01ac A795      		ror r26
+ 905 01ae 9795      		ror r25
+ 906 01b0 8795      		ror r24
+ 907 01b2 8425      		eor r24,r4
+ 908 01b4 9525      		eor r25,r5
+ 909 01b6 A625      		eor r26,r6
+ 910 01b8 B725      		eor r27,r7
+ 911 01ba 2150      		subi r18,lo8(-(-1))
+   9:crc32.h       ****     r = (r & 1 ? 0 : polynomial_representation) ^ r >> 1;
+ 912               		.stabn	68,0,9,.LM85-.LFBB8
+ 913               	.LM85:
+ 914 01bc 01F4      		brne .L33
+ 915               	.LBE42:
+  11:crc32.h       ****   }
+GAS LISTING /tmp/cclcKRNp.s 			page 31
+
+
+  12:crc32.h       ****   return r ^ (uint32_t)0xFF000000L;
+ 916               		.stabn	68,0,12,.LM86-.LFBB8
+ 917               	.LM86:
+ 918 01be B095      		com r27
+ 919               	.LBE41:
+ 920               	.LBE40:
+  13:crc32.h       **** }
+  14:crc32.h       **** 
+  15:crc32.h       **** static inline void init_table(uint32_t *crc_table) {
+  16:crc32.h       ****   for (uint16_t i = 0; i < crc_table_size; ++i) {
+  17:crc32.h       ****     crc_table[i] = crc32_for_byte(i);
+ 921               		.stabn	68,0,17,.LM87-.LFBB8
+ 922               	.LM87:
+ 923 01c0 8193      		st Z+,r24
+ 924 01c2 9193      		st Z+,r25
+ 925 01c4 A193      		st Z+,r26
+ 926 01c6 B193      		st Z+,r27
+ 927 01c8 4F5F      		subi r20,-1
+ 928 01ca 5F4F      		sbci r21,-1
+ 929 01cc 6F4F      		sbci r22,-1
+ 930 01ce 7F4F      		sbci r23,-1
+  16:crc32.h       ****     crc_table[i] = crc32_for_byte(i);
+ 931               		.stabn	68,0,16,.LM88-.LFBB8
+ 932               	.LM88:
+ 933 01d0 4115      		cp r20,__zero_reg__
+ 934 01d2 91E0      		ldi r25,1
+ 935 01d4 5907      		cpc r21,r25
+ 936 01d6 6105      		cpc r22,__zero_reg__
+ 937 01d8 7105      		cpc r23,__zero_reg__
+ 938 01da 01F4      		brne .L34
+ 939               	.LBE39:
+ 940               	.LBE38:
+ 941               		.stabs	"main.c",132,0,0,.Ltext6
+ 942               	.Ltext6:
+ 153:main.c        ****   uint16_t start_address = mem_addr1;//0x0030;//mem_addr; WWWWWTTTTFFFFFFFFF!?!?!?!??!
+ 943               		.stabn	68,0,153,.LM89-.LFBB8
+ 944               	.LM89:
+ 945 01dc 412C      		mov r4,__zero_reg__
+ 946 01de 512C      		mov r5,__zero_reg__
+ 947 01e0 3201      		movw r6,r4
+ 948               	.LBB43:
+ 161:main.c        ****     if (pos >= length)
+ 949               		.stabn	68,0,161,.LM90-.LFBB8
+ 950               	.LM90:
+ 951 01e2 10E0      		ldi r17,0
+ 952 01e4 00E0      		ldi r16,0
+ 953 01e6 C701      		movw r24,r14
+ 954 01e8 0196      		adiw r24,1
+ 955 01ea 9B83      		std Y+3,r25
+ 956 01ec 8A83      		std Y+2,r24
+ 957               	.LBB44:
+ 166:main.c        ****       data &= 0xFF00;
+ 958               		.stabn	68,0,166,.LM91-.LFBB8
+ 959               	.LM91:
+ 960 01ee 5701      		movw r10,r14
+ 961 01f0 91E0      		ldi r25,1
+ 962 01f2 A91A      		sub r10,r25
+GAS LISTING /tmp/cclcKRNp.s 			page 32
+
+
+ 963 01f4 B108      		sbc r11,__zero_reg__
+ 964               	.L35:
+ 965               	.LBE44:
+ 161:main.c        ****     if (pos >= length)
+ 966               		.stabn	68,0,161,.LM92-.LFBB8
+ 967               	.LM92:
+ 968 01f6 8A81      		ldd r24,Y+2
+ 969 01f8 9B81      		ldd r25,Y+3
+ 970 01fa 0817      		cp r16,r24
+ 971 01fc 1907      		cpc r17,r25
+ 972 01fe 00F0      		brlo .L39
+ 973               	.L38:
+ 974               	.LBE43:
+ 177:main.c        ****   
+ 975               		.stabn	68,0,177,.LM93-.LFBB8
+ 976               	.LM93:
+ 977 0200 6091 0000 		lds r22,application_crc_expected_index
+ 978 0204 7091 0000 		lds r23,application_crc_expected_index+1
+ 979 0208 8981      		ldd r24,Y+1
+ 980 020a 0E94 0000 		call twi_master_read16_reg16
+ 981 020e B0E0      		ldi r27,0
+ 982 0210 A0E0      		ldi r26,0
+ 983 0212 7C01      		movw r14,r24
+ 984 0214 DD24      		clr r13
+ 985 0216 CC24      		clr r12
+ 179:main.c        **** 
+ 986               		.stabn	68,0,179,.LM94-.LFBB8
+ 987               	.LM94:
+ 988 0218 6091 0000 		lds r22,application_crc_expected_index
+ 989 021c 7091 0000 		lds r23,application_crc_expected_index+1
+ 990 0220 6E5F      		subi r22,-2
+ 991 0222 7F4F      		sbci r23,-1
+ 992 0224 8981      		ldd r24,Y+1
+ 993 0226 0E94 0000 		call twi_master_read16_reg16
+ 994 022a 0FB6      		in __tmp_reg__,__SREG__
+ 995 022c F894      		cli
+ 996 022e 3EBE      		out __SP_H__,r3
+ 997 0230 0FBE      		out __SREG__,__tmp_reg__
+ 998 0232 2DBE      		out __SP_L__,r2
+ 999 0234 B0E0      		ldi r27,0
+ 1000 0236 A0E0      		ldi r26,0
+ 1001 0238 8C29      		or r24,r12
+ 1002 023a 9D29      		or r25,r13
+ 1003 023c AE29      		or r26,r14
+ 1004 023e BF29      		or r27,r15
+ 181:main.c        ****     status = true;
+ 1005               		.stabn	68,0,181,.LM95-.LFBB8
+ 1006               	.LM95:
+ 1007 0240 11E0      		ldi r17,lo8(1)
+ 1008 0242 8415      		cp r24,r4
+ 1009 0244 9505      		cpc r25,r5
+ 1010 0246 A605      		cpc r26,r6
+ 1011 0248 B705      		cpc r27,r7
+ 1012 024a 01F0      		breq .L40
+ 1013 024c 10E0      		ldi r17,0
+ 1014               	.L40:
+ 1015               	.LBE37:
+GAS LISTING /tmp/cclcKRNp.s 			page 33
+
+
+ 1016               	.LBE36:
+ 305:main.c        ****                 //internalRegisters[5] = isCrcOk(ic_addr);
+ 1017               		.stabn	68,0,305,.LM96-.LFBB8
+ 1018               	.LM96:
+ 1019 024e 80E3      		ldi r24,lo8(48)
+ 1020 0250 90E0      		ldi r25,0
+ 1021 0252 00C0      		rjmp .L45
+ 1022               	.L39:
+ 1023               	.LBB53:
+ 1024               	.LBB52:
+ 1025               	.LBB51:
+ 1026               	.LBB49:
+ 162:main.c        ****       break;
+ 1027               		.stabn	68,0,162,.LM97-.LFBB8
+ 1028               	.LM97:
+ 1029 0254 0E15      		cp r16,r14
+ 1030 0256 1F05      		cpc r17,r15
+ 1031 0258 00F4      		brsh .L38
+ 165:main.c        ****     if (pos == length - 1)
+ 1032               		.stabn	68,0,165,.LM98-.LFBB8
+ 1033               	.LM98:
+ 1034 025a 8091 0000 		lds r24,ic_addr
+ 1035 025e B401      		movw r22,r8
+ 1036 0260 600F      		add r22,r16
+ 1037 0262 711F      		adc r23,r17
+ 1038 0264 0E94 0000 		call twi_master_read16_reg16
+ 166:main.c        ****       data &= 0xFF00;
+ 1039               		.stabn	68,0,166,.LM99-.LFBB8
+ 1040               	.LM99:
+ 1041 0268 0A15      		cp r16,r10
+ 1042 026a 1B05      		cpc r17,r11
+ 1043 026c 01F4      		brne .L37
+ 167:main.c        **** 
+ 1044               		.stabn	68,0,167,.LM100-.LFBB8
+ 1045               	.LM100:
+ 1046 026e 8827      		clr r24
+ 1047               	.L37:
+ 1048               	.LBB45:
+ 1049               	.LBB46:
+ 1050               		.stabs	"crc32.h",132,0,0,.Ltext7
+ 1051               	.Ltext7:
+  18:crc32.h       ****   }
+  19:crc32.h       **** }
+  20:crc32.h       **** 
+  21:crc32.h       **** static inline void crc32(const void *data, const uint16_t length,
+  22:crc32.h       ****                          const uint32_t *crc_table, uint32_t *crc) {
+  23:crc32.h       ****   for (uint16_t i = 0; i < length; ++i) {
+  24:crc32.h       ****     *crc = crc_table[(uint8_t)(*crc) ^ ((uint8_t *)data)[i]] ^
+ 1052               		.stabn	68,0,24,.LM101-.LFBB8
+ 1053               	.LM101:
+ 1054 0270 E92F      		mov r30,r25
+ 1055 0272 E425      		eor r30,r4
+ 1056 0274 24E0      		ldi r18,lo8(4)
+ 1057 0276 E29F      		mul r30,r18
+ 1058 0278 F001      		movw r30,r0
+ 1059 027a 1124      		clr __zero_reg__
+ 1060 027c EC0D      		add r30,r12
+GAS LISTING /tmp/cclcKRNp.s 			page 34
+
+
+ 1061 027e FD1D      		adc r31,r13
+  25:crc32.h       ****            *crc >> 8;
+ 1062               		.stabn	68,0,25,.LM102-.LFBB8
+ 1063               	.LM102:
+ 1064 0280 452C      		mov r4,r5
+ 1065 0282 562C      		mov r5,r6
+ 1066 0284 672C      		mov r6,r7
+ 1067 0286 7724      		clr r7
+  24:crc32.h       ****            *crc >> 8;
+ 1068               		.stabn	68,0,24,.LM103-.LFBB8
+ 1069               	.LM103:
+ 1070 0288 4081      		ld r20,Z
+ 1071 028a 5181      		ldd r21,Z+1
+ 1072 028c 6281      		ldd r22,Z+2
+ 1073 028e 7381      		ldd r23,Z+3
+ 1074 0290 4426      		eor r4,r20
+ 1075 0292 5526      		eor r5,r21
+ 1076 0294 6626      		eor r6,r22
+ 1077 0296 7726      		eor r7,r23
+ 1078               	.LBE46:
+ 1079               	.LBE45:
+ 1080               	.LBE49:
+ 1081               		.stabs	"main.c",132,0,0,.Ltext8
+ 1082               	.Ltext8:
+ 161:main.c        ****     if (pos >= length)
+ 1083               		.stabn	68,0,161,.LM104-.LFBB8
+ 1084               	.LM104:
+ 1085 0298 0E5F      		subi r16,-2
+ 1086 029a 1F4F      		sbci r17,-1
+ 1087               	.LBB50:
+ 1088               	.LBB48:
+ 1089               	.LBB47:
+ 1090               		.stabs	"crc32.h",132,0,0,.Ltext9
+ 1091               	.Ltext9:
+  24:crc32.h       ****            *crc >> 8;
+ 1092               		.stabn	68,0,24,.LM105-.LFBB8
+ 1093               	.LM105:
+ 1094 029c 8425      		eor r24,r4
+ 1095 029e 94E0      		ldi r25,lo8(4)
+ 1096 02a0 899F      		mul r24,r25
+ 1097 02a2 F001      		movw r30,r0
+ 1098 02a4 1124      		clr __zero_reg__
+ 1099 02a6 EC0D      		add r30,r12
+ 1100 02a8 FD1D      		adc r31,r13
+ 1101               		.stabn	68,0,25,.LM106-.LFBB8
+ 1102               	.LM106:
+ 1103 02aa 452C      		mov r4,r5
+ 1104 02ac 562C      		mov r5,r6
+ 1105 02ae 672C      		mov r6,r7
+ 1106 02b0 7724      		clr r7
+  24:crc32.h       ****            *crc >> 8;
+ 1107               		.stabn	68,0,24,.LM107-.LFBB8
+ 1108               	.LM107:
+ 1109 02b2 8081      		ld r24,Z
+ 1110 02b4 9181      		ldd r25,Z+1
+ 1111 02b6 A281      		ldd r26,Z+2
+ 1112 02b8 B381      		ldd r27,Z+3
+GAS LISTING /tmp/cclcKRNp.s 			page 35
+
+
+ 1113 02ba 4826      		eor r4,r24
+ 1114 02bc 5926      		eor r5,r25
+ 1115 02be 6A26      		eor r6,r26
+ 1116 02c0 7B26      		eor r7,r27
+ 1117 02c2 00C0      		rjmp .L35
+ 1118               	.L30:
+ 1119               	.LBE47:
+ 1120               	.LBE48:
+ 1121               	.LBE50:
+ 1122               	.LBE51:
+ 1123               	.LBE52:
+ 1124               	.LBE53:
+ 1125               		.stabs	"main.c",132,0,0,.Ltext10
+ 1126               	.Ltext10:
+ 312:main.c        ****                 break;
+ 1127               		.stabn	68,0,312,.LM108-.LFBB8
+ 1128               	.LM108:
+ 1129 02c4 812F      		mov r24,r17
+ 1130 02c6 90E0      		ldi r25,0
+ 1131 02c8 9093 0000 		sts internalRegisters+10+1,r25
+ 1132 02cc 8093 0000 		sts internalRegisters+10,r24
+ 313:main.c        ****             case 5:
+ 1133               		.stabn	68,0,313,.LM109-.LFBB8
+ 1134               	.LM109:
+ 1135 02d0 00C0      		rjmp .L24
+ 1136               	.L29:
+ 315:main.c        ****                 break;
+ 1137               		.stabn	68,0,315,.LM110-.LFBB8
+ 1138               	.LM110:
+ 1139 02d2 8091 0000 		lds r24,ic_addr
+ 1140 02d6 41E1      		ldi r20,lo8(17)
+ 1141 02d8 6AE1      		ldi r22,lo8(26)
+ 1142 02da 70E0      		ldi r23,0
+ 1143 02dc 0E94 0000 		call twi_master_write16_reg8
+ 316:main.c        ****             case 6:
+ 1144               		.stabn	68,0,316,.LM111-.LFBB8
+ 1145               	.LM111:
+ 1146 02e0 00C0      		rjmp .L24
+ 1147               		.size	main, .-main
+ 1148               		.stabs	"i:r(6,5)",64,0,253,17
+ 1149               		.stabn	192,0,0,.LFBB8-.LFBB8
+ 1150               		.stabs	"crc:r(6,7)",64,0,153,4
+ 1151               		.stabs	"start_address:r(6,6)",64,0,154,8
+ 1152               		.stabs	"length:r(6,6)",64,0,156,14
+ 1153               		.stabn	192,0,0,.LBB37-.LFBB8
+ 1154               		.stabs	"r:r(6,7)",64,0,251,24
+ 1155               		.stabn	192,0,0,.LBB40-.LFBB8
+ 1156               		.stabn	224,0,0,.LBE40-.LFBB8
+ 1157               		.stabs	"pos:r(6,6)",64,0,161,16
+ 1158               		.stabn	192,0,0,.LBB43-.LFBB8
+ 1159               		.stabs	"data:r(6,6)",64,0,165,24
+ 1160               		.stabn	192,0,0,.LBB44-.LFBB8
+ 1161               		.stabn	224,0,0,.LBE44-.LFBB8
+ 1162               		.stabs	"data:r(6,6)",64,0,165,24
+ 1163               		.stabn	192,0,0,.LBB49-.LFBB8
+ 1164               		.stabn	224,0,0,.LBE49-.LFBB8
+ 1165               		.stabs	"data:r(6,6)",64,0,165,24
+GAS LISTING /tmp/cclcKRNp.s 			page 36
+
+
+ 1166               		.stabn	192,0,0,.LBB50-.LFBB8
+ 1167               		.stabn	224,0,0,.LBE50-.LFBB8
+ 1168               		.stabn	224,0,0,.LBE43-.LFBB8
+ 1169               		.stabs	"pos:r(6,6)",64,0,161,16
+ 1170               		.stabn	192,0,0,.LBB51-.LFBB8
+ 1171               		.stabn	224,0,0,.LBE51-.LFBB8
+ 1172               		.stabn	224,0,0,.LBE37-.LFBB8
+ 1173               		.stabs	"crc:r(6,7)",64,0,153,4
+ 1174               		.stabs	"start_address:r(6,6)",64,0,154,8
+ 1175               		.stabs	"length:r(6,6)",64,0,156,14
+ 1176               		.stabn	192,0,0,.LBB52-.LFBB8
+ 1177               		.stabn	224,0,0,.LBE52-.LFBB8
+ 1178               		.stabn	224,0,0,.Lscope8-.LFBB8
+ 1179               	.Lscope8:
+ 1180               		.stabs	"",36,0,0,.Lscope8-.LFBB8
+ 1181               		.stabd	78,0,0
+ 1182               	.global	application_crc_expected_index
+ 1183               		.data
+ 1184               		.type	application_crc_expected_index, @object
+ 1185               		.size	application_crc_expected_index, 2
+ 1186               	application_crc_expected_index:
+ 1187 0000 1C00      		.word	28
+ 1188               		.stabs	"application_crc_expected_index:G(0,53)=B(6,6)",32,0,50,0
+ 1189               	.global	ic_addr
+ 1190               		.type	ic_addr, @object
+ 1191               		.size	ic_addr, 1
+ 1192               	ic_addr:
+ 1193 0002 50        		.byte	80
+ 1194               		.stabs	"ic_addr:G(0,52)",32,0,49,0
+ 1195               	.global	mem_addr1
+ 1196               		.type	mem_addr1, @object
+ 1197               		.size	mem_addr1, 2
+ 1198               	mem_addr1:
+ 1199 0003 3000      		.word	48
+ 1200               		.stabs	"mem_addr1:G(6,6)",32,0,47,0
+ 1201               	.global	mem_addr
+ 1202               		.type	mem_addr, @object
+ 1203               		.size	mem_addr, 2
+ 1204               	mem_addr:
+ 1205 0005 3000      		.word	48
+ 1206               		.stabs	"mem_addr:G(6,6)",32,0,46,0
+ 1207               		.comm	internalRegisters,20,1
+ 1208               		.stabs	"internalRegisters:G(0,54)=ar(0,55)=r(0,55);0;0177777;;0;9;(0,53)",32,0,44,0
+ 1209               		.comm	holdingRegisters,40,1
+ 1210               		.stabs	"holdingRegisters:G(0,56)=ar(0,55);0;19;(0,53)",32,0,43,0
+ 1211               		.comm	inputRegisters,8,1
+ 1212               		.stabs	"inputRegisters:G(0,57)=ar(0,55);0;3;(0,53)",32,0,42,0
+ 1213               	.global	outstate
+ 1214               		.section .bss
+ 1215               		.type	outstate, @object
+ 1216               		.size	outstate, 1
+ 1217               	outstate:
+ 1218 0000 00        		.zero	1
+ 1219               		.stabs	"outstate:G(0,52)",32,0,41,0
+ 1220               	.global	instate
+ 1221               		.type	instate, @object
+ 1222               		.size	instate, 1
+GAS LISTING /tmp/cclcKRNp.s 			page 37
+
+
+ 1223               	instate:
+ 1224 0001 00        		.zero	1
+ 1225               		.stabs	"instate:G(0,52)",32,0,40,0
+ 1226               		.comm	DataPos,2,1
+ 1227               		.stabs	"DataPos:G(0,53)",32,0,250,0
+ 1228               		.comm	rxbuffer,256,1
+ 1229               		.stabs	"rxbuffer:G(0,58)=ar(0,55);0;255;(0,59)=B(0,13)",32,0,245,0
+ 1230               		.text
+ 1231               		.stabs	"",100,0,0,.Letext0
+ 1232               	.Letext0:
+ 1233               		.ident	"GCC: (Gentoo 7.2.0-r1 p1.1) 7.2.0"
+ 1234               	.global __do_copy_data
+ 1235               	.global __do_clear_bss
+GAS LISTING /tmp/cclcKRNp.s 			page 38
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/cclcKRNp.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cclcKRNp.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cclcKRNp.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cclcKRNp.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cclcKRNp.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cclcKRNp.s:137    .text:0000000000000000 timer0100us_start
+     /tmp/cclcKRNp.s:170    .text:0000000000000012 SetOuts
+     /tmp/cclcKRNp.s:260    .text:0000000000000096 ReadIns
+     /tmp/cclcKRNp.s:305    .text:00000000000000be io_conf
+     /tmp/cclcKRNp.s:350    .text:00000000000000d6 __vector_16
+     /tmp/cclcKRNp.s:406    .text:000000000000011e modbusGet
+                            *COM*:0000000000000100 rxbuffer
+     /tmp/cclcKRNp.s:1217   .bss:0000000000000000 outstate
+                            *COM*:0000000000000014 internalRegisters
+                            *COM*:0000000000000008 inputRegisters
+                            *COM*:0000000000000028 holdingRegisters
+     /tmp/cclcKRNp.s:571    .text:00000000000001e4 software_reset
+     /tmp/cclcKRNp.s:623    .text.startup:0000000000000000 main
+     /tmp/cclcKRNp.s:1192   .data:0000000000000002 ic_addr
+     /tmp/cclcKRNp.s:1204   .data:0000000000000005 mem_addr
+     /tmp/cclcKRNp.s:1198   .data:0000000000000003 mem_addr1
+     /tmp/cclcKRNp.s:1186   .data:0000000000000000 application_crc_expected_index
+     /tmp/cclcKRNp.s:1223   .bss:0000000000000001 instate
+                            *COM*:0000000000000002 DataPos
+
+UNDEFINED SYMBOLS
+__prologue_saves__
+__epilogue_restores__
+modbusTickTimer
+modbusGetBusState
+__tablejump2__
+modbusExchangeBits
+modbusExchangeRegisters
+modbusSendException
+exit
+modbusSetAddress
+modbusInit
+twi_master_init
+twi_master_write16_reg8
+twi_master_write_page
+twi_master_read16_reg16
+__do_copy_data
+__do_clear_bss

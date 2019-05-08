@@ -1,0 +1,2409 @@
+GAS LISTING /tmp/cctlkPP8.s 			page 1
+
+
+   1               		.file	"twi_master.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.stabs	"/home/drjacka/modbus/yaMBSiavr_8/prepared_firmware/",100,0,2,.Ltext0
+   8               		.stabs	"twi_master/twi_master.c",100,0,2,.Ltext0
+   9               		.text
+  10               	.Ltext0:
+  11               		.stabs	"gcc2_compiled.",60,0,0,0
+  12               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  13               		.stabs	"char:t(0,2)=@s8;r(0,2);0;255;",128,0,0,0
+  14               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  15               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  16               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  17               		.stabs	"__int128:t(0,6)=@s128;r(0,6);02000000000000000000000000000000000000000000;0177777777777777
+  18               		.stabs	"__int128 unsigned:t(0,7)=@s128;r(0,7);0;03777777777777777777777777777777777777777777;",128
+  19               		.stabs	"long long int:t(0,8)=@s64;r(0,8);01000000000000000000000;00777777777777777777777;",128,0,0
+  20               		.stabs	"long long unsigned int:t(0,9)=@s64;r(0,9);0;01777777777777777777777;",128,0,0,0
+  21               		.stabs	"short int:t(0,10)=r(0,10);-32768;32767;",128,0,0,0
+  22               		.stabs	"short unsigned int:t(0,11)=r(0,11);0;0177777;",128,0,0,0
+  23               		.stabs	"signed char:t(0,12)=@s8;r(0,12);-128;127;",128,0,0,0
+  24               		.stabs	"unsigned char:t(0,13)=@s8;r(0,13);0;255;",128,0,0,0
+  25               		.stabs	"float:t(0,14)=r(0,1);4;0;",128,0,0,0
+  26               		.stabs	"double:t(0,15)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"long double:t(0,16)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"_Float32:t(0,17)=r(0,1);4;0;",128,0,0,0
+  29               		.stabs	"short _Fract:t(0,18)=r(0,1);1;0;",128,0,0,0
+  30               		.stabs	"_Fract:t(0,19)=r(0,1);2;0;",128,0,0,0
+  31               		.stabs	"long _Fract:t(0,20)=r(0,1);4;0;",128,0,0,0
+  32               		.stabs	"long long _Fract:t(0,21)=r(0,1);8;0;",128,0,0,0
+  33               		.stabs	"unsigned short _Fract:t(0,22)=r(0,1);1;0;",128,0,0,0
+  34               		.stabs	"unsigned _Fract:t(0,23)=r(0,1);2;0;",128,0,0,0
+  35               		.stabs	"unsigned long _Fract:t(0,24)=r(0,1);4;0;",128,0,0,0
+  36               		.stabs	"unsigned long long _Fract:t(0,25)=r(0,1);8;0;",128,0,0,0
+  37               		.stabs	"_Sat short _Fract:t(0,26)=r(0,1);1;0;",128,0,0,0
+  38               		.stabs	"_Sat _Fract:t(0,27)=r(0,1);2;0;",128,0,0,0
+  39               		.stabs	"_Sat long _Fract:t(0,28)=r(0,1);4;0;",128,0,0,0
+  40               		.stabs	"_Sat long long _Fract:t(0,29)=r(0,1);8;0;",128,0,0,0
+  41               		.stabs	"_Sat unsigned short _Fract:t(0,30)=r(0,1);1;0;",128,0,0,0
+  42               		.stabs	"_Sat unsigned _Fract:t(0,31)=r(0,1);2;0;",128,0,0,0
+  43               		.stabs	"_Sat unsigned long _Fract:t(0,32)=r(0,1);4;0;",128,0,0,0
+  44               		.stabs	"_Sat unsigned long long _Fract:t(0,33)=r(0,1);8;0;",128,0,0,0
+  45               		.stabs	"short _Accum:t(0,34)=r(0,1);2;0;",128,0,0,0
+  46               		.stabs	"_Accum:t(0,35)=r(0,1);4;0;",128,0,0,0
+  47               		.stabs	"long _Accum:t(0,36)=r(0,1);8;0;",128,0,0,0
+  48               		.stabs	"long long _Accum:t(0,37)=r(0,1);8;0;",128,0,0,0
+  49               		.stabs	"unsigned short _Accum:t(0,38)=r(0,1);2;0;",128,0,0,0
+  50               		.stabs	"unsigned _Accum:t(0,39)=r(0,1);4;0;",128,0,0,0
+  51               		.stabs	"unsigned long _Accum:t(0,40)=r(0,1);8;0;",128,0,0,0
+  52               		.stabs	"unsigned long long _Accum:t(0,41)=r(0,1);8;0;",128,0,0,0
+  53               		.stabs	"_Sat short _Accum:t(0,42)=r(0,1);2;0;",128,0,0,0
+  54               		.stabs	"_Sat _Accum:t(0,43)=r(0,1);4;0;",128,0,0,0
+  55               		.stabs	"_Sat long _Accum:t(0,44)=r(0,1);8;0;",128,0,0,0
+  56               		.stabs	"_Sat long long _Accum:t(0,45)=r(0,1);8;0;",128,0,0,0
+  57               		.stabs	"_Sat unsigned short _Accum:t(0,46)=r(0,1);2;0;",128,0,0,0
+GAS LISTING /tmp/cctlkPP8.s 			page 2
+
+
+  58               		.stabs	"_Sat unsigned _Accum:t(0,47)=r(0,1);4;0;",128,0,0,0
+  59               		.stabs	"_Sat unsigned long _Accum:t(0,48)=r(0,1);8;0;",128,0,0,0
+  60               		.stabs	"_Sat unsigned long long _Accum:t(0,49)=r(0,1);8;0;",128,0,0,0
+  61               		.stabs	"void:t(0,50)=(0,50)",128,0,0,0
+  62               		.stabs	"twi_master/twi_master.h",130,0,0,0
+  63               		.stabs	"/usr/avr/include/inttypes.h",130,0,0,0
+  64               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stdint.h",130,0,0,0
+  65               		.stabs	"/usr/lib/gcc/avr/7.2.0/include/stdint-gcc.h",130,0,0,0
+  66               		.stabs	"int8_t:t(4,1)=(0,12)",128,0,34,0
+  67               		.stabs	"int16_t:t(4,2)=(0,1)",128,0,37,0
+  68               		.stabs	"int32_t:t(4,3)=(0,3)",128,0,40,0
+  69               		.stabs	"int64_t:t(4,4)=(0,8)",128,0,43,0
+  70               		.stabs	"uint8_t:t(4,5)=(0,13)",128,0,46,0
+  71               		.stabs	"uint16_t:t(4,6)=(0,4)",128,0,49,0
+  72               		.stabs	"uint32_t:t(4,7)=(0,5)",128,0,52,0
+  73               		.stabs	"uint64_t:t(4,8)=(0,9)",128,0,55,0
+  74               		.stabs	"int_least8_t:t(4,9)=(0,12)",128,0,60,0
+  75               		.stabs	"int_least16_t:t(4,10)=(0,1)",128,0,61,0
+  76               		.stabs	"int_least32_t:t(4,11)=(0,3)",128,0,62,0
+  77               		.stabs	"int_least64_t:t(4,12)=(0,8)",128,0,63,0
+  78               		.stabs	"uint_least8_t:t(4,13)=(0,13)",128,0,64,0
+  79               		.stabs	"uint_least16_t:t(4,14)=(0,4)",128,0,65,0
+  80               		.stabs	"uint_least32_t:t(4,15)=(0,5)",128,0,66,0
+  81               		.stabs	"uint_least64_t:t(4,16)=(0,9)",128,0,67,0
+  82               		.stabs	"int_fast8_t:t(4,17)=(0,12)",128,0,71,0
+  83               		.stabs	"int_fast16_t:t(4,18)=(0,1)",128,0,72,0
+  84               		.stabs	"int_fast32_t:t(4,19)=(0,3)",128,0,73,0
+  85               		.stabs	"int_fast64_t:t(4,20)=(0,8)",128,0,74,0
+  86               		.stabs	"uint_fast8_t:t(4,21)=(0,13)",128,0,75,0
+  87               		.stabs	"uint_fast16_t:t(4,22)=(0,4)",128,0,76,0
+  88               		.stabs	"uint_fast32_t:t(4,23)=(0,5)",128,0,77,0
+  89               		.stabs	"uint_fast64_t:t(4,24)=(0,9)",128,0,78,0
+  90               		.stabs	"intptr_t:t(4,25)=(0,1)",128,0,83,0
+  91               		.stabs	"uintptr_t:t(4,26)=(0,4)",128,0,86,0
+  92               		.stabs	"intmax_t:t(4,27)=(0,8)",128,0,91,0
+  93               		.stabs	"uintmax_t:t(4,28)=(0,9)",128,0,92,0
+  94               		.stabn	162,0,0,0
+  95               		.stabn	162,0,0,0
+  96               		.stabs	"int_farptr_t:t(2,1)=(4,3)",128,0,77,0
+  97               		.stabs	"uint_farptr_t:t(2,2)=(4,7)",128,0,81,0
+  98               		.stabn	162,0,0,0
+  99               		.stabs	"/usr/avr/include/util/twi.h",130,0,0,0
+ 100               		.stabs	"/usr/avr/include/avr/io.h",130,0,0,0
+ 101               		.stabs	"/usr/avr/include/avr/fuse.h",130,0,0,0
+ 102               		.stabs	"__fuse_t:t(7,1)=(7,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
+ 103               		.stabn	162,0,0,0
+ 104               		.stabn	162,0,0,0
+ 105               		.stabn	162,0,0,0
+ 106               		.stabn	162,0,0,0
+ 107               		.stabs	"twi_master_init:F(0,50)",36,0,35,twi_master_init
+ 108               	.global	twi_master_init
+ 109               		.type	twi_master_init, @function
+ 110               	twi_master_init:
+ 111               		.stabd	46,0,0
+   1:twi_master/twi_master.c **** /*************************************************************************
+   2:twi_master/twi_master.c ****  * TWI Master library functions for AVR MCU                              *
+   3:twi_master/twi_master.c ****  *                                                                       *
+GAS LISTING /tmp/cctlkPP8.s 			page 3
+
+
+   4:twi_master/twi_master.c ****  * Copyright (C) 2011 by Anton 'TwisteR' Dubniak <twister@tfsoft.org.ua> *
+   5:twi_master/twi_master.c ****  *                                                                       *
+   6:twi_master/twi_master.c ****  * This program is free software: you can redistribute it and/or modify  *
+   7:twi_master/twi_master.c ****  * it under the terms of the GNU General Public License as published by  *
+   8:twi_master/twi_master.c ****  * the Free Software Foundation, either version 3 of the License, or     *
+   9:twi_master/twi_master.c ****  * (at your option) any later version.                                   *
+  10:twi_master/twi_master.c ****  *                                                                       *
+  11:twi_master/twi_master.c ****  * This program is distributed in the hope that it will be useful,       *
+  12:twi_master/twi_master.c ****  * but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+  13:twi_master/twi_master.c ****  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+  14:twi_master/twi_master.c ****  * GNU General Public License for more details.                          *
+  15:twi_master/twi_master.c ****  *                                                                       *
+  16:twi_master/twi_master.c ****  * You should have received a copy of the GNU General Public License     *
+  17:twi_master/twi_master.c ****  * along with this program.  If not, see <http://www.gnu.org/licenses/>. *
+  18:twi_master/twi_master.c ****  *************************************************************************/
+  19:twi_master/twi_master.c **** 
+  20:twi_master/twi_master.c **** #include "twi_master.h"
+  21:twi_master/twi_master.c **** #include <util/delay.h>
+  22:twi_master/twi_master.c **** 
+  23:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  24:twi_master/twi_master.c **** #include <stdlib.h>
+  25:twi_master/twi_master.c **** #include <avr/pgmspace.h>
+  26:twi_master/twi_master.c **** #include "avr-uart/uart.h"
+  27:twi_master/twi_master.c **** //void twi_master_print_status(void);
+  28:twi_master/twi_master.c **** #endif
+  29:twi_master/twi_master.c **** 
+  30:twi_master/twi_master.c **** static uint8_t twst;
+  31:twi_master/twi_master.c **** 
+  32:twi_master/twi_master.c **** /*******************************************************************************
+  33:twi_master/twi_master.c **** Call this function to init the TWI hardware.
+  34:twi_master/twi_master.c **** *******************************************************************************/
+  35:twi_master/twi_master.c **** void twi_master_init()
+  36:twi_master/twi_master.c **** {
+ 112               		.stabn	68,0,36,.LM0-.LFBB1
+ 113               	.LM0:
+ 114               	.LFBB1:
+ 115               	/* prologue: function */
+ 116               	/* frame size = 0 */
+ 117               	/* stack size = 0 */
+ 118               	.L__stack_usage = 0
+  37:twi_master/twi_master.c ****   TWSR = TWI_TWPS;
+ 119               		.stabn	68,0,37,.LM1-.LFBB1
+ 120               	.LM1:
+ 121 0000 1092 B900 		sts 185,__zero_reg__
+  38:twi_master/twi_master.c ****   TWBR = TWI_TWBR;
+ 122               		.stabn	68,0,38,.LM2-.LFBB1
+ 123               	.LM2:
+ 124 0004 8CE5      		ldi r24,lo8(92)
+ 125 0006 8093 B800 		sts 184,r24
+ 126               	/* epilogue start */
+  39:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  40:twi_master/twi_master.c ****   char buf[10];
+  41:twi_master/twi_master.c ****   uart_puts_P("\ntwi_master_init: F_SCL=");
+  42:twi_master/twi_master.c ****   ltoa(TWI_SCL_CLOCK, buf, 10);
+  43:twi_master/twi_master.c ****   uart_puts(buf);
+  44:twi_master/twi_master.c ****   uart_puts_P(" Hz, TWBR=");
+  45:twi_master/twi_master.c ****   utoa(TWI_TWBR, buf, 10);
+GAS LISTING /tmp/cctlkPP8.s 			page 4
+
+
+  46:twi_master/twi_master.c ****   uart_puts(buf);
+  47:twi_master/twi_master.c ****   uart_putc('\n');
+  48:twi_master/twi_master.c ****   //printf("\ntwi_master_init: F_SCL=%ld Hz, TWBR=%ld\n", TWI_SCL_CLOCK,
+  49:twi_master/twi_master.c ****   //  TWI_TWBR);
+  50:twi_master/twi_master.c **** #endif
+  51:twi_master/twi_master.c **** }
+ 127               		.stabn	68,0,51,.LM3-.LFBB1
+ 128               	.LM3:
+ 129 000a 0895      		ret
+ 130               		.size	twi_master_init, .-twi_master_init
+ 131               	.Lscope1:
+ 132               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 133               		.stabd	78,0,0
+ 134               		.stabs	"twi_master_start:F(4,5)",36,0,60,twi_master_start
+ 135               	.global	twi_master_start
+ 136               		.type	twi_master_start, @function
+ 137               	twi_master_start:
+ 138               		.stabd	46,0,0
+  52:twi_master/twi_master.c **** 
+  53:twi_master/twi_master.c **** /*******************************************************************************
+  54:twi_master/twi_master.c **** Try to transmit the START condition.
+  55:twi_master/twi_master.c **** 
+  56:twi_master/twi_master.c **** RETURN VALUE
+  57:twi_master/twi_master.c ****   If no error occurs, this function returns the TWI Status Register value.
+  58:twi_master/twi_master.c ****   On error, 0 is returned.
+  59:twi_master/twi_master.c **** *******************************************************************************/
+  60:twi_master/twi_master.c **** uint8_t twi_master_start()
+  61:twi_master/twi_master.c **** {
+ 139               		.stabn	68,0,61,.LM4-.LFBB2
+ 140               	.LM4:
+ 141               	.LFBB2:
+ 142               	/* prologue: function */
+ 143               	/* frame size = 0 */
+ 144               	/* stack size = 0 */
+ 145               	.L__stack_usage = 0
+  62:twi_master/twi_master.c ****   uint16_t timeout = 1;
+  63:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  64:twi_master/twi_master.c ****   char buf[10];
+  65:twi_master/twi_master.c ****   uart_puts_P("\ntwi_start: ");
+  66:twi_master/twi_master.c ****   //printf_P(PSTR("\ntwi_start:\t\t"));
+  67:twi_master/twi_master.c **** #endif
+  68:twi_master/twi_master.c ****   // send START condition
+  69:twi_master/twi_master.c ****   TWCR = _BV(TWINT) | _BV(TWSTA) | _BV(TWEN);
+ 146               		.stabn	68,0,69,.LM5-.LFBB2
+ 147               	.LM5:
+ 148 000c 84EA      		ldi r24,lo8(-92)
+ 149 000e 8093 BC00 		sts 188,r24
+  62:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 150               		.stabn	68,0,62,.LM6-.LFBB2
+ 151               	.LM6:
+ 152 0012 21E0      		ldi r18,lo8(1)
+ 153 0014 30E0      		ldi r19,0
+ 154               	.L3:
+  70:twi_master/twi_master.c ****   // TODO fully interrupt driven routines
+  71:twi_master/twi_master.c ****   // wait until transmission is completed
+  72:twi_master/twi_master.c ****   while (!(TWCR & _BV(TWINT)) && timeout)
+ 155               		.stabn	68,0,72,.LM7-.LFBB2
+GAS LISTING /tmp/cctlkPP8.s 			page 5
+
+
+ 156               	.LM7:
+ 157 0016 8091 BC00 		lds r24,188
+ 158 001a 87FD      		sbrc r24,7
+ 159 001c 00C0      		rjmp .L4
+ 160               		.stabn	68,0,72,.LM8-.LFBB2
+ 161               	.LM8:
+ 162 001e 2115      		cp r18,__zero_reg__
+ 163 0020 3105      		cpc r19,__zero_reg__
+ 164 0022 01F4      		brne .L5
+ 165               	.L4:
+  73:twi_master/twi_master.c ****     timeout++;
+  74:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+  75:twi_master/twi_master.c ****   twst = TW_STATUS;
+ 166               		.stabn	68,0,75,.LM9-.LFBB2
+ 167               	.LM9:
+ 168 0024 8091 B900 		lds r24,185
+  76:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  77:twi_master/twi_master.c ****   //twi_master_print_status();
+  78:twi_master/twi_master.c **** #endif
+  79:twi_master/twi_master.c ****   if (timeout == 0)
+ 169               		.stabn	68,0,79,.LM10-.LFBB2
+ 170               	.LM10:
+ 171 0028 232B      		or r18,r19
+ 172 002a 01F0      		breq .L8
+  75:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 173               		.stabn	68,0,75,.LM11-.LFBB2
+ 174               	.LM11:
+ 175 002c 887F      		andi r24,lo8(-8)
+  80:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  81:twi_master/twi_master.c ****   {
+  82:twi_master/twi_master.c ****       uart_puts_P(", TIMEOUT\n");
+  83:twi_master/twi_master.c ****     //printf_P(PSTR(",\t\tTIMEOUT\n"));
+  84:twi_master/twi_master.c **** #endif
+  85:twi_master/twi_master.c ****     return 0;
+  86:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  87:twi_master/twi_master.c ****   }
+  88:twi_master/twi_master.c ****   else
+  89:twi_master/twi_master.c ****   {
+  90:twi_master/twi_master.c ****     uart_puts_P(", cycles: ");
+  91:twi_master/twi_master.c ****     utoa(timeout, buf, 10);
+  92:twi_master/twi_master.c ****     uart_puts(buf);
+  93:twi_master/twi_master.c ****     uart_putc('\n');
+  94:twi_master/twi_master.c ****     //printf(",\t\tcycles: %2d\n", timeout);
+  95:twi_master/twi_master.c ****   }
+  96:twi_master/twi_master.c **** #endif
+  97:twi_master/twi_master.c **** 
+  98:twi_master/twi_master.c ****   return ((twst == TW_START) || (twst == TW_REP_START)) ? twst : 0;
+ 176               		.stabn	68,0,98,.LM12-.LFBB2
+ 177               	.LM12:
+ 178 002e 8830      		cpi r24,lo8(8)
+ 179 0030 01F0      		breq .L2
+ 180               		.stabn	68,0,98,.LM13-.LFBB2
+ 181               	.LM13:
+ 182 0032 8031      		cpi r24,lo8(16)
+ 183 0034 01F4      		brne .L8
+ 184 0036 0895      		ret
+ 185               	.L5:
+GAS LISTING /tmp/cctlkPP8.s 			page 6
+
+
+  73:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 186               		.stabn	68,0,73,.LM14-.LFBB2
+ 187               	.LM14:
+ 188 0038 2F5F      		subi r18,-1
+ 189 003a 3F4F      		sbci r19,-1
+ 190 003c 00C0      		rjmp .L3
+ 191               	.L8:
+ 192               		.stabn	68,0,98,.LM15-.LFBB2
+ 193               	.LM15:
+ 194 003e 80E0      		ldi r24,0
+ 195               	.L2:
+ 196               	/* epilogue start */
+  99:twi_master/twi_master.c **** }
+ 197               		.stabn	68,0,99,.LM16-.LFBB2
+ 198               	.LM16:
+ 199 0040 0895      		ret
+ 200               		.size	twi_master_start, .-twi_master_start
+ 201               		.stabs	"timeout:r(4,6)",64,0,62,18
+ 202               		.stabn	192,0,0,.LFBB2-.LFBB2
+ 203               		.stabn	224,0,0,.Lscope2-.LFBB2
+ 204               	.Lscope2:
+ 205               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 206               		.stabd	78,0,0
+ 207               		.stabs	"twi_master_stop:F(0,50)",36,0,104,twi_master_stop
+ 208               	.global	twi_master_stop
+ 209               		.type	twi_master_stop, @function
+ 210               	twi_master_stop:
+ 211               		.stabd	46,0,0
+ 100:twi_master/twi_master.c **** 
+ 101:twi_master/twi_master.c **** /*******************************************************************************
+ 102:twi_master/twi_master.c **** Transmit STOP condition and reset TWI interface.
+ 103:twi_master/twi_master.c **** *******************************************************************************/
+ 104:twi_master/twi_master.c **** void twi_master_stop()
+ 105:twi_master/twi_master.c **** {
+ 212               		.stabn	68,0,105,.LM17-.LFBB3
+ 213               	.LM17:
+ 214               	.LFBB3:
+ 215               	/* prologue: function */
+ 216               	/* frame size = 0 */
+ 217               	/* stack size = 0 */
+ 218               	.L__stack_usage = 0
+ 106:twi_master/twi_master.c ****   TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWSTO);
+ 219               		.stabn	68,0,106,.LM18-.LFBB3
+ 220               	.LM18:
+ 221 0042 84E9      		ldi r24,lo8(-108)
+ 222 0044 8093 BC00 		sts 188,r24
+ 223               	/* epilogue start */
+ 107:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 108:twi_master/twi_master.c ****   uart_puts_P("twi_stop\n");
+ 109:twi_master/twi_master.c ****   //printf_P(PSTR("twi_stop\n"));
+ 110:twi_master/twi_master.c **** #endif
+ 111:twi_master/twi_master.c **** }
+ 224               		.stabn	68,0,111,.LM19-.LFBB3
+ 225               	.LM19:
+ 226 0048 0895      		ret
+ 227               		.size	twi_master_stop, .-twi_master_stop
+ 228               	.Lscope3:
+GAS LISTING /tmp/cctlkPP8.s 			page 7
+
+
+ 229               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 230               		.stabd	78,0,0
+ 231               		.stabs	"twi_master_write:F(4,5)",36,0,123,twi_master_write
+ 232               		.stabs	"data:P(0,51)=k(4,5)",64,0,123,24
+ 233               	.global	twi_master_write
+ 234               		.type	twi_master_write, @function
+ 235               	twi_master_write:
+ 236               		.stabd	46,0,0
+ 112:twi_master/twi_master.c **** 
+ 113:twi_master/twi_master.c **** /*******************************************************************************
+ 114:twi_master/twi_master.c **** Try to transmit one data byte.
+ 115:twi_master/twi_master.c **** 
+ 116:twi_master/twi_master.c **** ARGUMENTS
+ 117:twi_master/twi_master.c ****   1-st : data byte to be transmitted
+ 118:twi_master/twi_master.c **** 
+ 119:twi_master/twi_master.c **** RETURN VALUE
+ 120:twi_master/twi_master.c ****   If no error occurs, this function returns the TWI Status Register value.
+ 121:twi_master/twi_master.c ****   On error, 0 is returned.
+ 122:twi_master/twi_master.c **** *******************************************************************************/
+ 123:twi_master/twi_master.c **** uint8_t twi_master_write(const uint8_t data)
+ 124:twi_master/twi_master.c **** {
+ 237               		.stabn	68,0,124,.LM20-.LFBB4
+ 238               	.LM20:
+ 239               	.LFBB4:
+ 240               	/* prologue: function */
+ 241               	/* frame size = 0 */
+ 242               	/* stack size = 0 */
+ 243               	.L__stack_usage = 0
+ 125:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 126:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 127:twi_master/twi_master.c ****   char buf[10];
+ 128:twi_master/twi_master.c ****   uart_puts_P("wi_write[");
+ 129:twi_master/twi_master.c ****   utoa(data, buf, 10);
+ 130:twi_master/twi_master.c ****   uart_puts(buf);
+ 131:twi_master/twi_master.c ****   uart_puts_P("]: ");
+ 132:twi_master/twi_master.c ****   //printf("twi_write[0x%2X]:\t", data);
+ 133:twi_master/twi_master.c **** #endif
+ 134:twi_master/twi_master.c ****   // Set TWI registers and start transmission of data
+ 135:twi_master/twi_master.c ****   TWDR = data;
+ 244               		.stabn	68,0,135,.LM21-.LFBB4
+ 245               	.LM21:
+ 246 004a 8093 BB00 		sts 187,r24
+ 136:twi_master/twi_master.c ****   TWCR = _BV(TWINT) | _BV(TWEN);
+ 247               		.stabn	68,0,136,.LM22-.LFBB4
+ 248               	.LM22:
+ 249 004e 84E8      		ldi r24,lo8(-124)
+ 250 0050 8093 BC00 		sts 188,r24
+ 125:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 251               		.stabn	68,0,125,.LM23-.LFBB4
+ 252               	.LM23:
+ 253 0054 21E0      		ldi r18,lo8(1)
+ 254 0056 30E0      		ldi r19,0
+ 255               	.L14:
+ 137:twi_master/twi_master.c ****   // wail until transmission is completed and ACK/NACK has been received
+ 138:twi_master/twi_master.c ****   while (!(TWCR & _BV(TWINT)) && timeout)
+ 256               		.stabn	68,0,138,.LM24-.LFBB4
+ 257               	.LM24:
+GAS LISTING /tmp/cctlkPP8.s 			page 8
+
+
+ 258 0058 8091 BC00 		lds r24,188
+ 259 005c 87FD      		sbrc r24,7
+ 260 005e 00C0      		rjmp .L15
+ 261               		.stabn	68,0,138,.LM25-.LFBB4
+ 262               	.LM25:
+ 263 0060 2115      		cp r18,__zero_reg__
+ 264 0062 3105      		cpc r19,__zero_reg__
+ 265 0064 01F4      		brne .L16
+ 266               	.L15:
+ 139:twi_master/twi_master.c ****     timeout++;
+ 140:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 141:twi_master/twi_master.c ****   twst = TW_STATUS;
+ 267               		.stabn	68,0,141,.LM26-.LFBB4
+ 268               	.LM26:
+ 269 0066 8091 B900 		lds r24,185
+ 142:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 143:twi_master/twi_master.c ****   //twi_master_print_status();
+ 144:twi_master/twi_master.c **** #endif
+ 145:twi_master/twi_master.c ****   if (timeout == 0)
+ 270               		.stabn	68,0,145,.LM27-.LFBB4
+ 271               	.LM27:
+ 272 006a 232B      		or r18,r19
+ 273 006c 01F0      		breq .L19
+ 141:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 274               		.stabn	68,0,141,.LM28-.LFBB4
+ 275               	.LM28:
+ 276 006e 887F      		andi r24,lo8(-8)
+ 146:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 147:twi_master/twi_master.c ****   {
+ 148:twi_master/twi_master.c ****     uart_puts_P(", TIMEOUT\n");
+ 149:twi_master/twi_master.c ****     //printf_P(PSTR(",\t\tTIMEOUT\n"));
+ 150:twi_master/twi_master.c **** #endif
+ 151:twi_master/twi_master.c ****     return 0;
+ 152:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 153:twi_master/twi_master.c ****   }
+ 154:twi_master/twi_master.c ****   else
+ 155:twi_master/twi_master.c ****   {
+ 156:twi_master/twi_master.c ****     uart_puts_P(", cycles: ");
+ 157:twi_master/twi_master.c ****     utoa(timeout, buf, 10);
+ 158:twi_master/twi_master.c ****     uart_puts(buf);
+ 159:twi_master/twi_master.c ****     uart_putc('\n');
+ 160:twi_master/twi_master.c ****     //printf(",\t\tcycles: %d\n", timeout);
+ 161:twi_master/twi_master.c ****   }
+ 162:twi_master/twi_master.c **** #endif
+ 163:twi_master/twi_master.c **** 
+ 164:twi_master/twi_master.c ****   return (twst == TW_MT_SLA_ACK) || (twst == TW_MT_DATA_ACK) ||
+ 165:twi_master/twi_master.c ****          (twst == TW_MR_SLA_ACK) ? twst : 0;
+ 277               		.stabn	68,0,165,.LM29-.LFBB4
+ 278               	.LM29:
+ 279 0070 8831      		cpi r24,lo8(24)
+ 280 0072 01F0      		breq .L13
+ 164:twi_master/twi_master.c ****          (twst == TW_MR_SLA_ACK) ? twst : 0;
+ 281               		.stabn	68,0,164,.LM30-.LFBB4
+ 282               	.LM30:
+ 283 0074 8832      		cpi r24,lo8(40)
+ 284 0076 01F0      		breq .L13
+ 164:twi_master/twi_master.c ****          (twst == TW_MR_SLA_ACK) ? twst : 0;
+GAS LISTING /tmp/cctlkPP8.s 			page 9
+
+
+ 285               		.stabn	68,0,164,.LM31-.LFBB4
+ 286               	.LM31:
+ 287 0078 8034      		cpi r24,lo8(64)
+ 288 007a 01F4      		brne .L19
+ 289 007c 0895      		ret
+ 290               	.L16:
+ 139:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 291               		.stabn	68,0,139,.LM32-.LFBB4
+ 292               	.LM32:
+ 293 007e 2F5F      		subi r18,-1
+ 294 0080 3F4F      		sbci r19,-1
+ 295 0082 00C0      		rjmp .L14
+ 296               	.L19:
+ 297               		.stabn	68,0,165,.LM33-.LFBB4
+ 298               	.LM33:
+ 299 0084 80E0      		ldi r24,0
+ 300               	.L13:
+ 301               	/* epilogue start */
+ 166:twi_master/twi_master.c **** }
+ 302               		.stabn	68,0,166,.LM34-.LFBB4
+ 303               	.LM34:
+ 304 0086 0895      		ret
+ 305               		.size	twi_master_write, .-twi_master_write
+ 306               		.stabs	"timeout:r(4,6)",64,0,125,18
+ 307               		.stabn	192,0,0,.LFBB4-.LFBB4
+ 308               		.stabn	224,0,0,.Lscope4-.LFBB4
+ 309               	.Lscope4:
+ 310               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 311               		.stabd	78,0,0
+ 312               		.stabs	"twi_master_read:F(4,5)",36,0,179,twi_master_read
+ 313               		.stabs	"buf:P(0,52)=*(4,5)",64,0,179,30
+ 314               		.stabs	"ack:P(0,51)",64,0,179,22
+ 315               	.global	twi_master_read
+ 316               		.type	twi_master_read, @function
+ 317               	twi_master_read:
+ 318               		.stabd	46,0,0
+ 167:twi_master/twi_master.c **** 
+ 168:twi_master/twi_master.c **** /*******************************************************************************
+ 169:twi_master/twi_master.c **** Read one data byte from slave and send ACK or NAK in return.
+ 170:twi_master/twi_master.c **** 
+ 171:twi_master/twi_master.c **** ARGUMENTS
+ 172:twi_master/twi_master.c ****   1-st : pointer to the buffer for received data
+ 173:twi_master/twi_master.c ****   2-nd : either TWI_NAK or TWI_ACK
+ 174:twi_master/twi_master.c ****   
+ 175:twi_master/twi_master.c **** RETURN VALUE
+ 176:twi_master/twi_master.c ****   If no error occurs, this function returns the TWI Status Register value.
+ 177:twi_master/twi_master.c ****   On error, 0 is returned.
+ 178:twi_master/twi_master.c **** *******************************************************************************/
+ 179:twi_master/twi_master.c **** uint8_t twi_master_read(uint8_t *buf, const uint8_t ack)
+ 180:twi_master/twi_master.c **** {
+ 319               		.stabn	68,0,180,.LM35-.LFBB5
+ 320               	.LM35:
+ 321               	.LFBB5:
+ 322               	/* prologue: function */
+ 323               	/* frame size = 0 */
+ 324               	/* stack size = 0 */
+ 325               	.L__stack_usage = 0
+GAS LISTING /tmp/cctlkPP8.s 			page 10
+
+
+ 326 0088 FC01      		movw r30,r24
+ 181:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 182:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 183:twi_master/twi_master.c ****   char tmp_buf[10];
+ 184:twi_master/twi_master.c **** #endif
+ 185:twi_master/twi_master.c **** 
+ 186:twi_master/twi_master.c ****   // Set TWI registers
+ 187:twi_master/twi_master.c ****   if (ack)
+ 188:twi_master/twi_master.c ****   {
+ 189:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 190:twi_master/twi_master.c ****     uart_puts_P("twi_read[TWI_ACK, ");
+ 191:twi_master/twi_master.c ****     //printf_P(PSTR("twi_read[TWI_ACK,"));
+ 192:twi_master/twi_master.c **** #endif
+ 193:twi_master/twi_master.c ****     TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWEA);
+ 327               		.stabn	68,0,193,.LM36-.LFBB5
+ 328               	.LM36:
+ 329 008a 84EC      		ldi r24,lo8(-60)
+ 187:twi_master/twi_master.c ****   {
+ 330               		.stabn	68,0,187,.LM37-.LFBB5
+ 331               	.LM37:
+ 332 008c 6111      		cpse r22,__zero_reg__
+ 333 008e 00C0      		rjmp .L40
+ 194:twi_master/twi_master.c ****   }
+ 195:twi_master/twi_master.c ****   else
+ 196:twi_master/twi_master.c ****   {
+ 197:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 198:twi_master/twi_master.c ****     uart_puts_P("twi_read[TWI_NAK, ");
+ 199:twi_master/twi_master.c ****     //printf_P(PSTR("twi_read[TWI_NAK,"));
+ 200:twi_master/twi_master.c **** #endif
+ 201:twi_master/twi_master.c ****     TWCR = _BV(TWINT) | _BV(TWEN);
+ 334               		.stabn	68,0,201,.LM38-.LFBB5
+ 335               	.LM38:
+ 336 0090 84E8      		ldi r24,lo8(-124)
+ 337               	.L40:
+ 338 0092 8093 BC00 		sts 188,r24
+ 180:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 339               		.stabn	68,0,180,.LM39-.LFBB5
+ 340               	.LM39:
+ 341 0096 21E0      		ldi r18,lo8(1)
+ 342 0098 30E0      		ldi r19,0
+ 343               	.L29:
+ 202:twi_master/twi_master.c ****   }
+ 203:twi_master/twi_master.c ****   // wait until reading completed
+ 204:twi_master/twi_master.c ****   while (!(TWCR & _BV(TWINT)) && timeout)
+ 344               		.stabn	68,0,204,.LM40-.LFBB5
+ 345               	.LM40:
+ 346 009a 8091 BC00 		lds r24,188
+ 347 009e 87FD      		sbrc r24,7
+ 348 00a0 00C0      		rjmp .L30
+ 349               		.stabn	68,0,204,.LM41-.LFBB5
+ 350               	.LM41:
+ 351 00a2 2115      		cp r18,__zero_reg__
+ 352 00a4 3105      		cpc r19,__zero_reg__
+ 353 00a6 01F4      		brne .L31
+ 354               	.L30:
+ 205:twi_master/twi_master.c ****     timeout++;
+ 206:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+GAS LISTING /tmp/cctlkPP8.s 			page 11
+
+
+ 207:twi_master/twi_master.c ****   twst = TW_STATUS;
+ 355               		.stabn	68,0,207,.LM42-.LFBB5
+ 356               	.LM42:
+ 357 00a8 8091 B900 		lds r24,185
+ 208:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 209:twi_master/twi_master.c ****   utoa(TWDR, tmp_buf, 10);
+ 210:twi_master/twi_master.c ****   uart_puts(tmp_buf);
+ 211:twi_master/twi_master.c ****   uart_puts_P("]: ");
+ 212:twi_master/twi_master.c ****   //printf("0x%2X]:\t", TWDR);
+ 213:twi_master/twi_master.c ****   //twi_master_print_status();
+ 214:twi_master/twi_master.c **** #endif
+ 215:twi_master/twi_master.c ****   if (timeout == 0)
+ 358               		.stabn	68,0,215,.LM43-.LFBB5
+ 359               	.LM43:
+ 360 00ac 232B      		or r18,r19
+ 361 00ae 01F4      		brne .L32
+ 216:twi_master/twi_master.c ****   {
+ 217:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 218:twi_master/twi_master.c ****     uart_puts_P(", TIMEOUT\n");
+ 219:twi_master/twi_master.c ****     //printf_P(PSTR(",\tTIMEOUT\n"));
+ 220:twi_master/twi_master.c **** #endif
+ 221:twi_master/twi_master.c ****     *buf = 0;
+ 362               		.stabn	68,0,221,.LM44-.LFBB5
+ 363               	.LM44:
+ 364 00b0 1082      		st Z,__zero_reg__
+ 365               	.L41:
+ 222:twi_master/twi_master.c ****     return 0;
+ 223:twi_master/twi_master.c ****   }
+ 224:twi_master/twi_master.c ****   else
+ 225:twi_master/twi_master.c ****   {
+ 226:twi_master/twi_master.c ****     *buf = TWDR;
+ 227:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 228:twi_master/twi_master.c ****     uart_puts_P(", cycles: ");
+ 229:twi_master/twi_master.c ****     utoa(timeout, tmp_buf, 10);
+ 230:twi_master/twi_master.c ****     uart_puts(tmp_buf);
+ 231:twi_master/twi_master.c ****     uart_putc('\n');
+ 232:twi_master/twi_master.c ****     //printf(",\tcycles: %d\n", timeout);
+ 233:twi_master/twi_master.c **** #endif
+ 234:twi_master/twi_master.c ****   }
+ 235:twi_master/twi_master.c **** 
+ 236:twi_master/twi_master.c ****   return (twst == TW_MR_DATA_ACK) || (twst == TW_MR_DATA_NACK) ? twst : 0;
+ 366               		.stabn	68,0,236,.LM45-.LFBB5
+ 367               	.LM45:
+ 368 00b2 80E0      		ldi r24,0
+ 369 00b4 00C0      		rjmp .L26
+ 370               	.L31:
+ 205:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 371               		.stabn	68,0,205,.LM46-.LFBB5
+ 372               	.LM46:
+ 373 00b6 2F5F      		subi r18,-1
+ 374 00b8 3F4F      		sbci r19,-1
+ 375 00ba 00C0      		rjmp .L29
+ 376               	.L32:
+ 207:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 377               		.stabn	68,0,207,.LM47-.LFBB5
+ 378               	.LM47:
+ 379 00bc 887F      		andi r24,lo8(-8)
+GAS LISTING /tmp/cctlkPP8.s 			page 12
+
+
+ 226:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 380               		.stabn	68,0,226,.LM48-.LFBB5
+ 381               	.LM48:
+ 382 00be 9091 BB00 		lds r25,187
+ 383 00c2 9083      		st Z,r25
+ 384               		.stabn	68,0,236,.LM49-.LFBB5
+ 385               	.LM49:
+ 386 00c4 8035      		cpi r24,lo8(80)
+ 387 00c6 01F0      		breq .L26
+ 388               		.stabn	68,0,236,.LM50-.LFBB5
+ 389               	.LM50:
+ 390 00c8 8835      		cpi r24,lo8(88)
+ 391 00ca 01F4      		brne .L41
+ 392               	.L26:
+ 393               	/* epilogue start */
+ 237:twi_master/twi_master.c **** }
+ 394               		.stabn	68,0,237,.LM51-.LFBB5
+ 395               	.LM51:
+ 396 00cc 0895      		ret
+ 397               		.size	twi_master_read, .-twi_master_read
+ 398               		.stabs	"timeout:r(4,6)",64,0,181,18
+ 399               		.stabn	192,0,0,.LFBB5-.LFBB5
+ 400               		.stabn	224,0,0,.Lscope5-.LFBB5
+ 401               	.Lscope5:
+ 402               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 403               		.stabd	78,0,0
+ 404               		.stabs	"twi_master_write_page:F(4,5)",36,0,267,twi_master_write_page
+ 405               		.stabs	"sad:P(0,51)",64,0,267,14
+ 406               		.stabs	"length:P(0,51)",64,0,268,16
+ 407               		.stabs	"data:P(0,53)=*(4,6)",64,0,268,28
+ 408               	.global	twi_master_write_page
+ 409               		.type	twi_master_write_page, @function
+ 410               	twi_master_write_page:
+ 411               		.stabd	46,0,0
+ 238:twi_master/twi_master.c **** 
+ 239:twi_master/twi_master.c **** /*******************************************************************************
+ 240:twi_master/twi_master.c **** Write one byte to the 8-bit register of the specified slave.
+ 241:twi_master/twi_master.c **** 
+ 242:twi_master/twi_master.c **** ARGUMENTS
+ 243:twi_master/twi_master.c ****   1-st : slave address (SAD)
+ 244:twi_master/twi_master.c ****   2-nd : target register address
+ 245:twi_master/twi_master.c ****   3-rd : data byte
+ 246:twi_master/twi_master.c ****   
+ 247:twi_master/twi_master.c **** RETURN VALUE
+ 248:twi_master/twi_master.c ****   If no error occurs, this function returns positive value, 0 otherwise.
+ 249:twi_master/twi_master.c **** *******************************************************************************/
+ 250:twi_master/twi_master.c **** 
+ 251:twi_master/twi_master.c **** 
+ 252:twi_master/twi_master.c **** /*******************************************************************************
+ 253:twi_master/twi_master.c **** Write one byte to the 8-bit register of the specified slave.
+ 254:twi_master/twi_master.c **** 
+ 255:twi_master/twi_master.c **** ARGUMENTS
+ 256:twi_master/twi_master.c ****   1-st : slave address (SAD)
+ 257:twi_master/twi_master.c ****   2-nd : target register address 16 bit
+ 258:twi_master/twi_master.c ****   3-rd : data byte
+ 259:twi_master/twi_master.c ****   
+ 260:twi_master/twi_master.c **** RETURN VALUE
+GAS LISTING /tmp/cctlkPP8.s 			page 13
+
+
+ 261:twi_master/twi_master.c ****   If no error occurs, this function returns positive value, 0 otherwise.
+ 262:twi_master/twi_master.c **** *******************************************************************************/
+ 263:twi_master/twi_master.c **** 
+ 264:twi_master/twi_master.c **** /******************************************************************************
+ 265:twi_master/twi_master.c **** Write page to memory
+ 266:twi_master/twi_master.c **** *******************************************************************************/
+ 267:twi_master/twi_master.c **** uint8_t twi_master_write_page(const uint8_t sad, const uint16_t reg_addr,
+ 268:twi_master/twi_master.c ****                               const uint8_t length, uint16_t data[])
+ 269:twi_master/twi_master.c **** {
+ 412               		.stabn	68,0,269,.LM52-.LFBB6
+ 413               	.LM52:
+ 414               	.LFBB6:
+ 415 00ce EF92      		push r14
+ 416 00d0 FF92      		push r15
+ 417 00d2 0F93      		push r16
+ 418 00d4 1F93      		push r17
+ 419 00d6 CF93      		push r28
+ 420 00d8 DF93      		push r29
+ 421               	/* prologue: function */
+ 422               	/* frame size = 0 */
+ 423               	/* stack size = 6 */
+ 424               	.L__stack_usage = 6
+ 425 00da E82E      		mov r14,r24
+ 426 00dc 162F      		mov r17,r22
+ 427 00de F72E      		mov r15,r23
+ 428 00e0 042F      		mov r16,r20
+ 429 00e2 E901      		movw r28,r18
+ 270:twi_master/twi_master.c ****   uint8_t st = 1;
+ 271:twi_master/twi_master.c ****   uint8_t i=4;
+ 272:twi_master/twi_master.c ****   
+ 273:twi_master/twi_master.c ****   //uint16_t tst=34831;
+ 274:twi_master/twi_master.c ****   
+ 275:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 430               		.stabn	68,0,275,.LM53-.LFBB6
+ 431               	.LM53:
+ 432 00e4 0E94 0000 		call twi_master_start
+ 276:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 433               		.stabn	68,0,276,.LM54-.LFBB6
+ 434               	.LM54:
+ 435 00e8 8823      		tst r24
+ 436 00ea 01F0      		breq .L55
+ 437               		.stabn	68,0,276,.LM55-.LFBB6
+ 438               	.LM55:
+ 439 00ec 8E2D      		mov r24,r14
+ 440 00ee 880F      		lsl r24
+ 441 00f0 0E94 0000 		call twi_master_write
+ 442 00f4 21E0      		ldi r18,lo8(1)
+ 443 00f6 30E0      		ldi r19,0
+ 444 00f8 8111      		cpse r24,__zero_reg__
+ 445 00fa 00C0      		rjmp .L44
+ 446 00fc 30E0      		ldi r19,0
+ 447 00fe 20E0      		ldi r18,0
+ 448               	.L44:
+ 277:twi_master/twi_master.c ****   
+ 278:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 449               		.stabn	68,0,278,.LM56-.LFBB6
+ 450               	.LM56:
+GAS LISTING /tmp/cctlkPP8.s 			page 14
+
+
+ 451 0100 232B      		or r18,r19
+ 452 0102 01F0      		breq .L55
+ 453 0104 8F2D      		mov r24,r15
+ 454 0106 0E94 0000 		call twi_master_write
+ 455 010a 21E0      		ldi r18,lo8(1)
+ 456 010c 30E0      		ldi r19,0
+ 457 010e 8111      		cpse r24,__zero_reg__
+ 458 0110 00C0      		rjmp .L46
+ 459 0112 30E0      		ldi r19,0
+ 460 0114 20E0      		ldi r18,0
+ 461               	.L46:
+ 279:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 462               		.stabn	68,0,279,.LM57-.LFBB6
+ 463               	.LM57:
+ 464 0116 232B      		or r18,r19
+ 465 0118 01F0      		breq .L55
+ 466 011a 812F      		mov r24,r17
+ 467 011c 0E94 0000 		call twi_master_write
+ 468 0120 91E0      		ldi r25,lo8(1)
+ 469 0122 8111      		cpse r24,__zero_reg__
+ 470 0124 00C0      		rjmp .L48
+ 471 0126 90E0      		ldi r25,0
+ 472               	.L48:
+ 473 0128 892F      		mov r24,r25
+ 474               	.L47:
+ 271:twi_master/twi_master.c ****   
+ 475               		.stabn	68,0,271,.LM58-.LFBB6
+ 476               	.LM58:
+ 477 012a 94E0      		ldi r25,lo8(4)
+ 478 012c F92E      		mov r15,r25
+ 280:twi_master/twi_master.c ****   
+ 281:twi_master/twi_master.c ****   for (i; i < length+4; i++) //!!!!!!!!!!!!!!!
+ 479               		.stabn	68,0,281,.LM59-.LFBB6
+ 480               	.LM59:
+ 481 012e 10E0      		ldi r17,0
+ 482 0130 0D5F      		subi r16,-3
+ 483 0132 1F4F      		sbci r17,-1
+ 484               	.L49:
+ 485               		.stabn	68,0,281,.LM60-.LFBB6
+ 486               	.LM60:
+ 487 0134 2F2D      		mov r18,r15
+ 488 0136 30E0      		ldi r19,0
+ 489 0138 0217      		cp r16,r18
+ 490 013a 1307      		cpc r17,r19
+ 491 013c 04F4      		brge .L52
+ 492               	.LBB48:
+ 493               	.LBB49:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 494               		.stabn	68,0,106,.LM61-.LFBB6
+ 495               	.LM61:
+ 496 013e 94E9      		ldi r25,lo8(-108)
+ 497 0140 9093 BC00 		sts 188,r25
+ 498               	/* epilogue start */
+ 499               	.LBE49:
+ 500               	.LBE48:
+ 282:twi_master/twi_master.c ****   {
+ 283:twi_master/twi_master.c ****         //st = st && twi_master_write((uint8_t)(data[i]));
+GAS LISTING /tmp/cctlkPP8.s 			page 15
+
+
+ 284:twi_master/twi_master.c ****     //st = st && twi_master_write((uint8_t)(data[i])>>8);
+ 285:twi_master/twi_master.c ****     st = st && twi_master_write((uint8_t)(data[i]));
+ 286:twi_master/twi_master.c ****   }
+ 287:twi_master/twi_master.c ****   twi_master_stop();
+ 288:twi_master/twi_master.c **** 
+ 289:twi_master/twi_master.c ****   return st;
+ 290:twi_master/twi_master.c **** }
+ 501               		.stabn	68,0,290,.LM62-.LFBB6
+ 502               	.LM62:
+ 503 0144 CDB7      		in r28,__SP_L__
+ 504 0146 DEB7      		in r29,__SP_H__
+ 505 0148 E6E0      		ldi r30, lo8(6)
+ 506 014a 0C94 0000 		jmp __epilogue_restores__ + ((18 - 6) * 2)
+ 507               	.L55:
+ 279:twi_master/twi_master.c ****   
+ 508               		.stabn	68,0,279,.LM63-.LFBB6
+ 509               	.LM63:
+ 510 014e 80E0      		ldi r24,0
+ 511 0150 00C0      		rjmp .L47
+ 512               	.L52:
+ 285:twi_master/twi_master.c ****   }
+ 513               		.stabn	68,0,285,.LM64-.LFBB6
+ 514               	.LM64:
+ 515 0152 8823      		tst r24
+ 516 0154 01F0      		breq .L56
+ 285:twi_master/twi_master.c ****   }
+ 517               		.stabn	68,0,285,.LM65-.LFBB6
+ 518               	.LM65:
+ 519 0156 220F      		lsl r18
+ 520 0158 331F      		rol r19
+ 521 015a FE01      		movw r30,r28
+ 522 015c E20F      		add r30,r18
+ 523 015e F31F      		adc r31,r19
+ 524 0160 8081      		ld r24,Z
+ 525 0162 0E94 0000 		call twi_master_write
+ 526 0166 91E0      		ldi r25,lo8(1)
+ 527 0168 8111      		cpse r24,__zero_reg__
+ 528 016a 00C0      		rjmp .L51
+ 529 016c 90E0      		ldi r25,0
+ 530               	.L51:
+ 531 016e 892F      		mov r24,r25
+ 532               	.L50:
+ 281:twi_master/twi_master.c ****   {
+ 533               		.stabn	68,0,281,.LM66-.LFBB6
+ 534               	.LM66:
+ 535 0170 F394      		inc r15
+ 536 0172 00C0      		rjmp .L49
+ 537               	.L56:
+ 285:twi_master/twi_master.c ****   }
+ 538               		.stabn	68,0,285,.LM67-.LFBB6
+ 539               	.LM67:
+ 540 0174 80E0      		ldi r24,0
+ 541 0176 00C0      		rjmp .L50
+ 542               		.size	twi_master_write_page, .-twi_master_write_page
+ 543               		.stabs	"i:r(4,5)",64,0,271,15
+ 544               		.stabn	192,0,0,.LFBB6-.LFBB6
+ 545               		.stabn	224,0,0,.Lscope6-.LFBB6
+GAS LISTING /tmp/cctlkPP8.s 			page 16
+
+
+ 546               	.Lscope6:
+ 547               		.stabs	"",36,0,0,.Lscope6-.LFBB6
+ 548               		.stabd	78,0,0
+ 549               		.stabs	"twi_master_read16_reg8:F(4,5)",36,0,292,twi_master_read16_reg8
+ 550               		.stabs	"sad:P(0,51)",64,0,292,17
+ 551               	.global	twi_master_read16_reg8
+ 552               		.type	twi_master_read16_reg8, @function
+ 553               	twi_master_read16_reg8:
+ 554               		.stabd	46,0,0
+ 291:twi_master/twi_master.c **** 
+ 292:twi_master/twi_master.c **** uint8_t twi_master_read16_reg8(const uint8_t sad, const uint16_t reg_addr)
+ 293:twi_master/twi_master.c **** {
+ 555               		.stabn	68,0,293,.LM68-.LFBB7
+ 556               	.LM68:
+ 557               	.LFBB7:
+ 558 0178 A1E0      		ldi r26,lo8(1)
+ 559 017a B0E0      		ldi r27,0
+ 560 017c E0E0      		ldi r30,lo8(gs(1f))
+ 561 017e F0E0      		ldi r31,hi8(gs(1f))
+ 562 0180 0C94 0000 		jmp __prologue_saves__+((18 - 5) * 2)
+ 563               	1:
+ 564               	/* prologue: function */
+ 565               	/* frame size = 1 */
+ 566               	/* stack size = 6 */
+ 567               	.L__stack_usage = 6
+ 568 0184 182F      		mov r17,r24
+ 569 0186 062F      		mov r16,r22
+ 570 0188 F72E      		mov r15,r23
+ 294:twi_master/twi_master.c ****   uint8_t st = 1;
+ 295:twi_master/twi_master.c ****   uint8_t buf = 0b00000000;
+ 296:twi_master/twi_master.c ****   uint8_t value = 0;
+ 571               		.stabn	68,0,296,.LM69-.LFBB7
+ 572               	.LM69:
+ 573 018a 1982      		std Y+1,__zero_reg__
+ 297:twi_master/twi_master.c ****   
+ 298:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 574               		.stabn	68,0,298,.LM70-.LFBB7
+ 575               	.LM70:
+ 576 018c 0E94 0000 		call twi_master_start
+ 299:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 577               		.stabn	68,0,299,.LM71-.LFBB7
+ 578               	.LM71:
+ 579 0190 8823      		tst r24
+ 580 0192 01F0      		breq .L73
+ 581               		.stabn	68,0,299,.LM72-.LFBB7
+ 582               	.LM72:
+ 583 0194 812F      		mov r24,r17
+ 584 0196 880F      		lsl r24
+ 585 0198 0E94 0000 		call twi_master_write
+ 586 019c 21E0      		ldi r18,lo8(1)
+ 587 019e 30E0      		ldi r19,0
+ 588 01a0 8111      		cpse r24,__zero_reg__
+ 589 01a2 00C0      		rjmp .L64
+ 590 01a4 30E0      		ldi r19,0
+ 591 01a6 20E0      		ldi r18,0
+ 592               	.L64:
+ 300:twi_master/twi_master.c ****   
+GAS LISTING /tmp/cctlkPP8.s 			page 17
+
+
+ 301:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 593               		.stabn	68,0,301,.LM73-.LFBB7
+ 594               	.LM73:
+ 595 01a8 232B      		or r18,r19
+ 596 01aa 01F0      		breq .L73
+ 597 01ac 8F2D      		mov r24,r15
+ 598 01ae 0E94 0000 		call twi_master_write
+ 599 01b2 21E0      		ldi r18,lo8(1)
+ 600 01b4 30E0      		ldi r19,0
+ 601 01b6 8111      		cpse r24,__zero_reg__
+ 602 01b8 00C0      		rjmp .L66
+ 603 01ba 30E0      		ldi r19,0
+ 604 01bc 20E0      		ldi r18,0
+ 605               	.L66:
+ 302:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 606               		.stabn	68,0,302,.LM74-.LFBB7
+ 607               	.LM74:
+ 608 01be 232B      		or r18,r19
+ 609 01c0 01F0      		breq .L73
+ 610 01c2 802F      		mov r24,r16
+ 611 01c4 0E94 0000 		call twi_master_write
+ 612 01c8 21E0      		ldi r18,lo8(1)
+ 613 01ca 30E0      		ldi r19,0
+ 614 01cc 8111      		cpse r24,__zero_reg__
+ 615 01ce 00C0      		rjmp .L68
+ 616 01d0 30E0      		ldi r19,0
+ 617 01d2 20E0      		ldi r18,0
+ 618               	.L68:
+ 303:twi_master/twi_master.c ****   
+ 304:twi_master/twi_master.c ****   //twi_master_stop();
+ 305:twi_master/twi_master.c ****   //_delay_ms(1);
+ 306:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 619               		.stabn	68,0,306,.LM75-.LFBB7
+ 620               	.LM75:
+ 621 01d4 232B      		or r18,r19
+ 622 01d6 01F0      		breq .L73
+ 623 01d8 0E94 0000 		call twi_master_start
+ 624 01dc 21E0      		ldi r18,lo8(1)
+ 625 01de 30E0      		ldi r19,0
+ 626 01e0 8111      		cpse r24,__zero_reg__
+ 627 01e2 00C0      		rjmp .L70
+ 628 01e4 30E0      		ldi r19,0
+ 629 01e6 20E0      		ldi r18,0
+ 630               	.L70:
+ 307:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_READ);
+ 631               		.stabn	68,0,307,.LM76-.LFBB7
+ 632               	.LM76:
+ 633 01e8 232B      		or r18,r19
+ 634 01ea 01F0      		breq .L73
+ 635 01ec 812F      		mov r24,r17
+ 636 01ee 880F      		lsl r24
+ 637 01f0 8160      		ori r24,lo8(1)
+ 638 01f2 0E94 0000 		call twi_master_write
+ 639 01f6 21E0      		ldi r18,lo8(1)
+ 640 01f8 30E0      		ldi r19,0
+ 641 01fa 8111      		cpse r24,__zero_reg__
+ 642 01fc 00C0      		rjmp .L72
+GAS LISTING /tmp/cctlkPP8.s 			page 18
+
+
+ 643 01fe 30E0      		ldi r19,0
+ 644 0200 20E0      		ldi r18,0
+ 645               	.L72:
+ 308:twi_master/twi_master.c ****   
+ 309:twi_master/twi_master.c ****   st = st && twi_master_read(&value, TWI_NAK);
+ 646               		.stabn	68,0,309,.LM77-.LFBB7
+ 647               	.LM77:
+ 648 0202 232B      		or r18,r19
+ 649 0204 01F0      		breq .L73
+ 650 0206 60E0      		ldi r22,0
+ 651 0208 CE01      		movw r24,r28
+ 652 020a 0196      		adiw r24,1
+ 653 020c 0E94 0000 		call twi_master_read
+ 654               	.L73:
+ 655               	.LBB50:
+ 656               	.LBB51:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 657               		.stabn	68,0,106,.LM78-.LFBB7
+ 658               	.LM78:
+ 659 0210 84E9      		ldi r24,lo8(-108)
+ 660 0212 8093 BC00 		sts 188,r24
+ 661               	.LBE51:
+ 662               	.LBE50:
+ 310:twi_master/twi_master.c ****   
+ 311:twi_master/twi_master.c ****   twi_master_stop();
+ 312:twi_master/twi_master.c **** 
+ 313:twi_master/twi_master.c ****   return value;
+ 314:twi_master/twi_master.c **** }
+ 663               		.stabn	68,0,314,.LM79-.LFBB7
+ 664               	.LM79:
+ 665 0216 8981      		ldd r24,Y+1
+ 666               	/* epilogue start */
+ 667 0218 2196      		adiw r28,1
+ 668 021a E5E0      		ldi r30, lo8(5)
+ 669 021c 0C94 0000 		jmp __epilogue_restores__ + ((18 - 5) * 2)
+ 670               		.size	twi_master_read16_reg8, .-twi_master_read16_reg8
+ 671               		.stabs	"value:(4,5)",128,0,296,1
+ 672               		.stabn	192,0,0,.LFBB7-.LFBB7
+ 673               		.stabn	224,0,0,.Lscope7-.LFBB7
+ 674               	.Lscope7:
+ 675               		.stabs	"",36,0,0,.Lscope7-.LFBB7
+ 676               		.stabd	78,0,0
+ 677               		.stabs	"twi_master_read16_reg16:F(4,6)",36,0,316,twi_master_read16_reg16
+ 678               		.stabs	"sad:P(0,51)",64,0,316,17
+ 679               	.global	twi_master_read16_reg16
+ 680               		.type	twi_master_read16_reg16, @function
+ 681               	twi_master_read16_reg16:
+ 682               		.stabd	46,0,0
+ 315:twi_master/twi_master.c **** 
+ 316:twi_master/twi_master.c **** uint16_t twi_master_read16_reg16(const uint8_t sad, const uint16_t reg_addr)
+ 317:twi_master/twi_master.c **** {
+ 683               		.stabn	68,0,317,.LM80-.LFBB8
+ 684               	.LM80:
+ 685               	.LFBB8:
+ 686 0220 A1E0      		ldi r26,lo8(1)
+ 687 0222 B0E0      		ldi r27,0
+ 688 0224 E0E0      		ldi r30,lo8(gs(1f))
+GAS LISTING /tmp/cctlkPP8.s 			page 19
+
+
+ 689 0226 F0E0      		ldi r31,hi8(gs(1f))
+ 690 0228 0C94 0000 		jmp __prologue_saves__+((18 - 5) * 2)
+ 691               	1:
+ 692               	/* prologue: function */
+ 693               	/* frame size = 1 */
+ 694               	/* stack size = 6 */
+ 695               	.L__stack_usage = 6
+ 696 022c 182F      		mov r17,r24
+ 697 022e 062F      		mov r16,r22
+ 698 0230 F72E      		mov r15,r23
+ 318:twi_master/twi_master.c ****     uint16_t buf = 0b0000000000000000;
+ 319:twi_master/twi_master.c ****     uint8_t value = 0;
+ 699               		.stabn	68,0,319,.LM81-.LFBB8
+ 700               	.LM81:
+ 701 0232 1982      		std Y+1,__zero_reg__
+ 320:twi_master/twi_master.c ****   uint8_t st = 1;
+ 321:twi_master/twi_master.c **** 
+ 322:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 702               		.stabn	68,0,322,.LM82-.LFBB8
+ 703               	.LM82:
+ 704 0234 0E94 0000 		call twi_master_start
+ 323:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 705               		.stabn	68,0,323,.LM83-.LFBB8
+ 706               	.LM83:
+ 707 0238 8823      		tst r24
+ 708 023a 01F4      		brne .+2
+ 709 023c 00C0      		rjmp .L110
+ 710               		.stabn	68,0,323,.LM84-.LFBB8
+ 711               	.LM84:
+ 712 023e 812F      		mov r24,r17
+ 713 0240 880F      		lsl r24
+ 714 0242 0E94 0000 		call twi_master_write
+ 715 0246 21E0      		ldi r18,lo8(1)
+ 716 0248 30E0      		ldi r19,0
+ 717 024a 8111      		cpse r24,__zero_reg__
+ 718 024c 00C0      		rjmp .L93
+ 719 024e 30E0      		ldi r19,0
+ 720 0250 20E0      		ldi r18,0
+ 721               	.L93:
+ 324:twi_master/twi_master.c ****   
+ 325:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 722               		.stabn	68,0,325,.LM85-.LFBB8
+ 723               	.LM85:
+ 724 0252 232B      		or r18,r19
+ 725 0254 01F0      		breq .L110
+ 726 0256 8F2D      		mov r24,r15
+ 727 0258 0E94 0000 		call twi_master_write
+ 728 025c 21E0      		ldi r18,lo8(1)
+ 729 025e 30E0      		ldi r19,0
+ 730 0260 8111      		cpse r24,__zero_reg__
+ 731 0262 00C0      		rjmp .L95
+ 732 0264 30E0      		ldi r19,0
+ 733 0266 20E0      		ldi r18,0
+ 734               	.L95:
+ 326:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 735               		.stabn	68,0,326,.LM86-.LFBB8
+ 736               	.LM86:
+GAS LISTING /tmp/cctlkPP8.s 			page 20
+
+
+ 737 0268 232B      		or r18,r19
+ 738 026a 01F0      		breq .L110
+ 739 026c 802F      		mov r24,r16
+ 740 026e 0E94 0000 		call twi_master_write
+ 741 0272 21E0      		ldi r18,lo8(1)
+ 742 0274 30E0      		ldi r19,0
+ 743 0276 8111      		cpse r24,__zero_reg__
+ 744 0278 00C0      		rjmp .L97
+ 745 027a 30E0      		ldi r19,0
+ 746 027c 20E0      		ldi r18,0
+ 747               	.L97:
+ 327:twi_master/twi_master.c ****   
+ 328:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 748               		.stabn	68,0,328,.LM87-.LFBB8
+ 749               	.LM87:
+ 750 027e 232B      		or r18,r19
+ 751 0280 01F0      		breq .L110
+ 752 0282 0E94 0000 		call twi_master_start
+ 753 0286 21E0      		ldi r18,lo8(1)
+ 754 0288 30E0      		ldi r19,0
+ 755 028a 8111      		cpse r24,__zero_reg__
+ 756 028c 00C0      		rjmp .L99
+ 757 028e 30E0      		ldi r19,0
+ 758 0290 20E0      		ldi r18,0
+ 759               	.L99:
+ 329:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_READ);
+ 760               		.stabn	68,0,329,.LM88-.LFBB8
+ 761               	.LM88:
+ 762 0292 232B      		or r18,r19
+ 763 0294 01F0      		breq .L110
+ 764 0296 812F      		mov r24,r17
+ 765 0298 880F      		lsl r24
+ 766 029a 8160      		ori r24,lo8(1)
+ 767 029c 0E94 0000 		call twi_master_write
+ 768 02a0 21E0      		ldi r18,lo8(1)
+ 769 02a2 30E0      		ldi r19,0
+ 770 02a4 8111      		cpse r24,__zero_reg__
+ 771 02a6 00C0      		rjmp .L101
+ 772 02a8 30E0      		ldi r19,0
+ 773 02aa 20E0      		ldi r18,0
+ 774               	.L101:
+ 330:twi_master/twi_master.c ****   
+ 331:twi_master/twi_master.c ****     st = st && twi_master_read(&value, TWI_ACK);
+ 775               		.stabn	68,0,331,.LM89-.LFBB8
+ 776               	.LM89:
+ 777 02ac 232B      		or r18,r19
+ 778 02ae 01F0      		breq .L110
+ 779 02b0 61E0      		ldi r22,lo8(1)
+ 780 02b2 CE01      		movw r24,r28
+ 781 02b4 0196      		adiw r24,1
+ 782 02b6 0E94 0000 		call twi_master_read
+ 783 02ba 91E0      		ldi r25,lo8(1)
+ 784 02bc 8111      		cpse r24,__zero_reg__
+ 785 02be 00C0      		rjmp .L102
+ 786               	.L110:
+ 787               		.stabn	68,0,331,.LM90-.LFBB8
+ 788               	.LM90:
+GAS LISTING /tmp/cctlkPP8.s 			page 21
+
+
+ 789 02c0 90E0      		ldi r25,0
+ 790               	.L102:
+ 332:twi_master/twi_master.c ****     buf = (value << 8);
+ 791               		.stabn	68,0,332,.LM91-.LFBB8
+ 792               	.LM91:
+ 793 02c2 0981      		ldd r16,Y+1
+ 794 02c4 10E0      		ldi r17,0
+ 795 02c6 102F      		mov r17,r16
+ 796 02c8 0027      		clr r16
+ 333:twi_master/twi_master.c ****     
+ 334:twi_master/twi_master.c ****     st = st && twi_master_read(&value, TWI_NAK);
+ 797               		.stabn	68,0,334,.LM92-.LFBB8
+ 798               	.LM92:
+ 799 02ca 9923      		tst r25
+ 800 02cc 01F0      		breq .L104
+ 801               		.stabn	68,0,334,.LM93-.LFBB8
+ 802               	.LM93:
+ 803 02ce 60E0      		ldi r22,0
+ 804 02d0 CE01      		movw r24,r28
+ 805 02d2 0196      		adiw r24,1
+ 806 02d4 0E94 0000 		call twi_master_read
+ 807               	.L104:
+ 335:twi_master/twi_master.c ****     buf |= value;
+ 808               		.stabn	68,0,335,.LM94-.LFBB8
+ 809               	.LM94:
+ 810 02d8 8981      		ldd r24,Y+1
+ 811               	.LBB52:
+ 812               	.LBB53:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 813               		.stabn	68,0,106,.LM95-.LFBB8
+ 814               	.LM95:
+ 815 02da 94E9      		ldi r25,lo8(-108)
+ 816 02dc 9093 BC00 		sts 188,r25
+ 817               	.LBE53:
+ 818               	.LBE52:
+ 336:twi_master/twi_master.c ****     
+ 337:twi_master/twi_master.c ****   twi_master_stop();
+ 338:twi_master/twi_master.c **** 
+ 339:twi_master/twi_master.c ****   return buf;
+ 340:twi_master/twi_master.c **** }
+ 819               		.stabn	68,0,340,.LM96-.LFBB8
+ 820               	.LM96:
+ 821 02e0 9801      		movw r18,r16
+ 822 02e2 282B      		or r18,r24
+ 823 02e4 C901      		movw r24,r18
+ 824               	/* epilogue start */
+ 825 02e6 2196      		adiw r28,1
+ 826 02e8 E5E0      		ldi r30, lo8(5)
+ 827 02ea 0C94 0000 		jmp __epilogue_restores__ + ((18 - 5) * 2)
+ 828               		.size	twi_master_read16_reg16, .-twi_master_read16_reg16
+ 829               		.stabs	"value:(4,5)",128,0,319,1
+ 830               		.stabn	192,0,0,.LFBB8-.LFBB8
+ 831               		.stabn	224,0,0,.Lscope8-.LFBB8
+ 832               	.Lscope8:
+ 833               		.stabs	"",36,0,0,.Lscope8-.LFBB8
+ 834               		.stabd	78,0,0
+ 835               		.stabs	"twi_master_write16_reg8:F(4,5)",36,0,342,twi_master_write16_reg8
+GAS LISTING /tmp/cctlkPP8.s 			page 22
+
+
+ 836               		.stabs	"sad:P(0,51)",64,0,342,16
+ 837               		.stabs	"data:P(4,5)",64,0,343,28
+ 838               	.global	twi_master_write16_reg8
+ 839               		.type	twi_master_write16_reg8, @function
+ 840               	twi_master_write16_reg8:
+ 841               		.stabd	46,0,0
+ 341:twi_master/twi_master.c **** 
+ 342:twi_master/twi_master.c **** uint8_t twi_master_write16_reg8(const uint8_t sad, const uint16_t reg_addr,
+ 343:twi_master/twi_master.c ****                               uint8_t data)
+ 344:twi_master/twi_master.c **** {
+ 842               		.stabn	68,0,344,.LM97-.LFBB9
+ 843               	.LM97:
+ 844               	.LFBB9:
+ 845 02ee 0F93      		push r16
+ 846 02f0 1F93      		push r17
+ 847 02f2 CF93      		push r28
+ 848 02f4 DF93      		push r29
+ 849               	/* prologue: function */
+ 850               	/* frame size = 0 */
+ 851               	/* stack size = 4 */
+ 852               	.L__stack_usage = 4
+ 853 02f6 082F      		mov r16,r24
+ 854 02f8 D62F      		mov r29,r22
+ 855 02fa 172F      		mov r17,r23
+ 856 02fc C42F      		mov r28,r20
+ 345:twi_master/twi_master.c ****   uint8_t st = 1;
+ 346:twi_master/twi_master.c ****   
+ 347:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 857               		.stabn	68,0,347,.LM98-.LFBB9
+ 858               	.LM98:
+ 859 02fe 0E94 0000 		call twi_master_start
+ 348:twi_master/twi_master.c ****   
+ 349:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 860               		.stabn	68,0,349,.LM99-.LFBB9
+ 861               	.LM99:
+ 862 0302 8823      		tst r24
+ 863 0304 01F0      		breq .L137
+ 864               		.stabn	68,0,349,.LM100-.LFBB9
+ 865               	.LM100:
+ 866 0306 802F      		mov r24,r16
+ 867 0308 880F      		lsl r24
+ 868 030a 0E94 0000 		call twi_master_write
+ 869 030e 21E0      		ldi r18,lo8(1)
+ 870 0310 30E0      		ldi r19,0
+ 871 0312 8111      		cpse r24,__zero_reg__
+ 872 0314 00C0      		rjmp .L127
+ 873 0316 30E0      		ldi r19,0
+ 874 0318 20E0      		ldi r18,0
+ 875               	.L127:
+ 350:twi_master/twi_master.c ****   
+ 351:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 876               		.stabn	68,0,351,.LM101-.LFBB9
+ 877               	.LM101:
+ 878 031a 232B      		or r18,r19
+ 879 031c 01F0      		breq .L137
+ 880 031e 812F      		mov r24,r17
+ 881 0320 0E94 0000 		call twi_master_write
+GAS LISTING /tmp/cctlkPP8.s 			page 23
+
+
+ 882 0324 21E0      		ldi r18,lo8(1)
+ 883 0326 30E0      		ldi r19,0
+ 884 0328 8111      		cpse r24,__zero_reg__
+ 885 032a 00C0      		rjmp .L129
+ 886 032c 30E0      		ldi r19,0
+ 887 032e 20E0      		ldi r18,0
+ 888               	.L129:
+ 352:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 889               		.stabn	68,0,352,.LM102-.LFBB9
+ 890               	.LM102:
+ 891 0330 232B      		or r18,r19
+ 892 0332 01F0      		breq .L137
+ 893 0334 8D2F      		mov r24,r29
+ 894 0336 0E94 0000 		call twi_master_write
+ 895 033a 21E0      		ldi r18,lo8(1)
+ 896 033c 30E0      		ldi r19,0
+ 897 033e 8111      		cpse r24,__zero_reg__
+ 898 0340 00C0      		rjmp .L131
+ 899 0342 30E0      		ldi r19,0
+ 900 0344 20E0      		ldi r18,0
+ 901               	.L131:
+ 353:twi_master/twi_master.c ****   
+ 354:twi_master/twi_master.c ****   st = st && twi_master_write(data);
+ 902               		.stabn	68,0,354,.LM103-.LFBB9
+ 903               	.LM103:
+ 904 0346 232B      		or r18,r19
+ 905 0348 01F0      		breq .L137
+ 906 034a 8C2F      		mov r24,r28
+ 907 034c 0E94 0000 		call twi_master_write
+ 908 0350 91E0      		ldi r25,lo8(1)
+ 909 0352 8111      		cpse r24,__zero_reg__
+ 910 0354 00C0      		rjmp .L133
+ 911 0356 90E0      		ldi r25,0
+ 912               	.L133:
+ 913 0358 892F      		mov r24,r25
+ 914               	.L132:
+ 915               	.LBB54:
+ 916               	.LBB55:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 917               		.stabn	68,0,106,.LM104-.LFBB9
+ 918               	.LM104:
+ 919 035a 94E9      		ldi r25,lo8(-108)
+ 920 035c 9093 BC00 		sts 188,r25
+ 921               	.LBE55:
+ 922               	.LBE54:
+ 923               	.LBB56:
+ 924               	.LBB57:
+ 925               	.LBB58:
+ 926               	.LBB59:
+ 927               		.stabs	"/usr/avr/include/util/delay_basic.h",132,0,0,.Ltext1
+ 928               	.Ltext1:
+   1:/usr/avr/include/util/delay_basic.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/avr/include/util/delay_basic.h ****    Copyright (c) 2007 Joerg Wunsch
+   3:/usr/avr/include/util/delay_basic.h ****    All rights reserved.
+   4:/usr/avr/include/util/delay_basic.h **** 
+   5:/usr/avr/include/util/delay_basic.h ****    Redistribution and use in source and binary forms, with or without
+   6:/usr/avr/include/util/delay_basic.h ****    modification, are permitted provided that the following conditions are met:
+GAS LISTING /tmp/cctlkPP8.s 			page 24
+
+
+   7:/usr/avr/include/util/delay_basic.h **** 
+   8:/usr/avr/include/util/delay_basic.h ****    * Redistributions of source code must retain the above copyright
+   9:/usr/avr/include/util/delay_basic.h ****      notice, this list of conditions and the following disclaimer.
+  10:/usr/avr/include/util/delay_basic.h **** 
+  11:/usr/avr/include/util/delay_basic.h ****    * Redistributions in binary form must reproduce the above copyright
+  12:/usr/avr/include/util/delay_basic.h ****      notice, this list of conditions and the following disclaimer in
+  13:/usr/avr/include/util/delay_basic.h ****      the documentation and/or other materials provided with the
+  14:/usr/avr/include/util/delay_basic.h ****      distribution.
+  15:/usr/avr/include/util/delay_basic.h **** 
+  16:/usr/avr/include/util/delay_basic.h ****    * Neither the name of the copyright holders nor the names of
+  17:/usr/avr/include/util/delay_basic.h ****      contributors may be used to endorse or promote products derived
+  18:/usr/avr/include/util/delay_basic.h ****      from this software without specific prior written permission.
+  19:/usr/avr/include/util/delay_basic.h **** 
+  20:/usr/avr/include/util/delay_basic.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  21:/usr/avr/include/util/delay_basic.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  22:/usr/avr/include/util/delay_basic.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  23:/usr/avr/include/util/delay_basic.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  24:/usr/avr/include/util/delay_basic.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  25:/usr/avr/include/util/delay_basic.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  26:/usr/avr/include/util/delay_basic.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  27:/usr/avr/include/util/delay_basic.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  28:/usr/avr/include/util/delay_basic.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  29:/usr/avr/include/util/delay_basic.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  30:/usr/avr/include/util/delay_basic.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  31:/usr/avr/include/util/delay_basic.h **** 
+  32:/usr/avr/include/util/delay_basic.h **** /* $Id: delay_basic.h 2453 2014-10-19 08:18:11Z saaadhu $ */
+  33:/usr/avr/include/util/delay_basic.h **** 
+  34:/usr/avr/include/util/delay_basic.h **** #ifndef _UTIL_DELAY_BASIC_H_
+  35:/usr/avr/include/util/delay_basic.h **** #define _UTIL_DELAY_BASIC_H_ 1
+  36:/usr/avr/include/util/delay_basic.h **** 
+  37:/usr/avr/include/util/delay_basic.h **** #include <inttypes.h>
+  38:/usr/avr/include/util/delay_basic.h **** 
+  39:/usr/avr/include/util/delay_basic.h **** #if !defined(__DOXYGEN__)
+  40:/usr/avr/include/util/delay_basic.h **** static __inline__ void _delay_loop_1(uint8_t __count) __attribute__((__always_inline__));
+  41:/usr/avr/include/util/delay_basic.h **** static __inline__ void _delay_loop_2(uint16_t __count) __attribute__((__always_inline__));
+  42:/usr/avr/include/util/delay_basic.h **** #endif
+  43:/usr/avr/include/util/delay_basic.h **** 
+  44:/usr/avr/include/util/delay_basic.h **** /** \file */
+  45:/usr/avr/include/util/delay_basic.h **** /** \defgroup util_delay_basic <util/delay_basic.h>: Basic busy-wait delay loops
+  46:/usr/avr/include/util/delay_basic.h ****     \code
+  47:/usr/avr/include/util/delay_basic.h ****     #include <util/delay_basic.h>
+  48:/usr/avr/include/util/delay_basic.h ****     \endcode
+  49:/usr/avr/include/util/delay_basic.h **** 
+  50:/usr/avr/include/util/delay_basic.h ****     The functions in this header file implement simple delay loops
+  51:/usr/avr/include/util/delay_basic.h ****     that perform a busy-waiting.  They are typically used to
+  52:/usr/avr/include/util/delay_basic.h ****     facilitate short delays in the program execution.  They are
+  53:/usr/avr/include/util/delay_basic.h ****     implemented as count-down loops with a well-known CPU cycle
+  54:/usr/avr/include/util/delay_basic.h ****     count per loop iteration.  As such, no other processing can
+  55:/usr/avr/include/util/delay_basic.h ****     occur simultaneously.  It should be kept in mind that the
+  56:/usr/avr/include/util/delay_basic.h ****     functions described here do not disable interrupts.
+  57:/usr/avr/include/util/delay_basic.h **** 
+  58:/usr/avr/include/util/delay_basic.h ****     In general, for long delays, the use of hardware timers is
+  59:/usr/avr/include/util/delay_basic.h ****     much preferrable, as they free the CPU, and allow for
+  60:/usr/avr/include/util/delay_basic.h ****     concurrent processing of other events while the timer is
+  61:/usr/avr/include/util/delay_basic.h ****     running.  However, in particular for very short delays, the
+  62:/usr/avr/include/util/delay_basic.h ****     overhead of setting up a hardware timer is too much compared
+  63:/usr/avr/include/util/delay_basic.h ****     to the overall delay time.
+GAS LISTING /tmp/cctlkPP8.s 			page 25
+
+
+  64:/usr/avr/include/util/delay_basic.h **** 
+  65:/usr/avr/include/util/delay_basic.h ****     Two inline functions are provided for the actual delay algorithms.
+  66:/usr/avr/include/util/delay_basic.h **** 
+  67:/usr/avr/include/util/delay_basic.h **** */
+  68:/usr/avr/include/util/delay_basic.h **** 
+  69:/usr/avr/include/util/delay_basic.h **** /** \ingroup util_delay_basic
+  70:/usr/avr/include/util/delay_basic.h **** 
+  71:/usr/avr/include/util/delay_basic.h ****     Delay loop using an 8-bit counter \c __count, so up to 256
+  72:/usr/avr/include/util/delay_basic.h ****     iterations are possible.  (The value 256 would have to be passed
+  73:/usr/avr/include/util/delay_basic.h ****     as 0.)  The loop executes three CPU cycles per iteration, not
+  74:/usr/avr/include/util/delay_basic.h ****     including the overhead the compiler needs to setup the counter
+  75:/usr/avr/include/util/delay_basic.h ****     register.
+  76:/usr/avr/include/util/delay_basic.h **** 
+  77:/usr/avr/include/util/delay_basic.h ****     Thus, at a CPU speed of 1 MHz, delays of up to 768 microseconds
+  78:/usr/avr/include/util/delay_basic.h ****     can be achieved.
+  79:/usr/avr/include/util/delay_basic.h **** */
+  80:/usr/avr/include/util/delay_basic.h **** void
+  81:/usr/avr/include/util/delay_basic.h **** _delay_loop_1(uint8_t __count)
+  82:/usr/avr/include/util/delay_basic.h **** {
+  83:/usr/avr/include/util/delay_basic.h **** 	__asm__ volatile (
+  84:/usr/avr/include/util/delay_basic.h **** 		"1: dec %0" "\n\t"
+  85:/usr/avr/include/util/delay_basic.h **** 		"brne 1b"
+  86:/usr/avr/include/util/delay_basic.h **** 		: "=r" (__count)
+  87:/usr/avr/include/util/delay_basic.h **** 		: "0" (__count)
+  88:/usr/avr/include/util/delay_basic.h **** 	);
+  89:/usr/avr/include/util/delay_basic.h **** }
+  90:/usr/avr/include/util/delay_basic.h **** 
+  91:/usr/avr/include/util/delay_basic.h **** /** \ingroup util_delay_basic
+  92:/usr/avr/include/util/delay_basic.h **** 
+  93:/usr/avr/include/util/delay_basic.h ****     Delay loop using a 16-bit counter \c __count, so up to 65536
+  94:/usr/avr/include/util/delay_basic.h ****     iterations are possible.  (The value 65536 would have to be
+  95:/usr/avr/include/util/delay_basic.h ****     passed as 0.)  The loop executes four CPU cycles per iteration,
+  96:/usr/avr/include/util/delay_basic.h ****     not including the overhead the compiler requires to setup the
+  97:/usr/avr/include/util/delay_basic.h ****     counter register pair.
+  98:/usr/avr/include/util/delay_basic.h **** 
+  99:/usr/avr/include/util/delay_basic.h ****     Thus, at a CPU speed of 1 MHz, delays of up to about 262.1
+ 100:/usr/avr/include/util/delay_basic.h ****     milliseconds can be achieved.
+ 101:/usr/avr/include/util/delay_basic.h ****  */
+ 102:/usr/avr/include/util/delay_basic.h **** void
+ 103:/usr/avr/include/util/delay_basic.h **** _delay_loop_2(uint16_t __count)
+ 104:/usr/avr/include/util/delay_basic.h **** {
+ 105:/usr/avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 929               		.stabn	68,0,105,.LM105-.LFBB9
+ 930               	.LM105:
+ 931 0360 E0E4      		ldi r30,lo8(64)
+ 932 0362 FCE9      		ldi r31,lo8(-100)
+ 933               	/* #APP */
+ 934               	 ;  105 "/usr/avr/include/util/delay_basic.h" 1
+ 935 0364 3197      		1: sbiw r30,1
+ 936 0366 01F4      		brne 1b
+ 937               	 ;  0 "" 2
+ 938               	/* epilogue start */
+ 939               	/* #NOAPP */
+ 940               	.LBE59:
+ 941               	.LBE58:
+ 942               	.LBE57:
+ 943               	.LBE56:
+GAS LISTING /tmp/cctlkPP8.s 			page 26
+
+
+ 944               		.stabs	"twi_master/twi_master.c",132,0,0,.Ltext2
+ 945               	.Ltext2:
+ 355:twi_master/twi_master.c ****   
+ 356:twi_master/twi_master.c ****   twi_master_stop();
+ 357:twi_master/twi_master.c ****   _delay_ms(10);
+ 358:twi_master/twi_master.c ****   return st;
+ 359:twi_master/twi_master.c **** }
+ 946               		.stabn	68,0,359,.LM106-.LFBB9
+ 947               	.LM106:
+ 948 0368 DF91      		pop r29
+ 949 036a CF91      		pop r28
+ 950 036c 1F91      		pop r17
+ 951 036e 0F91      		pop r16
+ 952 0370 0895      		ret
+ 953               	.L137:
+ 354:twi_master/twi_master.c ****   
+ 954               		.stabn	68,0,354,.LM107-.LFBB9
+ 955               	.LM107:
+ 956 0372 80E0      		ldi r24,0
+ 957 0374 00C0      		rjmp .L132
+ 958               		.size	twi_master_write16_reg8, .-twi_master_write16_reg8
+ 959               	.Lscope9:
+ 960               		.stabs	"",36,0,0,.Lscope9-.LFBB9
+ 961               		.stabd	78,0,0
+ 962               		.stabs	"twi_master_write16_reg16:F(4,5)",36,0,361,twi_master_write16_reg16
+ 963               		.stabs	"sad:P(0,51)",64,0,361,15
+ 964               	.global	twi_master_write16_reg16
+ 965               		.type	twi_master_write16_reg16, @function
+ 966               	twi_master_write16_reg16:
+ 967               		.stabd	46,0,0
+ 360:twi_master/twi_master.c **** 
+ 361:twi_master/twi_master.c **** uint8_t twi_master_write16_reg16(const uint8_t sad, const uint16_t reg_addr,
+ 362:twi_master/twi_master.c ****                               uint16_t data)
+ 363:twi_master/twi_master.c **** {
+ 968               		.stabn	68,0,363,.LM108-.LFBB10
+ 969               	.LM108:
+ 970               	.LFBB10:
+ 971 0376 FF92      		push r15
+ 972 0378 0F93      		push r16
+ 973 037a 1F93      		push r17
+ 974 037c CF93      		push r28
+ 975 037e DF93      		push r29
+ 976               	/* prologue: function */
+ 977               	/* frame size = 0 */
+ 978               	/* stack size = 5 */
+ 979               	.L__stack_usage = 5
+ 980 0380 F82E      		mov r15,r24
+ 981 0382 162F      		mov r17,r22
+ 982 0384 072F      		mov r16,r23
+ 983 0386 EA01      		movw r28,r20
+ 364:twi_master/twi_master.c ****   uint8_t st = 1;
+ 365:twi_master/twi_master.c ****   
+ 366:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 984               		.stabn	68,0,366,.LM109-.LFBB10
+ 985               	.LM109:
+ 986 0388 0E94 0000 		call twi_master_start
+ 367:twi_master/twi_master.c ****   
+GAS LISTING /tmp/cctlkPP8.s 			page 27
+
+
+ 368:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 987               		.stabn	68,0,368,.LM110-.LFBB10
+ 988               	.LM110:
+ 989 038c 8823      		tst r24
+ 990 038e 01F4      		brne .+2
+ 991 0390 00C0      		rjmp .L160
+ 992               		.stabn	68,0,368,.LM111-.LFBB10
+ 993               	.LM111:
+ 994 0392 8F2D      		mov r24,r15
+ 995 0394 880F      		lsl r24
+ 996 0396 0E94 0000 		call twi_master_write
+ 997 039a 21E0      		ldi r18,lo8(1)
+ 998 039c 30E0      		ldi r19,0
+ 999 039e 8111      		cpse r24,__zero_reg__
+ 1000 03a0 00C0      		rjmp .L147
+ 1001 03a2 30E0      		ldi r19,0
+ 1002 03a4 20E0      		ldi r18,0
+ 1003               	.L147:
+ 369:twi_master/twi_master.c ****   
+ 370:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 1004               		.stabn	68,0,370,.LM112-.LFBB10
+ 1005               	.LM112:
+ 1006 03a6 232B      		or r18,r19
+ 1007 03a8 01F0      		breq .L160
+ 1008 03aa 802F      		mov r24,r16
+ 1009 03ac 0E94 0000 		call twi_master_write
+ 1010 03b0 21E0      		ldi r18,lo8(1)
+ 1011 03b2 30E0      		ldi r19,0
+ 1012 03b4 8111      		cpse r24,__zero_reg__
+ 1013 03b6 00C0      		rjmp .L149
+ 1014 03b8 30E0      		ldi r19,0
+ 1015 03ba 20E0      		ldi r18,0
+ 1016               	.L149:
+ 371:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 1017               		.stabn	68,0,371,.LM113-.LFBB10
+ 1018               	.LM113:
+ 1019 03bc 232B      		or r18,r19
+ 1020 03be 01F0      		breq .L160
+ 1021 03c0 812F      		mov r24,r17
+ 1022 03c2 0E94 0000 		call twi_master_write
+ 1023 03c6 21E0      		ldi r18,lo8(1)
+ 1024 03c8 30E0      		ldi r19,0
+ 1025 03ca 8111      		cpse r24,__zero_reg__
+ 1026 03cc 00C0      		rjmp .L151
+ 1027 03ce 30E0      		ldi r19,0
+ 1028 03d0 20E0      		ldi r18,0
+ 1029               	.L151:
+ 372:twi_master/twi_master.c ****   
+ 373:twi_master/twi_master.c ****   st = st && twi_master_write(data >> 8);
+ 1030               		.stabn	68,0,373,.LM114-.LFBB10
+ 1031               	.LM114:
+ 1032 03d2 232B      		or r18,r19
+ 1033 03d4 01F0      		breq .L160
+ 1034 03d6 8D2F      		mov r24,r29
+ 1035 03d8 0E94 0000 		call twi_master_write
+ 1036 03dc 21E0      		ldi r18,lo8(1)
+ 1037 03de 30E0      		ldi r19,0
+GAS LISTING /tmp/cctlkPP8.s 			page 28
+
+
+ 1038 03e0 8111      		cpse r24,__zero_reg__
+ 1039 03e2 00C0      		rjmp .L153
+ 1040 03e4 30E0      		ldi r19,0
+ 1041 03e6 20E0      		ldi r18,0
+ 1042               	.L153:
+ 374:twi_master/twi_master.c ****   st = st && twi_master_write(data);
+ 1043               		.stabn	68,0,374,.LM115-.LFBB10
+ 1044               	.LM115:
+ 1045 03e8 232B      		or r18,r19
+ 1046 03ea 01F0      		breq .L160
+ 1047 03ec 8C2F      		mov r24,r28
+ 1048 03ee 0E94 0000 		call twi_master_write
+ 1049 03f2 91E0      		ldi r25,lo8(1)
+ 1050 03f4 8111      		cpse r24,__zero_reg__
+ 1051 03f6 00C0      		rjmp .L155
+ 1052 03f8 90E0      		ldi r25,0
+ 1053               	.L155:
+ 1054 03fa 892F      		mov r24,r25
+ 1055               	.L154:
+ 1056               	.LBB60:
+ 1057               	.LBB61:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 1058               		.stabn	68,0,106,.LM116-.LFBB10
+ 1059               	.LM116:
+ 1060 03fc 94E9      		ldi r25,lo8(-108)
+ 1061 03fe 9093 BC00 		sts 188,r25
+ 1062               	.LBE61:
+ 1063               	.LBE60:
+ 1064               	.LBB62:
+ 1065               	.LBB63:
+ 1066               	.LBB64:
+ 1067               	.LBB65:
+ 1068               		.stabs	"/usr/avr/include/util/delay_basic.h",132,0,0,.Ltext3
+ 1069               	.Ltext3:
+ 1070               		.stabn	68,0,105,.LM117-.LFBB10
+ 1071               	.LM117:
+ 1072 0402 E0E4      		ldi r30,lo8(64)
+ 1073 0404 FCE9      		ldi r31,lo8(-100)
+ 1074               	/* #APP */
+ 1075               	 ;  105 "/usr/avr/include/util/delay_basic.h" 1
+ 1076 0406 3197      		1: sbiw r30,1
+ 1077 0408 01F4      		brne 1b
+ 1078               	 ;  0 "" 2
+ 1079               	/* epilogue start */
+ 1080               	/* #NOAPP */
+ 1081               	.LBE65:
+ 1082               	.LBE64:
+ 1083               	.LBE63:
+ 1084               	.LBE62:
+ 1085               		.stabs	"twi_master/twi_master.c",132,0,0,.Ltext4
+ 1086               	.Ltext4:
+ 375:twi_master/twi_master.c ****   
+ 376:twi_master/twi_master.c ****   twi_master_stop();
+ 377:twi_master/twi_master.c ****   _delay_ms(10);
+ 378:twi_master/twi_master.c ****   return st;
+ 379:twi_master/twi_master.c **** }
+ 1087               		.stabn	68,0,379,.LM118-.LFBB10
+GAS LISTING /tmp/cctlkPP8.s 			page 29
+
+
+ 1088               	.LM118:
+ 1089 040a CDB7      		in r28,__SP_L__
+ 1090 040c DEB7      		in r29,__SP_H__
+ 1091 040e E5E0      		ldi r30, lo8(5)
+ 1092 0410 0C94 0000 		jmp __epilogue_restores__ + ((18 - 5) * 2)
+ 1093               	.L160:
+ 374:twi_master/twi_master.c ****   
+ 1094               		.stabn	68,0,374,.LM119-.LFBB10
+ 1095               	.LM119:
+ 1096 0414 80E0      		ldi r24,0
+ 1097 0416 00C0      		rjmp .L154
+ 1098               		.size	twi_master_write16_reg16, .-twi_master_write16_reg16
+ 1099               	.Lscope10:
+ 1100               		.stabs	"",36,0,0,.Lscope10-.LFBB10
+ 1101               		.stabd	78,0,0
+ 1102               		.stabs	"twi_master_write_reg8:F(4,5)",36,0,393,twi_master_write_reg8
+ 1103               		.stabs	"sad:P(0,51)",64,0,393,17
+ 1104               		.stabs	"reg_addr:P(0,51)",64,0,393,29
+ 1105               		.stabs	"data:P(0,51)",64,0,394,28
+ 1106               	.global	twi_master_write_reg8
+ 1107               		.type	twi_master_write_reg8, @function
+ 1108               	twi_master_write_reg8:
+ 1109               		.stabd	46,0,0
+ 380:twi_master/twi_master.c **** 
+ 381:twi_master/twi_master.c **** /*******************************************************************************
+ 382:twi_master/twi_master.c **** Write two bytes (one word) to the 16-bit register of the specified slave.
+ 383:twi_master/twi_master.c **** 
+ 384:twi_master/twi_master.c **** ARGUMENTS
+ 385:twi_master/twi_master.c ****   1-st : slave address (SAD)
+ 386:twi_master/twi_master.c ****   2-nd : target register address
+ 387:twi_master/twi_master.c ****   3-rd : data word
+ 388:twi_master/twi_master.c **** 
+ 389:twi_master/twi_master.c **** RETURN VALUE
+ 390:twi_master/twi_master.c ****   If no error occurs, this function returns positive value, 0 otherwise.
+ 391:twi_master/twi_master.c **** *******************************************************************************/
+ 392:twi_master/twi_master.c **** 
+ 393:twi_master/twi_master.c **** uint8_t twi_master_write_reg8(const uint8_t sad, const uint8_t reg_addr,
+ 394:twi_master/twi_master.c ****                               const uint8_t data)
+ 395:twi_master/twi_master.c **** {
+ 1110               		.stabn	68,0,395,.LM120-.LFBB11
+ 1111               	.LM120:
+ 1112               	.LFBB11:
+ 1113 0418 1F93      		push r17
+ 1114 041a CF93      		push r28
+ 1115 041c DF93      		push r29
+ 1116               	/* prologue: function */
+ 1117               	/* frame size = 0 */
+ 1118               	/* stack size = 3 */
+ 1119               	.L__stack_usage = 3
+ 1120 041e 182F      		mov r17,r24
+ 1121 0420 D62F      		mov r29,r22
+ 1122 0422 C42F      		mov r28,r20
+ 396:twi_master/twi_master.c ****   uint8_t st = 1;
+ 397:twi_master/twi_master.c ****   
+ 398:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 1123               		.stabn	68,0,398,.LM121-.LFBB11
+ 1124               	.LM121:
+GAS LISTING /tmp/cctlkPP8.s 			page 30
+
+
+ 1125 0424 0E94 0000 		call twi_master_start
+ 399:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 1126               		.stabn	68,0,399,.LM122-.LFBB11
+ 1127               	.LM122:
+ 1128 0428 8823      		tst r24
+ 1129 042a 01F0      		breq .L179
+ 1130               		.stabn	68,0,399,.LM123-.LFBB11
+ 1131               	.LM123:
+ 1132 042c 812F      		mov r24,r17
+ 1133 042e 880F      		lsl r24
+ 1134 0430 0E94 0000 		call twi_master_write
+ 1135 0434 21E0      		ldi r18,lo8(1)
+ 1136 0436 30E0      		ldi r19,0
+ 1137 0438 8111      		cpse r24,__zero_reg__
+ 1138 043a 00C0      		rjmp .L172
+ 1139 043c 30E0      		ldi r19,0
+ 1140 043e 20E0      		ldi r18,0
+ 1141               	.L172:
+ 400:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 1142               		.stabn	68,0,400,.LM124-.LFBB11
+ 1143               	.LM124:
+ 1144 0440 232B      		or r18,r19
+ 1145 0442 01F0      		breq .L179
+ 1146 0444 8D2F      		mov r24,r29
+ 1147 0446 0E94 0000 		call twi_master_write
+ 1148 044a 21E0      		ldi r18,lo8(1)
+ 1149 044c 30E0      		ldi r19,0
+ 1150 044e 8111      		cpse r24,__zero_reg__
+ 1151 0450 00C0      		rjmp .L174
+ 1152 0452 30E0      		ldi r19,0
+ 1153 0454 20E0      		ldi r18,0
+ 1154               	.L174:
+ 401:twi_master/twi_master.c ****   st = st && twi_master_write(data);
+ 1155               		.stabn	68,0,401,.LM125-.LFBB11
+ 1156               	.LM125:
+ 1157 0456 232B      		or r18,r19
+ 1158 0458 01F0      		breq .L179
+ 1159 045a 8C2F      		mov r24,r28
+ 1160 045c 0E94 0000 		call twi_master_write
+ 1161 0460 91E0      		ldi r25,lo8(1)
+ 1162 0462 8111      		cpse r24,__zero_reg__
+ 1163 0464 00C0      		rjmp .L176
+ 1164 0466 90E0      		ldi r25,0
+ 1165               	.L176:
+ 1166 0468 892F      		mov r24,r25
+ 1167               	.L175:
+ 1168               	.LBB66:
+ 1169               	.LBB67:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 1170               		.stabn	68,0,106,.LM126-.LFBB11
+ 1171               	.LM126:
+ 1172 046a 94E9      		ldi r25,lo8(-108)
+ 1173 046c 9093 BC00 		sts 188,r25
+ 1174               	/* epilogue start */
+ 1175               	.LBE67:
+ 1176               	.LBE66:
+ 402:twi_master/twi_master.c ****   twi_master_stop();
+GAS LISTING /tmp/cctlkPP8.s 			page 31
+
+
+ 403:twi_master/twi_master.c **** 
+ 404:twi_master/twi_master.c ****   return st;
+ 405:twi_master/twi_master.c **** }
+ 1177               		.stabn	68,0,405,.LM127-.LFBB11
+ 1178               	.LM127:
+ 1179 0470 DF91      		pop r29
+ 1180 0472 CF91      		pop r28
+ 1181 0474 1F91      		pop r17
+ 1182 0476 0895      		ret
+ 1183               	.L179:
+ 401:twi_master/twi_master.c ****   twi_master_stop();
+ 1184               		.stabn	68,0,401,.LM128-.LFBB11
+ 1185               	.LM128:
+ 1186 0478 80E0      		ldi r24,0
+ 1187 047a 00C0      		rjmp .L175
+ 1188               		.size	twi_master_write_reg8, .-twi_master_write_reg8
+ 1189               	.Lscope11:
+ 1190               		.stabs	"",36,0,0,.Lscope11-.LFBB11
+ 1191               		.stabd	78,0,0
+ 1192               		.stabs	"twi_master_write_reg16:F(4,5)",36,0,407,twi_master_write_reg16
+ 1193               		.stabs	"sad:P(0,51)",64,0,407,16
+ 1194               		.stabs	"reg_addr:P(0,51)",64,0,407,17
+ 1195               	.global	twi_master_write_reg16
+ 1196               		.type	twi_master_write_reg16, @function
+ 1197               	twi_master_write_reg16:
+ 1198               		.stabd	46,0,0
+ 406:twi_master/twi_master.c **** 
+ 407:twi_master/twi_master.c **** uint8_t twi_master_write_reg16(const uint8_t sad, const uint8_t reg_addr,
+ 408:twi_master/twi_master.c ****                                const uint16_t data)
+ 409:twi_master/twi_master.c **** {
+ 1199               		.stabn	68,0,409,.LM129-.LFBB12
+ 1200               	.LM129:
+ 1201               	.LFBB12:
+ 1202 047c 0F93      		push r16
+ 1203 047e 1F93      		push r17
+ 1204 0480 CF93      		push r28
+ 1205 0482 DF93      		push r29
+ 1206               	/* prologue: function */
+ 1207               	/* frame size = 0 */
+ 1208               	/* stack size = 4 */
+ 1209               	.L__stack_usage = 4
+ 1210 0484 082F      		mov r16,r24
+ 1211 0486 162F      		mov r17,r22
+ 1212 0488 EA01      		movw r28,r20
+ 410:twi_master/twi_master.c ****   uint8_t st = 1;
+ 411:twi_master/twi_master.c **** 
+ 412:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 1213               		.stabn	68,0,412,.LM130-.LFBB12
+ 1214               	.LM130:
+ 1215 048a 0E94 0000 		call twi_master_start
+ 413:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 1216               		.stabn	68,0,413,.LM131-.LFBB12
+ 1217               	.LM131:
+ 1218 048e 8823      		tst r24
+ 1219 0490 01F0      		breq .L197
+ 1220               		.stabn	68,0,413,.LM132-.LFBB12
+ 1221               	.LM132:
+GAS LISTING /tmp/cctlkPP8.s 			page 32
+
+
+ 1222 0492 802F      		mov r24,r16
+ 1223 0494 880F      		lsl r24
+ 1224 0496 0E94 0000 		call twi_master_write
+ 1225 049a 21E0      		ldi r18,lo8(1)
+ 1226 049c 30E0      		ldi r19,0
+ 1227 049e 8111      		cpse r24,__zero_reg__
+ 1228 04a0 00C0      		rjmp .L187
+ 1229 04a2 30E0      		ldi r19,0
+ 1230 04a4 20E0      		ldi r18,0
+ 1231               	.L187:
+ 414:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 1232               		.stabn	68,0,414,.LM133-.LFBB12
+ 1233               	.LM133:
+ 1234 04a6 232B      		or r18,r19
+ 1235 04a8 01F0      		breq .L197
+ 1236 04aa 812F      		mov r24,r17
+ 1237 04ac 0E94 0000 		call twi_master_write
+ 1238 04b0 21E0      		ldi r18,lo8(1)
+ 1239 04b2 30E0      		ldi r19,0
+ 1240 04b4 8111      		cpse r24,__zero_reg__
+ 1241 04b6 00C0      		rjmp .L189
+ 1242 04b8 30E0      		ldi r19,0
+ 1243 04ba 20E0      		ldi r18,0
+ 1244               	.L189:
+ 415:twi_master/twi_master.c ****   st = st && twi_master_write(data >> 8); //st = st && twi_master_write((uint8_t) data >> 8);
+ 1245               		.stabn	68,0,415,.LM134-.LFBB12
+ 1246               	.LM134:
+ 1247 04bc 232B      		or r18,r19
+ 1248 04be 01F0      		breq .L197
+ 1249 04c0 8D2F      		mov r24,r29
+ 1250 04c2 0E94 0000 		call twi_master_write
+ 1251 04c6 21E0      		ldi r18,lo8(1)
+ 1252 04c8 30E0      		ldi r19,0
+ 1253 04ca 8111      		cpse r24,__zero_reg__
+ 1254 04cc 00C0      		rjmp .L191
+ 1255 04ce 30E0      		ldi r19,0
+ 1256 04d0 20E0      		ldi r18,0
+ 1257               	.L191:
+ 416:twi_master/twi_master.c ****   st = st && twi_master_write(data & 0xFF); //st = st && twi_master_write((uint8_t) data & 0xFF);
+ 1258               		.stabn	68,0,416,.LM135-.LFBB12
+ 1259               	.LM135:
+ 1260 04d2 232B      		or r18,r19
+ 1261 04d4 01F0      		breq .L197
+ 1262 04d6 8C2F      		mov r24,r28
+ 1263 04d8 0E94 0000 		call twi_master_write
+ 1264 04dc 91E0      		ldi r25,lo8(1)
+ 1265 04de 8111      		cpse r24,__zero_reg__
+ 1266 04e0 00C0      		rjmp .L193
+ 1267 04e2 90E0      		ldi r25,0
+ 1268               	.L193:
+ 1269 04e4 892F      		mov r24,r25
+ 1270               	.L192:
+ 1271               	.LBB68:
+ 1272               	.LBB69:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 1273               		.stabn	68,0,106,.LM136-.LFBB12
+ 1274               	.LM136:
+GAS LISTING /tmp/cctlkPP8.s 			page 33
+
+
+ 1275 04e6 94E9      		ldi r25,lo8(-108)
+ 1276 04e8 9093 BC00 		sts 188,r25
+ 1277               	/* epilogue start */
+ 1278               	.LBE69:
+ 1279               	.LBE68:
+ 417:twi_master/twi_master.c ****   twi_master_stop();
+ 418:twi_master/twi_master.c **** 
+ 419:twi_master/twi_master.c ****   return st;
+ 420:twi_master/twi_master.c **** }
+ 1280               		.stabn	68,0,420,.LM137-.LFBB12
+ 1281               	.LM137:
+ 1282 04ec DF91      		pop r29
+ 1283 04ee CF91      		pop r28
+ 1284 04f0 1F91      		pop r17
+ 1285 04f2 0F91      		pop r16
+ 1286 04f4 0895      		ret
+ 1287               	.L197:
+ 416:twi_master/twi_master.c ****   twi_master_stop();
+ 1288               		.stabn	68,0,416,.LM138-.LFBB12
+ 1289               	.LM138:
+ 1290 04f6 80E0      		ldi r24,0
+ 1291 04f8 00C0      		rjmp .L192
+ 1292               		.size	twi_master_write_reg16, .-twi_master_write_reg16
+ 1293               	.Lscope12:
+ 1294               		.stabs	"",36,0,0,.Lscope12-.LFBB12
+ 1295               		.stabd	78,0,0
+ 1296               		.stabs	"twi_master_read_reg8:F(4,5)",36,0,433,twi_master_read_reg8
+ 1297               		.stabs	"sad:P(0,51)",64,0,433,28
+ 1298               		.stabs	"reg_addr:P(0,51)",64,0,433,29
+ 1299               		.stabs	"buf:P(0,52)",64,0,434,16
+ 1300               	.global	twi_master_read_reg8
+ 1301               		.type	twi_master_read_reg8, @function
+ 1302               	twi_master_read_reg8:
+ 1303               		.stabd	46,0,0
+ 421:twi_master/twi_master.c **** 
+ 422:twi_master/twi_master.c **** /*******************************************************************************
+ 423:twi_master/twi_master.c **** Read one byte from the 8-bit register of the specified slave.
+ 424:twi_master/twi_master.c **** 
+ 425:twi_master/twi_master.c **** ARGUMENTS
+ 426:twi_master/twi_master.c ****   1-st : slave address (SAD)
+ 427:twi_master/twi_master.c ****   2-nd : target register address
+ 428:twi_master/twi_master.c ****   3-rd : pointer to the buffer for received data
+ 429:twi_master/twi_master.c **** 
+ 430:twi_master/twi_master.c **** RETURN VALUE
+ 431:twi_master/twi_master.c ****   If no error occurs, this function returns positive value, 0 otherwise.
+ 432:twi_master/twi_master.c **** *******************************************************************************/
+ 433:twi_master/twi_master.c **** uint8_t twi_master_read_reg8(const uint8_t sad, const uint8_t reg_addr,
+ 434:twi_master/twi_master.c ****                              uint8_t *buf)
+ 435:twi_master/twi_master.c **** {
+ 1304               		.stabn	68,0,435,.LM139-.LFBB13
+ 1305               	.LM139:
+ 1306               	.LFBB13:
+ 1307 04fa 0F93      		push r16
+ 1308 04fc 1F93      		push r17
+ 1309 04fe CF93      		push r28
+ 1310 0500 DF93      		push r29
+ 1311               	/* prologue: function */
+GAS LISTING /tmp/cctlkPP8.s 			page 34
+
+
+ 1312               	/* frame size = 0 */
+ 1313               	/* stack size = 4 */
+ 1314               	.L__stack_usage = 4
+ 1315 0502 C82F      		mov r28,r24
+ 1316 0504 D62F      		mov r29,r22
+ 1317 0506 8A01      		movw r16,r20
+ 436:twi_master/twi_master.c ****   uint8_t st = 1;
+ 437:twi_master/twi_master.c **** 
+ 438:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 1318               		.stabn	68,0,438,.LM140-.LFBB13
+ 1319               	.LM140:
+ 1320 0508 0E94 0000 		call twi_master_start
+ 439:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 1321               		.stabn	68,0,439,.LM141-.LFBB13
+ 1322               	.LM141:
+ 1323 050c 8823      		tst r24
+ 1324 050e 01F4      		brne .+2
+ 1325 0510 00C0      		rjmp .L220
+ 1326               		.stabn	68,0,439,.LM142-.LFBB13
+ 1327               	.LM142:
+ 1328 0512 8C2F      		mov r24,r28
+ 1329 0514 880F      		lsl r24
+ 1330 0516 0E94 0000 		call twi_master_write
+ 1331 051a 21E0      		ldi r18,lo8(1)
+ 1332 051c 30E0      		ldi r19,0
+ 1333 051e 8111      		cpse r24,__zero_reg__
+ 1334 0520 00C0      		rjmp .L207
+ 1335 0522 30E0      		ldi r19,0
+ 1336 0524 20E0      		ldi r18,0
+ 1337               	.L207:
+ 440:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 1338               		.stabn	68,0,440,.LM143-.LFBB13
+ 1339               	.LM143:
+ 1340 0526 232B      		or r18,r19
+ 1341 0528 01F0      		breq .L220
+ 1342 052a 8D2F      		mov r24,r29
+ 1343 052c 0E94 0000 		call twi_master_write
+ 1344 0530 21E0      		ldi r18,lo8(1)
+ 1345 0532 30E0      		ldi r19,0
+ 1346 0534 8111      		cpse r24,__zero_reg__
+ 1347 0536 00C0      		rjmp .L209
+ 1348 0538 30E0      		ldi r19,0
+ 1349 053a 20E0      		ldi r18,0
+ 1350               	.L209:
+ 441:twi_master/twi_master.c ****   //twi_master_stop();
+ 442:twi_master/twi_master.c ****   //_delay_ms(1);
+ 443:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 1351               		.stabn	68,0,443,.LM144-.LFBB13
+ 1352               	.LM144:
+ 1353 053c 232B      		or r18,r19
+ 1354 053e 01F0      		breq .L220
+ 1355 0540 0E94 0000 		call twi_master_start
+ 1356 0544 21E0      		ldi r18,lo8(1)
+ 1357 0546 30E0      		ldi r19,0
+ 1358 0548 8111      		cpse r24,__zero_reg__
+ 1359 054a 00C0      		rjmp .L211
+ 1360 054c 30E0      		ldi r19,0
+GAS LISTING /tmp/cctlkPP8.s 			page 35
+
+
+ 1361 054e 20E0      		ldi r18,0
+ 1362               	.L211:
+ 444:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_READ);
+ 1363               		.stabn	68,0,444,.LM145-.LFBB13
+ 1364               	.LM145:
+ 1365 0550 232B      		or r18,r19
+ 1366 0552 01F0      		breq .L220
+ 1367 0554 8C2F      		mov r24,r28
+ 1368 0556 880F      		lsl r24
+ 1369 0558 8160      		ori r24,lo8(1)
+ 1370 055a 0E94 0000 		call twi_master_write
+ 1371 055e 21E0      		ldi r18,lo8(1)
+ 1372 0560 30E0      		ldi r19,0
+ 1373 0562 8111      		cpse r24,__zero_reg__
+ 1374 0564 00C0      		rjmp .L213
+ 1375 0566 30E0      		ldi r19,0
+ 1376 0568 20E0      		ldi r18,0
+ 1377               	.L213:
+ 445:twi_master/twi_master.c ****   st = st && twi_master_read(buf, TWI_NAK);
+ 1378               		.stabn	68,0,445,.LM146-.LFBB13
+ 1379               	.LM146:
+ 1380 056a 232B      		or r18,r19
+ 1381 056c 01F0      		breq .L220
+ 1382 056e 60E0      		ldi r22,0
+ 1383 0570 C801      		movw r24,r16
+ 1384 0572 0E94 0000 		call twi_master_read
+ 1385 0576 91E0      		ldi r25,lo8(1)
+ 1386 0578 8111      		cpse r24,__zero_reg__
+ 1387 057a 00C0      		rjmp .L215
+ 1388 057c 90E0      		ldi r25,0
+ 1389               	.L215:
+ 1390 057e 892F      		mov r24,r25
+ 1391               	.L214:
+ 1392               	.LBB70:
+ 1393               	.LBB71:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 1394               		.stabn	68,0,106,.LM147-.LFBB13
+ 1395               	.LM147:
+ 1396 0580 94E9      		ldi r25,lo8(-108)
+ 1397 0582 9093 BC00 		sts 188,r25
+ 1398               	/* epilogue start */
+ 1399               	.LBE71:
+ 1400               	.LBE70:
+ 446:twi_master/twi_master.c ****   twi_master_stop();
+ 447:twi_master/twi_master.c **** 
+ 448:twi_master/twi_master.c ****   return st;
+ 449:twi_master/twi_master.c **** }
+ 1401               		.stabn	68,0,449,.LM148-.LFBB13
+ 1402               	.LM148:
+ 1403 0586 DF91      		pop r29
+ 1404 0588 CF91      		pop r28
+ 1405 058a 1F91      		pop r17
+ 1406 058c 0F91      		pop r16
+ 1407 058e 0895      		ret
+ 1408               	.L220:
+ 445:twi_master/twi_master.c ****   twi_master_stop();
+ 1409               		.stabn	68,0,445,.LM149-.LFBB13
+GAS LISTING /tmp/cctlkPP8.s 			page 36
+
+
+ 1410               	.LM149:
+ 1411 0590 80E0      		ldi r24,0
+ 1412 0592 00C0      		rjmp .L214
+ 1413               		.size	twi_master_read_reg8, .-twi_master_read_reg8
+ 1414               	.Lscope13:
+ 1415               		.stabs	"",36,0,0,.Lscope13-.LFBB13
+ 1416               		.stabd	78,0,0
+ 1417               		.stabs	"twi_master_read_reg16:F(4,5)",36,0,462,twi_master_read_reg16
+ 1418               		.stabs	"sad:P(0,51)",64,0,462,15
+ 1419               		.stabs	"reg_addr:P(0,51)",64,0,462,13
+ 1420               		.stabs	"buf:P(0,54)=*(4,2)",64,0,463,16
+ 1421               		.stabs	"byte_order:P(0,51)",64,0,463,14
+ 1422               	.global	twi_master_read_reg16
+ 1423               		.type	twi_master_read_reg16, @function
+ 1424               	twi_master_read_reg16:
+ 1425               		.stabd	46,0,0
+ 450:twi_master/twi_master.c **** 
+ 451:twi_master/twi_master.c **** /*******************************************************************************
+ 452:twi_master/twi_master.c **** Read two bytes (one word) from the 16-bit register of the specified slave.
+ 453:twi_master/twi_master.c **** 
+ 454:twi_master/twi_master.c **** ARGUMENTS
+ 455:twi_master/twi_master.c ****   1-st : slave address (SAD)
+ 456:twi_master/twi_master.c ****   2-nd : target register address
+ 457:twi_master/twi_master.c ****   3-rd : pointer to the buffer for received data
+ 458:twi_master/twi_master.c **** 
+ 459:twi_master/twi_master.c **** RETURN VALUE
+ 460:twi_master/twi_master.c ****   If no error occurs, this function returns positive value, 0 otherwise.
+ 461:twi_master/twi_master.c **** *******************************************************************************/
+ 462:twi_master/twi_master.c **** uint8_t twi_master_read_reg16(const uint8_t sad, const uint8_t reg_addr,
+ 463:twi_master/twi_master.c ****                               int16_t *buf, const uint8_t byte_order)
+ 464:twi_master/twi_master.c **** {
+ 1426               		.stabn	68,0,464,.LM150-.LFBB14
+ 1427               	.LM150:
+ 1428               	.LFBB14:
+ 1429 0594 A1E0      		ldi r26,lo8(1)
+ 1430 0596 B0E0      		ldi r27,0
+ 1431 0598 E0E0      		ldi r30,lo8(gs(1f))
+ 1432 059a F0E0      		ldi r31,hi8(gs(1f))
+ 1433 059c 0C94 0000 		jmp __prologue_saves__+((18 - 7) * 2)
+ 1434               	1:
+ 1435               	/* prologue: function */
+ 1436               	/* frame size = 1 */
+ 1437               	/* stack size = 8 */
+ 1438               	.L__stack_usage = 8
+ 1439 05a0 F82E      		mov r15,r24
+ 1440 05a2 D62E      		mov r13,r22
+ 1441 05a4 8A01      		movw r16,r20
+ 1442 05a6 E22E      		mov r14,r18
+ 465:twi_master/twi_master.c ****   uint8_t value = 0;
+ 1443               		.stabn	68,0,465,.LM151-.LFBB14
+ 1444               	.LM151:
+ 1445 05a8 1982      		std Y+1,__zero_reg__
+ 466:twi_master/twi_master.c ****   uint8_t st = 1;
+ 467:twi_master/twi_master.c **** 
+ 468:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 1446               		.stabn	68,0,468,.LM152-.LFBB14
+ 1447               	.LM152:
+GAS LISTING /tmp/cctlkPP8.s 			page 37
+
+
+ 1448 05aa 0E94 0000 		call twi_master_start
+ 469:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE); //st = st && twi_master_write((sad << 1) | TW
+ 1449               		.stabn	68,0,469,.LM153-.LFBB14
+ 1450               	.LM153:
+ 1451 05ae 8823      		tst r24
+ 1452 05b0 01F0      		breq .L252
+ 1453               		.stabn	68,0,469,.LM154-.LFBB14
+ 1454               	.LM154:
+ 1455 05b2 8F2D      		mov r24,r15
+ 1456 05b4 880F      		lsl r24
+ 1457 05b6 0E94 0000 		call twi_master_write
+ 1458 05ba 21E0      		ldi r18,lo8(1)
+ 1459 05bc 30E0      		ldi r19,0
+ 1460 05be 8111      		cpse r24,__zero_reg__
+ 1461 05c0 00C0      		rjmp .L232
+ 1462 05c2 30E0      		ldi r19,0
+ 1463 05c4 20E0      		ldi r18,0
+ 1464               	.L232:
+ 470:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 1465               		.stabn	68,0,470,.LM155-.LFBB14
+ 1466               	.LM155:
+ 1467 05c6 232B      		or r18,r19
+ 1468 05c8 01F0      		breq .L252
+ 1469 05ca 8D2D      		mov r24,r13
+ 1470 05cc 0E94 0000 		call twi_master_write
+ 1471 05d0 21E0      		ldi r18,lo8(1)
+ 1472 05d2 30E0      		ldi r19,0
+ 1473 05d4 8111      		cpse r24,__zero_reg__
+ 1474 05d6 00C0      		rjmp .L234
+ 1475 05d8 30E0      		ldi r19,0
+ 1476 05da 20E0      		ldi r18,0
+ 1477               	.L234:
+ 471:twi_master/twi_master.c ****   
+ 472:twi_master/twi_master.c ****   //twi_master_stop();
+ 473:twi_master/twi_master.c ****   //_delay_ms(1);
+ 474:twi_master/twi_master.c ****   
+ 475:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 1478               		.stabn	68,0,475,.LM156-.LFBB14
+ 1479               	.LM156:
+ 1480 05dc 232B      		or r18,r19
+ 1481 05de 01F0      		breq .L252
+ 1482 05e0 0E94 0000 		call twi_master_start
+ 1483 05e4 21E0      		ldi r18,lo8(1)
+ 1484 05e6 30E0      		ldi r19,0
+ 1485 05e8 8111      		cpse r24,__zero_reg__
+ 1486 05ea 00C0      		rjmp .L236
+ 1487 05ec 30E0      		ldi r19,0
+ 1488 05ee 20E0      		ldi r18,0
+ 1489               	.L236:
+ 476:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_READ);
+ 1490               		.stabn	68,0,476,.LM157-.LFBB14
+ 1491               	.LM157:
+ 1492 05f0 232B      		or r18,r19
+ 1493 05f2 01F0      		breq .L252
+ 1494 05f4 8F2D      		mov r24,r15
+ 1495 05f6 880F      		lsl r24
+ 1496 05f8 8160      		ori r24,lo8(1)
+GAS LISTING /tmp/cctlkPP8.s 			page 38
+
+
+ 1497 05fa 0E94 0000 		call twi_master_write
+ 1498 05fe 21E0      		ldi r18,lo8(1)
+ 1499 0600 30E0      		ldi r19,0
+ 1500 0602 8111      		cpse r24,__zero_reg__
+ 1501 0604 00C0      		rjmp .L238
+ 1502 0606 30E0      		ldi r19,0
+ 1503 0608 20E0      		ldi r18,0
+ 1504               	.L238:
+ 477:twi_master/twi_master.c ****   
+ 478:twi_master/twi_master.c ****   st = st && twi_master_read(&value, TWI_ACK);
+ 1505               		.stabn	68,0,478,.LM158-.LFBB14
+ 1506               	.LM158:
+ 1507 060a 232B      		or r18,r19
+ 1508 060c 01F0      		breq .L252
+ 1509 060e 61E0      		ldi r22,lo8(1)
+ 1510 0610 CE01      		movw r24,r28
+ 1511 0612 0196      		adiw r24,1
+ 1512 0614 0E94 0000 		call twi_master_read
+ 1513 0618 91E0      		ldi r25,lo8(1)
+ 1514 061a 8111      		cpse r24,__zero_reg__
+ 1515 061c 00C0      		rjmp .L239
+ 1516               	.L252:
+ 1517               		.stabn	68,0,478,.LM159-.LFBB14
+ 1518               	.LM159:
+ 1519 061e 90E0      		ldi r25,0
+ 1520               	.L239:
+ 1521               		.stabn	68,0,478,.LM160-.LFBB14
+ 1522               	.LM160:
+ 1523 0620 892F      		mov r24,r25
+ 1524 0622 2981      		ldd r18,Y+1
+ 1525 0624 422F      		mov r20,r18
+ 1526 0626 50E0      		ldi r21,0
+ 479:twi_master/twi_master.c **** 
+ 480:twi_master/twi_master.c ****   if (byte_order == TWI_MSB_FIRST)
+ 481:twi_master/twi_master.c ****     *buf = (value << 8);
+ 1527               		.stabn	68,0,481,.LM161-.LFBB14
+ 1528               	.LM161:
+ 1529 0628 F801      		movw r30,r16
+ 480:twi_master/twi_master.c ****     *buf = (value << 8);
+ 1530               		.stabn	68,0,480,.LM162-.LFBB14
+ 1531               	.LM162:
+ 1532 062a E110      		cpse r14,__zero_reg__
+ 1533 062c 00C0      		rjmp .L241
+ 1534               		.stabn	68,0,481,.LM163-.LFBB14
+ 1535               	.LM163:
+ 1536 062e 1082      		st Z,__zero_reg__
+ 1537 0630 2183      		std Z+1,r18
+ 482:twi_master/twi_master.c ****   else // byte_order == TWI_LSB_FIRST
+ 483:twi_master/twi_master.c ****     *buf = value;
+ 484:twi_master/twi_master.c **** 
+ 485:twi_master/twi_master.c ****   st = st && twi_master_read(&value, TWI_NAK);
+ 1538               		.stabn	68,0,485,.LM164-.LFBB14
+ 1539               	.LM164:
+ 1540 0632 9923      		tst r25
+ 1541 0634 01F0      		breq .L242
+ 1542               	.L245:
+ 1543 0636 60E0      		ldi r22,0
+GAS LISTING /tmp/cctlkPP8.s 			page 39
+
+
+ 1544 0638 CE01      		movw r24,r28
+ 1545 063a 0196      		adiw r24,1
+ 1546 063c 0E94 0000 		call twi_master_read
+ 1547 0640 91E0      		ldi r25,lo8(1)
+ 1548 0642 8111      		cpse r24,__zero_reg__
+ 1549 0644 00C0      		rjmp .L243
+ 1550 0646 90E0      		ldi r25,0
+ 1551               	.L243:
+ 1552 0648 892F      		mov r24,r25
+ 1553               	.L244:
+ 1554               	.LBB72:
+ 1555               	.LBB73:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 1556               		.stabn	68,0,106,.LM165-.LFBB14
+ 1557               	.LM165:
+ 1558 064a 94E9      		ldi r25,lo8(-108)
+ 1559 064c 9093 BC00 		sts 188,r25
+ 1560               	.LBE73:
+ 1561               	.LBE72:
+ 486:twi_master/twi_master.c ****   twi_master_stop();
+ 487:twi_master/twi_master.c **** 
+ 488:twi_master/twi_master.c ****   if (byte_order == TWI_LSB_FIRST)
+ 1562               		.stabn	68,0,488,.LM166-.LFBB14
+ 1563               	.LM166:
+ 1564 0650 F1E0      		ldi r31,lo8(1)
+ 1565 0652 EF12      		cpse r14,r31
+ 1566 0654 00C0      		rjmp .L246
+ 489:twi_master/twi_master.c ****     *buf |= value;
+ 1567               		.stabn	68,0,489,.LM167-.LFBB14
+ 1568               	.LM167:
+ 1569 0656 9981      		ldd r25,Y+1
+ 1570 0658 F801      		movw r30,r16
+ 1571 065a 2081      		ld r18,Z
+ 1572 065c 3181      		ldd r19,Z+1
+ 1573 065e 292B      		or r18,r25
+ 1574               	.L262:
+ 490:twi_master/twi_master.c ****   else // byte_order == TWI_LSB_FIRST
+ 491:twi_master/twi_master.c ****     *buf |= (value << 8);
+ 1575               		.stabn	68,0,491,.LM168-.LFBB14
+ 1576               	.LM168:
+ 1577 0660 3183      		std Z+1,r19
+ 1578 0662 2083      		st Z,r18
+ 1579               	/* epilogue start */
+ 492:twi_master/twi_master.c ****     
+ 493:twi_master/twi_master.c **** 
+ 494:twi_master/twi_master.c ****   return st;
+ 495:twi_master/twi_master.c **** }
+ 1580               		.stabn	68,0,495,.LM169-.LFBB14
+ 1581               	.LM169:
+ 1582 0664 2196      		adiw r28,1
+ 1583 0666 E7E0      		ldi r30, lo8(7)
+ 1584 0668 0C94 0000 		jmp __epilogue_restores__ + ((18 - 7) * 2)
+ 1585               	.L241:
+ 483:twi_master/twi_master.c **** 
+ 1586               		.stabn	68,0,483,.LM170-.LFBB14
+ 1587               	.LM170:
+ 1588 066c 5183      		std Z+1,r21
+GAS LISTING /tmp/cctlkPP8.s 			page 40
+
+
+ 1589 066e 4083      		st Z,r20
+ 485:twi_master/twi_master.c ****   twi_master_stop();
+ 1590               		.stabn	68,0,485,.LM171-.LFBB14
+ 1591               	.LM171:
+ 1592 0670 9111      		cpse r25,__zero_reg__
+ 1593 0672 00C0      		rjmp .L245
+ 1594 0674 80E0      		ldi r24,0
+ 1595 0676 00C0      		rjmp .L244
+ 1596               	.L242:
+ 1597               	.LBB75:
+ 1598               	.LBB74:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 1599               		.stabn	68,0,106,.LM172-.LFBB14
+ 1600               	.LM172:
+ 1601 0678 94E9      		ldi r25,lo8(-108)
+ 1602 067a 9093 BC00 		sts 188,r25
+ 1603               	.L246:
+ 1604               	.LBE74:
+ 1605               	.LBE75:
+ 491:twi_master/twi_master.c ****     
+ 1606               		.stabn	68,0,491,.LM173-.LFBB14
+ 1607               	.LM173:
+ 1608 067e 9981      		ldd r25,Y+1
+ 1609 0680 F801      		movw r30,r16
+ 1610 0682 2081      		ld r18,Z
+ 1611 0684 3181      		ldd r19,Z+1
+ 1612 0686 392B      		or r19,r25
+ 1613 0688 00C0      		rjmp .L262
+ 1614               		.size	twi_master_read_reg16, .-twi_master_read_reg16
+ 1615               		.stabs	"value:(4,5)",128,0,465,1
+ 1616               		.stabn	192,0,0,.LFBB14-.LFBB14
+ 1617               		.stabn	224,0,0,.Lscope14-.LFBB14
+ 1618               	.Lscope14:
+ 1619               		.stabs	"",36,0,0,.Lscope14-.LFBB14
+ 1620               		.stabd	78,0,0
+ 1621               		.stabs	"",100,0,0,.Letext0
+ 1622               	.Letext0:
+ 1623               		.ident	"GCC: (Gentoo 7.2.0-r1 p1.1) 7.2.0"
+GAS LISTING /tmp/cctlkPP8.s 			page 41
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 twi_master.c
+     /tmp/cctlkPP8.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cctlkPP8.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cctlkPP8.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cctlkPP8.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cctlkPP8.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cctlkPP8.s:110    .text:0000000000000000 twi_master_init
+     /tmp/cctlkPP8.s:137    .text:000000000000000c twi_master_start
+     /tmp/cctlkPP8.s:210    .text:0000000000000042 twi_master_stop
+     /tmp/cctlkPP8.s:235    .text:000000000000004a twi_master_write
+     /tmp/cctlkPP8.s:317    .text:0000000000000088 twi_master_read
+     /tmp/cctlkPP8.s:410    .text:00000000000000ce twi_master_write_page
+     /tmp/cctlkPP8.s:553    .text:0000000000000178 twi_master_read16_reg8
+     /tmp/cctlkPP8.s:681    .text:0000000000000220 twi_master_read16_reg16
+     /tmp/cctlkPP8.s:840    .text:00000000000002ee twi_master_write16_reg8
+     /tmp/cctlkPP8.s:966    .text:0000000000000376 twi_master_write16_reg16
+     /tmp/cctlkPP8.s:1108   .text:0000000000000418 twi_master_write_reg8
+     /tmp/cctlkPP8.s:1197   .text:000000000000047c twi_master_write_reg16
+     /tmp/cctlkPP8.s:1302   .text:00000000000004fa twi_master_read_reg8
+     /tmp/cctlkPP8.s:1424   .text:0000000000000594 twi_master_read_reg16
+
+UNDEFINED SYMBOLS
+__epilogue_restores__
+__prologue_saves__

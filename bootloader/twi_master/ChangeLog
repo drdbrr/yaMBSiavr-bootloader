@@ -1,0 +1,47 @@
+TWI Master library for Atmel AVR microcontrollers
+=================================================
+Tested only on ATmega8 so far.
+
+v0.1.3 - 06.10.2011, 22:54
+  [+] Added ability to change the byte order in twi_master_read_reg16() return
+      value.
+
+v0.1.2 - 17.09.2011, 00:29
+  [+] Fixed return values in functions twi_master_start(), twi_master_write()
+      and twi_master_read();
+  [+] All string constants are now in the program space;
+  [-] Removed unneeded slave debug messages.
+
+v0.1.1 - 15.09.2011, 16:35
+  [+] Functions introduced in v0.1 are now returns status value: positive on
+      success, 0 otherwise;
+  [+] Improved some comments and debug messages alignment.
+
+v0.1 - 03.09.2011, 18:06
+  [!] The library is now available as separate project;
+  [+] New functions for work with 8- and 16-bit registers:
+        twi_master_write_reg8(),
+        twi_master_write_reg16(),
+        twi_master_read_reg8(),
+        twi_master_read_reg16().
+
+v0.0.3 - 25.01.2011, 23:57
+  [!] twi_readNAK() and twi_readACK() now merged into single twi_read();
+  [+] New status reporting function: twi_print_status();
+  [+] Increased debug verbosity.
+
+v0.0.2 - 20.01.2011, 02:06
+  [+] Added timeout routines to improve bus error handling;
+  [+] Minor macro improvements.
+
+v0.0.1 - 09.01.2011, 16:38
+  Initial release. Part of sensors_test_firmware project.
+  [+] Basic I2C/TWI functions:
+        twi_init(),
+        twi_start(),
+        twi_stop(),
+        twi_write(),
+        twi_readNAK(),
+        twi_readACK();
+  [+] TWBR value calculation based on TWI_SCL_CLOCK constant;
+  [+] Optional debug messages.

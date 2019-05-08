@@ -1,0 +1,1274 @@
+   1               		.file	"twi_master.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   9               		.text
+  10               	.Ltext0:
+ 108               	.global	twi_master_init
+ 110               	twi_master_init:
+ 111               		.stabd	46,0,0
+   1:twi_master/twi_master.c **** /*************************************************************************
+   2:twi_master/twi_master.c ****  * TWI Master library functions for AVR MCU                              *
+   3:twi_master/twi_master.c ****  *                                                                       *
+   4:twi_master/twi_master.c ****  * Copyright (C) 2011 by Anton 'TwisteR' Dubniak <twister@tfsoft.org.ua> *
+   5:twi_master/twi_master.c ****  *                                                                       *
+   6:twi_master/twi_master.c ****  * This program is free software: you can redistribute it and/or modify  *
+   7:twi_master/twi_master.c ****  * it under the terms of the GNU General Public License as published by  *
+   8:twi_master/twi_master.c ****  * the Free Software Foundation, either version 3 of the License, or     *
+   9:twi_master/twi_master.c ****  * (at your option) any later version.                                   *
+  10:twi_master/twi_master.c ****  *                                                                       *
+  11:twi_master/twi_master.c ****  * This program is distributed in the hope that it will be useful,       *
+  12:twi_master/twi_master.c ****  * but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+  13:twi_master/twi_master.c ****  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+  14:twi_master/twi_master.c ****  * GNU General Public License for more details.                          *
+  15:twi_master/twi_master.c ****  *                                                                       *
+  16:twi_master/twi_master.c ****  * You should have received a copy of the GNU General Public License     *
+  17:twi_master/twi_master.c ****  * along with this program.  If not, see <http://www.gnu.org/licenses/>. *
+  18:twi_master/twi_master.c ****  *************************************************************************/
+  19:twi_master/twi_master.c **** 
+  20:twi_master/twi_master.c **** #include "twi_master.h"
+  21:twi_master/twi_master.c **** #include <util/delay.h>
+  22:twi_master/twi_master.c **** 
+  23:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  24:twi_master/twi_master.c **** #include <stdlib.h>
+  25:twi_master/twi_master.c **** #include <avr/pgmspace.h>
+  26:twi_master/twi_master.c **** #include "avr-uart/uart.h"
+  27:twi_master/twi_master.c **** //void twi_master_print_status(void);
+  28:twi_master/twi_master.c **** #endif
+  29:twi_master/twi_master.c **** 
+  30:twi_master/twi_master.c **** static uint8_t twst;
+  31:twi_master/twi_master.c **** 
+  32:twi_master/twi_master.c **** /*******************************************************************************
+  33:twi_master/twi_master.c **** Call this function to init the TWI hardware.
+  34:twi_master/twi_master.c **** *******************************************************************************/
+  35:twi_master/twi_master.c **** void twi_master_init()
+  36:twi_master/twi_master.c **** {
+ 113               	.LM0:
+ 114               	.LFBB1:
+ 115               	/* prologue: function */
+ 116               	/* frame size = 0 */
+ 117               	/* stack size = 0 */
+ 118               	.L__stack_usage = 0
+  37:twi_master/twi_master.c ****   TWSR = TWI_TWPS;
+ 120               	.LM1:
+ 121 0000 1092 B900 		sts 185,__zero_reg__
+  38:twi_master/twi_master.c ****   TWBR = TWI_TWBR;
+ 123               	.LM2:
+ 124 0004 8CE5      		ldi r24,lo8(92)
+ 125 0006 8093 B800 		sts 184,r24
+ 126               	/* epilogue start */
+  39:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  40:twi_master/twi_master.c ****   char buf[10];
+  41:twi_master/twi_master.c ****   uart_puts_P("\ntwi_master_init: F_SCL=");
+  42:twi_master/twi_master.c ****   ltoa(TWI_SCL_CLOCK, buf, 10);
+  43:twi_master/twi_master.c ****   uart_puts(buf);
+  44:twi_master/twi_master.c ****   uart_puts_P(" Hz, TWBR=");
+  45:twi_master/twi_master.c ****   utoa(TWI_TWBR, buf, 10);
+  46:twi_master/twi_master.c ****   uart_puts(buf);
+  47:twi_master/twi_master.c ****   uart_putc('\n');
+  48:twi_master/twi_master.c ****   //printf("\ntwi_master_init: F_SCL=%ld Hz, TWBR=%ld\n", TWI_SCL_CLOCK,
+  49:twi_master/twi_master.c ****   //  TWI_TWBR);
+  50:twi_master/twi_master.c **** #endif
+  51:twi_master/twi_master.c **** }
+ 128               	.LM3:
+ 129 000a 0895      		ret
+ 131               	.Lscope1:
+ 133               		.stabd	78,0,0
+ 135               	.global	twi_master_start
+ 137               	twi_master_start:
+ 138               		.stabd	46,0,0
+  52:twi_master/twi_master.c **** 
+  53:twi_master/twi_master.c **** /*******************************************************************************
+  54:twi_master/twi_master.c **** Try to transmit the START condition.
+  55:twi_master/twi_master.c **** 
+  56:twi_master/twi_master.c **** RETURN VALUE
+  57:twi_master/twi_master.c ****   If no error occurs, this function returns the TWI Status Register value.
+  58:twi_master/twi_master.c ****   On error, 0 is returned.
+  59:twi_master/twi_master.c **** *******************************************************************************/
+  60:twi_master/twi_master.c **** uint8_t twi_master_start()
+  61:twi_master/twi_master.c **** {
+ 140               	.LM4:
+ 141               	.LFBB2:
+ 142               	/* prologue: function */
+ 143               	/* frame size = 0 */
+ 144               	/* stack size = 0 */
+ 145               	.L__stack_usage = 0
+  62:twi_master/twi_master.c ****   uint16_t timeout = 1;
+  63:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  64:twi_master/twi_master.c ****   char buf[10];
+  65:twi_master/twi_master.c ****   uart_puts_P("\ntwi_start: ");
+  66:twi_master/twi_master.c ****   //printf_P(PSTR("\ntwi_start:\t\t"));
+  67:twi_master/twi_master.c **** #endif
+  68:twi_master/twi_master.c ****   // send START condition
+  69:twi_master/twi_master.c ****   TWCR = _BV(TWINT) | _BV(TWSTA) | _BV(TWEN);
+ 147               	.LM5:
+ 148 000c 84EA      		ldi r24,lo8(-92)
+ 149 000e 8093 BC00 		sts 188,r24
+  62:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 151               	.LM6:
+ 152 0012 21E0      		ldi r18,lo8(1)
+ 153 0014 30E0      		ldi r19,0
+ 154               	.L3:
+  70:twi_master/twi_master.c ****   // TODO fully interrupt driven routines
+  71:twi_master/twi_master.c ****   // wait until transmission is completed
+  72:twi_master/twi_master.c ****   while (!(TWCR & _BV(TWINT)) && timeout)
+ 156               	.LM7:
+ 157 0016 8091 BC00 		lds r24,188
+ 158 001a 87FD      		sbrc r24,7
+ 159 001c 00C0      		rjmp .L4
+ 161               	.LM8:
+ 162 001e 2115      		cp r18,__zero_reg__
+ 163 0020 3105      		cpc r19,__zero_reg__
+ 164 0022 01F4      		brne .L5
+ 165               	.L4:
+  73:twi_master/twi_master.c ****     timeout++;
+  74:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+  75:twi_master/twi_master.c ****   twst = TW_STATUS;
+ 167               	.LM9:
+ 168 0024 8091 B900 		lds r24,185
+  76:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  77:twi_master/twi_master.c ****   //twi_master_print_status();
+  78:twi_master/twi_master.c **** #endif
+  79:twi_master/twi_master.c ****   if (timeout == 0)
+ 170               	.LM10:
+ 171 0028 232B      		or r18,r19
+ 172 002a 01F0      		breq .L8
+  75:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 174               	.LM11:
+ 175 002c 887F      		andi r24,lo8(-8)
+  80:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  81:twi_master/twi_master.c ****   {
+  82:twi_master/twi_master.c ****       uart_puts_P(", TIMEOUT\n");
+  83:twi_master/twi_master.c ****     //printf_P(PSTR(",\t\tTIMEOUT\n"));
+  84:twi_master/twi_master.c **** #endif
+  85:twi_master/twi_master.c ****     return 0;
+  86:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+  87:twi_master/twi_master.c ****   }
+  88:twi_master/twi_master.c ****   else
+  89:twi_master/twi_master.c ****   {
+  90:twi_master/twi_master.c ****     uart_puts_P(", cycles: ");
+  91:twi_master/twi_master.c ****     utoa(timeout, buf, 10);
+  92:twi_master/twi_master.c ****     uart_puts(buf);
+  93:twi_master/twi_master.c ****     uart_putc('\n');
+  94:twi_master/twi_master.c ****     //printf(",\t\tcycles: %2d\n", timeout);
+  95:twi_master/twi_master.c ****   }
+  96:twi_master/twi_master.c **** #endif
+  97:twi_master/twi_master.c **** 
+  98:twi_master/twi_master.c ****   return ((twst == TW_START) || (twst == TW_REP_START)) ? twst : 0;
+ 177               	.LM12:
+ 178 002e 8830      		cpi r24,lo8(8)
+ 179 0030 01F0      		breq .L2
+ 181               	.LM13:
+ 182 0032 8031      		cpi r24,lo8(16)
+ 183 0034 01F4      		brne .L8
+ 184 0036 0895      		ret
+ 185               	.L5:
+  73:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 187               	.LM14:
+ 188 0038 2F5F      		subi r18,-1
+ 189 003a 3F4F      		sbci r19,-1
+ 190 003c 00C0      		rjmp .L3
+ 191               	.L8:
+ 193               	.LM15:
+ 194 003e 80E0      		ldi r24,0
+ 195               	.L2:
+ 196               	/* epilogue start */
+  99:twi_master/twi_master.c **** }
+ 198               	.LM16:
+ 199 0040 0895      		ret
+ 204               	.Lscope2:
+ 206               		.stabd	78,0,0
+ 208               	.global	twi_master_stop
+ 210               	twi_master_stop:
+ 211               		.stabd	46,0,0
+ 100:twi_master/twi_master.c **** 
+ 101:twi_master/twi_master.c **** /*******************************************************************************
+ 102:twi_master/twi_master.c **** Transmit STOP condition and reset TWI interface.
+ 103:twi_master/twi_master.c **** *******************************************************************************/
+ 104:twi_master/twi_master.c **** void twi_master_stop()
+ 105:twi_master/twi_master.c **** {
+ 213               	.LM17:
+ 214               	.LFBB3:
+ 215               	/* prologue: function */
+ 216               	/* frame size = 0 */
+ 217               	/* stack size = 0 */
+ 218               	.L__stack_usage = 0
+ 106:twi_master/twi_master.c ****   TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWSTO);
+ 220               	.LM18:
+ 221 0042 84E9      		ldi r24,lo8(-108)
+ 222 0044 8093 BC00 		sts 188,r24
+ 223               	/* epilogue start */
+ 107:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 108:twi_master/twi_master.c ****   uart_puts_P("twi_stop\n");
+ 109:twi_master/twi_master.c ****   //printf_P(PSTR("twi_stop\n"));
+ 110:twi_master/twi_master.c **** #endif
+ 111:twi_master/twi_master.c **** }
+ 225               	.LM19:
+ 226 0048 0895      		ret
+ 228               	.Lscope3:
+ 230               		.stabd	78,0,0
+ 233               	.global	twi_master_write
+ 235               	twi_master_write:
+ 236               		.stabd	46,0,0
+ 112:twi_master/twi_master.c **** 
+ 113:twi_master/twi_master.c **** /*******************************************************************************
+ 114:twi_master/twi_master.c **** Try to transmit one data byte.
+ 115:twi_master/twi_master.c **** 
+ 116:twi_master/twi_master.c **** ARGUMENTS
+ 117:twi_master/twi_master.c ****   1-st : data byte to be transmitted
+ 118:twi_master/twi_master.c **** 
+ 119:twi_master/twi_master.c **** RETURN VALUE
+ 120:twi_master/twi_master.c ****   If no error occurs, this function returns the TWI Status Register value.
+ 121:twi_master/twi_master.c ****   On error, 0 is returned.
+ 122:twi_master/twi_master.c **** *******************************************************************************/
+ 123:twi_master/twi_master.c **** uint8_t twi_master_write(const uint8_t data)
+ 124:twi_master/twi_master.c **** {
+ 238               	.LM20:
+ 239               	.LFBB4:
+ 240               	/* prologue: function */
+ 241               	/* frame size = 0 */
+ 242               	/* stack size = 0 */
+ 243               	.L__stack_usage = 0
+ 125:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 126:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 127:twi_master/twi_master.c ****   char buf[10];
+ 128:twi_master/twi_master.c ****   uart_puts_P("wi_write[");
+ 129:twi_master/twi_master.c ****   utoa(data, buf, 10);
+ 130:twi_master/twi_master.c ****   uart_puts(buf);
+ 131:twi_master/twi_master.c ****   uart_puts_P("]: ");
+ 132:twi_master/twi_master.c ****   //printf("twi_write[0x%2X]:\t", data);
+ 133:twi_master/twi_master.c **** #endif
+ 134:twi_master/twi_master.c ****   // Set TWI registers and start transmission of data
+ 135:twi_master/twi_master.c ****   TWDR = data;
+ 245               	.LM21:
+ 246 004a 8093 BB00 		sts 187,r24
+ 136:twi_master/twi_master.c ****   TWCR = _BV(TWINT) | _BV(TWEN);
+ 248               	.LM22:
+ 249 004e 84E8      		ldi r24,lo8(-124)
+ 250 0050 8093 BC00 		sts 188,r24
+ 125:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 252               	.LM23:
+ 253 0054 21E0      		ldi r18,lo8(1)
+ 254 0056 30E0      		ldi r19,0
+ 255               	.L14:
+ 137:twi_master/twi_master.c ****   // wail until transmission is completed and ACK/NACK has been received
+ 138:twi_master/twi_master.c ****   while (!(TWCR & _BV(TWINT)) && timeout)
+ 257               	.LM24:
+ 258 0058 8091 BC00 		lds r24,188
+ 259 005c 87FD      		sbrc r24,7
+ 260 005e 00C0      		rjmp .L15
+ 262               	.LM25:
+ 263 0060 2115      		cp r18,__zero_reg__
+ 264 0062 3105      		cpc r19,__zero_reg__
+ 265 0064 01F4      		brne .L16
+ 266               	.L15:
+ 139:twi_master/twi_master.c ****     timeout++;
+ 140:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 141:twi_master/twi_master.c ****   twst = TW_STATUS;
+ 268               	.LM26:
+ 269 0066 8091 B900 		lds r24,185
+ 142:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 143:twi_master/twi_master.c ****   //twi_master_print_status();
+ 144:twi_master/twi_master.c **** #endif
+ 145:twi_master/twi_master.c ****   if (timeout == 0)
+ 271               	.LM27:
+ 272 006a 232B      		or r18,r19
+ 273 006c 01F0      		breq .L19
+ 141:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 275               	.LM28:
+ 276 006e 887F      		andi r24,lo8(-8)
+ 146:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 147:twi_master/twi_master.c ****   {
+ 148:twi_master/twi_master.c ****     uart_puts_P(", TIMEOUT\n");
+ 149:twi_master/twi_master.c ****     //printf_P(PSTR(",\t\tTIMEOUT\n"));
+ 150:twi_master/twi_master.c **** #endif
+ 151:twi_master/twi_master.c ****     return 0;
+ 152:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 153:twi_master/twi_master.c ****   }
+ 154:twi_master/twi_master.c ****   else
+ 155:twi_master/twi_master.c ****   {
+ 156:twi_master/twi_master.c ****     uart_puts_P(", cycles: ");
+ 157:twi_master/twi_master.c ****     utoa(timeout, buf, 10);
+ 158:twi_master/twi_master.c ****     uart_puts(buf);
+ 159:twi_master/twi_master.c ****     uart_putc('\n');
+ 160:twi_master/twi_master.c ****     //printf(",\t\tcycles: %d\n", timeout);
+ 161:twi_master/twi_master.c ****   }
+ 162:twi_master/twi_master.c **** #endif
+ 163:twi_master/twi_master.c **** 
+ 164:twi_master/twi_master.c ****   return (twst == TW_MT_SLA_ACK) || (twst == TW_MT_DATA_ACK) ||
+ 165:twi_master/twi_master.c ****          (twst == TW_MR_SLA_ACK) ? twst : 0;
+ 278               	.LM29:
+ 279 0070 8831      		cpi r24,lo8(24)
+ 280 0072 01F0      		breq .L13
+ 164:twi_master/twi_master.c ****          (twst == TW_MR_SLA_ACK) ? twst : 0;
+ 282               	.LM30:
+ 283 0074 8832      		cpi r24,lo8(40)
+ 284 0076 01F0      		breq .L13
+ 164:twi_master/twi_master.c ****          (twst == TW_MR_SLA_ACK) ? twst : 0;
+ 286               	.LM31:
+ 287 0078 8034      		cpi r24,lo8(64)
+ 288 007a 01F4      		brne .L19
+ 289 007c 0895      		ret
+ 290               	.L16:
+ 139:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 292               	.LM32:
+ 293 007e 2F5F      		subi r18,-1
+ 294 0080 3F4F      		sbci r19,-1
+ 295 0082 00C0      		rjmp .L14
+ 296               	.L19:
+ 298               	.LM33:
+ 299 0084 80E0      		ldi r24,0
+ 300               	.L13:
+ 301               	/* epilogue start */
+ 166:twi_master/twi_master.c **** }
+ 303               	.LM34:
+ 304 0086 0895      		ret
+ 309               	.Lscope4:
+ 311               		.stabd	78,0,0
+ 315               	.global	twi_master_read
+ 317               	twi_master_read:
+ 318               		.stabd	46,0,0
+ 167:twi_master/twi_master.c **** 
+ 168:twi_master/twi_master.c **** /*******************************************************************************
+ 169:twi_master/twi_master.c **** Read one data byte from slave and send ACK or NAK in return.
+ 170:twi_master/twi_master.c **** 
+ 171:twi_master/twi_master.c **** ARGUMENTS
+ 172:twi_master/twi_master.c ****   1-st : pointer to the buffer for received data
+ 173:twi_master/twi_master.c ****   2-nd : either TWI_NAK or TWI_ACK
+ 174:twi_master/twi_master.c ****   
+ 175:twi_master/twi_master.c **** RETURN VALUE
+ 176:twi_master/twi_master.c ****   If no error occurs, this function returns the TWI Status Register value.
+ 177:twi_master/twi_master.c ****   On error, 0 is returned.
+ 178:twi_master/twi_master.c **** *******************************************************************************/
+ 179:twi_master/twi_master.c **** uint8_t twi_master_read(uint8_t *buf, const uint8_t ack)
+ 180:twi_master/twi_master.c **** {
+ 320               	.LM35:
+ 321               	.LFBB5:
+ 322               	/* prologue: function */
+ 323               	/* frame size = 0 */
+ 324               	/* stack size = 0 */
+ 325               	.L__stack_usage = 0
+ 326 0088 FC01      		movw r30,r24
+ 181:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 182:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 183:twi_master/twi_master.c ****   char tmp_buf[10];
+ 184:twi_master/twi_master.c **** #endif
+ 185:twi_master/twi_master.c **** 
+ 186:twi_master/twi_master.c ****   // Set TWI registers
+ 187:twi_master/twi_master.c ****   if (ack)
+ 188:twi_master/twi_master.c ****   {
+ 189:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 190:twi_master/twi_master.c ****     uart_puts_P("twi_read[TWI_ACK, ");
+ 191:twi_master/twi_master.c ****     //printf_P(PSTR("twi_read[TWI_ACK,"));
+ 192:twi_master/twi_master.c **** #endif
+ 193:twi_master/twi_master.c ****     TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWEA);
+ 328               	.LM36:
+ 329 008a 84EC      		ldi r24,lo8(-60)
+ 187:twi_master/twi_master.c ****   {
+ 331               	.LM37:
+ 332 008c 6111      		cpse r22,__zero_reg__
+ 333 008e 00C0      		rjmp .L40
+ 194:twi_master/twi_master.c ****   }
+ 195:twi_master/twi_master.c ****   else
+ 196:twi_master/twi_master.c ****   {
+ 197:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 198:twi_master/twi_master.c ****     uart_puts_P("twi_read[TWI_NAK, ");
+ 199:twi_master/twi_master.c ****     //printf_P(PSTR("twi_read[TWI_NAK,"));
+ 200:twi_master/twi_master.c **** #endif
+ 201:twi_master/twi_master.c ****     TWCR = _BV(TWINT) | _BV(TWEN);
+ 335               	.LM38:
+ 336 0090 84E8      		ldi r24,lo8(-124)
+ 337               	.L40:
+ 338 0092 8093 BC00 		sts 188,r24
+ 180:twi_master/twi_master.c ****   uint16_t timeout = 1;
+ 340               	.LM39:
+ 341 0096 21E0      		ldi r18,lo8(1)
+ 342 0098 30E0      		ldi r19,0
+ 343               	.L29:
+ 202:twi_master/twi_master.c ****   }
+ 203:twi_master/twi_master.c ****   // wait until reading completed
+ 204:twi_master/twi_master.c ****   while (!(TWCR & _BV(TWINT)) && timeout)
+ 345               	.LM40:
+ 346 009a 8091 BC00 		lds r24,188
+ 347 009e 87FD      		sbrc r24,7
+ 348 00a0 00C0      		rjmp .L30
+ 350               	.LM41:
+ 351 00a2 2115      		cp r18,__zero_reg__
+ 352 00a4 3105      		cpc r19,__zero_reg__
+ 353 00a6 01F4      		brne .L31
+ 354               	.L30:
+ 205:twi_master/twi_master.c ****     timeout++;
+ 206:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 207:twi_master/twi_master.c ****   twst = TW_STATUS;
+ 356               	.LM42:
+ 357 00a8 8091 B900 		lds r24,185
+ 208:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 209:twi_master/twi_master.c ****   utoa(TWDR, tmp_buf, 10);
+ 210:twi_master/twi_master.c ****   uart_puts(tmp_buf);
+ 211:twi_master/twi_master.c ****   uart_puts_P("]: ");
+ 212:twi_master/twi_master.c ****   //printf("0x%2X]:\t", TWDR);
+ 213:twi_master/twi_master.c ****   //twi_master_print_status();
+ 214:twi_master/twi_master.c **** #endif
+ 215:twi_master/twi_master.c ****   if (timeout == 0)
+ 359               	.LM43:
+ 360 00ac 232B      		or r18,r19
+ 361 00ae 01F4      		brne .L32
+ 216:twi_master/twi_master.c ****   {
+ 217:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 218:twi_master/twi_master.c ****     uart_puts_P(", TIMEOUT\n");
+ 219:twi_master/twi_master.c ****     //printf_P(PSTR(",\tTIMEOUT\n"));
+ 220:twi_master/twi_master.c **** #endif
+ 221:twi_master/twi_master.c ****     *buf = 0;
+ 363               	.LM44:
+ 364 00b0 1082      		st Z,__zero_reg__
+ 365               	.L41:
+ 222:twi_master/twi_master.c ****     return 0;
+ 223:twi_master/twi_master.c ****   }
+ 224:twi_master/twi_master.c ****   else
+ 225:twi_master/twi_master.c ****   {
+ 226:twi_master/twi_master.c ****     *buf = TWDR;
+ 227:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 228:twi_master/twi_master.c ****     uart_puts_P(", cycles: ");
+ 229:twi_master/twi_master.c ****     utoa(timeout, tmp_buf, 10);
+ 230:twi_master/twi_master.c ****     uart_puts(tmp_buf);
+ 231:twi_master/twi_master.c ****     uart_putc('\n');
+ 232:twi_master/twi_master.c ****     //printf(",\tcycles: %d\n", timeout);
+ 233:twi_master/twi_master.c **** #endif
+ 234:twi_master/twi_master.c ****   }
+ 235:twi_master/twi_master.c **** 
+ 236:twi_master/twi_master.c ****   return (twst == TW_MR_DATA_ACK) || (twst == TW_MR_DATA_NACK) ? twst : 0;
+ 367               	.LM45:
+ 368 00b2 80E0      		ldi r24,0
+ 369 00b4 00C0      		rjmp .L26
+ 370               	.L31:
+ 205:twi_master/twi_master.c ****   // check value of TWI Status Register. Mask prescaler bits.
+ 372               	.LM46:
+ 373 00b6 2F5F      		subi r18,-1
+ 374 00b8 3F4F      		sbci r19,-1
+ 375 00ba 00C0      		rjmp .L29
+ 376               	.L32:
+ 207:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 378               	.LM47:
+ 379 00bc 887F      		andi r24,lo8(-8)
+ 226:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 381               	.LM48:
+ 382 00be 9091 BB00 		lds r25,187
+ 383 00c2 9083      		st Z,r25
+ 385               	.LM49:
+ 386 00c4 8035      		cpi r24,lo8(80)
+ 387 00c6 01F0      		breq .L26
+ 389               	.LM50:
+ 390 00c8 8835      		cpi r24,lo8(88)
+ 391 00ca 01F4      		brne .L41
+ 392               	.L26:
+ 393               	/* epilogue start */
+ 237:twi_master/twi_master.c **** }
+ 395               	.LM51:
+ 396 00cc 0895      		ret
+ 401               	.Lscope5:
+ 403               		.stabd	78,0,0
+ 406               	.global	twi_master_read16_reg8
+ 408               	twi_master_read16_reg8:
+ 409               		.stabd	46,0,0
+ 238:twi_master/twi_master.c **** 
+ 239:twi_master/twi_master.c **** /*******************************************************************************
+ 240:twi_master/twi_master.c **** Write one byte to the 8-bit register of the specified slave.
+ 241:twi_master/twi_master.c **** 
+ 242:twi_master/twi_master.c **** ARGUMENTS
+ 243:twi_master/twi_master.c ****   1-st : slave address (SAD)
+ 244:twi_master/twi_master.c ****   2-nd : target register address
+ 245:twi_master/twi_master.c ****   3-rd : data byte
+ 246:twi_master/twi_master.c ****   
+ 247:twi_master/twi_master.c **** RETURN VALUE
+ 248:twi_master/twi_master.c ****   If no error occurs, this function returns positive value, 0 otherwise.
+ 249:twi_master/twi_master.c **** *******************************************************************************/
+ 250:twi_master/twi_master.c **** 
+ 251:twi_master/twi_master.c **** 
+ 252:twi_master/twi_master.c **** /*******************************************************************************
+ 253:twi_master/twi_master.c **** Write one byte to the 8-bit register of the specified slave.
+ 254:twi_master/twi_master.c **** 
+ 255:twi_master/twi_master.c **** ARGUMENTS
+ 256:twi_master/twi_master.c ****   1-st : slave address (SAD)
+ 257:twi_master/twi_master.c ****   2-nd : target register address 16 bit
+ 258:twi_master/twi_master.c ****   3-rd : data byte
+ 259:twi_master/twi_master.c ****   
+ 260:twi_master/twi_master.c **** RETURN VALUE
+ 261:twi_master/twi_master.c ****   If no error occurs, this function returns positive value, 0 otherwise.
+ 262:twi_master/twi_master.c **** *******************************************************************************/
+ 263:twi_master/twi_master.c **** 
+ 264:twi_master/twi_master.c **** /******************************************************************************
+ 265:twi_master/twi_master.c **** Write page to memory
+ 266:twi_master/twi_master.c **** *******************************************************************************/
+ 267:twi_master/twi_master.c **** 
+ 268:twi_master/twi_master.c **** uint8_t twi_master_read16_reg8(const uint8_t sad, const uint16_t reg_addr)
+ 269:twi_master/twi_master.c **** {
+ 411               	.LM52:
+ 412               	.LFBB6:
+ 413 00ce FF92      		push r15
+ 414 00d0 0F93      		push r16
+ 415 00d2 1F93      		push r17
+ 416 00d4 CF93      		push r28
+ 417 00d6 DF93      		push r29
+ 418 00d8 1F92      		push __zero_reg__
+ 419 00da CDB7      		in r28,__SP_L__
+ 420 00dc DEB7      		in r29,__SP_H__
+ 421               	/* prologue: function */
+ 422               	/* frame size = 1 */
+ 423               	/* stack size = 6 */
+ 424               	.L__stack_usage = 6
+ 425 00de 182F      		mov r17,r24
+ 426 00e0 062F      		mov r16,r22
+ 427 00e2 F72E      		mov r15,r23
+ 270:twi_master/twi_master.c ****   uint8_t st = 1;
+ 271:twi_master/twi_master.c ****   uint8_t buf = 0b00000000;
+ 272:twi_master/twi_master.c ****   uint8_t value = 0;
+ 429               	.LM53:
+ 430 00e4 1982      		std Y+1,__zero_reg__
+ 273:twi_master/twi_master.c ****   
+ 274:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 432               	.LM54:
+ 433 00e6 0E94 0000 		call twi_master_start
+ 275:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 435               	.LM55:
+ 436 00ea 8823      		tst r24
+ 437 00ec 01F0      		breq .L53
+ 439               	.LM56:
+ 440 00ee 812F      		mov r24,r17
+ 441 00f0 880F      		lsl r24
+ 442 00f2 0E94 0000 		call twi_master_write
+ 443 00f6 21E0      		ldi r18,lo8(1)
+ 444 00f8 30E0      		ldi r19,0
+ 445 00fa 8111      		cpse r24,__zero_reg__
+ 446 00fc 00C0      		rjmp .L44
+ 447 00fe 30E0      		ldi r19,0
+ 448 0100 20E0      		ldi r18,0
+ 449               	.L44:
+ 276:twi_master/twi_master.c ****   
+ 277:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 451               	.LM57:
+ 452 0102 232B      		or r18,r19
+ 453 0104 01F0      		breq .L53
+ 454 0106 8F2D      		mov r24,r15
+ 455 0108 0E94 0000 		call twi_master_write
+ 456 010c 21E0      		ldi r18,lo8(1)
+ 457 010e 30E0      		ldi r19,0
+ 458 0110 8111      		cpse r24,__zero_reg__
+ 459 0112 00C0      		rjmp .L46
+ 460 0114 30E0      		ldi r19,0
+ 461 0116 20E0      		ldi r18,0
+ 462               	.L46:
+ 278:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 464               	.LM58:
+ 465 0118 232B      		or r18,r19
+ 466 011a 01F0      		breq .L53
+ 467 011c 802F      		mov r24,r16
+ 468 011e 0E94 0000 		call twi_master_write
+ 469 0122 21E0      		ldi r18,lo8(1)
+ 470 0124 30E0      		ldi r19,0
+ 471 0126 8111      		cpse r24,__zero_reg__
+ 472 0128 00C0      		rjmp .L48
+ 473 012a 30E0      		ldi r19,0
+ 474 012c 20E0      		ldi r18,0
+ 475               	.L48:
+ 279:twi_master/twi_master.c ****   
+ 280:twi_master/twi_master.c ****   //twi_master_stop();
+ 281:twi_master/twi_master.c ****   //_delay_ms(1);
+ 282:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 477               	.LM59:
+ 478 012e 232B      		or r18,r19
+ 479 0130 01F0      		breq .L53
+ 480 0132 0E94 0000 		call twi_master_start
+ 481 0136 21E0      		ldi r18,lo8(1)
+ 482 0138 30E0      		ldi r19,0
+ 483 013a 8111      		cpse r24,__zero_reg__
+ 484 013c 00C0      		rjmp .L50
+ 485 013e 30E0      		ldi r19,0
+ 486 0140 20E0      		ldi r18,0
+ 487               	.L50:
+ 283:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_READ);
+ 489               	.LM60:
+ 490 0142 232B      		or r18,r19
+ 491 0144 01F0      		breq .L53
+ 492 0146 812F      		mov r24,r17
+ 493 0148 880F      		lsl r24
+ 494 014a 8160      		ori r24,lo8(1)
+ 495 014c 0E94 0000 		call twi_master_write
+ 496 0150 21E0      		ldi r18,lo8(1)
+ 497 0152 30E0      		ldi r19,0
+ 498 0154 8111      		cpse r24,__zero_reg__
+ 499 0156 00C0      		rjmp .L52
+ 500 0158 30E0      		ldi r19,0
+ 501 015a 20E0      		ldi r18,0
+ 502               	.L52:
+ 284:twi_master/twi_master.c ****   
+ 285:twi_master/twi_master.c ****   st = st && twi_master_read(&value, TWI_NAK);
+ 504               	.LM61:
+ 505 015c 232B      		or r18,r19
+ 506 015e 01F0      		breq .L53
+ 507 0160 60E0      		ldi r22,0
+ 508 0162 CE01      		movw r24,r28
+ 509 0164 0196      		adiw r24,1
+ 510 0166 0E94 0000 		call twi_master_read
+ 511               	.L53:
+ 512               	.LBB18:
+ 513               	.LBB19:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 515               	.LM62:
+ 516 016a 84E9      		ldi r24,lo8(-108)
+ 517 016c 8093 BC00 		sts 188,r24
+ 518               	.LBE19:
+ 519               	.LBE18:
+ 286:twi_master/twi_master.c ****   
+ 287:twi_master/twi_master.c ****   twi_master_stop();
+ 288:twi_master/twi_master.c **** 
+ 289:twi_master/twi_master.c ****   return value;
+ 290:twi_master/twi_master.c **** }
+ 521               	.LM63:
+ 522 0170 8981      		ldd r24,Y+1
+ 523               	/* epilogue start */
+ 524 0172 0F90      		pop __tmp_reg__
+ 525 0174 DF91      		pop r29
+ 526 0176 CF91      		pop r28
+ 527 0178 1F91      		pop r17
+ 528 017a 0F91      		pop r16
+ 529 017c FF90      		pop r15
+ 530 017e 0895      		ret
+ 535               	.Lscope6:
+ 537               		.stabd	78,0,0
+ 540               	.global	twi_master_read16_reg16
+ 542               	twi_master_read16_reg16:
+ 543               		.stabd	46,0,0
+ 291:twi_master/twi_master.c **** 
+ 292:twi_master/twi_master.c **** uint16_t twi_master_read16_reg16(const uint8_t sad, const uint16_t reg_addr)
+ 293:twi_master/twi_master.c **** {
+ 545               	.LM64:
+ 546               	.LFBB7:
+ 547 0180 FF92      		push r15
+ 548 0182 0F93      		push r16
+ 549 0184 1F93      		push r17
+ 550 0186 CF93      		push r28
+ 551 0188 DF93      		push r29
+ 552 018a 1F92      		push __zero_reg__
+ 553 018c CDB7      		in r28,__SP_L__
+ 554 018e DEB7      		in r29,__SP_H__
+ 555               	/* prologue: function */
+ 556               	/* frame size = 1 */
+ 557               	/* stack size = 6 */
+ 558               	.L__stack_usage = 6
+ 559 0190 182F      		mov r17,r24
+ 560 0192 062F      		mov r16,r22
+ 561 0194 F72E      		mov r15,r23
+ 294:twi_master/twi_master.c ****     uint16_t buf = 0b0000000000000000;
+ 295:twi_master/twi_master.c ****     uint8_t value = 0;
+ 563               	.LM65:
+ 564 0196 1982      		std Y+1,__zero_reg__
+ 296:twi_master/twi_master.c ****   uint8_t st = 1;
+ 297:twi_master/twi_master.c **** 
+ 298:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 566               	.LM66:
+ 567 0198 0E94 0000 		call twi_master_start
+ 299:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 569               	.LM67:
+ 570 019c 8823      		tst r24
+ 571 019e 01F4      		brne .+2
+ 572 01a0 00C0      		rjmp .L90
+ 574               	.LM68:
+ 575 01a2 812F      		mov r24,r17
+ 576 01a4 880F      		lsl r24
+ 577 01a6 0E94 0000 		call twi_master_write
+ 578 01aa 21E0      		ldi r18,lo8(1)
+ 579 01ac 30E0      		ldi r19,0
+ 580 01ae 8111      		cpse r24,__zero_reg__
+ 581 01b0 00C0      		rjmp .L73
+ 582 01b2 30E0      		ldi r19,0
+ 583 01b4 20E0      		ldi r18,0
+ 584               	.L73:
+ 300:twi_master/twi_master.c ****   
+ 301:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 586               	.LM69:
+ 587 01b6 232B      		or r18,r19
+ 588 01b8 01F0      		breq .L90
+ 589 01ba 8F2D      		mov r24,r15
+ 590 01bc 0E94 0000 		call twi_master_write
+ 591 01c0 21E0      		ldi r18,lo8(1)
+ 592 01c2 30E0      		ldi r19,0
+ 593 01c4 8111      		cpse r24,__zero_reg__
+ 594 01c6 00C0      		rjmp .L75
+ 595 01c8 30E0      		ldi r19,0
+ 596 01ca 20E0      		ldi r18,0
+ 597               	.L75:
+ 302:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 599               	.LM70:
+ 600 01cc 232B      		or r18,r19
+ 601 01ce 01F0      		breq .L90
+ 602 01d0 802F      		mov r24,r16
+ 603 01d2 0E94 0000 		call twi_master_write
+ 604 01d6 21E0      		ldi r18,lo8(1)
+ 605 01d8 30E0      		ldi r19,0
+ 606 01da 8111      		cpse r24,__zero_reg__
+ 607 01dc 00C0      		rjmp .L77
+ 608 01de 30E0      		ldi r19,0
+ 609 01e0 20E0      		ldi r18,0
+ 610               	.L77:
+ 303:twi_master/twi_master.c ****   
+ 304:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 612               	.LM71:
+ 613 01e2 232B      		or r18,r19
+ 614 01e4 01F0      		breq .L90
+ 615 01e6 0E94 0000 		call twi_master_start
+ 616 01ea 21E0      		ldi r18,lo8(1)
+ 617 01ec 30E0      		ldi r19,0
+ 618 01ee 8111      		cpse r24,__zero_reg__
+ 619 01f0 00C0      		rjmp .L79
+ 620 01f2 30E0      		ldi r19,0
+ 621 01f4 20E0      		ldi r18,0
+ 622               	.L79:
+ 305:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_READ);
+ 624               	.LM72:
+ 625 01f6 232B      		or r18,r19
+ 626 01f8 01F0      		breq .L90
+ 627 01fa 812F      		mov r24,r17
+ 628 01fc 880F      		lsl r24
+ 629 01fe 8160      		ori r24,lo8(1)
+ 630 0200 0E94 0000 		call twi_master_write
+ 631 0204 21E0      		ldi r18,lo8(1)
+ 632 0206 30E0      		ldi r19,0
+ 633 0208 8111      		cpse r24,__zero_reg__
+ 634 020a 00C0      		rjmp .L81
+ 635 020c 30E0      		ldi r19,0
+ 636 020e 20E0      		ldi r18,0
+ 637               	.L81:
+ 306:twi_master/twi_master.c ****   
+ 307:twi_master/twi_master.c ****     st = st && twi_master_read(&value, TWI_ACK);
+ 639               	.LM73:
+ 640 0210 232B      		or r18,r19
+ 641 0212 01F0      		breq .L90
+ 642 0214 61E0      		ldi r22,lo8(1)
+ 643 0216 CE01      		movw r24,r28
+ 644 0218 0196      		adiw r24,1
+ 645 021a 0E94 0000 		call twi_master_read
+ 646 021e 91E0      		ldi r25,lo8(1)
+ 647 0220 8111      		cpse r24,__zero_reg__
+ 648 0222 00C0      		rjmp .L82
+ 649               	.L90:
+ 651               	.LM74:
+ 652 0224 90E0      		ldi r25,0
+ 653               	.L82:
+ 308:twi_master/twi_master.c ****     buf = (value << 8);
+ 655               	.LM75:
+ 656 0226 0981      		ldd r16,Y+1
+ 657 0228 10E0      		ldi r17,0
+ 658 022a 102F      		mov r17,r16
+ 659 022c 0027      		clr r16
+ 309:twi_master/twi_master.c ****     
+ 310:twi_master/twi_master.c ****     st = st && twi_master_read(&value, TWI_NAK);
+ 661               	.LM76:
+ 662 022e 9923      		tst r25
+ 663 0230 01F0      		breq .L84
+ 665               	.LM77:
+ 666 0232 60E0      		ldi r22,0
+ 667 0234 CE01      		movw r24,r28
+ 668 0236 0196      		adiw r24,1
+ 669 0238 0E94 0000 		call twi_master_read
+ 670               	.L84:
+ 311:twi_master/twi_master.c ****     buf |= value;
+ 672               	.LM78:
+ 673 023c 8981      		ldd r24,Y+1
+ 674               	.LBB20:
+ 675               	.LBB21:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 677               	.LM79:
+ 678 023e 94E9      		ldi r25,lo8(-108)
+ 679 0240 9093 BC00 		sts 188,r25
+ 680               	.LBE21:
+ 681               	.LBE20:
+ 312:twi_master/twi_master.c ****     
+ 313:twi_master/twi_master.c ****   twi_master_stop();
+ 314:twi_master/twi_master.c **** 
+ 315:twi_master/twi_master.c ****   return buf;
+ 316:twi_master/twi_master.c **** }
+ 683               	.LM80:
+ 684 0244 9801      		movw r18,r16
+ 685 0246 282B      		or r18,r24
+ 686 0248 C901      		movw r24,r18
+ 687               	/* epilogue start */
+ 688 024a 0F90      		pop __tmp_reg__
+ 689 024c DF91      		pop r29
+ 690 024e CF91      		pop r28
+ 691 0250 1F91      		pop r17
+ 692 0252 0F91      		pop r16
+ 693 0254 FF90      		pop r15
+ 694 0256 0895      		ret
+ 699               	.Lscope7:
+ 701               		.stabd	78,0,0
+ 705               	.global	twi_master_write16_reg8
+ 707               	twi_master_write16_reg8:
+ 708               		.stabd	46,0,0
+ 317:twi_master/twi_master.c **** 
+ 318:twi_master/twi_master.c **** uint8_t twi_master_write16_reg8(const uint8_t sad, const uint16_t reg_addr,
+ 319:twi_master/twi_master.c ****                               uint8_t data)
+ 320:twi_master/twi_master.c **** {
+ 710               	.LM81:
+ 711               	.LFBB8:
+ 712 0258 0F93      		push r16
+ 713 025a 1F93      		push r17
+ 714 025c CF93      		push r28
+ 715 025e DF93      		push r29
+ 716               	/* prologue: function */
+ 717               	/* frame size = 0 */
+ 718               	/* stack size = 4 */
+ 719               	.L__stack_usage = 4
+ 720 0260 082F      		mov r16,r24
+ 721 0262 D62F      		mov r29,r22
+ 722 0264 172F      		mov r17,r23
+ 723 0266 C42F      		mov r28,r20
+ 321:twi_master/twi_master.c ****   uint8_t st = 1;
+ 322:twi_master/twi_master.c ****   
+ 323:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 725               	.LM82:
+ 726 0268 0E94 0000 		call twi_master_start
+ 324:twi_master/twi_master.c ****   
+ 325:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 728               	.LM83:
+ 729 026c 8823      		tst r24
+ 730 026e 01F0      		breq .L117
+ 732               	.LM84:
+ 733 0270 802F      		mov r24,r16
+ 734 0272 880F      		lsl r24
+ 735 0274 0E94 0000 		call twi_master_write
+ 736 0278 21E0      		ldi r18,lo8(1)
+ 737 027a 30E0      		ldi r19,0
+ 738 027c 8111      		cpse r24,__zero_reg__
+ 739 027e 00C0      		rjmp .L107
+ 740 0280 30E0      		ldi r19,0
+ 741 0282 20E0      		ldi r18,0
+ 742               	.L107:
+ 326:twi_master/twi_master.c ****   
+ 327:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 744               	.LM85:
+ 745 0284 232B      		or r18,r19
+ 746 0286 01F0      		breq .L117
+ 747 0288 812F      		mov r24,r17
+ 748 028a 0E94 0000 		call twi_master_write
+ 749 028e 21E0      		ldi r18,lo8(1)
+ 750 0290 30E0      		ldi r19,0
+ 751 0292 8111      		cpse r24,__zero_reg__
+ 752 0294 00C0      		rjmp .L109
+ 753 0296 30E0      		ldi r19,0
+ 754 0298 20E0      		ldi r18,0
+ 755               	.L109:
+ 328:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 757               	.LM86:
+ 758 029a 232B      		or r18,r19
+ 759 029c 01F0      		breq .L117
+ 760 029e 8D2F      		mov r24,r29
+ 761 02a0 0E94 0000 		call twi_master_write
+ 762 02a4 21E0      		ldi r18,lo8(1)
+ 763 02a6 30E0      		ldi r19,0
+ 764 02a8 8111      		cpse r24,__zero_reg__
+ 765 02aa 00C0      		rjmp .L111
+ 766 02ac 30E0      		ldi r19,0
+ 767 02ae 20E0      		ldi r18,0
+ 768               	.L111:
+ 329:twi_master/twi_master.c ****   
+ 330:twi_master/twi_master.c ****   st = st && twi_master_write(data);
+ 770               	.LM87:
+ 771 02b0 232B      		or r18,r19
+ 772 02b2 01F0      		breq .L117
+ 773 02b4 8C2F      		mov r24,r28
+ 774 02b6 0E94 0000 		call twi_master_write
+ 775 02ba 91E0      		ldi r25,lo8(1)
+ 776 02bc 8111      		cpse r24,__zero_reg__
+ 777 02be 00C0      		rjmp .L113
+ 778 02c0 90E0      		ldi r25,0
+ 779               	.L113:
+ 780 02c2 892F      		mov r24,r25
+ 781               	.L112:
+ 782               	.LBB22:
+ 783               	.LBB23:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 785               	.LM88:
+ 786 02c4 94E9      		ldi r25,lo8(-108)
+ 787 02c6 9093 BC00 		sts 188,r25
+ 788               	.LBE23:
+ 789               	.LBE22:
+ 790               	.LBB24:
+ 791               	.LBB25:
+ 793               	.Ltext1:
+   1:/usr/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/usr/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/usr/avr/include/util/delay.h ****    All rights reserved.
+   5:/usr/avr/include/util/delay.h **** 
+   6:/usr/avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/usr/avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/usr/avr/include/util/delay.h **** 
+   9:/usr/avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/usr/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/usr/avr/include/util/delay.h **** 
+  12:/usr/avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/usr/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/usr/avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/usr/avr/include/util/delay.h ****      distribution.
+  16:/usr/avr/include/util/delay.h **** 
+  17:/usr/avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/usr/avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/usr/avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/usr/avr/include/util/delay.h **** 
+  21:/usr/avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/usr/avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/usr/avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/usr/avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/usr/avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/usr/avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/usr/avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/usr/avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/usr/avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/usr/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/usr/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/usr/avr/include/util/delay.h **** 
+  33:/usr/avr/include/util/delay.h **** /* $Id: delay.h.in 2506 2016-02-08 10:05:45Z joerg_wunsch $ */
+  34:/usr/avr/include/util/delay.h **** 
+  35:/usr/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/usr/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/usr/avr/include/util/delay.h **** 
+  38:/usr/avr/include/util/delay.h **** #ifndef __DOXYGEN__
+  39:/usr/avr/include/util/delay.h **** #  ifndef __HAS_DELAY_CYCLES
+  40:/usr/avr/include/util/delay.h **** #    define __HAS_DELAY_CYCLES 1
+  41:/usr/avr/include/util/delay.h **** #  endif
+  42:/usr/avr/include/util/delay.h **** #endif  /* __DOXYGEN__ */
+  43:/usr/avr/include/util/delay.h **** 
+  44:/usr/avr/include/util/delay.h **** #include <inttypes.h>
+  45:/usr/avr/include/util/delay.h **** #include <util/delay_basic.h>
+  46:/usr/avr/include/util/delay.h **** #include <math.h>
+  47:/usr/avr/include/util/delay.h **** 
+  48:/usr/avr/include/util/delay.h **** /** \file */
+  49:/usr/avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  50:/usr/avr/include/util/delay.h ****     \code
+  51:/usr/avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  52:/usr/avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  53:/usr/avr/include/util/delay.h ****     #include <util/delay.h>
+  54:/usr/avr/include/util/delay.h ****     \endcode
+  55:/usr/avr/include/util/delay.h **** 
+  56:/usr/avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  57:/usr/avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  58:/usr/avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  59:/usr/avr/include/util/delay.h ****     used.
+  60:/usr/avr/include/util/delay.h **** 
+  61:/usr/avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  62:/usr/avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  63:/usr/avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  64:/usr/avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  65:/usr/avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  66:/usr/avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  67:/usr/avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  68:/usr/avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  69:/usr/avr/include/util/delay.h **** 
+  70:/usr/avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  71:/usr/avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  72:/usr/avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  73:/usr/avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  74:/usr/avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  75:/usr/avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  76:/usr/avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  77:/usr/avr/include/util/delay.h ****     routines linked into the application.
+  78:/usr/avr/include/util/delay.h **** 
+  79:/usr/avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  80:/usr/avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  81:/usr/avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  82:/usr/avr/include/util/delay.h **** 
+  83:/usr/avr/include/util/delay.h **** */
+  84:/usr/avr/include/util/delay.h **** 
+  85:/usr/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  86:/usr/avr/include/util/delay.h **** static __inline__ void _delay_us(double __us) __attribute__((__always_inline__));
+  87:/usr/avr/include/util/delay.h **** static __inline__ void _delay_ms(double __ms) __attribute__((__always_inline__));
+  88:/usr/avr/include/util/delay.h **** #endif
+  89:/usr/avr/include/util/delay.h **** 
+  90:/usr/avr/include/util/delay.h **** #ifndef F_CPU
+  91:/usr/avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  92:/usr/avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  93:/usr/avr/include/util/delay.h **** /** \ingroup util_delay
+  94:/usr/avr/include/util/delay.h ****     \def F_CPU
+  95:/usr/avr/include/util/delay.h ****     \brief CPU frequency in Hz
+  96:/usr/avr/include/util/delay.h **** 
+  97:/usr/avr/include/util/delay.h ****     The macro F_CPU specifies the CPU frequency to be considered by
+  98:/usr/avr/include/util/delay.h ****     the delay macros.  This macro is normally supplied by the
+  99:/usr/avr/include/util/delay.h ****     environment (e.g. from within a project header, or the project's
+ 100:/usr/avr/include/util/delay.h ****     Makefile).  The value 1 MHz here is only provided as a "vanilla"
+ 101:/usr/avr/include/util/delay.h ****     fallback if no such user-provided definition could be found.
+ 102:/usr/avr/include/util/delay.h **** 
+ 103:/usr/avr/include/util/delay.h ****     In terms of the delay functions, the CPU frequency can be given as
+ 104:/usr/avr/include/util/delay.h ****     a floating-point constant (e.g. 3.6864E6 for 3.6864 MHz).
+ 105:/usr/avr/include/util/delay.h ****     However, the macros in <util/setbaud.h> require it to be an
+ 106:/usr/avr/include/util/delay.h ****     integer value.
+ 107:/usr/avr/include/util/delay.h ****  */
+ 108:/usr/avr/include/util/delay.h **** # define F_CPU 1000000UL
+ 109:/usr/avr/include/util/delay.h **** #endif
+ 110:/usr/avr/include/util/delay.h **** 
+ 111:/usr/avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+ 112:/usr/avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+ 113:/usr/avr/include/util/delay.h **** #endif
+ 114:/usr/avr/include/util/delay.h **** 
+ 115:/usr/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 116:/usr/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 117:/usr/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 118:/usr/avr/include/util/delay.h **** #  include <math.h>
+ 119:/usr/avr/include/util/delay.h **** #endif
+ 120:/usr/avr/include/util/delay.h **** 
+ 121:/usr/avr/include/util/delay.h **** /**
+ 122:/usr/avr/include/util/delay.h ****    \ingroup util_delay
+ 123:/usr/avr/include/util/delay.h **** 
+ 124:/usr/avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 125:/usr/avr/include/util/delay.h **** 
+ 126:/usr/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 127:/usr/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 128:/usr/avr/include/util/delay.h **** 
+ 129:/usr/avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 130:/usr/avr/include/util/delay.h **** 
+ 131:/usr/avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 132:/usr/avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 133:/usr/avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 134:/usr/avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 135:/usr/avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 136:/usr/avr/include/util/delay.h **** 
+ 137:/usr/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles()
+ 138:/usr/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 139:/usr/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 140:/usr/avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 141:/usr/avr/include/util/delay.h **** 
+ 142:/usr/avr/include/util/delay.h ****    Conversion of \c __ms into clock cycles may not always result in
+ 143:/usr/avr/include/util/delay.h ****    integer.  By default, the clock cycles rounded up to next
+ 144:/usr/avr/include/util/delay.h ****    integer. This ensures that the user gets at least \c __ms
+ 145:/usr/avr/include/util/delay.h ****    microseconds of delay.
+ 146:/usr/avr/include/util/delay.h **** 
+ 147:/usr/avr/include/util/delay.h ****    Alternatively, by defining the macro \c __DELAY_ROUND_DOWN__, or
+ 148:/usr/avr/include/util/delay.h ****    \c __DELAY_ROUND_CLOSEST__, before including this header file, the
+ 149:/usr/avr/include/util/delay.h ****    algorithm can be made to round down, or round to closest integer,
+ 150:/usr/avr/include/util/delay.h ****    respectively.
+ 151:/usr/avr/include/util/delay.h **** 
+ 152:/usr/avr/include/util/delay.h ****    \note
+ 153:/usr/avr/include/util/delay.h **** 
+ 154:/usr/avr/include/util/delay.h ****    The implementation of _delay_ms() based on
+ 155:/usr/avr/include/util/delay.h ****    __builtin_avr_delay_cycles() is not backward compatible with older
+ 156:/usr/avr/include/util/delay.h ****    implementations.  In order to get functionality backward compatible
+ 157:/usr/avr/include/util/delay.h ****    with previous versions, the macro \c "__DELAY_BACKWARD_COMPATIBLE__"
+ 158:/usr/avr/include/util/delay.h ****    must be defined before including this header file. Also, the
+ 159:/usr/avr/include/util/delay.h ****    backward compatible algorithm will be chosen if the code is
+ 160:/usr/avr/include/util/delay.h ****    compiled in a <em>freestanding environment</em> (GCC option
+ 161:/usr/avr/include/util/delay.h ****    \c -ffreestanding), as the math functions required for rounding are
+ 162:/usr/avr/include/util/delay.h ****    not available to the compiler then.
+ 163:/usr/avr/include/util/delay.h **** 
+ 164:/usr/avr/include/util/delay.h ****  */
+ 165:/usr/avr/include/util/delay.h **** void
+ 166:/usr/avr/include/util/delay.h **** _delay_ms(double __ms)
+ 167:/usr/avr/include/util/delay.h **** {
+ 168:/usr/avr/include/util/delay.h **** 	double __tmp ;
+ 169:/usr/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 170:/usr/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 171:/usr/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 172:/usr/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 173:/usr/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 174:/usr/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+ 175:/usr/avr/include/util/delay.h **** 
+ 176:/usr/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 177:/usr/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 178:/usr/avr/include/util/delay.h **** 
+ 179:/usr/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 180:/usr/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 181:/usr/avr/include/util/delay.h **** 
+ 182:/usr/avr/include/util/delay.h **** 	#else
+ 183:/usr/avr/include/util/delay.h **** 		//round up by default
+ 184:/usr/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 185:/usr/avr/include/util/delay.h **** 	#endif
+ 186:/usr/avr/include/util/delay.h **** 
+ 187:/usr/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 795               	.LM89:
+ 796 02ca EFE3      		ldi r30,lo8(-25537)
+ 797 02cc FCE9      		ldi r31,hi8(-25537)
+ 798 02ce 3197      	1:	sbiw r30,1
+ 799 02d0 01F4      		brne 1b
+ 800 02d2 00C0      		rjmp .
+ 801 02d4 0000      		nop
+ 802               	/* epilogue start */
+ 803               	.LBE25:
+ 804               	.LBE24:
+ 806               	.Ltext2:
+ 331:twi_master/twi_master.c ****   
+ 332:twi_master/twi_master.c ****   twi_master_stop();
+ 333:twi_master/twi_master.c ****   _delay_ms(10);
+ 334:twi_master/twi_master.c ****   return st;
+ 335:twi_master/twi_master.c **** }
+ 808               	.LM90:
+ 809 02d6 DF91      		pop r29
+ 810 02d8 CF91      		pop r28
+ 811 02da 1F91      		pop r17
+ 812 02dc 0F91      		pop r16
+ 813 02de 0895      		ret
+ 814               	.L117:
+ 330:twi_master/twi_master.c ****   
+ 816               	.LM91:
+ 817 02e0 80E0      		ldi r24,0
+ 818 02e2 00C0      		rjmp .L112
+ 820               	.Lscope8:
+ 822               		.stabd	78,0,0
+ 825               	.global	twi_master_write16_reg16
+ 827               	twi_master_write16_reg16:
+ 828               		.stabd	46,0,0
+ 336:twi_master/twi_master.c **** 
+ 337:twi_master/twi_master.c **** uint8_t twi_master_write16_reg16(const uint8_t sad, const uint16_t reg_addr,
+ 338:twi_master/twi_master.c ****                               uint16_t data)
+ 339:twi_master/twi_master.c **** {
+ 830               	.LM92:
+ 831               	.LFBB9:
+ 832 02e4 FF92      		push r15
+ 833 02e6 0F93      		push r16
+ 834 02e8 1F93      		push r17
+ 835 02ea CF93      		push r28
+ 836 02ec DF93      		push r29
+ 837               	/* prologue: function */
+ 838               	/* frame size = 0 */
+ 839               	/* stack size = 5 */
+ 840               	.L__stack_usage = 5
+ 841 02ee F82E      		mov r15,r24
+ 842 02f0 162F      		mov r17,r22
+ 843 02f2 072F      		mov r16,r23
+ 844 02f4 EA01      		movw r28,r20
+ 340:twi_master/twi_master.c ****   uint8_t st = 1;
+ 341:twi_master/twi_master.c ****   
+ 342:twi_master/twi_master.c ****   st = st && twi_master_start();
+ 846               	.LM93:
+ 847 02f6 0E94 0000 		call twi_master_start
+ 343:twi_master/twi_master.c ****   
+ 344:twi_master/twi_master.c ****   st = st && twi_master_write((sad << 1) | TW_WRITE);
+ 849               	.LM94:
+ 850 02fa 8823      		tst r24
+ 851 02fc 01F4      		brne .+2
+ 852 02fe 00C0      		rjmp .L140
+ 854               	.LM95:
+ 855 0300 8F2D      		mov r24,r15
+ 856 0302 880F      		lsl r24
+ 857 0304 0E94 0000 		call twi_master_write
+ 858 0308 21E0      		ldi r18,lo8(1)
+ 859 030a 30E0      		ldi r19,0
+ 860 030c 8111      		cpse r24,__zero_reg__
+ 861 030e 00C0      		rjmp .L127
+ 862 0310 30E0      		ldi r19,0
+ 863 0312 20E0      		ldi r18,0
+ 864               	.L127:
+ 345:twi_master/twi_master.c ****   
+ 346:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr >> 8);
+ 866               	.LM96:
+ 867 0314 232B      		or r18,r19
+ 868 0316 01F0      		breq .L140
+ 869 0318 802F      		mov r24,r16
+ 870 031a 0E94 0000 		call twi_master_write
+ 871 031e 21E0      		ldi r18,lo8(1)
+ 872 0320 30E0      		ldi r19,0
+ 873 0322 8111      		cpse r24,__zero_reg__
+ 874 0324 00C0      		rjmp .L129
+ 875 0326 30E0      		ldi r19,0
+ 876 0328 20E0      		ldi r18,0
+ 877               	.L129:
+ 347:twi_master/twi_master.c ****   st = st && twi_master_write(reg_addr);
+ 879               	.LM97:
+ 880 032a 232B      		or r18,r19
+ 881 032c 01F0      		breq .L140
+ 882 032e 812F      		mov r24,r17
+ 883 0330 0E94 0000 		call twi_master_write
+ 884 0334 21E0      		ldi r18,lo8(1)
+ 885 0336 30E0      		ldi r19,0
+ 886 0338 8111      		cpse r24,__zero_reg__
+ 887 033a 00C0      		rjmp .L131
+ 888 033c 30E0      		ldi r19,0
+ 889 033e 20E0      		ldi r18,0
+ 890               	.L131:
+ 348:twi_master/twi_master.c ****   
+ 349:twi_master/twi_master.c ****   st = st && twi_master_write(data >> 8);
+ 892               	.LM98:
+ 893 0340 232B      		or r18,r19
+ 894 0342 01F0      		breq .L140
+ 895 0344 8D2F      		mov r24,r29
+ 896 0346 0E94 0000 		call twi_master_write
+ 897 034a 21E0      		ldi r18,lo8(1)
+ 898 034c 30E0      		ldi r19,0
+ 899 034e 8111      		cpse r24,__zero_reg__
+ 900 0350 00C0      		rjmp .L133
+ 901 0352 30E0      		ldi r19,0
+ 902 0354 20E0      		ldi r18,0
+ 903               	.L133:
+ 350:twi_master/twi_master.c ****   st = st && twi_master_write(data);
+ 905               	.LM99:
+ 906 0356 232B      		or r18,r19
+ 907 0358 01F0      		breq .L140
+ 908 035a 8C2F      		mov r24,r28
+ 909 035c 0E94 0000 		call twi_master_write
+ 910 0360 91E0      		ldi r25,lo8(1)
+ 911 0362 8111      		cpse r24,__zero_reg__
+ 912 0364 00C0      		rjmp .L135
+ 913 0366 90E0      		ldi r25,0
+ 914               	.L135:
+ 915 0368 892F      		mov r24,r25
+ 916               	.L134:
+ 917               	.LBB26:
+ 918               	.LBB27:
+ 106:twi_master/twi_master.c **** #ifdef TWI_DEBUG
+ 920               	.LM100:
+ 921 036a 94E9      		ldi r25,lo8(-108)
+ 922 036c 9093 BC00 		sts 188,r25
+ 923               	.LBE27:
+ 924               	.LBE26:
+ 925               	.LBB28:
+ 926               	.LBB29:
+ 928               	.Ltext3:
+ 930               	.LM101:
+ 931 0370 EFE3      		ldi r30,lo8(-25537)
+ 932 0372 FCE9      		ldi r31,hi8(-25537)
+ 933 0374 3197      	1:	sbiw r30,1
+ 934 0376 01F4      		brne 1b
+ 935 0378 00C0      		rjmp .
+ 936 037a 0000      		nop
+ 937               	/* epilogue start */
+ 938               	.LBE29:
+ 939               	.LBE28:
+ 941               	.Ltext4:
+ 351:twi_master/twi_master.c ****   
+ 352:twi_master/twi_master.c ****   twi_master_stop();
+ 353:twi_master/twi_master.c ****   _delay_ms(10);
+ 354:twi_master/twi_master.c ****   return st;
+ 355:twi_master/twi_master.c **** }
+ 943               	.LM102:
+ 944 037c DF91      		pop r29
+ 945 037e CF91      		pop r28
+ 946 0380 1F91      		pop r17
+ 947 0382 0F91      		pop r16
+ 948 0384 FF90      		pop r15
+ 949 0386 0895      		ret
+ 950               	.L140:
+ 350:twi_master/twi_master.c ****   
+ 952               	.LM103:
+ 953 0388 80E0      		ldi r24,0
+ 954 038a 00C0      		rjmp .L134
+ 956               	.Lscope9:
+ 958               		.stabd	78,0,0
+ 960               	.Letext0:
+ 961               		.ident	"GCC: (Gentoo 7.2.0-r1 p1.1) 7.2.0"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 twi_master.c
+     /tmp/ccoVd6p0.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccoVd6p0.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccoVd6p0.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccoVd6p0.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccoVd6p0.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccoVd6p0.s:110    .text:0000000000000000 twi_master_init
+     /tmp/ccoVd6p0.s:137    .text:000000000000000c twi_master_start
+     /tmp/ccoVd6p0.s:210    .text:0000000000000042 twi_master_stop
+     /tmp/ccoVd6p0.s:235    .text:000000000000004a twi_master_write
+     /tmp/ccoVd6p0.s:317    .text:0000000000000088 twi_master_read
+     /tmp/ccoVd6p0.s:408    .text:00000000000000ce twi_master_read16_reg8
+     /tmp/ccoVd6p0.s:542    .text:0000000000000180 twi_master_read16_reg16
+     /tmp/ccoVd6p0.s:707    .text:0000000000000258 twi_master_write16_reg8
+     /tmp/ccoVd6p0.s:827    .text:00000000000002e4 twi_master_write16_reg16
+
+NO UNDEFINED SYMBOLS
